@@ -3,4 +3,70 @@
    uuid = "84D1E3ED-32A9-4BB1-960B-DE5654C7DD02"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "05FCE06F-C376-49B5-9577-9A5F2CADAC2E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PiggyBank/Data/APIManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "getAccounts(request:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "05FCE06F-C376-49B5-9577-9A5F2CADAC2E - 9cac6d5d8ef0d857"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PiggyBank.APIManager.getAccounts(request: PiggyBank.APIDTOs.GetAccounts.Request, completion: (PiggyBank.APIDTOs.GetAccounts.Response) -&gt; ()) -&gt; ()"
+                  moduleName = "PiggyBank"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dave1off/Desktop/PiggyBank/PiggyBank/PiggyBank/Data/APIManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "73"
+                  endingLineNumber = "73"
+                  offsetFromSymbolStart = "1172">
+               </Location>
+               <Location
+                  uuid = "05FCE06F-C376-49B5-9577-9A5F2CADAC2E - 6266d09de1a2bd4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in PiggyBank.APIManager.getAccounts(request: PiggyBank.APIDTOs.GetAccounts.Request, completion: (PiggyBank.APIDTOs.GetAccounts.Response) -&gt; ()) -&gt; ()"
+                  moduleName = "PiggyBank"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dave1off/Desktop/PiggyBank/PiggyBank/PiggyBank/Data/APIManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "74"
+                  endingLineNumber = "74"
+                  offsetFromSymbolStart = "254">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F70A49DC-370D-4E8F-AC26-DA059E70FE83"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PiggyBank/Data/APIManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "signIn(request:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

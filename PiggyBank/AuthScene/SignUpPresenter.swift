@@ -4,7 +4,7 @@ final class SignUpPresenter: IAuthPresenter {
     
     private let signUpUseCase = SignUpUseCase()
     
-    weak var view: IAuthView?
+    private weak var view: IAuthView?
     
     init(view: IAuthView) {
         self.view = view

@@ -2,7 +2,9 @@ import Foundation
 
 final class SignInPresenter: IAuthPresenter {
     
-    weak var view: IAuthView?
+    private let signInUseCase = SignInUseCase()
+    
+    private weak var view: IAuthView?
     
     init(view: IAuthView) {
         self.view = view
@@ -13,7 +15,15 @@ final class SignInPresenter: IAuthPresenter {
     }
     
     func onPrimaryAction(request: AuthDTOs.PrimaryAction.Request) {
-        
+        signInUseCase.execute(request: .init(username: request.username, password: request.password)) { [weak self] response in
+            DispatchQueue.main.async {
+                if case let .success(token) = response.result {
+                    self?.view?.onPrimaryAction(response: .init(message: token))
+                } else {
+                    self?.view?.onPrimaryAction(response: .init(message: "Error: User is possibly duplicated"))
+                }
+            }
+        }
     }
     
 }

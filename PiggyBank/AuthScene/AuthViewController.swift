@@ -9,9 +9,9 @@ final class AuthViewController: UIViewController {
     
     var presenter: IAuthPresenter!
     
-    private let api = APIManager()
+    private let api = APIManager.shared
     
-    var onButtonAction: ((UIButton) -> Void)?
+    var onButtonAction: ((Void) -> Void)?
     var onHintButtonAction: ((UIButton) -> Void)?
 
     override func viewDidLoad() {
@@ -32,11 +32,13 @@ extension AuthViewController: IAuthView {
     }
     
     func onPrimaryAction(response: AuthDTOs.PrimaryAction.Response) {
-        let alertController = UIAlertController(title: response.message, message: "", preferredStyle: .alert)
+        /* let alertController = UIAlertController(title: response.message, message: "", preferredStyle: .alert)
         let alertAction = UIAlertAction(title: "OK", style: .cancel)
         
         alertController.addAction(alertAction)
-        present(alertController, animated: true, completion: nil)
+        present(alertController, animated: true, completion: nil) */
+        
+        onButtonAction?(())
     }
     
 }
@@ -59,6 +61,9 @@ private extension AuthViewController {
         [actionButton, hintButton].forEach {
             $0.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0.01, bottom: 0.01, right: 0)
         }
+        
+        nicknameField.text = "vasyapupkin"
+        passwordField.text = "qwerty123"
         
         nicknameField.placeholder = "nickname..."
         

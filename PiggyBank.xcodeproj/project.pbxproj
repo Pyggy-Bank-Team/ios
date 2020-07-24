@@ -27,6 +27,14 @@
 		91A85DE224B4C50300B7A630 /* UseCasesDTOs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DE124B4C50300B7A630 /* UseCasesDTOs.swift */; };
 		91A85DE524B4C5D900B7A630 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DE424B4C5D900B7A630 /* Result.swift */; };
 		91A85DE724B4C7BC00B7A630 /* UseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DE624B4C7BC00B7A630 /* UseCase.swift */; };
+		91A85DE924B64B7D00B7A630 /* SignInUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DE824B64B7D00B7A630 /* SignInUseCase.swift */; };
+		91A85DEB24B650C400B7A630 /* SignInResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DEA24B650C400B7A630 /* SignInResponse.swift */; };
+		91A85DEE24CB308000B7A630 /* AccountsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DED24CB308000B7A630 /* AccountsViewController.swift */; };
+		91A85DF024CB30BC00B7A630 /* AccountsDTOs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DEF24CB30BC00B7A630 /* AccountsDTOs.swift */; };
+		91A85DF224CB326700B7A630 /* AccountsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DF124CB326700B7A630 /* AccountsPresenter.swift */; };
+		91A85DF424CB385400B7A630 /* AccountResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DF324CB385400B7A630 /* AccountResponse.swift */; };
+		91A85DF624CB39DE00B7A630 /* GetAccountsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DF524CB39DE00B7A630 /* GetAccountsUseCase.swift */; };
+		91A85DF824CB3D0E00B7A630 /* AccountsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DF724CB3D0E00B7A630 /* AccountsAssembly.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +60,14 @@
 		91A85DE124B4C50300B7A630 /* UseCasesDTOs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCasesDTOs.swift; sourceTree = "<group>"; };
 		91A85DE424B4C5D900B7A630 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		91A85DE624B4C7BC00B7A630 /* UseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCase.swift; sourceTree = "<group>"; };
+		91A85DE824B64B7D00B7A630 /* SignInUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInUseCase.swift; sourceTree = "<group>"; };
+		91A85DEA24B650C400B7A630 /* SignInResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInResponse.swift; sourceTree = "<group>"; };
+		91A85DED24CB308000B7A630 /* AccountsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsViewController.swift; sourceTree = "<group>"; };
+		91A85DEF24CB30BC00B7A630 /* AccountsDTOs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsDTOs.swift; sourceTree = "<group>"; };
+		91A85DF124CB326700B7A630 /* AccountsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsPresenter.swift; sourceTree = "<group>"; };
+		91A85DF324CB385400B7A630 /* AccountResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountResponse.swift; sourceTree = "<group>"; };
+		91A85DF524CB39DE00B7A630 /* GetAccountsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAccountsUseCase.swift; sourceTree = "<group>"; };
+		91A85DF724CB3D0E00B7A630 /* AccountsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsAssembly.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +100,7 @@
 		91A85DA724ABDDA400B7A630 /* PiggyBank */ = {
 			isa = PBXGroup;
 			children = (
+				91A85DEC24CB304B00B7A630 /* AccountsScene */,
 				91A85DE324B4C5CC00B7A630 /* Globals */,
 				91A85DDC24B4C43500B7A630 /* Domain */,
 				91A85DD724AC610C00B7A630 /* Data */,
@@ -116,6 +133,7 @@
 			children = (
 				91A85DCC24AC4B4A00B7A630 /* SignInSceneAssembly.swift */,
 				91A85DCE24AC4B7700B7A630 /* SignUpSceneAssembly.swift */,
+				91A85DF724CB3D0E00B7A630 /* AccountsAssembly.swift */,
 			);
 			path = Assemblies;
 			sourceTree = "<group>";
@@ -135,6 +153,8 @@
 			children = (
 				91A85DD824AC611F00B7A630 /* APIManager.swift */,
 				91A85DDA24AC61CF00B7A630 /* APIDTOs.swift */,
+				91A85DEA24B650C400B7A630 /* SignInResponse.swift */,
+				91A85DF324CB385400B7A630 /* AccountResponse.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -153,6 +173,8 @@
 			children = (
 				91A85DDE24B4C49300B7A630 /* SignUpUseCase.swift */,
 				91A85DE624B4C7BC00B7A630 /* UseCase.swift */,
+				91A85DE824B64B7D00B7A630 /* SignInUseCase.swift */,
+				91A85DF524CB39DE00B7A630 /* GetAccountsUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -163,6 +185,16 @@
 				91A85DE424B4C5D900B7A630 /* Result.swift */,
 			);
 			path = Globals;
+			sourceTree = "<group>";
+		};
+		91A85DEC24CB304B00B7A630 /* AccountsScene */ = {
+			isa = PBXGroup;
+			children = (
+				91A85DED24CB308000B7A630 /* AccountsViewController.swift */,
+				91A85DEF24CB30BC00B7A630 /* AccountsDTOs.swift */,
+				91A85DF124CB326700B7A630 /* AccountsPresenter.swift */,
+			);
+			path = AccountsScene;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -238,6 +270,8 @@
 				91A85DC424ABE8C000B7A630 /* AuthDTOs.swift in Sources */,
 				91A85DC124ABE0F800B7A630 /* IAuthView.swift in Sources */,
 				91A85DBD24ABDE2C00B7A630 /* AuthViewController.swift in Sources */,
+				91A85DF024CB30BC00B7A630 /* AccountsDTOs.swift in Sources */,
+				91A85DF424CB385400B7A630 /* AccountResponse.swift in Sources */,
 				91A85DE224B4C50300B7A630 /* UseCasesDTOs.swift in Sources */,
 				91A85DBF24ABE0B500B7A630 /* IAuthPresenter.swift in Sources */,
 				91A85DC824ABEF1E00B7A630 /* SignInPresenter.swift in Sources */,
@@ -246,12 +280,18 @@
 				91A85DCA24ABEFCF00B7A630 /* SignUpPresenter.swift in Sources */,
 				91A85DDF24B4C49300B7A630 /* SignUpUseCase.swift in Sources */,
 				91A85DDB24AC61CF00B7A630 /* APIDTOs.swift in Sources */,
+				91A85DF224CB326700B7A630 /* AccountsPresenter.swift in Sources */,
 				91A85DCF24AC4B7700B7A630 /* SignUpSceneAssembly.swift in Sources */,
 				91A85DA924ABDDA400B7A630 /* AppDelegate.swift in Sources */,
+				91A85DE924B64B7D00B7A630 /* SignInUseCase.swift in Sources */,
+				91A85DF624CB39DE00B7A630 /* GetAccountsUseCase.swift in Sources */,
 				91A85DD924AC611F00B7A630 /* APIManager.swift in Sources */,
 				91A85DE524B4C5D900B7A630 /* Result.swift in Sources */,
 				91A85DE724B4C7BC00B7A630 /* UseCase.swift in Sources */,
 				91A85DD224AC53FF00B7A630 /* AuthFlow.swift in Sources */,
+				91A85DEB24B650C400B7A630 /* SignInResponse.swift in Sources */,
+				91A85DF824CB3D0E00B7A630 /* AccountsAssembly.swift in Sources */,
+				91A85DEE24CB308000B7A630 /* AccountsViewController.swift in Sources */,
 				91A85DD624AC596000B7A630 /* IFlow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

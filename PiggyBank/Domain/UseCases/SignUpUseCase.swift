@@ -1,16 +1,14 @@
 import Foundation
 
-typealias DTO = UseCasesDTOs.SignUp
-
-final class SignUpUseCase: UseCase<DTO.Request, DTO.Response> {
+final class SignUpUseCase: UseCase<UseCasesDTOs.SignUp.Request, UseCasesDTOs.SignUp.Response> {
     
-    private let apiManager = APIManager()
+    private let apiManager = APIManager.shared
     
-    override func execute(request: DTO.Request, completion: @escaping (DTO.Response) -> Void) {
+    override func execute(request: UseCasesDTOs.SignUp.Request, completion: @escaping (UseCasesDTOs.SignUp.Response) -> Void) {
         let apiDTO = APIDTOs.SignUp.Request(userName: request.username, password: request.password)
         
         apiManager.signUp(request: apiDTO) { result in
-            completion(.init(result: result))
+            completion(.init(result: result.result))
         }
     }
 

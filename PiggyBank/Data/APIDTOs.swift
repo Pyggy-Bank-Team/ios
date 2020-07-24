@@ -11,9 +11,15 @@ struct APIDTOs {
             
         }
         
+        struct Response  {
+            
+            let result: Result<Void>
+            
+        }
+        
     }
     
-    struct GetToken {
+    struct SignIn {
         
         struct Request: Codable {
             
@@ -23,6 +29,33 @@ struct APIDTOs {
             let client_secret: String
             let scope: String
             let grant_type: String
+            
+        }
+        
+        struct Response  {
+            
+            let result: Result<String>
+            
+        }
+        
+    }
+    
+    struct GetAccounts {
+        
+        struct Request { }
+        
+        struct Response {
+            
+            struct Account {
+                
+                let title: String
+                let currency: String
+                let balance: Double
+                let isArchived: Bool
+                
+            }
+            
+            let result: Result<[Account]>
             
         }
         

@@ -23,18 +23,34 @@ struct UseCasesDTOs {
         
         struct Request {
             
-            let clientID: String
             let username: String
             let password: String
-            let clientSecret: String
-            let scope: String
-            let grantType: String
             
         }
         
         struct Response {
             
             let result: Result<String>
+            
+        }
+        
+    }
+    
+    struct GetAccounts {
+        
+        struct Request { }
+        
+        struct Response {
+            
+            struct Account {
+                
+                let title: String
+                let currency: String
+                let balance: Double
+                
+            }
+            
+            let result: Result<[Account]>
             
         }
         
