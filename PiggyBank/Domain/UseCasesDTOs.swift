@@ -47,10 +47,27 @@ struct UseCasesDTOs {
                 let title: String
                 let currency: String
                 let balance: Double
+                let isArchived: Bool
                 
             }
             
             let result: Result<[Account]>
+            
+        }
+        
+    }
+    
+    struct CreateAccount {
+        
+        struct Request {
+            
+            let title: String
+            
+        }
+        
+        struct Response {
+            
+            let result: Result<Void>
             
         }
         

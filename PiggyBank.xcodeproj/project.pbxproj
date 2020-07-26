@@ -35,6 +35,7 @@
 		91A85DF424CB385400B7A630 /* AccountResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DF324CB385400B7A630 /* AccountResponse.swift */; };
 		91A85DF624CB39DE00B7A630 /* GetAccountsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DF524CB39DE00B7A630 /* GetAccountsUseCase.swift */; };
 		91A85DF824CB3D0E00B7A630 /* AccountsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DF724CB3D0E00B7A630 /* AccountsAssembly.swift */; };
+		91A85DFA24CD229800B7A630 /* CreateAccountUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DF924CD229800B7A630 /* CreateAccountUseCase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +69,7 @@
 		91A85DF324CB385400B7A630 /* AccountResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountResponse.swift; sourceTree = "<group>"; };
 		91A85DF524CB39DE00B7A630 /* GetAccountsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAccountsUseCase.swift; sourceTree = "<group>"; };
 		91A85DF724CB3D0E00B7A630 /* AccountsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsAssembly.swift; sourceTree = "<group>"; };
+		91A85DF924CD229800B7A630 /* CreateAccountUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountUseCase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +177,7 @@
 				91A85DE624B4C7BC00B7A630 /* UseCase.swift */,
 				91A85DE824B64B7D00B7A630 /* SignInUseCase.swift */,
 				91A85DF524CB39DE00B7A630 /* GetAccountsUseCase.swift */,
+				91A85DF924CD229800B7A630 /* CreateAccountUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 				91A85DF024CB30BC00B7A630 /* AccountsDTOs.swift in Sources */,
 				91A85DF424CB385400B7A630 /* AccountResponse.swift in Sources */,
 				91A85DE224B4C50300B7A630 /* UseCasesDTOs.swift in Sources */,
+				91A85DFA24CD229800B7A630 /* CreateAccountUseCase.swift in Sources */,
 				91A85DBF24ABE0B500B7A630 /* IAuthPresenter.swift in Sources */,
 				91A85DC824ABEF1E00B7A630 /* SignInPresenter.swift in Sources */,
 				91A85DCD24AC4B4A00B7A630 /* SignInSceneAssembly.swift in Sources */,

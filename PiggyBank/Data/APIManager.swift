@@ -91,4 +91,26 @@ final class APIManager {
         }.resume()
     }
     
+    func createAccount(request: APIDTOs.CreateAccount.Request, completion: @escaping (APIDTOs.CreateAccount.Response) -> Void) {
+        guard let url = URL(string: accountsURL + "/api/Accounts") else { return }
+        
+        var urlRequst = URLRequest(url: url)
+        urlRequst.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        urlRequst.httpMethod = "POST"
+        urlRequst.httpBody = try? JSONEncoder().encode(request)
+        urlRequst.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        URLSession.shared.dataTask(with: urlRequst) { data, response, error in
+            guard let httpResponse = response as? HTTPURLResponse else {
+                return completion(.init(result: .error(APIError())))
+            }
+            
+            if httpResponse.statusCode == 200 {
+                completion(.init(result: .success(())))
+            } else {
+                completion(.init(result: .error(APIError())))
+            }
+        }.resume()
+    }
+    
 }

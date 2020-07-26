@@ -21,12 +21,29 @@ struct AccountsDTOs {
                     let title: String
                     let currency: String
                     let total: Double
+                    let isArchived: Bool
                     
                 }
                 
                 let accounts: [Account]
                 
             }
+            
+        }
+        
+    }
+    
+    struct OnAdd {
+        
+        struct Request {
+            
+            let title: String
+            
+        }
+        
+        struct Response {
+            
+            let title: String
             
         }
         

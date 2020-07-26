@@ -61,4 +61,23 @@ struct APIDTOs {
         
     }
     
+    struct CreateAccount {
+        
+        struct Request: Codable {
+            
+            let title: String
+            let type: Int
+            let currency: String
+            let balance: Double
+            
+        }
+        
+        struct Response {
+            
+            let result: Result<Void>
+            
+        }
+        
+    }
+    
 }
