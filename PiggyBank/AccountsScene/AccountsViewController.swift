@@ -17,6 +17,7 @@ final class AccountsViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.separatorInset = .zero
         view.addSubview(tableView)
         
         NSLayoutConstraint.activate([
@@ -72,7 +73,33 @@ private extension AccountsViewController {
 
 extension AccountsViewController: UITableViewDelegate {
     
-    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let account = accounts[indexPath.row]
+        var actions: [UIContextualAction] = []
+        
+        let deleteAction = UIContextualAction(style: .normal, title: "") { _, _, _ in print("Delete") }
+        deleteAction.image = #imageLiteral(resourceName: "delete")
+        actions.append(deleteAction)
+        
+        if !account.isArchived {
+            let archiveAction = UIContextualAction(style: .normal, title: "") { _, _, _ in print("Archive") }
+            archiveAction.image = #imageLiteral(resourceName: "archive")
+            actions.append(archiveAction)
+        }
+        
+        let renameAction = UIContextualAction(style: .normal, title: "") { _, _, _ in print("Rename") }
+        renameAction.image = #imageLiteral(resourceName: "rename")
+        actions.append(renameAction)
+        
+        actions.forEach {
+            $0.backgroundColor = .white
+        }
+        
+        let swipeConfiguration = UISwipeActionsConfiguration(actions: actions)
+        swipeConfiguration.performsFirstActionWithFullSwipe = false
+        
+        return swipeConfiguration
+    }
     
 }
 
@@ -87,7 +114,10 @@ extension AccountsViewController: UITableViewDataSource {
         let account = accounts[indexPath.row]
         
         cell.textLabel?.text = account.title
-        cell.textLabel?.textColor = account.isArchived ? .red : .green
+        
+        if account.isArchived {
+            cell.imageView?.image = #imageLiteral(resourceName: "archive")
+        }
         
         return cell
     }

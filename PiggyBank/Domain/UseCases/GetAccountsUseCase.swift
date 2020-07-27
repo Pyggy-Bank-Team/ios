@@ -8,8 +8,9 @@ final class GetAccountsUseCase: UseCase<UseCasesDTOs.GetAccounts.Request, UseCas
         apiManager.getAccounts(request: .init()) { response in
             if case let .success(items) = response.result {
                 let result = items
-                    .filter { !$0.isArchived }
-                    .map { UseCasesDTOs.GetAccounts.Response.Account(title: $0.title, currency: $0.currency, balance: $0.balance, isArchived: $0.isArchived) }
+                    .map {
+                        UseCasesDTOs.GetAccounts.Response.Account(title: $0.title, currency: $0.currency, balance: $0.balance, isArchived: $0.isArchived)
+                    }
                 
                 completion(.init(result: .success(result)))
             }
