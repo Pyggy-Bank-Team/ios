@@ -15,7 +15,6 @@ final class AccountsViewController: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorInset = .zero
         view.addSubview(tableView)
@@ -77,17 +76,44 @@ extension AccountsViewController: UITableViewDelegate {
         let account = accounts[indexPath.row]
         var actions: [UIContextualAction] = []
         
-        let deleteAction = UIContextualAction(style: .normal, title: "") { _, _, _ in print("Delete") }
+        let deleteAction = UIContextualAction(style: .normal, title: "") { [weak self] _, _, complete in
+            self?.presenter.onDeleteAccount(request: .init(index: indexPath.row))
+            complete(true)
+        }
         deleteAction.image = #imageLiteral(resourceName: "delete")
         actions.append(deleteAction)
         
         if !account.isArchived {
-            let archiveAction = UIContextualAction(style: .normal, title: "") { _, _, _ in print("Archive") }
+            let archiveAction = UIContextualAction(style: .normal, title: "") { [weak self] _, _, complete in
+                self?.presenter.onArchiveAccount(request: .init(index: indexPath.row))
+                complete(true)
+            }
             archiveAction.image = #imageLiteral(resourceName: "archive")
             actions.append(archiveAction)
         }
         
-        let renameAction = UIContextualAction(style: .normal, title: "") { _, _, _ in print("Rename") }
+        let renameAction = UIContextualAction(style: .normal, title: "") { [weak self] _, _, complete in
+            guard let self = self else { return }
+            
+            let alertController = UIAlertController(title: "", message: "", preferredStyle: .alert)
+            
+            alertController.addTextField { textField in
+                textField.placeholder = "Enter new title"
+                textField.text = account.title
+            }
+            
+            let okAction = UIAlertAction(title: "OK", style: .default) { [weak alertController] _ in
+                self.presenter.onRenameAccount(request: .init(index: indexPath.row, title: alertController?.textFields?.first?.text ?? ""))
+            }
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
+            
+            alertController.addAction(okAction)
+            alertController.addAction(cancelAction)
+            self.present(alertController, animated: true, completion: nil)
+            
+            complete(true)
+        }
         renameAction.image = #imageLiteral(resourceName: "rename")
         actions.append(renameAction)
         
@@ -110,16 +136,30 @@ extension AccountsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         let account = accounts[indexPath.row]
         
-        cell.textLabel?.text = account.title
-        
-        if account.isArchived {
-            cell.imageView?.image = #imageLiteral(resourceName: "archive")
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") {
+            cell.textLabel?.text = account.title
+            cell.detailTextLabel?.text = "\(account.total) \(account.currency)"
+            
+            if account.isArchived {
+                cell.imageView?.image = #imageLiteral(resourceName: "archive")
+            }
+            
+            return cell
+        } else {
+            let cell = UITableViewCell(style: .value1, reuseIdentifier: "Cell")
+            
+            cell.textLabel?.text = account.title
+            cell.detailTextLabel?.text = "\(account.total) \(account.currency)"
+            
+            if account.isArchived {
+                cell.imageView?.image = #imageLiteral(resourceName: "archive")
+            }
+            
+            
+            return cell
         }
-        
-        return cell
     }
     
 }

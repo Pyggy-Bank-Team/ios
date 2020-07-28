@@ -36,6 +36,9 @@
 		91A85DF624CB39DE00B7A630 /* GetAccountsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DF524CB39DE00B7A630 /* GetAccountsUseCase.swift */; };
 		91A85DF824CB3D0E00B7A630 /* AccountsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DF724CB3D0E00B7A630 /* AccountsAssembly.swift */; };
 		91A85DFA24CD229800B7A630 /* CreateAccountUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DF924CD229800B7A630 /* CreateAccountUseCase.swift */; };
+		91A85DFC24CEEF9E00B7A630 /* ArchiveAccountUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DFB24CEEF9E00B7A630 /* ArchiveAccountUseCase.swift */; };
+		91A85DFE24CEFC1500B7A630 /* DeleteAccountUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DFD24CEFC1500B7A630 /* DeleteAccountUseCase.swift */; };
+		91A85E0024CFEB6B00B7A630 /* RenameAccountUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DFF24CFEB6B00B7A630 /* RenameAccountUseCase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +73,9 @@
 		91A85DF524CB39DE00B7A630 /* GetAccountsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAccountsUseCase.swift; sourceTree = "<group>"; };
 		91A85DF724CB3D0E00B7A630 /* AccountsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsAssembly.swift; sourceTree = "<group>"; };
 		91A85DF924CD229800B7A630 /* CreateAccountUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountUseCase.swift; sourceTree = "<group>"; };
+		91A85DFB24CEEF9E00B7A630 /* ArchiveAccountUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveAccountUseCase.swift; sourceTree = "<group>"; };
+		91A85DFD24CEFC1500B7A630 /* DeleteAccountUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountUseCase.swift; sourceTree = "<group>"; };
+		91A85DFF24CFEB6B00B7A630 /* RenameAccountUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenameAccountUseCase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +184,9 @@
 				91A85DE824B64B7D00B7A630 /* SignInUseCase.swift */,
 				91A85DF524CB39DE00B7A630 /* GetAccountsUseCase.swift */,
 				91A85DF924CD229800B7A630 /* CreateAccountUseCase.swift */,
+				91A85DFB24CEEF9E00B7A630 /* ArchiveAccountUseCase.swift */,
+				91A85DFD24CEFC1500B7A630 /* DeleteAccountUseCase.swift */,
+				91A85DFF24CFEB6B00B7A630 /* RenameAccountUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -273,6 +282,7 @@
 				91A85DC424ABE8C000B7A630 /* AuthDTOs.swift in Sources */,
 				91A85DC124ABE0F800B7A630 /* IAuthView.swift in Sources */,
 				91A85DBD24ABDE2C00B7A630 /* AuthViewController.swift in Sources */,
+				91A85DFE24CEFC1500B7A630 /* DeleteAccountUseCase.swift in Sources */,
 				91A85DF024CB30BC00B7A630 /* AccountsDTOs.swift in Sources */,
 				91A85DF424CB385400B7A630 /* AccountResponse.swift in Sources */,
 				91A85DE224B4C50300B7A630 /* UseCasesDTOs.swift in Sources */,
@@ -292,9 +302,11 @@
 				91A85DD924AC611F00B7A630 /* APIManager.swift in Sources */,
 				91A85DE524B4C5D900B7A630 /* Result.swift in Sources */,
 				91A85DE724B4C7BC00B7A630 /* UseCase.swift in Sources */,
+				91A85DFC24CEEF9E00B7A630 /* ArchiveAccountUseCase.swift in Sources */,
 				91A85DD224AC53FF00B7A630 /* AuthFlow.swift in Sources */,
 				91A85DEB24B650C400B7A630 /* SignInResponse.swift in Sources */,
 				91A85DF824CB3D0E00B7A630 /* AccountsAssembly.swift in Sources */,
+				91A85E0024CFEB6B00B7A630 /* RenameAccountUseCase.swift in Sources */,
 				91A85DEE24CB308000B7A630 /* AccountsViewController.swift in Sources */,
 				91A85DD624AC596000B7A630 /* IFlow.swift in Sources */,
 			);

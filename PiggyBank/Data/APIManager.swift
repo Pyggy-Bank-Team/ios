@@ -70,7 +70,10 @@ final class APIManager {
         var urlRequst = URLRequest(url: url)
         urlRequst.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         
+        print("LOGGER: Start for \(urlRequst.url!)")
         URLSession.shared.dataTask(with: urlRequst) { data, response, error in
+            print("LOGGER: Finish for \(urlRequst.url!)")
+            
             guard let data = data, let httpResponse = response as? HTTPURLResponse else {
                 return completion(.init(result: .error(APIError())))
             }
@@ -81,7 +84,9 @@ final class APIManager {
                 }
                 
                 let accounts = model.map {
-                    APIDTOs.GetAccounts.Response.Account(title: $0.title, currency: $0.currency, balance: $0.balance, isArchived: $0.isArchived)
+                    APIDTOs.GetAccounts.Response.Account(
+                        id: $0.id, type: $0.type, title: $0.title, currency: $0.currency, balance: $0.balance, isArchived: $0.isArchived
+                    )
                 }
                 
                 completion(.init(result: .success(accounts)))
@@ -100,7 +105,81 @@ final class APIManager {
         urlRequst.httpBody = try? JSONEncoder().encode(request)
         urlRequst.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
+        print("LOGGER: Start for \(urlRequst.url!)")
         URLSession.shared.dataTask(with: urlRequst) { data, response, error in
+            print("LOGGER: Finish for \(urlRequst.url!)")
+            
+            guard let httpResponse = response as? HTTPURLResponse else {
+                return completion(.init(result: .error(APIError())))
+            }
+            
+            if httpResponse.statusCode == 200 {
+                completion(.init(result: .success(())))
+            } else {
+                completion(.init(result: .error(APIError())))
+            }
+        }.resume()
+    }
+    
+    func archiveAccount(request: APIDTOs.ArchiveAccount.Request, completion: @escaping (APIDTOs.ArchiveAccount.Response) -> Void) {
+        guard let url = URL(string: accountsURL + "/api/Accounts/\(request.id)/Archive") else { return }
+        
+        var urlRequst = URLRequest(url: url)
+        urlRequst.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        urlRequst.httpMethod = "PATCH"
+        
+        print("LOGGER: Start for \(urlRequst.url!)")
+        URLSession.shared.dataTask(with: urlRequst) { data, response, error in
+            print("LOGGER: Finish for \(urlRequst.url!)")
+            
+            guard let httpResponse = response as? HTTPURLResponse else {
+                return completion(.init(result: .error(APIError())))
+            }
+            
+            if httpResponse.statusCode == 200 {
+                completion(.init(result: .success(())))
+            } else {
+                completion(.init(result: .error(APIError())))
+            }
+        }.resume()
+    }
+    
+    func deleteAccount(request: APIDTOs.DeleteAccount.Request, completion: @escaping (APIDTOs.DeleteAccount.Response) -> Void) {
+        guard let url = URL(string: accountsURL + "/api/Accounts/\(request.id)/Delete") else { return }
+        
+        var urlRequst = URLRequest(url: url)
+        urlRequst.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        urlRequst.httpMethod = "DELETE"
+        
+        print("LOGGER: Start for \(urlRequst.url!)")
+        URLSession.shared.dataTask(with: urlRequst) { data, response, error in
+            print("LOGGER: Finish for \(urlRequst.url!)")
+            
+            guard let httpResponse = response as? HTTPURLResponse else {
+                return completion(.init(result: .error(APIError())))
+            }
+            
+            if httpResponse.statusCode == 200 {
+                completion(.init(result: .success(())))
+            } else {
+                completion(.init(result: .error(APIError())))
+            }
+        }.resume()
+    }
+    
+    func renameAccount(request: APIDTOs.RenameAccount.Request, completion: @escaping (APIDTOs.RenameAccount.Response) -> Void) {
+        guard let url = URL(string: accountsURL + "/api/Accounts/\(request.account.id)/Update") else { return }
+        
+        var urlRequst = URLRequest(url: url)
+        urlRequst.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        urlRequst.httpMethod = "PATCH"
+        urlRequst.httpBody = try? JSONEncoder().encode(request.account)
+        urlRequst.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        print("LOGGER: Start for \(urlRequst.url!)")
+        URLSession.shared.dataTask(with: urlRequst) { data, response, error in
+            print("LOGGER: Finish for \(urlRequst.url!)")
+            
             guard let httpResponse = response as? HTTPURLResponse else {
                 return completion(.init(result: .error(APIError())))
             }

@@ -48,6 +48,8 @@ struct APIDTOs {
             
             struct Account {
                 
+                let id: Int
+                let type: Int
                 let title: String
                 let currency: String
                 let balance: Double
@@ -69,6 +71,64 @@ struct APIDTOs {
             let type: Int
             let currency: String
             let balance: Double
+            
+        }
+        
+        struct Response {
+            
+            let result: Result<Void>
+            
+        }
+        
+    }
+    
+    struct ArchiveAccount {
+        
+        struct Request {
+            
+            let id: Int
+            
+        }
+        
+        struct Response {
+            
+            let result: Result<Void>
+            
+        }
+        
+    }
+    
+    struct DeleteAccount {
+        
+        struct Request {
+            
+            let id: Int
+            
+        }
+        
+        struct Response {
+            
+            let result: Result<Void>
+            
+        }
+        
+    }
+    
+    struct RenameAccount {
+        
+        struct Request {
+            
+            struct Account: Codable {
+                
+                let id: Int
+                let type: Int
+                let title: String
+                let currency: String
+                let balance: Double
+                
+            }
+            
+            let account: Account
             
         }
         

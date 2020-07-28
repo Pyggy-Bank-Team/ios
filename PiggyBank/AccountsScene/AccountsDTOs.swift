@@ -18,6 +18,8 @@ struct AccountsDTOs {
                 
                 struct Account {
                     
+                    let id: Int
+                    let type: Int
                     let title: String
                     let currency: String
                     let total: Double
@@ -46,6 +48,43 @@ struct AccountsDTOs {
             let title: String
             
         }
+        
+    }
+    
+    struct OnArchiveAccount {
+        
+        struct Request {
+            
+            let index: Int
+            
+        }
+        
+        struct Response { }
+        
+    }
+    
+    struct OnDeleteAccount {
+        
+        struct Request {
+            
+            let index: Int
+            
+        }
+        
+        struct Response { }
+        
+    }
+    
+    struct OnRenameAccount {
+        
+        struct Request {
+            
+            let index: Int
+            let title: String
+            
+        }
+        
+        struct Response { }
         
     }
     

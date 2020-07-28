@@ -9,7 +9,14 @@ final class GetAccountsUseCase: UseCase<UseCasesDTOs.GetAccounts.Request, UseCas
             if case let .success(items) = response.result {
                 let result = items
                     .map {
-                        UseCasesDTOs.GetAccounts.Response.Account(title: $0.title, currency: $0.currency, balance: $0.balance, isArchived: $0.isArchived)
+                        UseCasesDTOs.GetAccounts.Response.Account(
+                            id: $0.id,
+                            type: $0.type,
+                            title: $0.title,
+                            currency: $0.currency,
+                            balance: $0.balance,
+                            isArchived: $0.isArchived
+                        )
                     }
                 
                 completion(.init(result: .success(result)))

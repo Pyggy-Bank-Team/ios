@@ -44,6 +44,8 @@ struct UseCasesDTOs {
             
             struct Account {
                 
+                let id: Int
+                let type: Int
                 let title: String
                 let currency: String
                 let balance: Double
@@ -62,6 +64,65 @@ struct UseCasesDTOs {
         struct Request {
             
             let title: String
+            
+        }
+        
+        struct Response {
+            
+            let result: Result<Void>
+            
+        }
+        
+    }
+    
+    struct ArchiveAccount {
+        
+        struct Request {
+            
+            let id: Int
+            
+        }
+        
+        struct Response {
+            
+            let result: Result<Void>
+            
+        }
+        
+    }
+    
+    struct DeleteAccount {
+        
+        struct Request {
+            
+            let id: Int
+            
+        }
+        
+        struct Response {
+            
+            let result: Result<Void>
+            
+        }
+        
+    }
+    
+    struct RenameAccount {
+        
+        struct Request {
+            
+            struct Account {
+                
+                let id: Int
+                let type: Int
+                let title: String
+                let currency: String
+                let balance: Double
+                
+            }
+            
+            let title: String
+            let account: Account
             
         }
         
