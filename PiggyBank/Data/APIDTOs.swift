@@ -8,6 +8,7 @@ struct APIDTOs {
             
             let userName: String
             let password: String
+            let currencyBase: String
             
         }
         
@@ -129,6 +130,96 @@ struct APIDTOs {
             }
             
             let account: Account
+            
+        }
+        
+        struct Response {
+            
+            let result: Result<Void>
+            
+        }
+        
+    }
+    
+    struct GetCategories {
+        
+        struct Request { }
+        
+        struct Response {
+            
+            struct Category {
+                
+                let id: Int
+                let title: String
+                let hexColor: String
+                let type: Int
+                let isArchived: Bool
+                
+            }
+            
+            let result: Result<[Category]>
+            
+        }
+        
+    }
+    
+    struct CreateCategory {
+        
+        struct Request: Codable {
+            
+            let title: String
+            let hexColor: String
+            let type: Int
+            
+        }
+        
+        struct Response {
+            
+            let result: Result<Void>
+            
+        }
+        
+    }
+    
+    struct ArchiveCategory {
+        
+        struct Request {
+            
+            let id: Int
+            
+        }
+        
+        struct Response {
+            
+            let result: Result<Void>
+            
+        }
+        
+    }
+    
+    struct DeleteCategory {
+        
+        struct Request {
+            
+            let id: Int
+            
+        }
+        
+        struct Response {
+            
+            let result: Result<Void>
+            
+        }
+        
+    }
+    
+    struct ChangeCategory {
+        
+        struct Request: Codable {
+            
+            let categoryID: Int
+            let categoryTitle: String
+            let categoryColor: String
             
         }
         

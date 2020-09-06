@@ -6,8 +6,8 @@ final class AuthFlow: IFlow {
     private lazy var signUpVC = SignUpSceneAssembly().build()
     
     func initialVC() -> UIViewController {
-        signInVC.onButtonAction = { _ in
-            let accountsVC = AccountsAssembly().build()
+        signInVC.onButtonAction = { 
+            let accountsVC = ProfileViewController()
             self.signInVC.navigationController?.pushViewController(accountsVC, animated: true)
         }
         

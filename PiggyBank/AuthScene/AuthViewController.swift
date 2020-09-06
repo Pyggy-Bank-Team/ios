@@ -11,7 +11,7 @@ final class AuthViewController: UIViewController {
     
     private let api = APIManager.shared
     
-    var onButtonAction: ((Void) -> Void)?
+    var onButtonAction: (() -> Void)?
     var onHintButtonAction: ((UIButton) -> Void)?
 
     override func viewDidLoad() {
@@ -38,7 +38,7 @@ extension AuthViewController: IAuthView {
         alertController.addAction(alertAction)
         present(alertController, animated: true, completion: nil) */
         
-        onButtonAction?(())
+        onButtonAction?()
     }
     
 }

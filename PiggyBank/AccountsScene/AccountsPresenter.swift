@@ -17,8 +17,6 @@ final class AccountsPresenter {
     }
     
     func onViewDidLoad(request: AccountsDTOs.ViewDidLoad.Request) {
-        view?.viewDidLoad(response: .init(title: "Accounts"))
-        
         getAccountsUseCase.execute(request: .init()) { [weak self] response in
             guard let self = self else { return }
             

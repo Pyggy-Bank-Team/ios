@@ -1,13 +1,12 @@
 import UIKit
 
-final class AccountsViewController: UIViewController {
+class CategoriesViewController: UIViewController {
     
     private lazy var tableView = UITableView()
     
-    private var accounts: [AccountsDTOs.ViewDidLoad.Response.Accounts.Account] = []
-    
-    var presenter: AccountsPresenter!
-    
+    var presenter: CategoriesPresenter!
+    private var categories: [CategoryViewModel] = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -16,7 +15,6 @@ final class AccountsViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.separatorInset = .zero
         view.addSubview(tableView)
         
         NSLayoutConstraint.activate([
@@ -26,19 +24,19 @@ final class AccountsViewController: UIViewController {
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
         ])
         
-        navigationItem.title = "Accounts"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(onAdd(_:)))
+        navigationItem.title = "Categories"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(moveToCreating(_:)))
         
         presenter.onViewDidLoad(request: .init())
     }
     
-    func viewDidLoad(response: AccountsDTOs.ViewDidLoad.Response.Accounts) {
-        accounts = response.accounts
+    func viewDidLoad(response: CategoriesDTOs.ViewDidLoad.Response) {
+        categories = response.categories
         tableView.reloadData()
     }
     
-    func onAdd(response: AccountsDTOs.OnAdd.Response) {
-        let alertController = UIAlertController(title: response.title, message: "", preferredStyle: .alert)
+    func showResult(str: String) {
+        let alertController = UIAlertController(title: str, message: "", preferredStyle: .alert)
         
         let action = UIAlertAction(title: "OK", style: .default)
         alertController.addAction(action)
@@ -48,41 +46,22 @@ final class AccountsViewController: UIViewController {
 
 }
 
-private extension AccountsViewController {
-    
-    @objc func onAdd(_ sender: UIBarButtonItem) {
-        let alertController = UIAlertController(title: "", message: "", preferredStyle: .alert)
-        
-        alertController.addTextField { textField in
-            textField.placeholder = "Enter title"
-        }
-        
-        let action = UIAlertAction(title: "OK", style: .default) { [weak alertController] _ in
-            self.presenter.onAddAccount(request: .init(title: alertController?.textFields?.first?.text ?? ""))
-        }
-        
-        alertController.addAction(action)
-        present(alertController, animated: true, completion: nil)
-    }
-    
-}
-
-extension AccountsViewController: UITableViewDelegate {
+extension CategoriesViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let account = accounts[indexPath.row]
+        let category = categories[indexPath.row]
         var actions: [UIContextualAction] = []
         
         let deleteAction = UIContextualAction(style: .normal, title: "") { [weak self] _, _, complete in
-            self?.presenter.onDeleteAccount(request: .init(index: indexPath.row))
+            self?.presenter.onDeleteCategory(request: .init(index: indexPath.row))
             complete(true)
         }
         deleteAction.image = #imageLiteral(resourceName: "delete")
         actions.append(deleteAction)
         
-        if !account.isArchived {
+        if !category.isArchived {
             let archiveAction = UIContextualAction(style: .normal, title: "") { [weak self] _, _, complete in
-                self?.presenter.onArchiveAccount(request: .init(index: indexPath.row))
+                self?.presenter.onArchiveCategory(request: .init(index: indexPath.row))
                 complete(true)
             }
             archiveAction.image = #imageLiteral(resourceName: "archive")
@@ -96,11 +75,20 @@ extension AccountsViewController: UITableViewDelegate {
             
             alertController.addTextField { textField in
                 textField.placeholder = "Enter new title"
-                textField.text = account.title
+                textField.text = category.title
+            }
+            
+            alertController.addTextField { textField in
+                textField.placeholder = "Enter new color"
+                textField.text = category.hexColor
             }
             
             let okAction = UIAlertAction(title: "OK", style: .default) { [weak alertController] _ in
-                self.presenter.onRenameAccount(request: .init(index: indexPath.row, title: alertController?.textFields?.first?.text ?? ""))
+                self.presenter.onChangeCategory(request: .init(
+                    index: indexPath.row,
+                    title: alertController?.textFields?.first?.text ?? "",
+                    color: alertController?.textFields?.last?.text ?? "")
+                )
             }
             
             let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
@@ -126,37 +114,45 @@ extension AccountsViewController: UITableViewDelegate {
     
 }
 
-extension AccountsViewController: UITableViewDataSource {
+extension CategoriesViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return accounts.count
+        return categories.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let account = accounts[indexPath.row]
+        let cell: UITableViewCell
         
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") {
-            cell.textLabel?.text = account.title
-            cell.detailTextLabel?.text = "\(account.total) \(account.currency)"
-            
-            if account.isArchived {
-                cell.imageView?.image = #imageLiteral(resourceName: "archive")
-            }
-            
-            return cell
+        if let res = tableView.dequeueReusableCell(withIdentifier: "Cell") {
+            cell = res
         } else {
-            let cell = UITableViewCell(style: .value1, reuseIdentifier: "Cell")
-            
-            cell.textLabel?.text = account.title
-            cell.detailTextLabel?.text = "\(account.total) \(account.currency)"
-            
-            if account.isArchived {
-                cell.imageView?.image = #imageLiteral(resourceName: "archive")
-            }
-            
-            
-            return cell
+            cell = UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
         }
+        
+        let category = categories[indexPath.row]
+        
+        cell.textLabel?.text = category.title
+        cell.detailTextLabel?.text = category.type == .income ? "Income" : "Outcome"
+        
+        if category.isArchived {
+            cell.imageView?.image = #imageLiteral(resourceName: "archive")
+        }
+        
+        return cell
+    }
+    
+}
+
+private extension CategoriesViewController {
+    
+    @objc func moveToCreating(_ sender: UIBarButtonItem) {
+        let createCategoryVC = CreateCategoryViewController()
+        
+        createCategoryVC.completion = { title, type in
+            self.presenter.onCreateCategory(request: .init(title: title, type: type, color: "#ffffff"))
+        }
+        
+        navigationController?.pushViewController(createCategoryVC, animated: true)
     }
     
 }

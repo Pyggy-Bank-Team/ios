@@ -7,6 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9104C13524FBC705003BF041 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C13424FBC705003BF041 /* ProfileViewController.swift */; };
+		9104C13724FBC86B003BF041 /* CategoriesAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C13624FBC86B003BF041 /* CategoriesAssembly.swift */; };
+		9104C13924FBCEF3003BF041 /* CategoryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C13824FBCEF3003BF041 /* CategoryResponse.swift */; };
+		9104C13B24FBCFD3003BF041 /* GetCategoriesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C13A24FBCFD3003BF041 /* GetCategoriesUseCase.swift */; };
+		9104C13D24FBD2BF003BF041 /* CategoriesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C13C24FBD2BF003BF041 /* CategoriesPresenter.swift */; };
+		9104C13F24FBD3D7003BF041 /* CategoriesDTOs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C13E24FBD3D7003BF041 /* CategoriesDTOs.swift */; };
+		9104C14124FBD86D003BF041 /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C14024FBD86D003BF041 /* CategoryViewModel.swift */; };
+		9104C16D250409CF003BF041 /* DomainCategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C16C250409CF003BF041 /* DomainCategoryModel.swift */; };
+		9104C16F25041182003BF041 /* CreateCategoryUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C16E25041182003BF041 /* CreateCategoryUseCase.swift */; };
+		9104C171250415C4003BF041 /* CreateCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C170250415C4003BF041 /* CreateCategoryViewController.swift */; };
+		9104C17325051C3B003BF041 /* DeleteCategoryUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C17225051C3B003BF041 /* DeleteCategoryUseCase.swift */; };
+		9104C175250526B9003BF041 /* ArchiveCategoryUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C174250526B9003BF041 /* ArchiveCategoryUseCase.swift */; };
+		9104C17725052CDE003BF041 /* ChangeCategoryUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C17625052CDE003BF041 /* ChangeCategoryUseCase.swift */; };
 		91A85DA924ABDDA400B7A630 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DA824ABDDA400B7A630 /* AppDelegate.swift */; };
 		91A85DB224ABDDA800B7A630 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91A85DB124ABDDA800B7A630 /* Assets.xcassets */; };
 		91A85DB524ABDDA800B7A630 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91A85DB324ABDDA800B7A630 /* LaunchScreen.storyboard */; };
@@ -39,9 +52,24 @@
 		91A85DFC24CEEF9E00B7A630 /* ArchiveAccountUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DFB24CEEF9E00B7A630 /* ArchiveAccountUseCase.swift */; };
 		91A85DFE24CEFC1500B7A630 /* DeleteAccountUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DFD24CEFC1500B7A630 /* DeleteAccountUseCase.swift */; };
 		91A85E0024CFEB6B00B7A630 /* RenameAccountUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DFF24CFEB6B00B7A630 /* RenameAccountUseCase.swift */; };
+		91A85E0224D04F0700B7A630 /* MainBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85E0124D04F0700B7A630 /* MainBarViewController.swift */; };
+		91A85E0524D0519800B7A630 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85E0424D0519800B7A630 /* CategoriesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9104C13424FBC705003BF041 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		9104C13624FBC86B003BF041 /* CategoriesAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesAssembly.swift; sourceTree = "<group>"; };
+		9104C13824FBCEF3003BF041 /* CategoryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryResponse.swift; sourceTree = "<group>"; };
+		9104C13A24FBCFD3003BF041 /* GetCategoriesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCategoriesUseCase.swift; sourceTree = "<group>"; };
+		9104C13C24FBD2BF003BF041 /* CategoriesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesPresenter.swift; sourceTree = "<group>"; };
+		9104C13E24FBD3D7003BF041 /* CategoriesDTOs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesDTOs.swift; sourceTree = "<group>"; };
+		9104C14024FBD86D003BF041 /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
+		9104C16C250409CF003BF041 /* DomainCategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainCategoryModel.swift; sourceTree = "<group>"; };
+		9104C16E25041182003BF041 /* CreateCategoryUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCategoryUseCase.swift; sourceTree = "<group>"; };
+		9104C170250415C4003BF041 /* CreateCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCategoryViewController.swift; sourceTree = "<group>"; };
+		9104C17225051C3B003BF041 /* DeleteCategoryUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteCategoryUseCase.swift; sourceTree = "<group>"; };
+		9104C174250526B9003BF041 /* ArchiveCategoryUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveCategoryUseCase.swift; sourceTree = "<group>"; };
+		9104C17625052CDE003BF041 /* ChangeCategoryUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeCategoryUseCase.swift; sourceTree = "<group>"; };
 		91A85DA524ABDDA400B7A630 /* PiggyBank.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PiggyBank.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		91A85DA824ABDDA400B7A630 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		91A85DB124ABDDA800B7A630 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -76,6 +104,8 @@
 		91A85DFB24CEEF9E00B7A630 /* ArchiveAccountUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveAccountUseCase.swift; sourceTree = "<group>"; };
 		91A85DFD24CEFC1500B7A630 /* DeleteAccountUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountUseCase.swift; sourceTree = "<group>"; };
 		91A85DFF24CFEB6B00B7A630 /* RenameAccountUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenameAccountUseCase.swift; sourceTree = "<group>"; };
+		91A85E0124D04F0700B7A630 /* MainBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBarViewController.swift; sourceTree = "<group>"; };
+		91A85E0424D0519800B7A630 /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +119,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9104C13324FBC6EC003BF041 /* ProfileScene */ = {
+			isa = PBXGroup;
+			children = (
+				9104C13424FBC705003BF041 /* ProfileViewController.swift */,
+			);
+			path = ProfileScene;
+			sourceTree = "<group>";
+		};
+		9104C16B250409A4003BF041 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9104C16C250409CF003BF041 /* DomainCategoryModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		91A85D9C24ABDDA400B7A630 = {
 			isa = PBXGroup;
 			children = (
@@ -108,6 +154,8 @@
 		91A85DA724ABDDA400B7A630 /* PiggyBank */ = {
 			isa = PBXGroup;
 			children = (
+				9104C13324FBC6EC003BF041 /* ProfileScene */,
+				91A85E0324D0517000B7A630 /* CategoriesScene */,
 				91A85DEC24CB304B00B7A630 /* AccountsScene */,
 				91A85DE324B4C5CC00B7A630 /* Globals */,
 				91A85DDC24B4C43500B7A630 /* Domain */,
@@ -119,6 +167,7 @@
 				91A85DB124ABDDA800B7A630 /* Assets.xcassets */,
 				91A85DB324ABDDA800B7A630 /* LaunchScreen.storyboard */,
 				91A85DB624ABDDA800B7A630 /* Info.plist */,
+				91A85E0124D04F0700B7A630 /* MainBarViewController.swift */,
 			);
 			path = PiggyBank;
 			sourceTree = "<group>";
@@ -142,6 +191,7 @@
 				91A85DCC24AC4B4A00B7A630 /* SignInSceneAssembly.swift */,
 				91A85DCE24AC4B7700B7A630 /* SignUpSceneAssembly.swift */,
 				91A85DF724CB3D0E00B7A630 /* AccountsAssembly.swift */,
+				9104C13624FBC86B003BF041 /* CategoriesAssembly.swift */,
 			);
 			path = Assemblies;
 			sourceTree = "<group>";
@@ -163,6 +213,7 @@
 				91A85DDA24AC61CF00B7A630 /* APIDTOs.swift */,
 				91A85DEA24B650C400B7A630 /* SignInResponse.swift */,
 				91A85DF324CB385400B7A630 /* AccountResponse.swift */,
+				9104C13824FBCEF3003BF041 /* CategoryResponse.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -170,6 +221,7 @@
 		91A85DDC24B4C43500B7A630 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				9104C16B250409A4003BF041 /* Models */,
 				91A85DDD24B4C45100B7A630 /* UseCases */,
 				91A85DE124B4C50300B7A630 /* UseCasesDTOs.swift */,
 			);
@@ -187,6 +239,11 @@
 				91A85DFB24CEEF9E00B7A630 /* ArchiveAccountUseCase.swift */,
 				91A85DFD24CEFC1500B7A630 /* DeleteAccountUseCase.swift */,
 				91A85DFF24CFEB6B00B7A630 /* RenameAccountUseCase.swift */,
+				9104C13A24FBCFD3003BF041 /* GetCategoriesUseCase.swift */,
+				9104C16E25041182003BF041 /* CreateCategoryUseCase.swift */,
+				9104C174250526B9003BF041 /* ArchiveCategoryUseCase.swift */,
+				9104C17225051C3B003BF041 /* DeleteCategoryUseCase.swift */,
+				9104C17625052CDE003BF041 /* ChangeCategoryUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -207,6 +264,18 @@
 				91A85DF124CB326700B7A630 /* AccountsPresenter.swift */,
 			);
 			path = AccountsScene;
+			sourceTree = "<group>";
+		};
+		91A85E0324D0517000B7A630 /* CategoriesScene */ = {
+			isa = PBXGroup;
+			children = (
+				91A85E0424D0519800B7A630 /* CategoriesViewController.swift */,
+				9104C13C24FBD2BF003BF041 /* CategoriesPresenter.swift */,
+				9104C13E24FBD3D7003BF041 /* CategoriesDTOs.swift */,
+				9104C14024FBD86D003BF041 /* CategoryViewModel.swift */,
+				9104C170250415C4003BF041 /* CreateCategoryViewController.swift */,
+			);
+			path = CategoriesScene;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -282,11 +351,18 @@
 				91A85DC424ABE8C000B7A630 /* AuthDTOs.swift in Sources */,
 				91A85DC124ABE0F800B7A630 /* IAuthView.swift in Sources */,
 				91A85DBD24ABDE2C00B7A630 /* AuthViewController.swift in Sources */,
+				9104C16D250409CF003BF041 /* DomainCategoryModel.swift in Sources */,
 				91A85DFE24CEFC1500B7A630 /* DeleteAccountUseCase.swift in Sources */,
+				9104C13B24FBCFD3003BF041 /* GetCategoriesUseCase.swift in Sources */,
 				91A85DF024CB30BC00B7A630 /* AccountsDTOs.swift in Sources */,
 				91A85DF424CB385400B7A630 /* AccountResponse.swift in Sources */,
+				9104C13524FBC705003BF041 /* ProfileViewController.swift in Sources */,
+				9104C17325051C3B003BF041 /* DeleteCategoryUseCase.swift in Sources */,
 				91A85DE224B4C50300B7A630 /* UseCasesDTOs.swift in Sources */,
 				91A85DFA24CD229800B7A630 /* CreateAccountUseCase.swift in Sources */,
+				9104C13924FBCEF3003BF041 /* CategoryResponse.swift in Sources */,
+				9104C171250415C4003BF041 /* CreateCategoryViewController.swift in Sources */,
+				9104C13D24FBD2BF003BF041 /* CategoriesPresenter.swift in Sources */,
 				91A85DBF24ABE0B500B7A630 /* IAuthPresenter.swift in Sources */,
 				91A85DC824ABEF1E00B7A630 /* SignInPresenter.swift in Sources */,
 				91A85DCD24AC4B4A00B7A630 /* SignInSceneAssembly.swift in Sources */,
@@ -296,18 +372,26 @@
 				91A85DDB24AC61CF00B7A630 /* APIDTOs.swift in Sources */,
 				91A85DF224CB326700B7A630 /* AccountsPresenter.swift in Sources */,
 				91A85DCF24AC4B7700B7A630 /* SignUpSceneAssembly.swift in Sources */,
+				9104C175250526B9003BF041 /* ArchiveCategoryUseCase.swift in Sources */,
 				91A85DA924ABDDA400B7A630 /* AppDelegate.swift in Sources */,
+				9104C14124FBD86D003BF041 /* CategoryViewModel.swift in Sources */,
 				91A85DE924B64B7D00B7A630 /* SignInUseCase.swift in Sources */,
 				91A85DF624CB39DE00B7A630 /* GetAccountsUseCase.swift in Sources */,
+				9104C16F25041182003BF041 /* CreateCategoryUseCase.swift in Sources */,
 				91A85DD924AC611F00B7A630 /* APIManager.swift in Sources */,
+				9104C13F24FBD3D7003BF041 /* CategoriesDTOs.swift in Sources */,
 				91A85DE524B4C5D900B7A630 /* Result.swift in Sources */,
 				91A85DE724B4C7BC00B7A630 /* UseCase.swift in Sources */,
 				91A85DFC24CEEF9E00B7A630 /* ArchiveAccountUseCase.swift in Sources */,
+				9104C13724FBC86B003BF041 /* CategoriesAssembly.swift in Sources */,
 				91A85DD224AC53FF00B7A630 /* AuthFlow.swift in Sources */,
+				9104C17725052CDE003BF041 /* ChangeCategoryUseCase.swift in Sources */,
 				91A85DEB24B650C400B7A630 /* SignInResponse.swift in Sources */,
 				91A85DF824CB3D0E00B7A630 /* AccountsAssembly.swift in Sources */,
 				91A85E0024CFEB6B00B7A630 /* RenameAccountUseCase.swift in Sources */,
+				91A85E0224D04F0700B7A630 /* MainBarViewController.swift in Sources */,
 				91A85DEE24CB308000B7A630 /* AccountsViewController.swift in Sources */,
+				91A85E0524D0519800B7A630 /* CategoriesViewController.swift in Sources */,
 				91A85DD624AC596000B7A630 /* IFlow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
