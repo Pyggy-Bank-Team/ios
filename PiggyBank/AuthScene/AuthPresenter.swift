@@ -32,7 +32,7 @@ final class AuthPresenter {
             //signUpUseCase.execute(request: .init(username: username, password: password)) { [weak self] response in
                 DispatchQueue.main.async {
                     //if case .success = response.result {
-                        let baseCurrencyVC = BaseCurrencySceneAssembly().build()
+                    let baseCurrencyVC = BaseCurrencySceneAssembly(initialNickname: username, initialPassword: password).build()
                         self.view?.onPrimaryAction(viewController: baseCurrencyVC)
                     //}
                 }

@@ -40,6 +40,10 @@ final class BaseCurrencyViewController: UIViewController {
         self.currencies = currencies
         tableView.reloadData()
     }
+    
+    func onDone(viewController: UIViewController) {
+        navigationController?.pushViewController(viewController, animated: true)
+    }
 
 }
 
@@ -75,7 +79,7 @@ extension BaseCurrencyViewController: UITableViewDataSource {
 private extension BaseCurrencyViewController {
     
     @objc func onDone(_ sender: UIBarButtonItem) {
-        
+        presenter.onDone(indexPath: tableView.indexPathForSelectedRow ?? IndexPath(row: 0, section: 0))
     }
     
 }

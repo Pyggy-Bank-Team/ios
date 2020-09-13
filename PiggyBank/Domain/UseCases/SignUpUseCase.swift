@@ -1,14 +1,18 @@
 import Foundation
 
-final class SignUpUseCase: UseCase<UseCasesDTOs.SignUp.Request, UseCasesDTOs.SignUp.Response> {
+final class SignUpUseCase {
     
     private let apiManager = APIManager.shared
     
-    override func execute(request: UseCasesDTOs.SignUp.Request, completion: @escaping (UseCasesDTOs.SignUp.Response) -> Void) {
-        let apiDTO = APIDTOs.SignUp.Request(userName: request.username, password: request.password, currencyBase: "RUB")
+    func execute(domainSignUpModel: DomainSignUpModel, completion: @escaping (Result<Void>) -> Void) {
+        let apiDTO = APIDTOs.SignUp.Request(
+            userName: domainSignUpModel.nickname,
+            password: domainSignUpModel.password,
+            currencyBase: domainSignUpModel.currency
+        )
         
         apiManager.signUp(request: apiDTO) { result in
-            completion(.init(result: result.result))
+            completion(result.result)
         }
     }
 

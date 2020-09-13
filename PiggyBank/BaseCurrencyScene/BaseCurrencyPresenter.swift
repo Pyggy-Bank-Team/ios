@@ -5,10 +5,16 @@ final class BaseCurrencyPresenter {
     private var currencies: [DomainCurrencyModel] = []
     
     private let getCurrenciesUseCase = GetCurrenciesUseCase()
+    private let signUpUseCase = SignUpUseCase()
+    
+    private let initialNickname: String
+    private let initialPassword: String
     
     weak var view: BaseCurrencyViewController?
     
-    init(view: BaseCurrencyViewController?) {
+    init(initialNickname: String, initialPassword: String, view: BaseCurrencyViewController?) {
+        self.initialNickname = initialNickname
+        self.initialPassword = initialPassword
         self.view = view
     }
     
@@ -23,6 +29,21 @@ final class BaseCurrencyPresenter {
                 
                 DispatchQueue.main.async {
                     self.view?.loadCurrencies(currencies: currenciesViewModels)
+                }
+            }
+        }
+    }
+    
+    func onDone(indexPath: IndexPath) {
+        let currency = currencies[indexPath.row]
+        let signUpModel = DomainSignUpModel(nickname: initialNickname, password: initialPassword, currency: currency.code)
+        
+        signUpUseCase.execute(domainSignUpModel: signUpModel) { [weak self] result in
+            guard let self = self else { return }
+            
+            if case .success = result {
+                DispatchQueue.main.async {
+                    self.view?.onDone(viewController: ProfileViewController())
                 }
             }
         }

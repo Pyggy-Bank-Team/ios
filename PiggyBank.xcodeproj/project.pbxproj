@@ -36,6 +36,7 @@
 		9104C196250E1F37003BF041 /* GetCurrenciesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C195250E1F37003BF041 /* GetCurrenciesUseCase.swift */; };
 		9104C198250E20B1003BF041 /* BaseCurrencySceneAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C197250E20B1003BF041 /* BaseCurrencySceneAssembly.swift */; };
 		9104C19A250E239D003BF041 /* CurrencyTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C199250E239D003BF041 /* CurrencyTableCell.swift */; };
+		9104C19C250E65AD003BF041 /* DomainSignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C19B250E65AD003BF041 /* DomainSignUpModel.swift */; };
 		91A85DA924ABDDA400B7A630 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DA824ABDDA400B7A630 /* AppDelegate.swift */; };
 		91A85DB224ABDDA800B7A630 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91A85DB124ABDDA800B7A630 /* Assets.xcassets */; };
 		91A85DB524ABDDA800B7A630 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91A85DB324ABDDA800B7A630 /* LaunchScreen.storyboard */; };
@@ -92,6 +93,7 @@
 		9104C195250E1F37003BF041 /* GetCurrenciesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCurrenciesUseCase.swift; sourceTree = "<group>"; };
 		9104C197250E20B1003BF041 /* BaseCurrencySceneAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCurrencySceneAssembly.swift; sourceTree = "<group>"; };
 		9104C199250E239D003BF041 /* CurrencyTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTableCell.swift; sourceTree = "<group>"; };
+		9104C19B250E65AD003BF041 /* DomainSignUpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainSignUpModel.swift; sourceTree = "<group>"; };
 		91A85DA524ABDDA400B7A630 /* PiggyBank.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PiggyBank.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		91A85DA824ABDDA400B7A630 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		91A85DB124ABDDA800B7A630 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 				9104C16C250409CF003BF041 /* DomainCategoryModel.swift */,
 				9104C180250DE01F003BF041 /* DomainAccountModel.swift */,
 				9104C191250E1B5E003BF041 /* DomainCurrencyModel.swift */,
+				9104C19B250E65AD003BF041 /* DomainSignUpModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -395,6 +398,7 @@
 				9104C181250DE01F003BF041 /* DomainAccountModel.swift in Sources */,
 				9104C13524FBC705003BF041 /* ProfileViewController.swift in Sources */,
 				9104C17325051C3B003BF041 /* DeleteCategoryUseCase.swift in Sources */,
+				9104C19C250E65AD003BF041 /* DomainSignUpModel.swift in Sources */,
 				9104C18C250E174D003BF041 /* BaseCurrencyViewController.swift in Sources */,
 				91A85DE224B4C50300B7A630 /* UseCasesDTOs.swift in Sources */,
 				91A85DFA24CD229800B7A630 /* CreateAccountUseCase.swift in Sources */,
