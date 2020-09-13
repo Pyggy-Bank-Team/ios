@@ -20,6 +20,12 @@
 		9104C17325051C3B003BF041 /* DeleteCategoryUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C17225051C3B003BF041 /* DeleteCategoryUseCase.swift */; };
 		9104C175250526B9003BF041 /* ArchiveCategoryUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C174250526B9003BF041 /* ArchiveCategoryUseCase.swift */; };
 		9104C17725052CDE003BF041 /* ChangeCategoryUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C17625052CDE003BF041 /* ChangeCategoryUseCase.swift */; };
+		9104C17A250DD6DD003BF041 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C179250DD6DD003BF041 /* AccountViewController.swift */; };
+		9104C17D250DD814003BF041 /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C17C250DD814003BF041 /* AccountViewModel.swift */; };
+		9104C17F250DDBB6003BF041 /* AccountPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C17E250DDBB6003BF041 /* AccountPresenter.swift */; };
+		9104C181250DE01F003BF041 /* DomainAccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C180250DE01F003BF041 /* DomainAccountModel.swift */; };
+		9104C183250DE2B3003BF041 /* GrandConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C182250DE2B3003BF041 /* GrandConverter.swift */; };
+		9104C185250DE3D7003BF041 /* AccountSceneAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C184250DE3D7003BF041 /* AccountSceneAssembly.swift */; };
 		91A85DA924ABDDA400B7A630 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DA824ABDDA400B7A630 /* AppDelegate.swift */; };
 		91A85DB224ABDDA800B7A630 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91A85DB124ABDDA800B7A630 /* Assets.xcassets */; };
 		91A85DB524ABDDA800B7A630 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91A85DB324ABDDA800B7A630 /* LaunchScreen.storyboard */; };
@@ -70,6 +76,12 @@
 		9104C17225051C3B003BF041 /* DeleteCategoryUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteCategoryUseCase.swift; sourceTree = "<group>"; };
 		9104C174250526B9003BF041 /* ArchiveCategoryUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveCategoryUseCase.swift; sourceTree = "<group>"; };
 		9104C17625052CDE003BF041 /* ChangeCategoryUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeCategoryUseCase.swift; sourceTree = "<group>"; };
+		9104C179250DD6DD003BF041 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
+		9104C17C250DD814003BF041 /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
+		9104C17E250DDBB6003BF041 /* AccountPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPresenter.swift; sourceTree = "<group>"; };
+		9104C180250DE01F003BF041 /* DomainAccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainAccountModel.swift; sourceTree = "<group>"; };
+		9104C182250DE2B3003BF041 /* GrandConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrandConverter.swift; sourceTree = "<group>"; };
+		9104C184250DE3D7003BF041 /* AccountSceneAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSceneAssembly.swift; sourceTree = "<group>"; };
 		91A85DA524ABDDA400B7A630 /* PiggyBank.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PiggyBank.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		91A85DA824ABDDA400B7A630 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		91A85DB124ABDDA800B7A630 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -131,8 +143,27 @@
 			isa = PBXGroup;
 			children = (
 				9104C16C250409CF003BF041 /* DomainCategoryModel.swift */,
+				9104C180250DE01F003BF041 /* DomainAccountModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		9104C178250DD6BC003BF041 /* AccountScene */ = {
+			isa = PBXGroup;
+			children = (
+				9104C179250DD6DD003BF041 /* AccountViewController.swift */,
+				9104C17E250DDBB6003BF041 /* AccountPresenter.swift */,
+				9104C184250DE3D7003BF041 /* AccountSceneAssembly.swift */,
+			);
+			path = AccountScene;
+			sourceTree = "<group>";
+		};
+		9104C17B250DD7FB003BF041 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				9104C17C250DD814003BF041 /* AccountViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		91A85D9C24ABDDA400B7A630 = {
@@ -154,6 +185,8 @@
 		91A85DA724ABDDA400B7A630 /* PiggyBank */ = {
 			isa = PBXGroup;
 			children = (
+				9104C17B250DD7FB003BF041 /* ViewModels */,
+				9104C178250DD6BC003BF041 /* AccountScene */,
 				9104C13324FBC6EC003BF041 /* ProfileScene */,
 				91A85E0324D0517000B7A630 /* CategoriesScene */,
 				91A85DEC24CB304B00B7A630 /* AccountsScene */,
@@ -252,6 +285,7 @@
 			isa = PBXGroup;
 			children = (
 				91A85DE424B4C5D900B7A630 /* Result.swift */,
+				9104C182250DE2B3003BF041 /* GrandConverter.swift */,
 			);
 			path = Globals;
 			sourceTree = "<group>";
@@ -348,6 +382,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9104C17D250DD814003BF041 /* AccountViewModel.swift in Sources */,
 				91A85DC424ABE8C000B7A630 /* AuthDTOs.swift in Sources */,
 				91A85DC124ABE0F800B7A630 /* IAuthView.swift in Sources */,
 				91A85DBD24ABDE2C00B7A630 /* AuthViewController.swift in Sources */,
@@ -356,6 +391,7 @@
 				9104C13B24FBCFD3003BF041 /* GetCategoriesUseCase.swift in Sources */,
 				91A85DF024CB30BC00B7A630 /* AccountsDTOs.swift in Sources */,
 				91A85DF424CB385400B7A630 /* AccountResponse.swift in Sources */,
+				9104C181250DE01F003BF041 /* DomainAccountModel.swift in Sources */,
 				9104C13524FBC705003BF041 /* ProfileViewController.swift in Sources */,
 				9104C17325051C3B003BF041 /* DeleteCategoryUseCase.swift in Sources */,
 				91A85DE224B4C50300B7A630 /* UseCasesDTOs.swift in Sources */,
@@ -364,10 +400,12 @@
 				9104C171250415C4003BF041 /* CreateCategoryViewController.swift in Sources */,
 				9104C13D24FBD2BF003BF041 /* CategoriesPresenter.swift in Sources */,
 				91A85DBF24ABE0B500B7A630 /* IAuthPresenter.swift in Sources */,
+				9104C17A250DD6DD003BF041 /* AccountViewController.swift in Sources */,
 				91A85DC824ABEF1E00B7A630 /* SignInPresenter.swift in Sources */,
 				91A85DCD24AC4B4A00B7A630 /* SignInSceneAssembly.swift in Sources */,
 				91A85DD424AC593700B7A630 /* NavigationFlow.swift in Sources */,
 				91A85DCA24ABEFCF00B7A630 /* SignUpPresenter.swift in Sources */,
+				9104C17F250DDBB6003BF041 /* AccountPresenter.swift in Sources */,
 				91A85DDF24B4C49300B7A630 /* SignUpUseCase.swift in Sources */,
 				91A85DDB24AC61CF00B7A630 /* APIDTOs.swift in Sources */,
 				91A85DF224CB326700B7A630 /* AccountsPresenter.swift in Sources */,
@@ -379,6 +417,7 @@
 				91A85DF624CB39DE00B7A630 /* GetAccountsUseCase.swift in Sources */,
 				9104C16F25041182003BF041 /* CreateCategoryUseCase.swift in Sources */,
 				91A85DD924AC611F00B7A630 /* APIManager.swift in Sources */,
+				9104C185250DE3D7003BF041 /* AccountSceneAssembly.swift in Sources */,
 				9104C13F24FBD3D7003BF041 /* CategoriesDTOs.swift in Sources */,
 				91A85DE524B4C5D900B7A630 /* Result.swift in Sources */,
 				91A85DE724B4C7BC00B7A630 /* UseCase.swift in Sources */,
@@ -391,6 +430,7 @@
 				91A85E0024CFEB6B00B7A630 /* RenameAccountUseCase.swift in Sources */,
 				91A85E0224D04F0700B7A630 /* MainBarViewController.swift in Sources */,
 				91A85DEE24CB308000B7A630 /* AccountsViewController.swift in Sources */,
+				9104C183250DE2B3003BF041 /* GrandConverter.swift in Sources */,
 				91A85E0524D0519800B7A630 /* CategoriesViewController.swift in Sources */,
 				91A85DD624AC596000B7A630 /* IFlow.swift in Sources */,
 			);

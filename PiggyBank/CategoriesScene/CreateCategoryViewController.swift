@@ -44,7 +44,7 @@ private extension CreateCategoryViewController {
     
     @objc func onDone(_ sender: UIBarButtonItem) {
         navigationController?.popViewController(animated: true)
-        completion?(titleField.text ?? "", typeControl.selectedSegmentIndex)
+        
     }
     
 }

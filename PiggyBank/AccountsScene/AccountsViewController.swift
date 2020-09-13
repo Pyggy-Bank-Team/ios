@@ -45,24 +45,34 @@ final class AccountsViewController: UIViewController {
         
         present(alertController, animated: true, completion: nil)
     }
+    
+    func onAdd(viewController: UIViewController) {
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    func onSelect(viewController: UIViewController) {
+        navigationController?.pushViewController(viewController, animated: true)
+    }
 
 }
 
 private extension AccountsViewController {
     
     @objc func onAdd(_ sender: UIBarButtonItem) {
-        let alertController = UIAlertController(title: "", message: "", preferredStyle: .alert)
+//        let alertController = UIAlertController(title: "", message: "", preferredStyle: .alert)
+//
+//        alertController.addTextField { textField in
+//            textField.placeholder = "Enter title"
+//        }
+//
+//        let action = UIAlertAction(title: "OK", style: .default) { [weak alertController] _ in
+//            self.presenter.onAddAccount(request: .init(title: alertController?.textFields?.first?.text ?? ""))
+//        }
+//
+//        alertController.addAction(action)
+//        present(alertController, animated: true, completion: nil)
         
-        alertController.addTextField { textField in
-            textField.placeholder = "Enter title"
-        }
-        
-        let action = UIAlertAction(title: "OK", style: .default) { [weak alertController] _ in
-            self.presenter.onAddAccount(request: .init(title: alertController?.textFields?.first?.text ?? ""))
-        }
-        
-        alertController.addAction(action)
-        present(alertController, animated: true, completion: nil)
+        presenter.onAdd()
     }
     
 }
@@ -122,6 +132,11 @@ extension AccountsViewController: UITableViewDelegate {
         swipeConfiguration.performsFirstActionWithFullSwipe = false
         
         return swipeConfiguration
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presenter.onSelect(indexPath: indexPath)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
 }

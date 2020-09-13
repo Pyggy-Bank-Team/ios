@@ -92,4 +92,26 @@ final class AccountsPresenter {
         }
     }
     
+    func onAdd() {
+        let accountVC = AccountSceneAssembly(accountDomainModel: nil).build()
+        view?.onAdd(viewController: accountVC)
+    }
+    
+    func onSelect(indexPath: IndexPath) {
+        let account = accounts[indexPath.row]
+        
+        let accountDomainModel = DomainAccountModel(
+            id: account.id,
+            type: DomainAccountModel.AccountType(rawValue: account.type)!,
+            title: account.title,
+            currency: account.currency,
+            balance: account.total,
+            isArchived: account.isArchived,
+            isDeleted: false
+        )
+        
+        let accountVC = AccountSceneAssembly(accountDomainModel: accountDomainModel).build()
+        view?.onSelect(viewController: accountVC)
+    }
+    
 }
