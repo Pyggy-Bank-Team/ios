@@ -7,40 +7,47 @@ final class AuthViewController: UIViewController {
     private lazy var actionButton = UIButton(type: .system)
     private lazy var hintButton = UIButton(type: .system)
     
-    var presenter: IAuthPresenter!
+    private var mode: AuthSceneMode!
     
-    private let api = APIManager.shared
-    
-    var onButtonAction: (() -> Void)?
-    var onHintButtonAction: ((UIButton) -> Void)?
+    var presenter: AuthPresenter!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupUI()
-        presenter.onViewDidLoad(request: .init())
+        presenter.viewDidLoad()
+    }
+    
+    func viewDidLoad(mode: AuthSceneMode) {
+        self.mode = mode
+        
+        let navigationTitle: String
+        let primaryActionTitle: String
+        let secondaryActionTitle: String
+        
+        if mode == .signIn {
+            navigationTitle = "Sign in"
+            primaryActionTitle = "Sign in"
+            secondaryActionTitle = "Don't have an account? Sign up"
+        } else {
+            navigationTitle = "Sign up"
+            primaryActionTitle = "Sign up"
+            secondaryActionTitle = "Already have an account? Sign in"
+        }
+        
+        navigationItem.title = navigationTitle
+        actionButton.setTitle(primaryActionTitle, for: .normal)
+        hintButton.setTitle(secondaryActionTitle, for: .normal)
+    }
+    
+    func onPrimaryAction(viewController: UIViewController) {
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    func onSecondaryAction(viewController: UIViewController) {
+        navigationController?.pushViewController(viewController, animated: true)
     }
 
-}
-
-extension AuthViewController: IAuthView {
-    
-    func onViewDidLoad(response: AuthDTOs.ViewDidLoad.Response) {
-        navigationItem.title = response.screenTitle
-        actionButton.setTitle(response.screenTitle, for: .normal)
-        hintButton.setTitle(response.hintActionTitle, for: .normal)
-    }
-    
-    func onPrimaryAction(response: AuthDTOs.PrimaryAction.Response) {
-        /* let alertController = UIAlertController(title: response.message, message: "", preferredStyle: .alert)
-        let alertAction = UIAlertAction(title: "OK", style: .cancel)
-        
-        alertController.addAction(alertAction)
-        present(alertController, animated: true, completion: nil) */
-        
-        onButtonAction?()
-    }
-    
 }
 
 private extension AuthViewController {
@@ -71,7 +78,7 @@ private extension AuthViewController {
         passwordField.isSecureTextEntry = true
         
         actionButton.addTarget(self, action: #selector(onPrimaryAction(_:)), for: .touchUpInside)
-        hintButton.addTarget(self, action: #selector(onHintAction(_:)), for: .touchUpInside)
+        hintButton.addTarget(self, action: #selector(onSecondaryAction(_:)), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
             nicknameField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -90,12 +97,16 @@ private extension AuthViewController {
         ])
     }
     
-    @objc func onHintAction(_ sender: UIButton) {
-        onHintButtonAction?(sender)
+    @objc func onPrimaryAction(_ sender: UIButton) {
+        presenter.onPrimaryAction(username: nicknameField.text ?? "", password: passwordField.text ?? "")
     }
     
-    @objc func onPrimaryAction(_ sender: UIButton) {
-        presenter.onPrimaryAction(request: .init(username: nicknameField.text ?? "", password: passwordField.text ?? ""))
+    @objc func onSecondaryAction(_ sender: UIButton) {
+        if mode == .signIn {
+            presenter.onSecondaryAction()
+        } else {
+            navigationController?.popViewController(animated: true)
+        }
     }
     
 }
