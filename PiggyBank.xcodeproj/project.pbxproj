@@ -28,11 +28,18 @@
 		9104C185250DE3D7003BF041 /* AccountSceneAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C184250DE3D7003BF041 /* AccountSceneAssembly.swift */; };
 		9104C187250DF6D9003BF041 /* AuthSceneAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C186250DF6D9003BF041 /* AuthSceneAssembly.swift */; };
 		9104C189250DF76D003BF041 /* AuthPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C188250DF76D003BF041 /* AuthPresenter.swift */; };
+		9104C18C250E174D003BF041 /* BaseCurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C18B250E174D003BF041 /* BaseCurrencyViewController.swift */; };
+		9104C18E250E177D003BF041 /* CurrencyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C18D250E177D003BF041 /* CurrencyViewModel.swift */; };
+		9104C190250E1AFE003BF041 /* BaseCurrencyPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C18F250E1AFE003BF041 /* BaseCurrencyPresenter.swift */; };
+		9104C192250E1B5E003BF041 /* DomainCurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C191250E1B5E003BF041 /* DomainCurrencyModel.swift */; };
+		9104C194250E1C96003BF041 /* CurrencyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C193250E1C96003BF041 /* CurrencyResponse.swift */; };
+		9104C196250E1F37003BF041 /* GetCurrenciesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C195250E1F37003BF041 /* GetCurrenciesUseCase.swift */; };
+		9104C198250E20B1003BF041 /* BaseCurrencySceneAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C197250E20B1003BF041 /* BaseCurrencySceneAssembly.swift */; };
+		9104C19A250E239D003BF041 /* CurrencyTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C199250E239D003BF041 /* CurrencyTableCell.swift */; };
 		91A85DA924ABDDA400B7A630 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DA824ABDDA400B7A630 /* AppDelegate.swift */; };
 		91A85DB224ABDDA800B7A630 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91A85DB124ABDDA800B7A630 /* Assets.xcassets */; };
 		91A85DB524ABDDA800B7A630 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91A85DB324ABDDA800B7A630 /* LaunchScreen.storyboard */; };
 		91A85DBD24ABDE2C00B7A630 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DBC24ABDE2C00B7A630 /* AuthViewController.swift */; };
-		91A85DC424ABE8C000B7A630 /* AuthDTOs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DC324ABE8C000B7A630 /* AuthDTOs.swift */; };
 		91A85DD924AC611F00B7A630 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DD824AC611F00B7A630 /* APIManager.swift */; };
 		91A85DDB24AC61CF00B7A630 /* APIDTOs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DDA24AC61CF00B7A630 /* APIDTOs.swift */; };
 		91A85DDF24B4C49300B7A630 /* SignUpUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DDE24B4C49300B7A630 /* SignUpUseCase.swift */; };
@@ -77,13 +84,20 @@
 		9104C184250DE3D7003BF041 /* AccountSceneAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSceneAssembly.swift; sourceTree = "<group>"; };
 		9104C186250DF6D9003BF041 /* AuthSceneAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthSceneAssembly.swift; sourceTree = "<group>"; };
 		9104C188250DF76D003BF041 /* AuthPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPresenter.swift; sourceTree = "<group>"; };
+		9104C18B250E174D003BF041 /* BaseCurrencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCurrencyViewController.swift; sourceTree = "<group>"; };
+		9104C18D250E177D003BF041 /* CurrencyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyViewModel.swift; sourceTree = "<group>"; };
+		9104C18F250E1AFE003BF041 /* BaseCurrencyPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCurrencyPresenter.swift; sourceTree = "<group>"; };
+		9104C191250E1B5E003BF041 /* DomainCurrencyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainCurrencyModel.swift; sourceTree = "<group>"; };
+		9104C193250E1C96003BF041 /* CurrencyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyResponse.swift; sourceTree = "<group>"; };
+		9104C195250E1F37003BF041 /* GetCurrenciesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCurrenciesUseCase.swift; sourceTree = "<group>"; };
+		9104C197250E20B1003BF041 /* BaseCurrencySceneAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCurrencySceneAssembly.swift; sourceTree = "<group>"; };
+		9104C199250E239D003BF041 /* CurrencyTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTableCell.swift; sourceTree = "<group>"; };
 		91A85DA524ABDDA400B7A630 /* PiggyBank.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PiggyBank.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		91A85DA824ABDDA400B7A630 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		91A85DB124ABDDA800B7A630 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		91A85DB424ABDDA800B7A630 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		91A85DB624ABDDA800B7A630 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		91A85DBC24ABDE2C00B7A630 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
-		91A85DC324ABE8C000B7A630 /* AuthDTOs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthDTOs.swift; sourceTree = "<group>"; };
 		91A85DD824AC611F00B7A630 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		91A85DDA24AC61CF00B7A630 /* APIDTOs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDTOs.swift; sourceTree = "<group>"; };
 		91A85DDE24B4C49300B7A630 /* SignUpUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpUseCase.swift; sourceTree = "<group>"; };
@@ -130,6 +144,7 @@
 			children = (
 				9104C16C250409CF003BF041 /* DomainCategoryModel.swift */,
 				9104C180250DE01F003BF041 /* DomainAccountModel.swift */,
+				9104C191250E1B5E003BF041 /* DomainCurrencyModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -148,8 +163,20 @@
 			isa = PBXGroup;
 			children = (
 				9104C17C250DD814003BF041 /* AccountViewModel.swift */,
+				9104C18D250E177D003BF041 /* CurrencyViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		9104C18A250E1722003BF041 /* BaseCurrencyScene */ = {
+			isa = PBXGroup;
+			children = (
+				9104C18B250E174D003BF041 /* BaseCurrencyViewController.swift */,
+				9104C18F250E1AFE003BF041 /* BaseCurrencyPresenter.swift */,
+				9104C197250E20B1003BF041 /* BaseCurrencySceneAssembly.swift */,
+				9104C199250E239D003BF041 /* CurrencyTableCell.swift */,
+			);
+			path = BaseCurrencyScene;
 			sourceTree = "<group>";
 		};
 		91A85D9C24ABDDA400B7A630 = {
@@ -171,6 +198,7 @@
 		91A85DA724ABDDA400B7A630 /* PiggyBank */ = {
 			isa = PBXGroup;
 			children = (
+				9104C18A250E1722003BF041 /* BaseCurrencyScene */,
 				9104C17B250DD7FB003BF041 /* ViewModels */,
 				9104C178250DD6BC003BF041 /* AccountScene */,
 				9104C13324FBC6EC003BF041 /* ProfileScene */,
@@ -193,7 +221,6 @@
 		91A85DC224ABE8AD00B7A630 /* AuthScene */ = {
 			isa = PBXGroup;
 			children = (
-				91A85DC324ABE8C000B7A630 /* AuthDTOs.swift */,
 				91A85DBC24ABDE2C00B7A630 /* AuthViewController.swift */,
 				9104C186250DF6D9003BF041 /* AuthSceneAssembly.swift */,
 				9104C188250DF76D003BF041 /* AuthPresenter.swift */,
@@ -218,6 +245,7 @@
 				91A85DEA24B650C400B7A630 /* SignInResponse.swift */,
 				91A85DF324CB385400B7A630 /* AccountResponse.swift */,
 				9104C13824FBCEF3003BF041 /* CategoryResponse.swift */,
+				9104C193250E1C96003BF041 /* CurrencyResponse.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -248,6 +276,7 @@
 				9104C174250526B9003BF041 /* ArchiveCategoryUseCase.swift */,
 				9104C17225051C3B003BF041 /* DeleteCategoryUseCase.swift */,
 				9104C17625052CDE003BF041 /* ChangeCategoryUseCase.swift */,
+				9104C195250E1F37003BF041 /* GetCurrenciesUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -353,8 +382,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9104C190250E1AFE003BF041 /* BaseCurrencyPresenter.swift in Sources */,
 				9104C17D250DD814003BF041 /* AccountViewModel.swift in Sources */,
-				91A85DC424ABE8C000B7A630 /* AuthDTOs.swift in Sources */,
 				9104C187250DF6D9003BF041 /* AuthSceneAssembly.swift in Sources */,
 				91A85DBD24ABDE2C00B7A630 /* AuthViewController.swift in Sources */,
 				9104C16D250409CF003BF041 /* DomainCategoryModel.swift in Sources */,
@@ -366,9 +395,12 @@
 				9104C181250DE01F003BF041 /* DomainAccountModel.swift in Sources */,
 				9104C13524FBC705003BF041 /* ProfileViewController.swift in Sources */,
 				9104C17325051C3B003BF041 /* DeleteCategoryUseCase.swift in Sources */,
+				9104C18C250E174D003BF041 /* BaseCurrencyViewController.swift in Sources */,
 				91A85DE224B4C50300B7A630 /* UseCasesDTOs.swift in Sources */,
 				91A85DFA24CD229800B7A630 /* CreateAccountUseCase.swift in Sources */,
+				9104C192250E1B5E003BF041 /* DomainCurrencyModel.swift in Sources */,
 				9104C13924FBCEF3003BF041 /* CategoryResponse.swift in Sources */,
+				9104C18E250E177D003BF041 /* CurrencyViewModel.swift in Sources */,
 				9104C171250415C4003BF041 /* CreateCategoryViewController.swift in Sources */,
 				9104C13D24FBD2BF003BF041 /* CategoriesPresenter.swift in Sources */,
 				9104C17A250DD6DD003BF041 /* AccountViewController.swift in Sources */,
@@ -377,8 +409,10 @@
 				91A85DDB24AC61CF00B7A630 /* APIDTOs.swift in Sources */,
 				91A85DF224CB326700B7A630 /* AccountsPresenter.swift in Sources */,
 				9104C175250526B9003BF041 /* ArchiveCategoryUseCase.swift in Sources */,
+				9104C194250E1C96003BF041 /* CurrencyResponse.swift in Sources */,
 				91A85DA924ABDDA400B7A630 /* AppDelegate.swift in Sources */,
 				9104C14124FBD86D003BF041 /* CategoryViewModel.swift in Sources */,
+				9104C19A250E239D003BF041 /* CurrencyTableCell.swift in Sources */,
 				91A85DE924B64B7D00B7A630 /* SignInUseCase.swift in Sources */,
 				91A85DF624CB39DE00B7A630 /* GetAccountsUseCase.swift in Sources */,
 				9104C16F25041182003BF041 /* CreateCategoryUseCase.swift in Sources */,
@@ -388,12 +422,14 @@
 				91A85DE524B4C5D900B7A630 /* Result.swift in Sources */,
 				91A85DE724B4C7BC00B7A630 /* UseCase.swift in Sources */,
 				91A85DFC24CEEF9E00B7A630 /* ArchiveAccountUseCase.swift in Sources */,
+				9104C196250E1F37003BF041 /* GetCurrenciesUseCase.swift in Sources */,
 				9104C13724FBC86B003BF041 /* CategoriesAssembly.swift in Sources */,
 				9104C17725052CDE003BF041 /* ChangeCategoryUseCase.swift in Sources */,
 				91A85DEB24B650C400B7A630 /* SignInResponse.swift in Sources */,
 				91A85DF824CB3D0E00B7A630 /* AccountsAssembly.swift in Sources */,
 				91A85E0024CFEB6B00B7A630 /* RenameAccountUseCase.swift in Sources */,
 				91A85E0224D04F0700B7A630 /* MainBarViewController.swift in Sources */,
+				9104C198250E20B1003BF041 /* BaseCurrencySceneAssembly.swift in Sources */,
 				91A85DEE24CB308000B7A630 /* AccountsViewController.swift in Sources */,
 				9104C183250DE2B3003BF041 /* GrandConverter.swift in Sources */,
 				91A85E0524D0519800B7A630 /* CategoriesViewController.swift in Sources */,

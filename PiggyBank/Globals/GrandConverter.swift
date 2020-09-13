@@ -14,4 +14,12 @@ final class GrandConverter {
         )
     }
     
+    static func convertToViewModel(domainCurrency: DomainCurrencyModel) -> CurrencyViewModel {
+        return CurrencyViewModel(code: domainCurrency.code, symbol: domainCurrency.symbol)
+    }
+    
+    static func convertToDomainModel(currencyResponse: CurrencyResponse) -> DomainCurrencyModel {
+        return DomainCurrencyModel(code: currencyResponse.code, symbol: currencyResponse.symbol)
+    }
+    
 }

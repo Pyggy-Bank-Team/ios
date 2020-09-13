@@ -29,15 +29,14 @@ final class AuthPresenter {
                 }
             }
         } else {
-//            signUpUseCase.execute(request: .init(username: request.username, password: request.password)) { [weak self] response in
-//                DispatchQueue.main.async {
-//                    if case .success(_) = response.result {
-//                        self?.view?.onPrimaryAction(response: .init(message: "Success"))
-//                    } else {
-//                        self?.view?.onPrimaryAction(response: .init(message: "Error: User is possibly duplicated"))
-//                    }
-//                }
-//            }
+            //signUpUseCase.execute(request: .init(username: username, password: password)) { [weak self] response in
+                DispatchQueue.main.async {
+                    //if case .success = response.result {
+                        let baseCurrencyVC = BaseCurrencySceneAssembly().build()
+                        self.view?.onPrimaryAction(viewController: baseCurrencyVC)
+                    //}
+                }
+            //}
         }
     }
     

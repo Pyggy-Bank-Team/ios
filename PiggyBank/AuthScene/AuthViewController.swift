@@ -31,7 +31,7 @@ final class AuthViewController: UIViewController {
             secondaryActionTitle = "Don't have an account? Sign up"
         } else {
             navigationTitle = "Sign up"
-            primaryActionTitle = "Sign up"
+            primaryActionTitle = "Next"
             secondaryActionTitle = "Already have an account? Sign in"
         }
         
