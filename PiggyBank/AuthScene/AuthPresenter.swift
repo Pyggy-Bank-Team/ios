@@ -20,23 +20,19 @@ final class AuthPresenter {
     
     func onPrimaryAction(username: String, password: String) {
         if mode == .signIn {
-            signInUseCase.execute(request: .init(username: username, password: password)) { [weak self] response in
+            let domainSignInModel = DomainSignInModel(nickname: username, password: password)
+            
+            signInUseCase.execute(domainSignInModel: domainSignInModel) { [weak self] result in
                 DispatchQueue.main.async {
-                    if case let .success(token) = response.result {
-                        let profileVC = ProfileViewController()
+                    if case .success = result {
+                        let profileVC = ProfileSceneAssembly().build()
                         self?.view?.onPrimaryAction(viewController: profileVC)
                     }
                 }
             }
         } else {
-            //signUpUseCase.execute(request: .init(username: username, password: password)) { [weak self] response in
-                DispatchQueue.main.async {
-                    //if case .success = response.result {
-                    let baseCurrencyVC = BaseCurrencySceneAssembly(initialNickname: username, initialPassword: password).build()
-                        self.view?.onPrimaryAction(viewController: baseCurrencyVC)
-                    //}
-                }
-            //}
+            let baseCurrencyVC = BaseCurrencySceneAssembly(initialNickname: username, initialPassword: password).build()
+            view?.onPrimaryAction(viewController: baseCurrencyVC)
         }
     }
     

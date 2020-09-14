@@ -1,9 +1,17 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
+    
+    var presenter: ProfilePresenter!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            title: "Sign out",
+            style: .plain, target: self,
+            action: #selector(onSignOut(_:))
+        )
         
         view.backgroundColor = .white
 
@@ -23,6 +31,10 @@ class ProfileViewController: UIViewController {
         
         navigationItem.title = "Menu"
         navigationItem.hidesBackButton = true
+    }
+    
+    func onSignOut() {
+        navigationController?.popViewController(animated: true)
     }
 
 }
@@ -67,6 +79,14 @@ extension ProfileViewController: UITableViewDataSource {
         cell.accessoryType = .disclosureIndicator
         
         return cell
+    }
+    
+}
+
+private extension ProfileViewController {
+    
+    @objc func onSignOut(_ sender: UIBarButtonItem) {
+        presenter.onSignOut()
     }
     
 }

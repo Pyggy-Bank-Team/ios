@@ -13,53 +13,69 @@ final class APIManager {
     
     private var token = ""
     
-    func signUp(request: APIDTOs.SignUp.Request, completion: @escaping (APIDTOs.SignUp.Response) -> Void) {
+    func signUp(request: DomainSignUpModel, completion: @escaping (Result<DomainAuthModel>) -> Void) {
         guard let url = URL(string: baseURL + "/users") else { return }
+        
+        let requestModel = GrandConverter.convertToRequestModel(domain: request)
         
         var urlRequst = URLRequest(url: url)
         urlRequst.httpMethod = "POST"
-        urlRequst.httpBody = try? JSONEncoder().encode(request)
+        urlRequst.httpBody = try? JSONEncoder().encode(requestModel)
         urlRequst.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         URLSession.shared.dataTask(with: urlRequst) { data, response, error in
-            guard let httpResponse = response as? HTTPURLResponse else {
-                return completion(.init(result: .error(APIError())))
+            guard let data = data, let httpResponse = response as? HTTPURLResponse else {
+                return completion(.error(APIError()))
             }
             
             if httpResponse.statusCode == 200 {
-                completion(.init(result: .success(())))
+                guard let response = try? JSONDecoder().decode(UserCredentialsResponse.self, from: data) else {
+                    return completion(.error(APIError()))
+                }
+                
+                let authModel = GrandConverter.convertToDomainModel(authResponse: response)
+                
+                completion(.success((authModel)))
             } else {
-                completion(.init(result: .error(APIError())))
+                completion(.error(APIError()))
             }
         }.resume()
     }
     
-    func signIn(request: APIDTOs.SignIn.Request, completion: @escaping (APIDTOs.SignIn.Response) -> Void) {
+    func signIn(request: DomainSignInModel, completion: @escaping (Result<DomainAuthModel>) -> Void) {
         guard let url = URL(string: baseURL + "/connect/token") else { return }
         
         var urlRequst = URLRequest(url: url)
         urlRequst.httpMethod = "POST"
         
-        let params = "client_id=\(request.client_id)&username=\(request.username)&password=\(request.password)&client_secret=\(request.client_secret)&scope=\(request.scope)&grant_type=\(request.grant_type)"
+        var params = ""
+        params += "client_id=client"
+        params += "&username=\(request.nickname)"
+        params += "&password=\(request.password)"
+        params += "&client_secret=secret"
+        params += "&scope=api1 offline_access"
+        params += "&grant_type=password"
         
         urlRequst.httpBody = params.data(using: .utf8)
         urlRequst.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         
         URLSession.shared.dataTask(with: urlRequst) { data, response, error in
             guard let data = data, let httpResponse = response as? HTTPURLResponse else {
-                return completion(.init(result: .error(APIError())))
+                return completion(.error(APIError()))
             }
             
             if httpResponse.statusCode == 200 {
-                guard let model = try? JSONDecoder().decode(SignInResponse.self, from: data) else {
-                    return completion(.init(result: .error(APIError())))
+                guard let response = try? JSONDecoder().decode(UserCredentialsResponse.self, from: data) else {
+                    return completion(.error(APIError()))
                 }
                 
-                self.token = model.access_token
+                let authModel = GrandConverter.convertToDomainModel(authResponse: response)
                 
-                completion(.init(result: .success(model.access_token)))
+                self.token = authModel.accessToken
+                
+                completion(.success(authModel))
             } else {
-                completion(.init(result: .error(APIError())))
+                completion(.error(APIError()))
             }
         }.resume()
     }

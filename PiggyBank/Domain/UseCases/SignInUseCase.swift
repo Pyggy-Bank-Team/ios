@@ -1,21 +1,27 @@
 import Foundation
 
-final class SignInUseCase: UseCase<UseCasesDTOs.SignIn.Request, UseCasesDTOs.SignIn.Response> {
+final class SignInUseCase {
     
     private let apiManager = APIManager.shared
+    private let saveUserUseCase = SaveUserCredentialsUseCase()
     
-    override func execute(request: UseCasesDTOs.SignIn.Request, completion: @escaping (UseCasesDTOs.SignIn.Response) -> Void) {
-        let apiDTO = APIDTOs.SignIn.Request(
-            client_id: "client",
-            username: request.username,
-            password: request.password,
-            client_secret: "secret",
-            scope: "api1 offline_access",
-            grant_type: "password"
-        )
-        
-        apiManager.signIn(request: apiDTO) { response in
-            completion(.init(result: response.result))
+    func execute(domainSignInModel: DomainSignInModel, completion: @escaping (Result<Void>) -> Void) {
+        apiManager.signIn(request: domainSignInModel) { [weak self] result in
+            guard let self = self else {
+                return completion(.error(APIError()))
+            }
+            
+            guard case let .success(model) = result else {
+                return completion(.error(APIError()))
+            }
+            
+            let credentialsModel = DomainUserCredentialsModel(
+                nickname: domainSignInModel.nickname,
+                accessToken: model.accessToken,
+                refreshToken: model.refreshToken
+            )
+            
+            self.saveUserUseCase.execute(domainModel: credentialsModel, completion: completion)
         }
     }
 

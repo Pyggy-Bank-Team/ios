@@ -1,15 +1,12 @@
 import Foundation
 
-final class DomainSignUpModel {
+final class DomainSignUpModel: DomainSignInModel {
     
-    let nickname: String
-    let password: String
     let currency: String
     
     init(nickname: String, password: String, currency: String) {
-        self.nickname = nickname
-        self.password = password
         self.currency = currency
+        super.init(nickname: nickname, password: password)
     }
     
 }

@@ -22,4 +22,12 @@ final class GrandConverter {
         return DomainCurrencyModel(code: currencyResponse.code, symbol: currencyResponse.symbol)
     }
     
+    static func convertToRequestModel(domain: DomainSignUpModel) -> SignUpRequest {
+        return SignUpRequest(nickname: domain.nickname, password: domain.password, currency: domain.currency)
+    }
+    
+    static func convertToDomainModel(authResponse: UserCredentialsResponse) -> DomainAuthModel {
+        return DomainAuthModel(accessToken: authResponse.accessToken, refreshToken: authResponse.refreshToken)
+    }
+    
 }
