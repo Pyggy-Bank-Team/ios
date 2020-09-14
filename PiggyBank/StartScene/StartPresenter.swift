@@ -11,19 +11,21 @@ final class StartPresenter {
     }
     
     func viewDidLoad() {
-        getUserCredentials.execute { [weak self] result in
-            if case let .success(model) = result {
-                var vcs = [AuthSceneAssembly(mode: .signIn).build()]
-                
-                if let model = model {
-                    vcs.append(ProfileSceneAssembly().build())
-                }
-                
-                DispatchQueue.main.async {
-                    self?.view?.viewDidLoad(vcs: vcs)
-                }
-            }
-        }
+//        getUserCredentials.execute { [weak self] result in
+//            if case let .success(model) = result {
+//                var vcs = [AuthSceneAssembly(mode: .signIn).build()]
+//
+//                if let model = model {
+//                    vcs.append(ProfileSceneAssembly().build())
+//                }
+//
+//                DispatchQueue.main.async {
+//                    self?.view?.viewDidLoad(vcs: vcs)
+//                }
+//            }
+//        }
+        
+        view?.viewDidLoad(vcs: [AuthSceneAssembly(mode: .signIn).build()])
     }
     
 }

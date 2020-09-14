@@ -161,7 +161,7 @@ final class APIManager {
     }
     
     func deleteAccount(request: APIDTOs.DeleteAccount.Request, completion: @escaping (APIDTOs.DeleteAccount.Response) -> Void) {
-        guard let url = URL(string: accountsURL + "/api/Accounts/\(request.id)/Delete") else { return }
+        guard let url = URL(string: accountsURL + "/api/Accounts/\(request.id)") else { return }
         
         var urlRequst = URLRequest(url: url)
         urlRequst.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")

@@ -97,32 +97,15 @@ extension AccountsViewController: UITableViewDelegate {
             }
             archiveAction.image = #imageLiteral(resourceName: "archive")
             actions.append(archiveAction)
-        }
-        
-        let renameAction = UIContextualAction(style: .normal, title: "") { [weak self] _, _, complete in
-            guard let self = self else { return }
-            
-            let alertController = UIAlertController(title: "", message: "", preferredStyle: .alert)
-            
-            alertController.addTextField { textField in
-                textField.placeholder = "Enter new title"
-                textField.text = account.title
+        } else {
+            let archiveAction = UIContextualAction(style: .normal, title: "") { [weak self] _, _, complete in
+                self?.presenter.onArchiveAccount(request: .init(index: indexPath.row))
+                complete(true)
             }
             
-            let okAction = UIAlertAction(title: "OK", style: .default) { [weak alertController] _ in
-                self.presenter.onRenameAccount(request: .init(index: indexPath.row, title: alertController?.textFields?.first?.text ?? ""))
-            }
-            
-            let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
-            
-            alertController.addAction(okAction)
-            alertController.addAction(cancelAction)
-            self.present(alertController, animated: true, completion: nil)
-            
-            complete(true)
+            archiveAction.image = #imageLiteral(resourceName: "unarchive")
+            actions.append(archiveAction)
         }
-        renameAction.image = #imageLiteral(resourceName: "rename")
-        actions.append(renameAction)
         
         actions.forEach {
             $0.backgroundColor = .white
