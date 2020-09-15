@@ -83,6 +83,7 @@ extension AccountsViewController: UITableViewDelegate {
         let account = accounts[indexPath.row]
         var actions: [UIContextualAction] = []
         
+        
         let deleteAction = UIContextualAction(style: .normal, title: "") { [weak self] _, _, complete in
             self?.presenter.onDeleteAccount(request: .init(index: indexPath.row))
             complete(true)
@@ -90,22 +91,13 @@ extension AccountsViewController: UITableViewDelegate {
         deleteAction.image = #imageLiteral(resourceName: "delete")
         actions.append(deleteAction)
         
-        if !account.isArchived {
-            let archiveAction = UIContextualAction(style: .normal, title: "") { [weak self] _, _, complete in
-                self?.presenter.onArchiveAccount(request: .init(index: indexPath.row))
-                complete(true)
-            }
-            archiveAction.image = #imageLiteral(resourceName: "archive")
-            actions.append(archiveAction)
-        } else {
-            let archiveAction = UIContextualAction(style: .normal, title: "") { [weak self] _, _, complete in
-                self?.presenter.onArchiveAccount(request: .init(index: indexPath.row))
-                complete(true)
-            }
-            
-            archiveAction.image = #imageLiteral(resourceName: "unarchive")
-            actions.append(archiveAction)
+        
+        let archiveAction = UIContextualAction(style: .normal, title: "") { [weak self] _, _, complete in
+            self?.presenter.onArchiveAccount(request: .init(index: indexPath.row))
+            complete(true)
         }
+        archiveAction.image = account.isArchived ? #imageLiteral(resourceName: "unarchive") : #imageLiteral(resourceName: "archive")
+        actions.append(archiveAction)
         
         actions.forEach {
             $0.backgroundColor = .white

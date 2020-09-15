@@ -49,10 +49,10 @@ final class AccountsPresenter {
     func onArchiveAccount(request: AccountsDTOs.OnArchiveAccount.Request) {
         let account = accounts[request.index]
         
-        archiveAccountUseCase.execute(request: .init(id: account.id)) { response in
+        archiveAccountUseCase.execute(accountID: account.id, isArchived: !account.isArchived) { response in
             DispatchQueue.main.async {
-                if case .success = response.result {
-                    self.view?.onAdd(response: .init(title: "Account has been successfully archived"))
+                if case .success = response {
+                    self.view?.onAdd(response: .init(title: "Account has been successfully \(account.isArchived ? "unarchived" : "archived")"))
                 } else {
                     self.view?.onAdd(response: .init(title: "Error"))
                 }

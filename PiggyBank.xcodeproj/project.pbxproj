@@ -51,6 +51,8 @@
 		9104C1B7250F3497003BF041 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C1B6250F3497003BF041 /* StartViewController.swift */; };
 		9104C1B9250F34B0003BF041 /* StartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C1B8250F34B0003BF041 /* StartPresenter.swift */; };
 		9104C1BB250F379F003BF041 /* StartSceneAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C1BA250F379F003BF041 /* StartSceneAssembly.swift */; };
+		9104C1BD2510704E003BF041 /* DomainArchiveAccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C1BC2510704E003BF041 /* DomainArchiveAccountModel.swift */; };
+		9104C1BF25107130003BF041 /* ArchiveAccountRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C1BE25107130003BF041 /* ArchiveAccountRequest.swift */; };
 		91A85DA924ABDDA400B7A630 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DA824ABDDA400B7A630 /* AppDelegate.swift */; };
 		91A85DB224ABDDA800B7A630 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91A85DB124ABDDA800B7A630 /* Assets.xcassets */; };
 		91A85DB524ABDDA800B7A630 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91A85DB324ABDDA800B7A630 /* LaunchScreen.storyboard */; };
@@ -122,6 +124,8 @@
 		9104C1B6250F3497003BF041 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		9104C1B8250F34B0003BF041 /* StartPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPresenter.swift; sourceTree = "<group>"; };
 		9104C1BA250F379F003BF041 /* StartSceneAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartSceneAssembly.swift; sourceTree = "<group>"; };
+		9104C1BC2510704E003BF041 /* DomainArchiveAccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainArchiveAccountModel.swift; sourceTree = "<group>"; };
+		9104C1BE25107130003BF041 /* ArchiveAccountRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveAccountRequest.swift; sourceTree = "<group>"; };
 		91A85DA524ABDDA400B7A630 /* PiggyBank.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PiggyBank.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		91A85DA824ABDDA400B7A630 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		91A85DB124ABDDA800B7A630 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -181,6 +185,7 @@
 				9104C1A1250F1F3C003BF041 /* DomainUserCredentialsModel.swift */,
 				9104C1A3250F1FEC003BF041 /* DomainAuthModel.swift */,
 				9104C1AB250F2539003BF041 /* DomainSignInModel.swift */,
+				9104C1BC2510704E003BF041 /* DomainArchiveAccountModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -295,6 +300,7 @@
 				9104C193250E1C96003BF041 /* CurrencyResponse.swift */,
 				9104C19D250E6D40003BF041 /* SignUpRequest.swift */,
 				9104C19F250F1D9E003BF041 /* UserCredentialsResponse.swift */,
+				9104C1BE25107130003BF041 /* ArchiveAccountRequest.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -488,6 +494,7 @@
 				9104C185250DE3D7003BF041 /* AccountSceneAssembly.swift in Sources */,
 				9104C13F24FBD3D7003BF041 /* CategoriesDTOs.swift in Sources */,
 				91A85DE524B4C5D900B7A630 /* Result.swift in Sources */,
+				9104C1BD2510704E003BF041 /* DomainArchiveAccountModel.swift in Sources */,
 				91A85DE724B4C7BC00B7A630 /* UseCase.swift in Sources */,
 				91A85DFC24CEEF9E00B7A630 /* ArchiveAccountUseCase.swift in Sources */,
 				9104C196250E1F37003BF041 /* GetCurrenciesUseCase.swift in Sources */,
@@ -496,6 +503,7 @@
 				91A85DEB24B650C400B7A630 /* SignInResponse.swift in Sources */,
 				91A85DF824CB3D0E00B7A630 /* AccountsAssembly.swift in Sources */,
 				91A85E0024CFEB6B00B7A630 /* RenameAccountUseCase.swift in Sources */,
+				9104C1BF25107130003BF041 /* ArchiveAccountRequest.swift in Sources */,
 				91A85E0224D04F0700B7A630 /* MainBarViewController.swift in Sources */,
 				9104C198250E20B1003BF041 /* BaseCurrencySceneAssembly.swift in Sources */,
 				91A85DEE24CB308000B7A630 /* AccountsViewController.swift in Sources */,

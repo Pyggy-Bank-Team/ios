@@ -43,7 +43,7 @@ final class BaseCurrencyPresenter {
             
             if case .success = result {
                 DispatchQueue.main.async {
-                    self.view?.onDone(viewController: ProfileViewController())
+                    self.view?.onDone(viewController: ProfileSceneAssembly().build())
                 }
             }
         }
