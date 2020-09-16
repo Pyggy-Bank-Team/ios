@@ -186,7 +186,7 @@ private extension AccountViewController {
     }
     
     @objc func onChangeTitle(_ sender: UITextField) {
-        navigationItem.title = "\(sender.text ?? "")"
+        updateNavigationTitle()
     }
     
 }
@@ -212,6 +212,7 @@ extension AccountViewController: UITableViewDelegate {
         }
         
         tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+        updateNavigationTitle()
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -233,6 +234,25 @@ extension AccountViewController: UITableViewDataSource {
         cell.textLabel?.text = "\(currency.code) - \(currency.symbol)"
         
         return cell
+    }
+    
+}
+
+private extension AccountViewController {
+    
+    func updateNavigationTitle() {
+        let accountTitle = titleField.text ?? ""
+        let currency: String
+        
+        if let account = accountViewModel {
+            currency = account.currency
+        } else if let indexPath = tableView.indexPathForSelectedRow {
+            currency = currencies[indexPath.row].code
+        } else {
+            currency = ""
+        }
+        
+        navigationItem.title = "\(accountTitle) • \(currency)"
     }
     
 }
