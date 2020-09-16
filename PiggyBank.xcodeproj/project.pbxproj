@@ -53,6 +53,10 @@
 		9104C1BB250F379F003BF041 /* StartSceneAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C1BA250F379F003BF041 /* StartSceneAssembly.swift */; };
 		9104C1BD2510704E003BF041 /* DomainArchiveAccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C1BC2510704E003BF041 /* DomainArchiveAccountModel.swift */; };
 		9104C1BF25107130003BF041 /* ArchiveAccountRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C1BE25107130003BF041 /* ArchiveAccountRequest.swift */; };
+		9104C1C125107641003BF041 /* CreateUpdateAccountUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C1C025107641003BF041 /* CreateUpdateAccountUseCase.swift */; };
+		9104C1C32510774A003BF041 /* DomainCreateUpdateAccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C1C22510774A003BF041 /* DomainCreateUpdateAccountModel.swift */; };
+		9104C1C525107F82003BF041 /* AccountTextFieldTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C1C425107F82003BF041 /* AccountTextFieldTableCell.swift */; };
+		9104C1C725108459003BF041 /* AccountSegmentedTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C1C625108459003BF041 /* AccountSegmentedTableCell.swift */; };
 		91A85DA924ABDDA400B7A630 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DA824ABDDA400B7A630 /* AppDelegate.swift */; };
 		91A85DB224ABDDA800B7A630 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91A85DB124ABDDA800B7A630 /* Assets.xcassets */; };
 		91A85DB524ABDDA800B7A630 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91A85DB324ABDDA800B7A630 /* LaunchScreen.storyboard */; };
@@ -126,6 +130,10 @@
 		9104C1BA250F379F003BF041 /* StartSceneAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartSceneAssembly.swift; sourceTree = "<group>"; };
 		9104C1BC2510704E003BF041 /* DomainArchiveAccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainArchiveAccountModel.swift; sourceTree = "<group>"; };
 		9104C1BE25107130003BF041 /* ArchiveAccountRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveAccountRequest.swift; sourceTree = "<group>"; };
+		9104C1C025107641003BF041 /* CreateUpdateAccountUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUpdateAccountUseCase.swift; sourceTree = "<group>"; };
+		9104C1C22510774A003BF041 /* DomainCreateUpdateAccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainCreateUpdateAccountModel.swift; sourceTree = "<group>"; };
+		9104C1C425107F82003BF041 /* AccountTextFieldTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTextFieldTableCell.swift; sourceTree = "<group>"; };
+		9104C1C625108459003BF041 /* AccountSegmentedTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSegmentedTableCell.swift; sourceTree = "<group>"; };
 		91A85DA524ABDDA400B7A630 /* PiggyBank.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PiggyBank.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		91A85DA824ABDDA400B7A630 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		91A85DB124ABDDA800B7A630 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -186,6 +194,7 @@
 				9104C1A3250F1FEC003BF041 /* DomainAuthModel.swift */,
 				9104C1AB250F2539003BF041 /* DomainSignInModel.swift */,
 				9104C1BC2510704E003BF041 /* DomainArchiveAccountModel.swift */,
+				9104C1C22510774A003BF041 /* DomainCreateUpdateAccountModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -196,6 +205,8 @@
 				9104C179250DD6DD003BF041 /* AccountViewController.swift */,
 				9104C17E250DDBB6003BF041 /* AccountPresenter.swift */,
 				9104C184250DE3D7003BF041 /* AccountSceneAssembly.swift */,
+				9104C1C425107F82003BF041 /* AccountTextFieldTableCell.swift */,
+				9104C1C625108459003BF041 /* AccountSegmentedTableCell.swift */,
 			);
 			path = AccountScene;
 			sourceTree = "<group>";
@@ -336,6 +347,7 @@
 				9104C1A9250F2428003BF041 /* SaveUserCredentialsUseCase.swift */,
 				9104C1B1250F2B92003BF041 /* DeleteUserCredentialsUseCase.swift */,
 				9104C1B3250F33B8003BF041 /* GetUserCredentialsUseCase.swift */,
+				9104C1C025107641003BF041 /* CreateUpdateAccountUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -455,12 +467,15 @@
 				9104C13B24FBCFD3003BF041 /* GetCategoriesUseCase.swift in Sources */,
 				91A85DF024CB30BC00B7A630 /* AccountsDTOs.swift in Sources */,
 				91A85DF424CB385400B7A630 /* AccountResponse.swift in Sources */,
+				9104C1C125107641003BF041 /* CreateUpdateAccountUseCase.swift in Sources */,
 				9104C189250DF76D003BF041 /* AuthPresenter.swift in Sources */,
 				9104C181250DE01F003BF041 /* DomainAccountModel.swift in Sources */,
 				9104C13524FBC705003BF041 /* ProfileViewController.swift in Sources */,
 				9104C1AA250F2428003BF041 /* SaveUserCredentialsUseCase.swift in Sources */,
 				9104C17325051C3B003BF041 /* DeleteCategoryUseCase.swift in Sources */,
+				9104C1C32510774A003BF041 /* DomainCreateUpdateAccountModel.swift in Sources */,
 				9104C19C250E65AD003BF041 /* DomainSignUpModel.swift in Sources */,
+				9104C1C525107F82003BF041 /* AccountTextFieldTableCell.swift in Sources */,
 				9104C18C250E174D003BF041 /* BaseCurrencyViewController.swift in Sources */,
 				9104C1AC250F2539003BF041 /* DomainSignInModel.swift in Sources */,
 				91A85DE224B4C50300B7A630 /* UseCasesDTOs.swift in Sources */,
@@ -470,6 +485,7 @@
 				9104C1B9250F34B0003BF041 /* StartPresenter.swift in Sources */,
 				9104C18E250E177D003BF041 /* CurrencyViewModel.swift in Sources */,
 				9104C171250415C4003BF041 /* CreateCategoryViewController.swift in Sources */,
+				9104C1C725108459003BF041 /* AccountSegmentedTableCell.swift in Sources */,
 				9104C13D24FBD2BF003BF041 /* CategoriesPresenter.swift in Sources */,
 				9104C17A250DD6DD003BF041 /* AccountViewController.swift in Sources */,
 				9104C1A4250F1FEC003BF041 /* DomainAuthModel.swift in Sources */,

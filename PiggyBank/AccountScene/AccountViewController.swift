@@ -6,7 +6,9 @@ final class AccountViewController: UIViewController {
     
     private lazy var typeControl = UISegmentedControl()
     private lazy var titleField = UITextField()
+    private lazy var titleBorderView = UIView()
     private lazy var balanceField = UITextField()
+    private lazy var balanceBorderView = UIView()
     private lazy var deleteButton = UIButton(type: .system)
     private lazy var deleteBorderView = UIView()
     
@@ -19,17 +21,24 @@ final class AccountViewController: UIViewController {
 
         view.backgroundColor = .white
         
-        typeControl.insertSegment(withTitle: "Cash", at: 0, animated: true)
-        typeControl.insertSegment(withTitle: "Card", at: 1, animated: true)
+        typeControl.insertSegment(withTitle: "Cash", at: 0, animated: false)
+        typeControl.insertSegment(withTitle: "Card", at: 1, animated: false)
         typeControl.translatesAutoresizingMaskIntoConstraints = false
         
         titleField.placeholder = "Title"
-        titleField.textAlignment = .center
         titleField.translatesAutoresizingMaskIntoConstraints = false
+        titleField.returnKeyType = .continue
+        titleField.delegate = self
+        
+        titleBorderView.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.1991362236)
+        titleBorderView.translatesAutoresizingMaskIntoConstraints = false
         
         balanceField.placeholder = "Balance"
-        balanceField.textAlignment = .center
         balanceField.translatesAutoresizingMaskIntoConstraints = false
+        balanceField.keyboardType = .numberPad
+        
+        balanceBorderView.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.1991362236)
+        balanceBorderView.translatesAutoresizingMaskIntoConstraints = false
         
         deleteButton.setTitle("Delete", for: .normal)
         deleteButton.setTitleColor(.red, for: .normal)
@@ -40,22 +49,34 @@ final class AccountViewController: UIViewController {
         
         view.addSubview(typeControl)
         view.addSubview(titleField)
+        view.addSubview(titleBorderView)
         view.addSubview(balanceField)
+        view.addSubview(balanceBorderView)
         view.addSubview(deleteButton)
         view.addSubview(deleteBorderView)
         
         NSLayoutConstraint.activate([
-            typeControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
+            typeControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15),
             typeControl.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
             typeControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
-            titleField.topAnchor.constraint(equalTo: typeControl.bottomAnchor, constant: 50),
+            titleField.topAnchor.constraint(equalTo: typeControl.bottomAnchor, constant: 40),
             titleField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
             titleField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
-            balanceField.topAnchor.constraint(equalTo: titleField.bottomAnchor, constant: 50),
+            titleBorderView.widthAnchor.constraint(equalTo: titleField.widthAnchor),
+            titleBorderView.heightAnchor.constraint(equalToConstant: 0.5),
+            titleBorderView.topAnchor.constraint(equalTo: titleField.bottomAnchor),
+            titleBorderView.leadingAnchor.constraint(equalTo: titleField.leadingAnchor),
+            
+            balanceField.topAnchor.constraint(equalTo: titleBorderView.bottomAnchor, constant: 20),
             balanceField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
             balanceField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            balanceBorderView.widthAnchor.constraint(equalTo: balanceField.widthAnchor),
+            balanceBorderView.heightAnchor.constraint(equalToConstant: 0.5),
+            balanceBorderView.topAnchor.constraint(equalTo: balanceField.bottomAnchor),
+            balanceBorderView.leadingAnchor.constraint(equalTo: balanceField.leadingAnchor),
             
             deleteBorderView.widthAnchor.constraint(equalTo: deleteButton.widthAnchor),
             deleteBorderView.heightAnchor.constraint(equalToConstant: 0.5),
@@ -83,6 +104,7 @@ final class AccountViewController: UIViewController {
             typeControl.selectedSegmentIndex = 0
             deleteBorderView.isHidden = true
             deleteButton.isHidden = true
+            titleField.becomeFirstResponder()
         }
     }
 
@@ -92,6 +114,19 @@ private extension AccountViewController {
     
     @objc func onSave(_ sender: UIBarButtonItem) {
         
+    }
+    
+}
+
+extension AccountViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        guard textField == titleField else { return true }
+        
+        titleField.resignFirstResponder()
+        balanceField.becomeFirstResponder()
+        
+        return true
     }
     
 }
