@@ -4,6 +4,9 @@ final class AccountViewController: UIViewController {
     
     private var accountViewModel: AccountViewModel?
     
+    private var currencies: [CurrencyViewModel] = []
+    private var tableHeightConstraint: NSLayoutConstraint!
+    
     private lazy var scrollView = UIScrollView()
     private lazy var typeControl = UISegmentedControl()
     private lazy var titleField = UITextField()
@@ -12,6 +15,7 @@ final class AccountViewController: UIViewController {
     private lazy var balanceBorderView = UIView()
     private lazy var archivedLabel = UILabel()
     private lazy var archiveSwitch = UISwitch()
+    private lazy var tableView = UITableView()
     private lazy var deleteButton = UIButton(type: .system)
     private lazy var deleteBorderView = UIView()
     
@@ -53,6 +57,11 @@ final class AccountViewController: UIViewController {
         
         archiveSwitch.translatesAutoresizingMaskIntoConstraints = false
         
+        tableView.register(CurrencyTableCell.self, forCellReuseIdentifier: "Cell")
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        
         deleteButton.setTitle("Delete", for: .normal)
         deleteButton.setTitleColor(.red, for: .normal)
         deleteButton.translatesAutoresizingMaskIntoConstraints = false
@@ -68,8 +77,11 @@ final class AccountViewController: UIViewController {
         scrollView.addSubview(balanceBorderView)
         scrollView.addSubview(archivedLabel)
         scrollView.addSubview(archiveSwitch)
+        scrollView.addSubview(tableView)
         scrollView.addSubview(deleteButton)
         scrollView.addSubview(deleteBorderView)
+        
+        tableHeightConstraint = tableView.heightAnchor.constraint(equalToConstant: 0)
         
         NSLayoutConstraint.activate([
             scrollView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
@@ -106,6 +118,11 @@ final class AccountViewController: UIViewController {
             archiveSwitch.centerYAnchor.constraint(equalTo: archivedLabel.centerYAnchor),
             archiveSwitch.trailingAnchor.constraint(equalTo: balanceBorderView.trailingAnchor),
             
+            tableView.widthAnchor.constraint(equalTo: balanceBorderView.widthAnchor),
+            tableView.topAnchor.constraint(equalTo: archivedLabel.bottomAnchor, constant: 30),
+            tableView.leadingAnchor.constraint(equalTo: archivedLabel.leadingAnchor),
+            tableHeightConstraint,
+            
             deleteBorderView.widthAnchor.constraint(equalTo: deleteButton.widthAnchor),
             deleteBorderView.heightAnchor.constraint(equalToConstant: 0.5),
             deleteBorderView.bottomAnchor.constraint(equalTo: deleteButton.topAnchor),
@@ -116,7 +133,7 @@ final class AccountViewController: UIViewController {
             deleteButton.heightAnchor.constraint(equalToConstant: 40),
         ])
         
-        presenter.loadAccount()
+        presenter.loadData()
     }
     
     override func viewDidLayoutSubviews() {
@@ -134,6 +151,7 @@ final class AccountViewController: UIViewController {
             titleField.text = account.title
             balanceField.text = account.balance.description
             archiveSwitch.isOn = account.isArchived
+            tableView.isHidden = true
         } else {
             navigationItem.title = "New Account"
             typeControl.selectedSegmentIndex = 0
@@ -141,6 +159,21 @@ final class AccountViewController: UIViewController {
             deleteButton.isHidden = true
             titleField.becomeFirstResponder()
             archiveSwitch.isOn = false
+            tableView.isHidden = false
+        }
+    }
+    
+    func loadCurrencies(currencies: [CurrencyViewModel]) {
+        self.currencies = currencies
+        
+        let indexPathes = currencies.enumerated().map { IndexPath(row: $0.offset, section: 0) }
+        tableView.insertRows(at: indexPathes, with: .fade)
+        
+        view.layoutIfNeeded()
+        UIView.animate(withDuration: 0.3) {
+            self.tableHeightConstraint.constant = CGFloat(currencies.count * 48)
+            self.tableView.layer.borderWidth = 0.5
+            self.view.layoutIfNeeded()
         }
     }
 
@@ -167,6 +200,39 @@ extension AccountViewController: UITextFieldDelegate {
         balanceField.becomeFirstResponder()
         
         return true
+    }
+    
+}
+
+extension AccountViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        for (index, _) in currencies.enumerated() where index != indexPath.row {
+            tableView.cellForRow(at: IndexPath(row: index, section: 0))?.accessoryType = .none
+        }
+        
+        tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 48
+    }
+    
+}
+
+extension AccountViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return currencies.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let currency = currencies[indexPath.row]
+        
+        cell.textLabel?.text = "\(currency.code) - \(currency.symbol)"
+        
+        return cell
     }
     
 }
