@@ -8,5 +8,6 @@ final class AccountResponse: Codable {
     let currency: String
     let balance: Double
     let isArchived: Bool
+    let isDeleted: Bool
     
 }

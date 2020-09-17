@@ -1,6 +1,6 @@
 import Foundation
 
-final class DomainCreateUpdateAccountModel {
+class DomainCreateUpdateAccountModel {
     
     enum AccountType: Int {
         
@@ -9,13 +9,15 @@ final class DomainCreateUpdateAccountModel {
         
     }
     
+    let id: Int?
     let type: AccountType
     let title: String
     let currency: String
     let balance: Double
     let isArchived: Bool
     
-    init(type: AccountType, title: String, currency: String, balance: Double, isArchived: Bool) {
+    init(id: Int? = nil, type: AccountType, title: String, currency: String, balance: Double, isArchived: Bool) {
+        self.id = id
         self.type = type
         self.title = title
         self.currency = currency
@@ -24,3 +26,4 @@ final class DomainCreateUpdateAccountModel {
     }
     
 }
+

@@ -5,6 +5,7 @@ final class AccountPresenter {
     private let accountDomainModel: DomainAccountModel?
     
     private let getCurrenciesUseCase = GetCurrenciesUseCase()
+    private let createUpdateAccountUseCase = CreateUpdateAccountUseCase()
     
     weak var view: AccountViewController?
     
@@ -25,6 +26,50 @@ final class AccountPresenter {
                 
                 DispatchQueue.main.async {
                     self.view?.loadCurrencies(currencies: currenciesViewModels)
+                }
+            }
+        }
+    }
+    
+    func onSave() {
+        guard let view = view else {
+            fatalError("AccountPresenter: onSave - view is nil")
+        }
+        
+        let accountCurrency: String
+        let accountID: Int?
+        
+        if let account = accountDomainModel {
+            accountCurrency = account.currency
+            accountID = account.id
+        } else {
+            accountCurrency = view.accountCurrency
+            accountID = nil
+        }
+        
+        guard let accountType = DomainCreateUpdateAccountModel.AccountType(rawValue: view.accountType) else {
+            fatalError("AccountPresenter: onSave - account type is invalid")
+        }
+        
+        let accountTitle = view.accountTitle
+        let accountBalance = view.accountBalance
+        let accountArchive = view.accountArchived
+        
+        let createUpdateDomain = DomainCreateUpdateAccountModel(
+            id: accountID,
+            type: accountType,
+            title: accountTitle,
+            currency: accountCurrency,
+            balance: accountBalance,
+            isArchived: accountArchive
+        )
+        
+        createUpdateAccountUseCase.execute(request: createUpdateDomain) { [weak self] result in
+            guard let self = self else { return }
+            
+            if case .success = result {
+                DispatchQueue.main.async {
+                    self.view?.accountSaved()
                 }
             }
         }

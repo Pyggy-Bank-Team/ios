@@ -80,7 +80,7 @@ final class APIManager {
         }.resume()
     }
     
-    func getAccounts(request: APIDTOs.GetAccounts.Request, completion: @escaping (APIDTOs.GetAccounts.Response) -> Void) {
+    func getAccounts(completion: @escaping (Result<[DomainAccountModel]>) -> Void) {
         guard let url = URL(string: accountsURL + "/api/Accounts") else { return }
         
         var urlRequst = URLRequest(url: url)
@@ -91,48 +91,18 @@ final class APIManager {
             print("LOGGER: Finish for \(urlRequst.url!)")
             
             guard let data = data, let httpResponse = response as? HTTPURLResponse else {
-                return completion(.init(result: .error(APIError())))
+                return completion(.error(APIError()))
             }
             
             if httpResponse.statusCode == 200 {
                 guard let model = try? JSONDecoder().decode(Array<AccountResponse>.self, from: data) else {
-                    return completion(.init(result: .error(APIError())))
+                    return completion(.error(APIError()))
                 }
                 
-                let accounts = model.map {
-                    APIDTOs.GetAccounts.Response.Account(
-                        id: $0.id, type: $0.type, title: $0.title, currency: $0.currency, balance: $0.balance, isArchived: $0.isArchived
-                    )
-                }
-                
-                completion(.init(result: .success(accounts)))
+                let accounts = model.map { GrandConverter.convertToDomain(response: $0) }
+                completion(.success(accounts))
             } else {
-                completion(.init(result: .error(APIError())))
-            }
-        }.resume()
-    }
-    
-    func createAccount(request: APIDTOs.CreateAccount.Request, completion: @escaping (APIDTOs.CreateAccount.Response) -> Void) {
-        guard let url = URL(string: accountsURL + "/api/Accounts") else { return }
-        
-        var urlRequst = URLRequest(url: url)
-        urlRequst.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-        urlRequst.httpMethod = "POST"
-        urlRequst.httpBody = try? JSONEncoder().encode(request)
-        urlRequst.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        print("LOGGER: Start for \(urlRequst.url!)")
-        URLSession.shared.dataTask(with: urlRequst) { data, response, error in
-            print("LOGGER: Finish for \(urlRequst.url!)")
-            
-            guard let httpResponse = response as? HTTPURLResponse else {
-                return completion(.init(result: .error(APIError())))
-            }
-            
-            if httpResponse.statusCode == 200 {
-                completion(.init(result: .success(())))
-            } else {
-                completion(.init(result: .error(APIError())))
+                completion(.error(APIError()))
             }
         }.resume()
     }
@@ -164,8 +134,8 @@ final class APIManager {
         }.resume()
     }
     
-    func deleteAccount(request: APIDTOs.DeleteAccount.Request, completion: @escaping (APIDTOs.DeleteAccount.Response) -> Void) {
-        guard let url = URL(string: accountsURL + "/api/Accounts/\(request.id)") else { return }
+    func deleteAccount(accountID: Int, completion: @escaping (Result<Void>) -> Void) {
+        guard let url = URL(string: accountsURL + "/api/Accounts/\(accountID)") else { return }
         
         var urlRequst = URLRequest(url: url)
         urlRequst.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
@@ -176,24 +146,30 @@ final class APIManager {
             print("LOGGER: Finish for \(urlRequst.url!)")
             
             guard let httpResponse = response as? HTTPURLResponse else {
-                return completion(.init(result: .error(APIError())))
+                return completion(.error(APIError()))
             }
             
             if httpResponse.statusCode == 200 {
-                completion(.init(result: .success(())))
+                completion(.success(()))
             } else {
-                completion(.init(result: .error(APIError())))
+                completion(.error(APIError()))
             }
         }.resume()
     }
     
-    func renameAccount(request: APIDTOs.RenameAccount.Request, completion: @escaping (APIDTOs.RenameAccount.Response) -> Void) {
-        guard let url = URL(string: accountsURL + "/api/Accounts/\(request.account.id)/Update") else { return }
+    func updateAccount(request: DomainCreateUpdateAccountModel, completion: @escaping (Result<Void>) -> Void) {
+        guard let id = request.id else {
+            fatalError("APIManager: updateAccount - ID can't be null")
+        }
+        
+        guard let url = URL(string: accountsURL + "/api/Accounts/\(id)") else { return }
+        
+        let requestModel = GrandConverter.convertToRequestModel(domain: request)
         
         var urlRequst = URLRequest(url: url)
         urlRequst.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         urlRequst.httpMethod = "PATCH"
-        urlRequst.httpBody = try? JSONEncoder().encode(request.account)
+        urlRequst.httpBody = try? JSONEncoder().encode(requestModel)
         urlRequst.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
         print("LOGGER: Start for \(urlRequst.url!)")
@@ -201,13 +177,40 @@ final class APIManager {
             print("LOGGER: Finish for \(urlRequst.url!)")
             
             guard let httpResponse = response as? HTTPURLResponse else {
-                return completion(.init(result: .error(APIError())))
+                return completion(.error(APIError()))
             }
             
             if httpResponse.statusCode == 200 {
-                completion(.init(result: .success(())))
+                completion(.success(()))
             } else {
-                completion(.init(result: .error(APIError())))
+                completion(.error(APIError()))
+            }
+        }.resume()
+    }
+    
+    func createAccount(request: DomainCreateUpdateAccountModel, completion: @escaping (Result<Void>) -> Void) {
+        guard let url = URL(string: accountsURL + "/api/Accounts") else { return }
+        
+        let requestModel = GrandConverter.convertToRequestModel(domain: request)
+        
+        var urlRequst = URLRequest(url: url)
+        urlRequst.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        urlRequst.httpMethod = "POST"
+        urlRequst.httpBody = try? JSONEncoder().encode(requestModel)
+        urlRequst.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        print("LOGGER: Start for \(urlRequst.url!)")
+        URLSession.shared.dataTask(with: urlRequst) { data, response, error in
+            print("LOGGER: Finish for \(urlRequst.url!)")
+            
+            guard let httpResponse = response as? HTTPURLResponse else {
+                return completion(.error(APIError()))
+            }
+            
+            if httpResponse.statusCode == 200 {
+                completion(.success(()))
+            } else {
+                completion(.error(APIError()))
             }
         }.resume()
     }

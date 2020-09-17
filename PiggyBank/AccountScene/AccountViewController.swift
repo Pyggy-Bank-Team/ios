@@ -176,13 +176,22 @@ final class AccountViewController: UIViewController {
             self.view.layoutIfNeeded()
         }
     }
+    
+    func accountSaved() {
+        let alertController = UIAlertController(title: "Account saved", message: "", preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: "OK", style: .default)
+        alertController.addAction(action)
+        
+        present(alertController, animated: true, completion: nil)
+    }
 
 }
 
 private extension AccountViewController {
     
     @objc func onSave(_ sender: UIBarButtonItem) {
-        
+        presenter.onSave()
     }
     
     @objc func onChangeTitle(_ sender: UITextField) {
@@ -234,6 +243,34 @@ extension AccountViewController: UITableViewDataSource {
         cell.textLabel?.text = "\(currency.code) - \(currency.symbol)"
         
         return cell
+    }
+    
+}
+
+extension AccountViewController {
+    
+    var accountType: Int {
+        return typeControl.selectedSegmentIndex
+    }
+    
+    var accountTitle: String {
+        return titleField.text ?? ""
+    }
+    
+    var accountBalance: Double {
+        return Double(balanceField.text ?? "") ?? 0.0
+    }
+    
+    var accountArchived: Bool {
+        return archiveSwitch.isOn
+    }
+    
+    var accountCurrency: String {
+        if let indexPath = tableView.indexPathForSelectedRow {
+            return currencies[indexPath.row].code
+        }
+        
+        return currencies[0].code
     }
     
 }

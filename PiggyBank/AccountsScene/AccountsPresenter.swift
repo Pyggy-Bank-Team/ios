@@ -5,42 +5,25 @@ final class AccountsPresenter {
     private weak var view: AccountsViewController?
     
     private let getAccountsUseCase = GetAccountsUseCase()
-    private let createAccountUseCase = CreateAccountUseCase()
     private let archiveAccountUseCase = ArchiveAccountUseCase()
     private let deleteAccountUseCase = DeleteAccountUseCase()
-    private let renameAccountUseCase = RenameAccountUseCase()
     
-    private var accounts: [AccountsDTOs.ViewDidLoad.Response.Accounts.Account] = []
+    private var accounts: [DomainAccountModel] = []
     
     init(view: AccountsViewController) {
         self.view = view
     }
     
     func onViewDidLoad(request: AccountsDTOs.ViewDidLoad.Request) {
-        getAccountsUseCase.execute(request: .init()) { [weak self] response in
+        getAccountsUseCase.execute() { [weak self] response in
             guard let self = self else { return }
             
             DispatchQueue.main.async {
-                if case let .success(items) = response.result {
-                    self.accounts = items.map {
-                        AccountsDTOs.ViewDidLoad.Response.Accounts.Account(
-                            id: $0.id, type: $0.type, title: $0.title, currency: $0.currency, total: $0.balance, isArchived: $0.isArchived
-                        )
-                    }
+                if case let .success(items) = response {
+                    self.accounts = items
                     
-                    self.view?.viewDidLoad(response: .init(accounts: self.accounts))
-                }
-            }
-        }
-    }
-    
-    func onAddAccount(request: AccountsDTOs.OnAdd.Request) {
-        createAccountUseCase.execute(request: .init(title: request.title)) { response in
-            DispatchQueue.main.async {
-                if case .success = response.result {
-                    self.view?.onAdd(response: .init(title: "Successfully"))
-                } else {
-                    self.view?.onAdd(response: .init(title: "Error"))
+                    let accountsViewModels = items.compactMap { GrandConverter.convertToViewModel(domainAccount: $0) }
+                    self.view?.viewDidLoad(response: .init(accountsViewModels))
                 }
             }
         }
@@ -63,28 +46,10 @@ final class AccountsPresenter {
     func onDeleteAccount(request: AccountsDTOs.OnDeleteAccount.Request) {
         let account = accounts[request.index]
         
-        deleteAccountUseCase.execute(request: .init(id: account.id)) { response in
+        deleteAccountUseCase.execute(accountID: account.id) { response in
             DispatchQueue.main.async {
-                if case .success = response.result {
+                if case .success = response {
                     self.view?.onAdd(response: .init(title: "Account has been successfully deleted"))
-                } else {
-                    self.view?.onAdd(response: .init(title: "Error"))
-                }
-            }
-        }
-    }
-    
-    func onRenameAccount(request: AccountsDTOs.OnRenameAccount.Request) {
-        let account = accounts[request.index]
-        
-        let requestAccount = UseCasesDTOs.RenameAccount.Request.Account(
-            id: account.id, type: account.type, title: account.title, currency: account.currency, balance: account.total
-        )
-        
-        renameAccountUseCase.execute(request: .init(title: request.title, account: requestAccount)) { response in
-            DispatchQueue.main.async {
-                if case .success = response.result {
-                    self.view?.onAdd(response: .init(title: "Account has been successfully renamed"))
                 } else {
                     self.view?.onAdd(response: .init(title: "Error"))
                 }
@@ -99,18 +64,7 @@ final class AccountsPresenter {
     
     func onSelect(indexPath: IndexPath) {
         let account = accounts[indexPath.row]
-        
-        let accountDomainModel = DomainAccountModel(
-            id: account.id,
-            type: DomainAccountModel.AccountType(rawValue: account.type)!,
-            title: account.title,
-            currency: account.currency,
-            balance: account.total,
-            isArchived: account.isArchived,
-            isDeleted: false
-        )
-        
-        let accountVC = AccountSceneAssembly(accountDomainModel: accountDomainModel).build()
+        let accountVC = AccountSceneAssembly(accountDomainModel: account).build()
         view?.onSelect(viewController: accountVC)
     }
     

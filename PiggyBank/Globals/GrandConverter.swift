@@ -34,4 +34,26 @@ final class GrandConverter {
         return ArchiveAccountRequest(id: domain.id, isArchived: domain.isArchived)
     }
     
+    static func convertToRequestModel(domain: DomainCreateUpdateAccountModel) -> CreateUpdateAccountRequest {
+        return CreateUpdateAccountRequest(
+            type: domain.type.rawValue,
+            title: domain.title,
+            currency: domain.currency,
+            balance: domain.balance,
+            isArchived: domain.isArchived
+        )
+    }
+    
+    static func convertToDomain(response: AccountResponse) -> DomainAccountModel {
+        return DomainAccountModel(
+            id: response.id,
+            type: response.type,
+            title: response.title,
+            currency: response.currency,
+            balance: response.balance,
+            isArchived: response.isArchived,
+            isDeleted: response.isDeleted
+        )
+    }
+    
 }

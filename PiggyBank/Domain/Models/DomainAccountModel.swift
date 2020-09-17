@@ -17,9 +17,9 @@ final class DomainAccountModel {
     let isArchived: Bool
     let isDeleted: Bool
     
-    init(id: Int, type: AccountType, title: String, currency: String, balance: Double, isArchived: Bool, isDeleted: Bool) {
+    init(id: Int, type: Int, title: String, currency: String, balance: Double, isArchived: Bool, isDeleted: Bool) {
         self.id = id
-        self.type = type
+        self.type = AccountType(rawValue: type)!
         self.title = title
         self.currency = currency
         self.balance = balance

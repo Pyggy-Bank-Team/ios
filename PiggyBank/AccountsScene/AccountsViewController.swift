@@ -4,7 +4,7 @@ final class AccountsViewController: UIViewController {
     
     private lazy var tableView = UITableView()
     
-    private var accounts: [AccountsDTOs.ViewDidLoad.Response.Accounts.Account] = []
+    private var accounts: [AccountViewModel] = []
     
     var presenter: AccountsPresenter!
     
@@ -32,8 +32,8 @@ final class AccountsViewController: UIViewController {
         presenter.onViewDidLoad(request: .init())
     }
     
-    func viewDidLoad(response: AccountsDTOs.ViewDidLoad.Response.Accounts) {
-        accounts = response.accounts
+    func viewDidLoad(response: [AccountViewModel]) {
+        accounts = response
         tableView.reloadData()
     }
     
@@ -127,7 +127,7 @@ extension AccountsViewController: UITableViewDataSource {
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") {
             cell.textLabel?.text = account.title
-            cell.detailTextLabel?.text = "\(account.total) \(account.currency)"
+            cell.detailTextLabel?.text = "\(account.balance) \(account.currency)"
             
             if account.isArchived {
                 cell.imageView?.image = #imageLiteral(resourceName: "archive")
@@ -138,7 +138,7 @@ extension AccountsViewController: UITableViewDataSource {
             let cell = UITableViewCell(style: .value1, reuseIdentifier: "Cell")
             
             cell.textLabel?.text = account.title
-            cell.detailTextLabel?.text = "\(account.total) \(account.currency)"
+            cell.detailTextLabel?.text = "\(account.balance) \(account.currency)"
             
             if account.isArchived {
                 cell.imageView?.image = #imageLiteral(resourceName: "archive")
