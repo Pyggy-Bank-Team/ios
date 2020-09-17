@@ -5,8 +5,8 @@ final class AccountsPresenter {
     private weak var view: AccountsViewController?
     
     private let getAccountsUseCase = GetAccountsUseCase()
-    private let archiveAccountUseCase = ArchiveAccountUseCase()
     private let deleteAccountUseCase = DeleteAccountUseCase()
+    private let createUpdateAccountUseCase = CreateUpdateAccountUseCase()
     
     private var accounts: [DomainAccountModel] = []
     
@@ -32,7 +32,16 @@ final class AccountsPresenter {
     func onArchiveAccount(request: AccountsDTOs.OnArchiveAccount.Request) {
         let account = accounts[request.index]
         
-        archiveAccountUseCase.execute(accountID: account.id, isArchived: !account.isArchived) { response in
+        let createUpdateModel = DomainCreateUpdateAccountModel(
+            id: account.id,
+            type: account.type == .cash ? .cash : .card,
+            title: account.title,
+            currency: account.currency,
+            balance: account.balance,
+            isArchived: !account.isArchived
+        )
+        
+        createUpdateAccountUseCase.execute(request: createUpdateModel) { response in
             DispatchQueue.main.async {
                 if case .success = response {
                     self.view?.onAdd(response: .init(title: "Account has been successfully \(account.isArchived ? "unarchived" : "archived")"))
