@@ -47,7 +47,7 @@ final class AccountPresenter {
             accountID = nil
         }
         
-        guard let accountType = DomainCreateUpdateAccountModel.AccountType(rawValue: view.accountType) else {
+        guard let accountType = DomainAccountModel.AccountType(rawValue: view.accountType) else {
             fatalError("AccountPresenter: onSave - account type is invalid")
         }
         
@@ -55,13 +55,14 @@ final class AccountPresenter {
         let accountBalance = view.accountBalance
         let accountArchive = view.accountArchived
         
-        let createUpdateDomain = DomainCreateUpdateAccountModel(
+        let createUpdateDomain = DomainAccountModel(
             id: accountID,
-            type: accountType,
+            type: accountType.rawValue,
             title: accountTitle,
             currency: accountCurrency,
             balance: accountBalance,
-            isArchived: accountArchive
+            isArchived: accountArchive,
+            isDeleted: false
         )
         
         createUpdateAccountUseCase.execute(request: createUpdateDomain) { [weak self] result in

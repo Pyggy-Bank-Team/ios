@@ -130,7 +130,7 @@ final class APIManager {
         }.resume()
     }
     
-    func updateAccount(request: DomainCreateUpdateAccountModel, completion: @escaping (Result<Void>) -> Void) {
+    func updateAccount(request: DomainAccountModel, completion: @escaping (Result<Void>) -> Void) {
         guard let id = request.id else {
             fatalError("APIManager: updateAccount - ID can't be null")
         }
@@ -161,7 +161,7 @@ final class APIManager {
         }.resume()
     }
     
-    func createAccount(request: DomainCreateUpdateAccountModel, completion: @escaping (Result<Void>) -> Void) {
+    func createAccount(request: DomainAccountModel, completion: @escaping (Result<Void>) -> Void) {
         guard let url = URL(string: accountsURL + "/api/Accounts") else { return }
         
         let requestModel = GrandConverter.convertToRequestModel(domain: request)

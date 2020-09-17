@@ -30,7 +30,7 @@ final class GrandConverter {
         return DomainAuthModel(accessToken: authResponse.accessToken, refreshToken: authResponse.refreshToken)
     }
     
-    static func convertToRequestModel(domain: DomainCreateUpdateAccountModel) -> CreateUpdateAccountRequest {
+    static func convertToRequestModel(domain: DomainAccountModel) -> CreateUpdateAccountRequest {
         return CreateUpdateAccountRequest(
             type: domain.type.rawValue,
             title: domain.title,

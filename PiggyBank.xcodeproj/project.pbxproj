@@ -54,7 +54,6 @@
 		9104C1C525107F82003BF041 /* AccountTextFieldTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C1C425107F82003BF041 /* AccountTextFieldTableCell.swift */; };
 		9104C1C725108459003BF041 /* AccountSegmentedTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C1C625108459003BF041 /* AccountSegmentedTableCell.swift */; };
 		9104C21925130B43003BF041 /* CreateUpdateAccountRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C21825130B43003BF041 /* CreateUpdateAccountRequest.swift */; };
-		9104C21B25130CAD003BF041 /* DomainCreateUpdateAccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C21A25130CAD003BF041 /* DomainCreateUpdateAccountModel.swift */; };
 		91A85DA924ABDDA400B7A630 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DA824ABDDA400B7A630 /* AppDelegate.swift */; };
 		91A85DB224ABDDA800B7A630 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91A85DB124ABDDA800B7A630 /* Assets.xcassets */; };
 		91A85DB524ABDDA800B7A630 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91A85DB324ABDDA800B7A630 /* LaunchScreen.storyboard */; };
@@ -127,7 +126,6 @@
 		9104C1C425107F82003BF041 /* AccountTextFieldTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTextFieldTableCell.swift; sourceTree = "<group>"; };
 		9104C1C625108459003BF041 /* AccountSegmentedTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSegmentedTableCell.swift; sourceTree = "<group>"; };
 		9104C21825130B43003BF041 /* CreateUpdateAccountRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUpdateAccountRequest.swift; sourceTree = "<group>"; };
-		9104C21A25130CAD003BF041 /* DomainCreateUpdateAccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainCreateUpdateAccountModel.swift; sourceTree = "<group>"; };
 		91A85DA524ABDDA400B7A630 /* PiggyBank.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PiggyBank.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		91A85DA824ABDDA400B7A630 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		91A85DB124ABDDA800B7A630 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -185,7 +183,6 @@
 				9104C1A1250F1F3C003BF041 /* DomainUserCredentialsModel.swift */,
 				9104C1A3250F1FEC003BF041 /* DomainAuthModel.swift */,
 				9104C1AB250F2539003BF041 /* DomainSignInModel.swift */,
-				9104C21A25130CAD003BF041 /* DomainCreateUpdateAccountModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -441,7 +438,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9104C21B25130CAD003BF041 /* DomainCreateUpdateAccountModel.swift in Sources */,
 				9104C190250E1AFE003BF041 /* BaseCurrencyPresenter.swift in Sources */,
 				9104C1B7250F3497003BF041 /* StartViewController.swift in Sources */,
 				9104C17D250DD814003BF041 /* AccountViewModel.swift in Sources */,

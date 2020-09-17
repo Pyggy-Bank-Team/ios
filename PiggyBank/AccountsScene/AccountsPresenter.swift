@@ -32,13 +32,14 @@ final class AccountsPresenter {
     func onArchiveAccount(request: AccountsDTOs.OnArchiveAccount.Request) {
         let account = accounts[request.index]
         
-        let createUpdateModel = DomainCreateUpdateAccountModel(
+        let createUpdateModel = DomainAccountModel(
             id: account.id,
-            type: account.type == .cash ? .cash : .card,
+            type: account.type.rawValue,
             title: account.title,
             currency: account.currency,
             balance: account.balance,
-            isArchived: !account.isArchived
+            isArchived: !account.isArchived,
+            isDeleted: account.isDeleted
         )
         
         createUpdateAccountUseCase.execute(request: createUpdateModel) { response in
@@ -55,7 +56,7 @@ final class AccountsPresenter {
     func onDeleteAccount(request: AccountsDTOs.OnDeleteAccount.Request) {
         let account = accounts[request.index]
         
-        deleteAccountUseCase.execute(accountID: account.id) { response in
+        deleteAccountUseCase.execute(accountID: account.id!) { response in
             DispatchQueue.main.async {
                 if case .success = response {
                     self.view?.onAdd(response: .init(title: "Account has been successfully deleted"))
