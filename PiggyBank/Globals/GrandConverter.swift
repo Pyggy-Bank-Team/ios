@@ -6,6 +6,7 @@ final class GrandConverter {
         guard let account = domainAccount else { return nil }
         
         return AccountViewModel(
+            id: account.id!,
             type: account.type == .cash ? .cash : .card,
             title: account.title,
             currency: account.currency,

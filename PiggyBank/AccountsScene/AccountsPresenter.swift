@@ -29,8 +29,8 @@ final class AccountsPresenter {
         }
     }
     
-    func onArchiveAccount(request: AccountsDTOs.OnArchiveAccount.Request) {
-        let account = accounts[request.index]
+    func onArchiveAccount(id: Int) {
+        let account = getAccount(at: id)
         
         let createUpdateModel = DomainAccountModel(
             id: account.id,
@@ -53,8 +53,8 @@ final class AccountsPresenter {
         }
     }
     
-    func onDeleteAccount(request: AccountsDTOs.OnDeleteAccount.Request) {
-        let account = accounts[request.index]
+    func onDeleteAccount(id: Int) {
+        let account = getAccount(at: id)
         
         deleteAccountUseCase.execute(accountID: account.id!) { response in
             DispatchQueue.main.async {
@@ -72,10 +72,18 @@ final class AccountsPresenter {
         view?.onAdd(viewController: accountVC)
     }
     
-    func onSelect(indexPath: IndexPath) {
-        let account = accounts[indexPath.row]
+    func onSelect(id: Int) {
+        let account = getAccount(at: id)
         let accountVC = AccountSceneAssembly(accountDomainModel: account).build()
         view?.onSelect(viewController: accountVC)
+    }
+    
+}
+
+extension AccountsPresenter {
+    
+    func getAccount(at id: Int) -> DomainAccountModel {
+        return accounts.first { $0.id == id }!
     }
     
 }
