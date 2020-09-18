@@ -125,28 +125,27 @@ extension AccountsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let account = accounts[indexPath.row]
         
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") {
-            cell.textLabel?.text = account.title
-            cell.detailTextLabel?.text = "\(account.balance) \(account.currency)"
-            
-            if account.isArchived {
-                cell.imageView?.image = #imageLiteral(resourceName: "archive")
-            }
-            
-            return cell
+        let cell: UITableViewCell
+        if let res = tableView.dequeueReusableCell(withIdentifier: "Cell") {
+            cell = res
         } else {
-            let cell = UITableViewCell(style: .value1, reuseIdentifier: "Cell")
-            
-            cell.textLabel?.text = account.title
-            cell.detailTextLabel?.text = "\(account.balance) \(account.currency)"
-            
-            if account.isArchived {
-                cell.imageView?.image = #imageLiteral(resourceName: "archive")
-            }
-            
-            
-            return cell
+            cell = UITableViewCell(style: .value1, reuseIdentifier: "Cell")
         }
+        
+        var detailText = "\(account.balance)"
+        
+        if let currency = account.currency {
+            detailText.append(" \(currency)")
+        }
+        
+        cell.textLabel?.text = account.title
+        cell.detailTextLabel?.text = detailText
+        
+        if account.isArchived {
+            cell.imageView?.image = #imageLiteral(resourceName: "archive")
+        }
+        
+        return cell
     }
     
 }

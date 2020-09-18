@@ -34,7 +34,6 @@ final class GrandConverter {
         return CreateUpdateAccountRequest(
             type: domain.type.rawValue,
             title: domain.title,
-            currency: domain.currency,
             balance: domain.balance,
             isArchived: domain.isArchived
         )
