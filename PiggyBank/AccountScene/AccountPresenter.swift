@@ -5,6 +5,7 @@ final class AccountPresenter {
     private let accountDomainModel: DomainAccountModel?
     
     private let createUpdateAccountUseCase = CreateUpdateAccountUseCase()
+    private let deleteAccountUseCase = DeleteAccountUseCase()
     
     weak var view: AccountViewController?
     
@@ -58,6 +59,22 @@ final class AccountPresenter {
             if case .success = result {
                 DispatchQueue.main.async {
                     self.view?.accountSaved()
+                }
+            }
+        }
+    }
+    
+    func onDelete() {
+        guard let id = accountDomainModel?.id else {
+            fatalError("AccountPresenter: onDelete - accountDomainModel?.id is nil")
+        }
+        
+        deleteAccountUseCase.execute(accountID: id) { [weak self] result in
+            guard let self = self else { return }
+            
+            if case .success = result {
+                DispatchQueue.main.async {
+                    self.view?.accountDeleted()
                 }
             }
         }

@@ -56,6 +56,7 @@ final class AccountViewController: UIViewController {
         deleteButton.setTitle("Delete", for: .normal)
         deleteButton.setTitleColor(.red, for: .normal)
         deleteButton.translatesAutoresizingMaskIntoConstraints = false
+        deleteButton.addTarget(self, action: #selector(onDelete(_:)), for: .touchUpInside)
         
         deleteBorderView.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.1991362236)
         deleteBorderView.translatesAutoresizingMaskIntoConstraints = false
@@ -152,6 +153,15 @@ final class AccountViewController: UIViewController {
         
         present(alertController, animated: true, completion: nil)
     }
+    
+    func accountDeleted() {
+        let alertController = UIAlertController(title: "Account deleted", message: "", preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: "OK", style: .default)
+        alertController.addAction(action)
+        
+        present(alertController, animated: true, completion: nil)
+    }
 
 }
 
@@ -163,6 +173,10 @@ private extension AccountViewController {
     
     @objc func onChangeTitle(_ sender: UITextField) {
         updateNavigationTitle()
+    }
+    
+    @objc func onDelete(_ sender: UIButton) {
+        presenter.onDelete()
     }
     
 }
