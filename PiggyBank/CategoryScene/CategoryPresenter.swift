@@ -20,48 +20,40 @@ final class CategoryPresenter {
     }
     
     func onSave() {
-//        guard let view = view else {
-//            fatalError("AccountPresenter: onSave - view is nil")
-//        }
-//
-//        let accountCurrency: String?
-//        let accountID: Int?
-//
-//        if let account = accountDomainModel {
-//            accountCurrency = account.currency
-//            accountID = account.id
-//        } else {
-//            accountCurrency = nil
-//            accountID = nil
-//        }
-//
-//        guard let accountType = DomainAccountModel.AccountType(rawValue: view.accountType) else {
-//            fatalError("AccountPresenter: onSave - account type is invalid")
-//        }
-//
-//        let accountTitle = view.accountTitle
-//        let accountBalance = view.accountBalance
-//        let accountArchive = view.accountArchived
-//
-//        let createUpdateDomain = DomainAccountModel(
-//            id: accountID,
-//            type: accountType.rawValue,
-//            title: accountTitle,
-//            currency: accountCurrency,
-//            balance: accountBalance,
-//            isArchived: accountArchive,
-//            isDeleted: false
-//        )
-//
-//        createUpdateAccountUseCase.execute(request: createUpdateDomain) { [weak self] result in
-//            guard let self = self else { return }
-//
-//            if case .success = result {
-//                DispatchQueue.main.async {
-//                    self.view?.accountSaved()
-//                }
-//            }
-//        }
+        guard let view = view else {
+            fatalError("CategoryPresenter: onSave - view is nil")
+        }
+
+        let categoryID: Int?
+
+        if let category = categoryDomainModel {
+            categoryID = category.id
+        } else {
+            categoryID = nil
+        }
+
+        guard let categoryType = DomainCategoryModel.CategoryType(rawValue: view.categoryType) else {
+            fatalError("CategoryPresenter: onSave - category type is invalid")
+        }
+        
+        let createUpdateDomain = DomainCategoryModel(
+            id: categoryID,
+            title: view.categoryTitle,
+            hexColor: view.categoryHex,
+            type: categoryType.rawValue,
+            isArchived: view.categoryArchived,
+            isDeleted: false
+        )
+
+        createUpdateCategoryUseCase.execute(request: createUpdateDomain) { [weak self] result in
+            guard let self = self else { return }
+
+            if case .success = result {
+                DispatchQueue.main.async {
+                    self.view?.notifyFromAPI()
+                }
+            }
+        }
     }
     
     func onDelete() {

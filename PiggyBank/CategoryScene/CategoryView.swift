@@ -2,15 +2,15 @@ import UIKit
 
 final class CategoryView: UIView {
     
-    private lazy var typeControl = UISegmentedControl()
-    private lazy var titleField = UITextField()
-    private lazy var titleBorderView = UIView()
-    private lazy var archivedLabel = UILabel()
-    private lazy var archiveSwitch = UISwitch()
-    private lazy var colorView = UIView()
-    private var collectionView: UICollectionView!
-    private lazy var deleteButton = UIButton(type: .system)
-    private lazy var deleteBorderView = UIView()
+    lazy var typeControl = UISegmentedControl()
+    lazy var titleField = UITextField()
+    lazy var titleBorderView = UIView()
+    lazy var archivedLabel = UILabel()
+    lazy var archiveSwitch = UISwitch()
+    lazy var colorView = UIView()
+    var collectionView: UICollectionView!
+    lazy var deleteButton = UIButton(type: .system)
+    lazy var deleteBorderView = UIView()
     
     private var bottomConstraint: NSLayoutConstraint!
     
