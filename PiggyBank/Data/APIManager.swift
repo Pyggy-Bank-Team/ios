@@ -275,7 +275,7 @@ final class APIManager {
     }
     
     func deleteCategory(categoryID: Int, completion: @escaping (Result<Void>) -> Void) {
-        guard let url = URL(string: accountsURL + "/api/Accounts/\(categoryID)") else { return }
+        guard let url = URL(string: accountsURL + "/api/Categories/\(categoryID)") else { return }
         
         var urlRequst = URLRequest(url: url)
         urlRequst.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")

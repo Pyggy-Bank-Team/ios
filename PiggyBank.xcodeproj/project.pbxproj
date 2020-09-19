@@ -54,6 +54,7 @@
 		9104C21925130B43003BF041 /* CreateUpdateAccountRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C21825130B43003BF041 /* CreateUpdateAccountRequest.swift */; };
 		9104C21D25147475003BF041 /* CategoryCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C21C25147475003BF041 /* CategoryCollectionCell.swift */; };
 		9104C22025147874003BF041 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C21F25147874003BF041 /* UIColor.swift */; };
+		91957A782515D7730027249A /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91957A772515D7720027249A /* CategoryView.swift */; };
 		91A85DA924ABDDA400B7A630 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DA824ABDDA400B7A630 /* AppDelegate.swift */; };
 		91A85DB224ABDDA800B7A630 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91A85DB124ABDDA800B7A630 /* Assets.xcassets */; };
 		91A85DB524ABDDA800B7A630 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91A85DB324ABDDA800B7A630 /* LaunchScreen.storyboard */; };
@@ -130,6 +131,7 @@
 		9104C21825130B43003BF041 /* CreateUpdateAccountRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUpdateAccountRequest.swift; sourceTree = "<group>"; };
 		9104C21C25147475003BF041 /* CategoryCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionCell.swift; sourceTree = "<group>"; };
 		9104C21F25147874003BF041 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		91957A772515D7720027249A /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		91A85DA524ABDDA400B7A630 /* PiggyBank.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PiggyBank.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		91A85DA824ABDDA400B7A630 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		91A85DB124ABDDA800B7A630 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -392,6 +394,7 @@
 				91C26F9F2515C01B00C999BE /* CategoryPresenter.swift */,
 				91C26FA12515C0E300C999BE /* CategorySceneAssembly.swift */,
 				91C26FA52515D28B00C999BE /* ColorCollectionCell.swift */,
+				91957A772515D7720027249A /* CategoryView.swift */,
 			);
 			path = CategoryScene;
 			sourceTree = "<group>";
@@ -528,6 +531,7 @@
 				91A85DE524B4C5D900B7A630 /* Result.swift in Sources */,
 				91A85DE724B4C7BC00B7A630 /* UseCase.swift in Sources */,
 				9104C196250E1F37003BF041 /* GetCurrenciesUseCase.swift in Sources */,
+				91957A782515D7730027249A /* CategoryView.swift in Sources */,
 				9104C13724FBC86B003BF041 /* CategoriesAssembly.swift in Sources */,
 				9104C17725052CDE003BF041 /* CreateUpdateCategoryUseCase.swift in Sources */,
 				91A85DEB24B650C400B7A630 /* SignInResponse.swift in Sources */,
