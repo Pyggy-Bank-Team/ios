@@ -245,7 +245,7 @@ final class APIManager {
     
     func updateCategory(request: DomainCategoryModel, completion: @escaping (Result<Void>) -> Void) {
         guard let id = request.id else {
-            fatalError("APIManager: updateAccount - ID can't be null")
+            fatalError("APIManager: updateCategory - ID can't be null")
         }
         
         guard let url = URL(string: accountsURL + "/api/Categories/\(id)") else { return }

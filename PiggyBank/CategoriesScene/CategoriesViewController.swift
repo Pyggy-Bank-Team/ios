@@ -87,8 +87,14 @@ extension CategoriesViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CategoryCollectionCell
         let category = categories[indexPath.row]
         
-        cell.titleLabel.text = category.title
-        cell.backgroundColor = UIColor(hexString: category.hexColor)
+        var text = category.title
+        
+        if category.isArchived {
+            text += " • Archived"
+        }
+        
+        cell.titleLabel.text = text
+        cell.backgroundColor = UIColor(hexString: category.hexColor, alpha: 0.3)
         
         return cell
     }

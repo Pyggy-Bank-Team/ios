@@ -47,6 +47,7 @@ final class CategoryView: UIView {
         collectionView.backgroundColor = .clear
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        collectionView.allowsMultipleSelection = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         
         deleteButton.setTitle("Delete", for: .normal)
@@ -128,6 +129,11 @@ final class CategoryView: UIView {
             titleField.text = category.title
             archiveSwitch.isOn = category.isArchived
             colorView.backgroundColor = UIColor(hexString: category.hexColor)
+            
+            let index = COLORS.firstIndex(of: category.hexColor)!
+//            collectionView.reloadData()
+//            collectionView.layoutIfNeeded()
+            collectionView.selectItem(at: IndexPath(row: index, section: 0), animated: true, scrollPosition: .right)
         } else {
             typeControl.selectedSegmentIndex = 0
             deleteBorderView.isHidden = true
