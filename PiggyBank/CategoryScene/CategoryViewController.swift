@@ -1,9 +1,11 @@
 import UIKit
 
-final class CreateCategoryViewController: UIViewController {
+final class CategoryViewController: UIViewController {
     
     private lazy var titleField = UITextField()
     private lazy var typeControl = UISegmentedControl()
+    
+    var presenter: CategoryPresenter!
     
     var completion: ((String, Int) -> Void)?
 
@@ -40,7 +42,7 @@ final class CreateCategoryViewController: UIViewController {
 
 }
 
-private extension CreateCategoryViewController {
+private extension CategoryViewController {
     
     @objc func onDone(_ sender: UIBarButtonItem) {
         navigationController?.popViewController(animated: true)

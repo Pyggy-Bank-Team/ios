@@ -49,6 +49,10 @@ class CategoriesViewController: UIViewController {
         
         present(alertController, animated: true, completion: nil)
     }
+    
+    func push(viewController: UIViewController) {
+        navigationController?.pushViewController(viewController, animated: true)
+    }
 
 }
 
@@ -147,7 +151,10 @@ class CategoriesViewController: UIViewController {
 
 extension CategoriesViewController: UICollectionViewDelegate {
     
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let category = categories[indexPath.row]
+        presenter.onSelect(id: category.id)
+    }
     
 }
 
@@ -184,13 +191,7 @@ extension CategoriesViewController: UICollectionViewDataSource {
 private extension CategoriesViewController {
     
     @objc func onAdd(_ sender: UIBarButtonItem) {
-//        let createCategoryVC = CreateCategoryViewController()
-//
-//        createCategoryVC.completion = { title, type in
-//            self.presenter.onCreateCategory(request: .init(title: title, type: type, color: "#ffffff"))
-//        }
-//
-//        navigationController?.pushViewController(createCategoryVC, animated: true)
+        presenter.onAdd()
     }
     
 }

@@ -27,4 +27,23 @@ final class CategoriesPresenter {
         }
     }
     
+    func onAdd() {
+        let categoryVC = CategorySceneAssembly(categoryDomainModel: nil).build()
+        view?.push(viewController: categoryVC)
+    }
+    
+    func onSelect(id: Int) {
+        let category = getCategory(at: id)
+        let categoryVC = CategorySceneAssembly(categoryDomainModel: category).build()
+        view?.push(viewController: categoryVC)
+    }
+    
+}
+
+extension CategoriesPresenter {
+    
+    func getCategory(at id: Int) -> DomainCategoryModel {
+        return categories.first { $0.id == id }!
+    }
+    
 }
