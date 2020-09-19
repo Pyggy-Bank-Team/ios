@@ -35,7 +35,6 @@ final class AccountViewController: UIViewController {
         titleField.translatesAutoresizingMaskIntoConstraints = false
         titleField.returnKeyType = .continue
         titleField.delegate = self
-        titleField.addTarget(self, action: #selector(onChangeTitle(_:)), for: .editingChanged)
         titleField.autocorrectionType = .no
         
         titleBorderView.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.1991362236)
@@ -130,18 +129,18 @@ final class AccountViewController: UIViewController {
         accountViewModel = account
         
         if let account = account {
-            navigationItem.title = "\(account.title) • \(account.currency!)"
+            navigationItem.title = "\(account.currency!)"
             typeControl.selectedSegmentIndex = account.type.rawValue
             titleField.text = account.title
             balanceField.text = account.balance.description
             archiveSwitch.isOn = account.isArchived
         } else {
-            navigationItem.title = "New Account"
             typeControl.selectedSegmentIndex = 0
             deleteBorderView.isHidden = true
             deleteButton.isHidden = true
             titleField.becomeFirstResponder()
             archiveSwitch.isOn = false
+            navigationItem.title = "Base"
         }
     }
     
@@ -169,10 +168,6 @@ private extension AccountViewController {
     
     @objc func onSave(_ sender: UIBarButtonItem) {
         presenter.onSave()
-    }
-    
-    @objc func onChangeTitle(_ sender: UITextField) {
-        updateNavigationTitle()
     }
     
     @objc func onDelete(_ sender: UIButton) {
@@ -210,17 +205,6 @@ extension AccountViewController {
     
     var accountArchived: Bool {
         return archiveSwitch.isOn
-    }
-    
-}
-
-private extension AccountViewController {
-    
-    func updateNavigationTitle() {
-        let accountTitle = titleField.text ?? ""
-        let currency = accountViewModel?.currency ?? "Base"
-        
-        navigationItem.title = "\(accountTitle) • \(currency)"
     }
     
 }
