@@ -120,7 +120,6 @@ extension AccountsViewController: UITableViewDelegate {
         let account = element(at: indexPath)
         var actions: [UIContextualAction] = []
         
-        
         let deleteAction = UIContextualAction(style: .normal, title: "") { [weak self] _, _, complete in
             self?.presenter.onDeleteAccount(id: account.id)
             complete(true)
