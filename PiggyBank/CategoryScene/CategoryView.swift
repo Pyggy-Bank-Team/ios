@@ -127,7 +127,7 @@ final class CategoryView: UIView {
             typeControl.selectedSegmentIndex = category.type.rawValue
             titleField.text = category.title
             archiveSwitch.isOn = category.isArchived
-            //colorView.backgroundColor = UIColor(hexString: category.hexColor)
+            colorView.backgroundColor = UIColor(hexString: category.hexColor)
         } else {
             typeControl.selectedSegmentIndex = 0
             deleteBorderView.isHidden = true
@@ -202,6 +202,7 @@ extension CategoryView: UICollectionViewDataSource {
 private extension CategoryView {
     
     @objc func onKeyboardChange(_ sender: Notification) {
+        guard !deleteButton.isHidden else { return }
         guard let endFrame = (sender.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
         
         layoutIfNeeded()

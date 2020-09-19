@@ -56,99 +56,6 @@ class CategoriesViewController: UIViewController {
 
 }
 
-//extension CategoriesViewController: UITableViewDelegate {
-//
-//    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-//        let category = categories[indexPath.row]
-//        var actions: [UIContextualAction] = []
-//
-//        let deleteAction = UIContextualAction(style: .normal, title: "") { [weak self] _, _, complete in
-//            self?.presenter.onDeleteCategory(request: .init(index: indexPath.row))
-//            complete(true)
-//        }
-//        deleteAction.image = #imageLiteral(resourceName: "delete")
-//        actions.append(deleteAction)
-//
-//        if !category.isArchived {
-//            let archiveAction = UIContextualAction(style: .normal, title: "") { [weak self] _, _, complete in
-//                self?.presenter.onArchiveCategory(request: .init(index: indexPath.row))
-//                complete(true)
-//            }
-//            archiveAction.image = #imageLiteral(resourceName: "archive")
-//            actions.append(archiveAction)
-//        }
-//
-//        let renameAction = UIContextualAction(style: .normal, title: "") { [weak self] _, _, complete in
-//            guard let self = self else { return }
-//
-//            let alertController = UIAlertController(title: "", message: "", preferredStyle: .alert)
-//
-//            alertController.addTextField { textField in
-//                textField.placeholder = "Enter new title"
-//                textField.text = category.title
-//            }
-//
-//            alertController.addTextField { textField in
-//                textField.placeholder = "Enter new color"
-//                textField.text = category.hexColor
-//            }
-//
-//            let okAction = UIAlertAction(title: "OK", style: .default) { [weak alertController] _ in
-//                self.presenter.onChangeCategory(request: .init(
-//                    index: indexPath.row,
-//                    title: alertController?.textFields?.first?.text ?? "",
-//                    color: alertController?.textFields?.last?.text ?? "")
-//                )
-//            }
-//
-//            let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
-//
-//            alertController.addAction(okAction)
-//            alertController.addAction(cancelAction)
-//            self.present(alertController, animated: true, completion: nil)
-//
-//            complete(true)
-//        }
-//        renameAction.image = #imageLiteral(resourceName: "rename")
-//        actions.append(renameAction)
-//
-//        actions.forEach {
-//            $0.backgroundColor = .white
-//        }
-//
-//        let swipeConfiguration = UISwipeActionsConfiguration(actions: actions)
-//        swipeConfiguration.performsFirstActionWithFullSwipe = false
-//
-//        return swipeConfiguration
-//    }
-//
-//}
-
-//extension CategoriesViewController: UITableViewDataSource {
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell: UITableViewCell
-//
-//        if let res = tableView.dequeueReusableCell(withIdentifier: "Cell") {
-//            cell = res
-//        } else {
-//            cell = UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
-//        }
-//
-//        let category = categories[indexPath.row]
-//
-//        cell.textLabel?.text = category.title
-//        cell.detailTextLabel?.text = category.type == .income ? "Income" : "Outcome"
-//
-//        if category.isArchived {
-//            cell.imageView?.image = #imageLiteral(resourceName: "archive")
-//        }
-//
-//        return cell
-//    }
-//
-//}
-
 extension CategoriesViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -181,7 +88,7 @@ extension CategoriesViewController: UICollectionViewDataSource {
         let category = categories[indexPath.row]
         
         cell.titleLabel.text = category.title
-        cell.backgroundColor = UIColor(hexString: "#ff10893e")
+        cell.backgroundColor = UIColor(hexString: category.hexColor)
         
         return cell
     }
