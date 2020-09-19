@@ -33,11 +33,11 @@ class CategoriesViewController: UIViewController {
         navigationItem.title = "Categories"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(onAdd(_:)))
         
-        presenter.onViewDidLoad(request: .init())
+        presenter.onViewDidLoad()
     }
     
-    func viewDidLoad(response: CategoriesDTOs.ViewDidLoad.Response) {
-        categories = response.categories
+    func viewDidLoad(categories: [CategoryViewModel]) {
+        self.categories = categories
         collectionView.reloadData()
     }
     
@@ -174,7 +174,7 @@ extension CategoriesViewController: UICollectionViewDataSource {
         let category = categories[indexPath.row]
         
         cell.titleLabel.text = category.title
-        cell.backgroundColor = UIColor(hexString: "#00ff0f", alpha: 0.5)
+        cell.backgroundColor = UIColor(hexString: "#ff10893e")
         
         return cell
     }
@@ -184,13 +184,13 @@ extension CategoriesViewController: UICollectionViewDataSource {
 private extension CategoriesViewController {
     
     @objc func onAdd(_ sender: UIBarButtonItem) {
-        let createCategoryVC = CreateCategoryViewController()
-        
-        createCategoryVC.completion = { title, type in
-            self.presenter.onCreateCategory(request: .init(title: title, type: type, color: "#ffffff"))
-        }
-        
-        navigationController?.pushViewController(createCategoryVC, animated: true)
+//        let createCategoryVC = CreateCategoryViewController()
+//
+//        createCategoryVC.completion = { title, type in
+//            self.presenter.onCreateCategory(request: .init(title: title, type: type, color: "#ffffff"))
+//        }
+//
+//        navigationController?.pushViewController(createCategoryVC, animated: true)
     }
     
 }

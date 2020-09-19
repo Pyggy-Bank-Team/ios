@@ -1,6 +1,6 @@
 import Foundation
 
-struct CategoryViewModel {
+final class CategoryViewModel {
     
     enum CategoryType: Int {
         

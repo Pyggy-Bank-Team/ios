@@ -188,7 +188,7 @@ final class APIManager {
         }.resume()
     }
     
-    func getCategories(request: APIDTOs.GetCategories.Request, completion: @escaping (APIDTOs.GetCategories.Response) -> Void) {
+    func getCategories(completion: @escaping (Result<[DomainCategoryModel]>) -> Void) {
         guard let url = URL(string: accountsURL + "/api/Categories") else { return }
         
         var urlRequst = URLRequest(url: url)
@@ -199,34 +199,32 @@ final class APIManager {
             print("LOGGER: Finish for \(urlRequst.url!)")
             
             guard let data = data, let httpResponse = response as? HTTPURLResponse else {
-                return completion(.init(result: .error(APIError())))
+                return completion(.error(APIError()))
             }
             
             if httpResponse.statusCode == 200 {
                 guard let model = try? JSONDecoder().decode(Array<CategoryResponse>.self, from: data) else {
-                    return completion(.init(result: .error(APIError())))
+                    return completion(.error(APIError()))
                 }
                 
-                let accounts = model.map {
-                    APIDTOs.GetCategories.Response.Category(
-                        id: $0.id, title: $0.title, hexColor: $0.hexColor, type: $0.type, isArchived: false
-                    )
-                }
+                let categories = model.map { GrandConverter.convertToDomain(response: $0) }
                 
-                completion(.init(result: .success(accounts)))
+                completion(.success(categories))
             } else {
-                completion(.init(result: .error(APIError())))
+                completion(.error(APIError()))
             }
         }.resume()
     }
     
-    func createCategory(request: APIDTOs.CreateCategory.Request, completion: @escaping (APIDTOs.CreateCategory.Response) -> Void) {
+    func createCategory(request: DomainCategoryModel, completion: @escaping (Result<Void>) -> Void) {
         guard let url = URL(string: accountsURL + "/api/Categories") else { return }
+        
+        let requestModel = GrandConverter.convertToRequestModel(domain: request)
         
         var urlRequst = URLRequest(url: url)
         urlRequst.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         urlRequst.httpMethod = "POST"
-        urlRequst.httpBody = try? JSONEncoder().encode(request)
+        urlRequst.httpBody = try? JSONEncoder().encode(requestModel)
         urlRequst.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
         print("LOGGER: Start for \(urlRequst.url!)")
@@ -234,42 +232,50 @@ final class APIManager {
             print("LOGGER: Finish for \(urlRequst.url!)")
             
             guard let httpResponse = response as? HTTPURLResponse else {
-                return completion(.init(result: .error(APIError())))
+                return completion(.error(APIError()))
             }
             
             if httpResponse.statusCode == 200 {
-                completion(.init(result: .success(())))
+                completion(.success(()))
             } else {
-                completion(.init(result: .error(APIError())))
+                completion(.error(APIError()))
             }
         }.resume()
     }
     
-    func archiveCategory(request: APIDTOs.ArchiveAccount.Request, completion: @escaping (APIDTOs.ArchiveAccount.Response) -> Void) {
-        guard let url = URL(string: accountsURL + "/api/Accounts/\(request.id)/Archive") else { return }
+    func updateCategory(request: DomainCategoryModel, completion: @escaping (Result<Void>) -> Void) {
+        guard let id = request.id else {
+            fatalError("APIManager: updateAccount - ID can't be null")
+        }
+        
+        guard let url = URL(string: accountsURL + "/api/Categories/\(id)") else { return }
+        
+        let requestModel = GrandConverter.convertToRequestModel(domain: request)
         
         var urlRequst = URLRequest(url: url)
         urlRequst.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         urlRequst.httpMethod = "PATCH"
+        urlRequst.httpBody = try? JSONEncoder().encode(requestModel)
+        urlRequst.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
         print("LOGGER: Start for \(urlRequst.url!)")
         URLSession.shared.dataTask(with: urlRequst) { data, response, error in
             print("LOGGER: Finish for \(urlRequst.url!)")
             
             guard let httpResponse = response as? HTTPURLResponse else {
-                return completion(.init(result: .error(APIError())))
+                return completion(.error(APIError()))
             }
             
             if httpResponse.statusCode == 200 {
-                completion(.init(result: .success(())))
+                completion(.success(()))
             } else {
-                completion(.init(result: .error(APIError())))
+                completion(.error(APIError()))
             }
         }.resume()
     }
     
-    func deleteCategory(request: APIDTOs.DeleteCategory.Request, completion: @escaping (APIDTOs.DeleteCategory.Response) -> Void) {
-        guard let url = URL(string: accountsURL + "/api/Categories/\(request.id)") else { return }
+    func deleteCategory(categoryID: Int, completion: @escaping (Result<Void>) -> Void) {
+        guard let url = URL(string: accountsURL + "/api/Accounts/\(categoryID)") else { return }
         
         var urlRequst = URLRequest(url: url)
         urlRequst.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
@@ -280,38 +286,13 @@ final class APIManager {
             print("LOGGER: Finish for \(urlRequst.url!)")
             
             guard let httpResponse = response as? HTTPURLResponse else {
-                return completion(.init(result: .error(APIError())))
+                return completion(.error(APIError()))
             }
             
             if httpResponse.statusCode == 200 {
-                completion(.init(result: .success(())))
+                completion(.success(()))
             } else {
-                completion(.init(result: .error(APIError())))
-            }
-        }.resume()
-    }
-    
-    func changeCategory(request: APIDTOs.ChangeCategory.Request, completion: @escaping (APIDTOs.ChangeCategory.Response) -> Void) {
-        guard let url = URL(string: accountsURL + "/api/Accounts/\(request.categoryID)") else { return }
-        
-        var urlRequst = URLRequest(url: url)
-        urlRequst.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-        urlRequst.httpMethod = "PATCH"
-        urlRequst.httpBody = try? JSONEncoder().encode(request)
-        urlRequst.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        print("LOGGER: Start for \(urlRequst.url!)")
-        URLSession.shared.dataTask(with: urlRequst) { data, response, error in
-            print("LOGGER: Finish for \(urlRequst.url!)")
-            
-            guard let httpResponse = response as? HTTPURLResponse else {
-                return completion(.init(result: .error(APIError())))
-            }
-            
-            if httpResponse.statusCode == 200 {
-                completion(.init(result: .success(())))
-            } else {
-                completion(.init(result: .error(APIError())))
+                completion(.error(APIError()))
             }
         }.resume()
     }

@@ -15,6 +15,19 @@ final class GrandConverter {
         )
     }
     
+    static func convertToViewModel(domainCategory: DomainCategoryModel?) -> CategoryViewModel? {
+        guard let category = domainCategory else { return nil }
+        
+        return CategoryViewModel(
+            id: category.id!,
+            title: category.title,
+            hexColor: category.hexColor,
+            type: category.type == .income ? .income : .outcome,
+            isArchived: category.isArchived
+        )
+    }
+    
+    
     static func convertToViewModel(domainCurrency: DomainCurrencyModel) -> CurrencyViewModel {
         return CurrencyViewModel(code: domainCurrency.code, symbol: domainCurrency.symbol)
     }
@@ -40,6 +53,15 @@ final class GrandConverter {
         )
     }
     
+    static func convertToRequestModel(domain: DomainCategoryModel) -> CreateUpdateCategoryRequest {
+        return CreateUpdateCategoryRequest(
+            title: domain.title,
+            hexColor: domain.hexColor,
+            type: domain.type.rawValue,
+            isArchived: domain.isArchived
+        )
+    }
+    
     static func convertToDomain(response: AccountResponse) -> DomainAccountModel {
         return DomainAccountModel(
             id: response.id,
@@ -47,6 +69,17 @@ final class GrandConverter {
             title: response.title,
             currency: response.currency,
             balance: response.balance,
+            isArchived: response.isArchived,
+            isDeleted: response.isDeleted
+        )
+    }
+    
+    static func convertToDomain(response: CategoryResponse) -> DomainCategoryModel {
+        return DomainCategoryModel(
+            id: response.id,
+            title: response.title,
+            hexColor: response.hexColor,
+            type: response.type,
             isArchived: response.isArchived,
             isDeleted: response.isDeleted
         )

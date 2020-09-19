@@ -6,5 +6,7 @@ final class CategoryResponse: Codable {
     let title: String
     let hexColor: String
     let type: Int
+    let isArchived: Bool
+    let isDeleted: Bool
     
 }
