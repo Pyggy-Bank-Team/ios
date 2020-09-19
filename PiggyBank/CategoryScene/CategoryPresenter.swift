@@ -15,8 +15,8 @@ final class CategoryPresenter {
     }
     
     func loadData() {
-//        let accountViewModel = GrandConverter.convertToViewModel(domainAccount: accountDomainModel)
-//        view?.loadAccount(account: accountViewModel)
+        let categoryViewModel = GrandConverter.convertToViewModel(domainCategory: categoryDomainModel)
+        view?.loadCategory(category: categoryViewModel)
     }
     
     func onSave() {
@@ -73,9 +73,9 @@ final class CategoryPresenter {
             guard let self = self else { return }
             
             if case .success = result {
-//                DispatchQueue.main.async {
-//                    self.view?.accountDeleted()
-//                }
+                DispatchQueue.main.async {
+                    self.view?.notifyFromAPI()
+                }
             }
         }
     }
