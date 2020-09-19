@@ -28,7 +28,7 @@ class CategoriesViewController: UIViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(CategoryCollectionCell.self, forCellWithReuseIdentifier: "Cell")
         collectionView.backgroundColor = .clear
-        collectionView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
         view.addSubview(collectionView)
         
         NSLayoutConstraint.activate([
@@ -39,7 +39,7 @@ class CategoriesViewController: UIViewController {
             collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            collectionView.topAnchor.constraint(equalTo: typeControl.bottomAnchor)
+            collectionView.topAnchor.constraint(equalTo: typeControl.bottomAnchor, constant: 20)
         ])
         
         navigationItem.title = "Categories"
@@ -110,7 +110,11 @@ extension CategoriesViewController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: collectionView.bounds.width * 0.8, height: 60)
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        minimumLineSpacingForSectionAt section: Int
+    ) -> CGFloat {
         return 20
     }
     
