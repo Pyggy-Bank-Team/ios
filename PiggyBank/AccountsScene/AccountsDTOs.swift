@@ -51,41 +51,4 @@ struct AccountsDTOs {
         
     }
     
-    struct OnArchiveAccount {
-        
-        struct Request {
-            
-            let index: Int
-            
-        }
-        
-        struct Response { }
-        
-    }
-    
-    struct OnDeleteAccount {
-        
-        struct Request {
-            
-            let index: Int
-            
-        }
-        
-        struct Response { }
-        
-    }
-    
-    struct OnRenameAccount {
-        
-        struct Request {
-            
-            let index: Int
-            let title: String
-            
-        }
-        
-        struct Response { }
-        
-    }
-    
 }

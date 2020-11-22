@@ -47,6 +47,8 @@ extension ProfileViewController: UITableViewDelegate {
             navigationController?.pushViewController(AccountsAssembly().build(), animated: true)
         case 1:
             navigationController?.pushViewController(CategoriesAssembly().build(), animated: true)
+        case 2:
+            navigationController?.pushViewController(OperationsSceneAssembly().build(), animated: true)
         default:
             break
         }

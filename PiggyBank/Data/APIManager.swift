@@ -80,6 +80,8 @@ final class APIManager {
         }.resume()
     }
     
+    // MARK: - Accounts
+    
     func getAccounts(completion: @escaping (Result<[DomainAccountModel]>) -> Void) {
         guard let url = URL(string: accountsURL + "/api/Accounts") else { return }
         
@@ -187,6 +189,8 @@ final class APIManager {
             }
         }.resume()
     }
+    
+    // MARK: - Categories
     
     func getCategories(completion: @escaping (Result<[DomainCategoryModel]>) -> Void) {
         guard let url = URL(string: accountsURL + "/api/Categories") else { return }
@@ -297,6 +301,8 @@ final class APIManager {
         }.resume()
     }
     
+    // MARK: - Currencies
+    
     func getCurrencies(completion: @escaping (Result<[DomainCurrencyModel]>) -> Void) {
         guard let url = URL(string: baseURL + "/users/AvailableCurrencies") else { return }
         
@@ -318,6 +324,104 @@ final class APIManager {
                 let domainCurrencies = models.map { GrandConverter.convertToDomainModel(currencyResponse: $0) }
                 
                 completion(.success(domainCurrencies))
+            } else {
+                completion(.error(APIError()))
+            }
+        }.resume()
+    }
+    
+    // MARK: - Operations
+    
+    func getOperations(completion: @escaping (Result<[DomainOperationModel]>) -> Void) {
+        guard let url = URL(string: accountsURL + "/api/Operations") else { return }
+        
+        var urlRequst = URLRequest(url: url)
+        urlRequst.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        
+        print("LOGGER: Start for \(urlRequst.url!)")
+        URLSession.shared.dataTask(with: urlRequst) { data, response, error in
+            print("LOGGER: Finish for \(urlRequst.url!)")
+            
+            guard let data = data, let httpResponse = response as? HTTPURLResponse else {
+                return completion(.error(APIError()))
+            }
+            
+            if httpResponse.statusCode == 200 {
+                guard let model = try? JSONDecoder().decode(PaginatedResponse<OperationResponse>.self, from: data) else {
+                    return completion(.error(APIError()))
+                }
+                
+                let categories = model.result.map { GrandConverter.convertToDomain(response: $0) }
+                completion(.success(categories))
+            } else {
+                completion(.error(APIError()))
+            }
+        }.resume()
+    }
+    
+    func deleteBudgetOperation(operationID: UInt, completion: @escaping (Result<Void>) -> Void) {
+        guard let url = URL(string: accountsURL + "/api/Operations/Budget/\(operationID)") else { return }
+        
+        var urlRequst = URLRequest(url: url)
+        urlRequst.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        urlRequst.httpMethod = "DELETE"
+        
+        print("LOGGER: Start for \(urlRequst.url!)")
+        URLSession.shared.dataTask(with: urlRequst) { data, response, error in
+            print("LOGGER: Finish for \(urlRequst.url!)")
+            
+            guard let httpResponse = response as? HTTPURLResponse else {
+                return completion(.error(APIError()))
+            }
+            
+            if httpResponse.statusCode == 200 {
+                completion(.success(()))
+            } else {
+                completion(.error(APIError()))
+            }
+        }.resume()
+    }
+    
+    func deleteTransferOperation(operationID: UInt, completion: @escaping (Result<Void>) -> Void) {
+        guard let url = URL(string: accountsURL + "/api/Operations/Transfer/\(operationID)") else { return }
+        
+        var urlRequst = URLRequest(url: url)
+        urlRequst.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        urlRequst.httpMethod = "DELETE"
+        
+        print("LOGGER: Start for \(urlRequst.url!)")
+        URLSession.shared.dataTask(with: urlRequst) { data, response, error in
+            print("LOGGER: Finish for \(urlRequst.url!)")
+            
+            guard let httpResponse = response as? HTTPURLResponse else {
+                return completion(.error(APIError()))
+            }
+            
+            if httpResponse.statusCode == 200 {
+                completion(.success(()))
+            } else {
+                completion(.error(APIError()))
+            }
+        }.resume()
+    }
+    
+    func deletePlanOperation(operationID: UInt, completion: @escaping (Result<Void>) -> Void) {
+        guard let url = URL(string: accountsURL + "/api/Operations/Plan/\(operationID)") else { return }
+        
+        var urlRequst = URLRequest(url: url)
+        urlRequst.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        urlRequst.httpMethod = "DELETE"
+        
+        print("LOGGER: Start for \(urlRequst.url!)")
+        URLSession.shared.dataTask(with: urlRequst) { data, response, error in
+            print("LOGGER: Finish for \(urlRequst.url!)")
+            
+            guard let httpResponse = response as? HTTPURLResponse else {
+                return completion(.error(APIError()))
+            }
+            
+            if httpResponse.statusCode == 200 {
+                completion(.success(()))
             } else {
                 completion(.error(APIError()))
             }
