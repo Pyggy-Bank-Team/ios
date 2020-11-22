@@ -8,13 +8,12 @@ final class APIManager {
     
     private init() { }
     
-    private let baseURL = "https://dev.piggybank.pro"
-    //private let accountsURL = "http://piggy-api.somee.com"
+    private let baseURL = "http://dev.piggybank.pro"
     
     private var token = ""
     
     func signUp(request: DomainSignUpModel, completion: @escaping (Result<DomainAuthModel>) -> Void) {
-        guard let url = URL(string: baseURL + "/users") else { return }
+        guard let url = URL(string: baseURL + "/api/users") else { return }
         
         let requestModel = GrandConverter.convertToRequestModel(domain: request)
         

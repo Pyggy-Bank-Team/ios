@@ -70,7 +70,7 @@ private extension AuthViewController {
         }
         
         nicknameField.text = "vasyapupkin"
-        passwordField.text = "qwerty123"
+        passwordField.text = "Qwerty123!"
         
         nicknameField.placeholder = "nickname..."
         

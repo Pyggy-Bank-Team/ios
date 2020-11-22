@@ -43,7 +43,7 @@
 		<true/>
 		<key>NSExceptionDomains</key>
 		<dict>
-			<key>piggy-identity.somee.com</key>
+			<key>dev.piggybank.pro</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
 				<true/>
