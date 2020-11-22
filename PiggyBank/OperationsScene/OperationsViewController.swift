@@ -11,6 +11,9 @@ final class OperationsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.title = "Operations"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(onAdd(_:)))
 
         view.backgroundColor = .white
         
@@ -38,8 +41,6 @@ final class OperationsViewController: UIViewController {
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             tableView.topAnchor.constraint(equalTo: typeControl.safeAreaLayoutGuide.bottomAnchor, constant: 20)
         ])
-        
-        navigationItem.title = "Operations"
         
         presenter.onViewDidLoad()
     }
@@ -123,4 +124,11 @@ extension OperationsViewController: UITableViewDataSource {
         return cell
     }
     
+}
+
+private extension OperationsViewController {
+    
+    @objc func onAdd(_ sender: UIBarButtonItem) {
+        navigationController?.pushViewController(OperationSceneAssembly().build(), animated: true)
+    }
 }

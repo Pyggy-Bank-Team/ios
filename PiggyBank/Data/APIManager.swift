@@ -8,8 +8,8 @@ final class APIManager {
     
     private init() { }
     
-    private let baseURL = "http://piggy-identity.somee.com"
-    private let accountsURL = "http://piggy-api.somee.com"
+    private let baseURL = "https://dev.piggybank.pro"
+    //private let accountsURL = "http://piggy-api.somee.com"
     
     private var token = ""
     
@@ -43,7 +43,7 @@ final class APIManager {
     }
     
     func signIn(request: DomainSignInModel, completion: @escaping (Result<DomainAuthModel>) -> Void) {
-        guard let url = URL(string: baseURL + "/connect/token") else { return }
+        guard let url = URL(string: baseURL + "/api/tokens/connect") else { return }
         
         var urlRequst = URLRequest(url: url)
         urlRequst.httpMethod = "POST"
@@ -83,7 +83,7 @@ final class APIManager {
     // MARK: - Accounts
     
     func getAccounts(completion: @escaping (Result<[DomainAccountModel]>) -> Void) {
-        guard let url = URL(string: accountsURL + "/api/Accounts") else { return }
+        guard let url = URL(string: baseURL + "/api/Accounts") else { return }
         
         var urlRequst = URLRequest(url: url)
         urlRequst.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
@@ -110,7 +110,7 @@ final class APIManager {
     }
     
     func deleteAccount(accountID: Int, completion: @escaping (Result<Void>) -> Void) {
-        guard let url = URL(string: accountsURL + "/api/Accounts/\(accountID)") else { return }
+        guard let url = URL(string: baseURL + "/api/Accounts/\(accountID)") else { return }
         
         var urlRequst = URLRequest(url: url)
         urlRequst.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
@@ -137,7 +137,7 @@ final class APIManager {
             fatalError("APIManager: updateAccount - ID can't be null")
         }
         
-        guard let url = URL(string: accountsURL + "/api/Accounts/\(id)") else { return }
+        guard let url = URL(string: baseURL + "/api/Accounts/\(id)") else { return }
         
         let requestModel = GrandConverter.convertToRequestModel(domain: request)
         
@@ -164,7 +164,7 @@ final class APIManager {
     }
     
     func createAccount(request: DomainAccountModel, completion: @escaping (Result<Void>) -> Void) {
-        guard let url = URL(string: accountsURL + "/api/Accounts") else { return }
+        guard let url = URL(string: baseURL + "/api/Accounts") else { return }
         
         let requestModel = GrandConverter.convertToRequestModel(domain: request)
         
@@ -193,7 +193,7 @@ final class APIManager {
     // MARK: - Categories
     
     func getCategories(completion: @escaping (Result<[DomainCategoryModel]>) -> Void) {
-        guard let url = URL(string: accountsURL + "/api/Categories") else { return }
+        guard let url = URL(string: baseURL + "/api/Categories") else { return }
         
         var urlRequst = URLRequest(url: url)
         urlRequst.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
@@ -221,7 +221,7 @@ final class APIManager {
     }
     
     func createCategory(request: DomainCategoryModel, completion: @escaping (Result<Void>) -> Void) {
-        guard let url = URL(string: accountsURL + "/api/Categories") else { return }
+        guard let url = URL(string: baseURL + "/api/Categories") else { return }
         
         let requestModel = GrandConverter.convertToRequestModel(domain: request)
         
@@ -252,7 +252,7 @@ final class APIManager {
             fatalError("APIManager: updateCategory - ID can't be null")
         }
         
-        guard let url = URL(string: accountsURL + "/api/Categories/\(id)") else { return }
+        guard let url = URL(string: baseURL + "/api/Categories/\(id)") else { return }
         
         let requestModel = GrandConverter.convertToRequestModel(domain: request)
         
@@ -279,7 +279,7 @@ final class APIManager {
     }
     
     func deleteCategory(categoryID: Int, completion: @escaping (Result<Void>) -> Void) {
-        guard let url = URL(string: accountsURL + "/api/Categories/\(categoryID)") else { return }
+        guard let url = URL(string: baseURL + "/api/Categories/\(categoryID)") else { return }
         
         var urlRequst = URLRequest(url: url)
         urlRequst.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
@@ -304,7 +304,7 @@ final class APIManager {
     // MARK: - Currencies
     
     func getCurrencies(completion: @escaping (Result<[DomainCurrencyModel]>) -> Void) {
-        guard let url = URL(string: baseURL + "/users/AvailableCurrencies") else { return }
+        guard let url = URL(string: baseURL + "/api/Currencies") else { return }
         
         let urlRequst = URLRequest(url: url)
         
@@ -333,7 +333,7 @@ final class APIManager {
     // MARK: - Operations
     
     func getOperations(completion: @escaping (Result<[DomainOperationModel]>) -> Void) {
-        guard let url = URL(string: accountsURL + "/api/Operations") else { return }
+        guard let url = URL(string: baseURL + "/api/Operations") else { return }
         
         var urlRequst = URLRequest(url: url)
         urlRequst.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
@@ -360,7 +360,7 @@ final class APIManager {
     }
     
     func deleteBudgetOperation(operationID: UInt, completion: @escaping (Result<Void>) -> Void) {
-        guard let url = URL(string: accountsURL + "/api/Operations/Budget/\(operationID)") else { return }
+        guard let url = URL(string: baseURL + "/api/Operations/Budget/\(operationID)") else { return }
         
         var urlRequst = URLRequest(url: url)
         urlRequst.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
@@ -383,7 +383,7 @@ final class APIManager {
     }
     
     func deleteTransferOperation(operationID: UInt, completion: @escaping (Result<Void>) -> Void) {
-        guard let url = URL(string: accountsURL + "/api/Operations/Transfer/\(operationID)") else { return }
+        guard let url = URL(string: baseURL + "/api/Operations/Transfer/\(operationID)") else { return }
         
         var urlRequst = URLRequest(url: url)
         urlRequst.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
@@ -406,7 +406,7 @@ final class APIManager {
     }
     
     func deletePlanOperation(operationID: UInt, completion: @escaping (Result<Void>) -> Void) {
-        guard let url = URL(string: accountsURL + "/api/Operations/Plan/\(operationID)") else { return }
+        guard let url = URL(string: baseURL + "/api/Operations/Plan/\(operationID)") else { return }
         
         var urlRequst = URLRequest(url: url)
         urlRequst.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
