@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C247C402572A21A00658BC4 /* FlexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C247C3F2572A21A00658BC4 /* FlexView.swift */; };
 		3CC950CD256A714C0074C7B6 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC950CC256A714C0074C7B6 /* UIImage.swift */; };
 		3CC950D0256A75450074C7B6 /* UISegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC950CF256A75450074C7B6 /* UISegmentedControl.swift */; };
 		9104C13524FBC705003BF041 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C13424FBC705003BF041 /* ProfileViewController.swift */; };
@@ -97,6 +98,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3C247C3F2572A21A00658BC4 /* FlexView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexView.swift; sourceTree = "<group>"; };
 		3CC950CC256A714C0074C7B6 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		3CC950CF256A75450074C7B6 /* UISegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISegmentedControl.swift; sourceTree = "<group>"; };
 		9104C13424FBC705003BF041 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -199,6 +201,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3C247C3E2572A20100658BC4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3C247C3F2572A21A00658BC4 /* FlexView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		9104C13324FBC6EC003BF041 /* ProfileScene */ = {
 			isa = PBXGroup;
 			children = (
@@ -317,6 +327,7 @@
 		91A85DA724ABDDA400B7A630 /* PiggyBank */ = {
 			isa = PBXGroup;
 			children = (
+				3C247C3E2572A20100658BC4 /* Views */,
 				9166BC94256A2EEB00A23196 /* OperationScene */,
 				91957A8125318C540027249A /* OperationsScene */,
 				91C26F9E2515BE3800C999BE /* CategoryScene */,
@@ -559,6 +570,7 @@
 				9104C1C525107F82003BF041 /* AccountTextFieldTableCell.swift in Sources */,
 				3CC950D0256A75450074C7B6 /* UISegmentedControl.swift in Sources */,
 				9104C21925130B43003BF041 /* CreateUpdateAccountRequest.swift in Sources */,
+				3C247C402572A21A00658BC4 /* FlexView.swift in Sources */,
 				9104C18C250E174D003BF041 /* BaseCurrencyViewController.swift in Sources */,
 				9104C1AC250F2539003BF041 /* DomainSignInModel.swift in Sources */,
 				91A85DE224B4C50300B7A630 /* UseCasesDTOs.swift in Sources */,

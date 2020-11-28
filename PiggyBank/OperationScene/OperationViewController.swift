@@ -1,18 +1,10 @@
-//
-//  OperationViewController.swift
-//  PiggyBank
-//
-//  Created by Dave Chupreev on 11/22/20.
-//  Copyright © 2020 Dave Chupreev. All rights reserved.
-//
-
 import UIKit
 
 class OperationViewController: UIViewController {
     
     var presenter: OperationPresenter!
 
-    var items: [String] = ["СБЕР Банк", "Карта Тинькофф", "Заначка под подушкой", "Счет на Кипре"]
+    var items: [String] = ["СБЕР Банк", "Карта Тинькофф", "Заначка под подушкой", "Счет на Кипре", "СБЕР Банк", "Карта Тинькофф", "Заначка под подушкой", "Счет на Кипре"]
     
     private lazy var backButton = UIButton(type: .system)
     private lazy var headerLabel = UILabel()
@@ -22,6 +14,9 @@ class OperationViewController: UIViewController {
     private lazy var dateLabel = UILabel()
     private lazy var datePicker = UIDatePicker()
     private lazy var fromLabel = UILabel()
+    private lazy var categoriesFlexView = FlexView()
+
+    private var categoriesHeightConstraint: NSLayoutConstraint!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,14 +53,6 @@ class OperationViewController: UIViewController {
         operationTypeControl.insertSegment(withTitle: "Income", at: 1, animated: false)
         operationTypeControl.insertSegment(withTitle: "Transfer", at: 2, animated: false)
         operationTypeControl.selectedSegmentIndex = 0
-//        let image = UIImage.imageFrom(color: .white)
-//        let blackImage = UIImage.imageFrom(color: .systemBlue)
-//        operationTypeControl.setBackgroundImage(image, for: .normal, barMetrics: .default)
-//        operationTypeControl.setBackgroundImage(blackImage, for: .selected, barMetrics: .default)
-//        operationTypeControl.setTitleTextAttributes([.foregroundColor: UIColor.black], for: .normal)
-//        operationTypeControl.setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
-//        operationTypeControl.layer.borderWidth = 1
-//        operationTypeControl.layer.borderColor = UIColor.black.withAlphaComponent(0.3).cgColor
         if #available(iOS 13.0, *) {
             operationTypeControl.selectedSegmentTintColor = .systemBlue
             operationTypeControl.setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
@@ -87,6 +74,11 @@ class OperationViewController: UIViewController {
         fromLabel.text = "From"
         fromLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(fromLabel)
+
+        categoriesFlexView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(categoriesFlexView)
+
+        categoriesHeightConstraint = categoriesFlexView.heightAnchor.constraint(equalToConstant: 15)
         
         NSLayoutConstraint.activate([
             backButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
@@ -117,6 +109,11 @@ class OperationViewController: UIViewController {
 
             fromLabel.leadingAnchor.constraint(equalTo: dateLabel.safeAreaLayoutGuide.leadingAnchor),
             fromLabel.topAnchor.constraint(equalTo: datePicker.safeAreaLayoutGuide.bottomAnchor, constant: 50),
+
+            categoriesFlexView.leadingAnchor.constraint(equalTo: dateLabel.safeAreaLayoutGuide.leadingAnchor),
+            categoriesFlexView.topAnchor.constraint(equalTo: fromLabel.safeAreaLayoutGuide.bottomAnchor, constant: 10),
+            categoriesFlexView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            categoriesHeightConstraint,
         ])
     }
     
@@ -126,66 +123,21 @@ class OperationViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: false)
     }
 
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
 
-        let leftMargin = fromLabel.frame.minX
-        let topMargin = fromLabel.frame.maxY + 10
-        let width = view.frame.width - (leftMargin * 2)
+        let height = categoriesFlexView.update(with: items)
 
-        let labelHeight: CGFloat = 25
-        let labelTopMargin: CGFloat = 10
-        let labelLeftMargin: CGFloat = 10
+        view.layoutIfNeeded()
 
-        //Configure view
-        let fromView = UIView(frame: CGRect(origin: CGPoint(x: leftMargin, y: topMargin), size: CGSize(width: width, height: labelHeight)))
-
-        //First label
-        var lastLabel = UILabel(frame: .zero)
-        let text = items.first!
-        let attributed = NSAttributedString(string: text, attributes: [.font: UIFont.systemFont(ofSize: 17)])
-        let bounding = attributed.boundingRect(with: CGSize(width: .greatestFiniteMagnitude, height: labelHeight), options: .usesLineFragmentOrigin, context: nil)
-        let labelWidth = bounding.width + 10
-        lastLabel.frame.size = CGSize(width: labelWidth, height: labelHeight)
-        lastLabel.text = items.first
-        lastLabel.textAlignment = .center
-        lastLabel.backgroundColor = .systemBlue
-        lastLabel.textColor = .white
-        lastLabel.clipsToBounds = true
-        lastLabel.layer.cornerRadius = 5
-        fromView.addSubview(lastLabel)
-
-        for i in 1 ..< items.count {
-            let newLabel = UILabel(frame: .zero)
-            let text = items[i]
-            let attributed = NSAttributedString(string: text, attributes: [.font: UIFont.systemFont(ofSize: 17)])
-            let bounding = attributed.boundingRect(with: CGSize(width: .greatestFiniteMagnitude, height: labelHeight), options: .usesLineFragmentOrigin, context: nil)
-            let labelWidth = bounding.width + 10
-
-            let needSpace = labelWidth + labelLeftMargin
-            let availableSpace = width - (lastLabel.frame.minX + lastLabel.frame.width)
-
-            if needSpace < availableSpace {
-                let origin = CGPoint(x: lastLabel.frame.minX + lastLabel.frame.width + labelLeftMargin, y: lastLabel.frame.minY)
-                newLabel.frame = CGRect(origin: origin, size: CGSize(width: labelWidth, height: labelHeight))
-            } else {
-                fromView.frame.size = CGSize(width: fromView.frame.width, height: fromView.frame.height + labelHeight + labelTopMargin)
-                newLabel.frame = CGRect(x: 0, y: lastLabel.frame.maxY + labelTopMargin, width: labelWidth, height: labelHeight)
-            }
-
-            newLabel.text = text
-            newLabel.textAlignment = .center
-            newLabel.backgroundColor = .white
-            newLabel.textColor = .black
-            newLabel.clipsToBounds = true
-            newLabel.layer.cornerRadius = 5
-            newLabel.layer.borderWidth = 1
-            newLabel.layer.borderColor = UIColor.black.withAlphaComponent(0.3).cgColor
-            fromView.addSubview(newLabel)
-            lastLabel = newLabel
-        }
-
-        view.addSubview(fromView)
+        UIView.animate(
+            withDuration: 0.3,
+            animations: {
+                self.categoriesHeightConstraint.constant = height
+                self.view.layoutIfNeeded()
+            }, completion: { _ in
+                self.categoriesFlexView.updateViews()
+            })
     }
 }
 
