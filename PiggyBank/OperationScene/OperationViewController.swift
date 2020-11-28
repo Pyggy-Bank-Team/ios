@@ -47,6 +47,7 @@ class OperationViewController: UIViewController {
         totalField.tintColor = .green
         totalField.textColor = .green
         totalField.translatesAutoresizingMaskIntoConstraints = false
+        totalField.keyboardType = .numberPad
         view.addSubview(totalField)
 
         totalBorder.backgroundColor = UIColor.black.withAlphaComponent(0.3)
