@@ -3,8 +3,6 @@ import UIKit
 class OperationViewController: UIViewController {
     
     var presenter: OperationPresenter!
-
-    var items: [String] = ["СБЕР Банк", "Карта Тинькофф", "Заначка под подушкой", "Счет на Кипре", "СБЕР Банк", "Карта Тинькофф", "Заначка под подушкой", "Счет на Кипре"]
     
     private lazy var backButton = UIButton(type: .system)
     private lazy var headerLabel = UILabel()
@@ -14,9 +12,12 @@ class OperationViewController: UIViewController {
     private lazy var dateLabel = UILabel()
     private lazy var datePicker = UIDatePicker()
     private lazy var fromLabel = UILabel()
-    private lazy var categoriesFlexView = FlexView()
+    private lazy var fromCategoriesFlexView = FlexView()
+    private lazy var toLabel = UILabel()
+    private lazy var toCategoriesFlexView = FlexView()
 
-    private var categoriesHeightConstraint: NSLayoutConstraint!
+    private var fromCategoriesHeightConstraint: NSLayoutConstraint!
+    private var toCategoriesHeightConstraint: NSLayoutConstraint!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,10 +76,17 @@ class OperationViewController: UIViewController {
         fromLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(fromLabel)
 
-        categoriesFlexView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(categoriesFlexView)
+        fromCategoriesFlexView.translatesAutoresizingMaskIntoConstraints = false
+        fromCategoriesHeightConstraint = fromCategoriesFlexView.heightAnchor.constraint(equalToConstant: 15)
+        view.addSubview(fromCategoriesFlexView)
 
-        categoriesHeightConstraint = categoriesFlexView.heightAnchor.constraint(equalToConstant: 15)
+        toLabel.text = "To"
+        toLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(toLabel)
+
+        toCategoriesFlexView.translatesAutoresizingMaskIntoConstraints = false
+        toCategoriesHeightConstraint = fromCategoriesFlexView.heightAnchor.constraint(equalToConstant: 15)
+        view.addSubview(toCategoriesFlexView)
         
         NSLayoutConstraint.activate([
             backButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
@@ -110,33 +118,46 @@ class OperationViewController: UIViewController {
             fromLabel.leadingAnchor.constraint(equalTo: dateLabel.safeAreaLayoutGuide.leadingAnchor),
             fromLabel.topAnchor.constraint(equalTo: datePicker.safeAreaLayoutGuide.bottomAnchor, constant: 50),
 
-            categoriesFlexView.leadingAnchor.constraint(equalTo: dateLabel.safeAreaLayoutGuide.leadingAnchor),
-            categoriesFlexView.topAnchor.constraint(equalTo: fromLabel.safeAreaLayoutGuide.bottomAnchor, constant: 10),
-            categoriesFlexView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            categoriesHeightConstraint,
+            fromCategoriesFlexView.leadingAnchor.constraint(equalTo: dateLabel.safeAreaLayoutGuide.leadingAnchor),
+            fromCategoriesFlexView.topAnchor.constraint(equalTo: fromLabel.safeAreaLayoutGuide.bottomAnchor, constant: 10),
+            fromCategoriesFlexView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            fromCategoriesHeightConstraint,
+
+            toLabel.leadingAnchor.constraint(equalTo: dateLabel.safeAreaLayoutGuide.leadingAnchor),
+            toLabel.topAnchor.constraint(equalTo: fromCategoriesFlexView.safeAreaLayoutGuide.bottomAnchor, constant: 50),
+
+            toCategoriesFlexView.leadingAnchor.constraint(equalTo: dateLabel.safeAreaLayoutGuide.leadingAnchor),
+            toCategoriesFlexView.topAnchor.constraint(equalTo: toLabel.safeAreaLayoutGuide.bottomAnchor, constant: 10),
+            toCategoriesFlexView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            toCategoriesHeightConstraint,
         ])
+
+        presenter.onViewDidLoad()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
         navigationController?.setNavigationBarHidden(false, animated: false)
     }
+}
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+extension OperationViewController {
 
-        let height = categoriesFlexView.update(with: items)
+    func itemsLoaded(items: [String]) {
+        let fromHeight = fromCategoriesFlexView.update(with: items)
+        let toHeight = toCategoriesFlexView.update(with: items)
 
         view.layoutIfNeeded()
 
         UIView.animate(
             withDuration: 0.3,
             animations: {
-                self.categoriesHeightConstraint.constant = height
+                self.fromCategoriesHeightConstraint.constant = fromHeight
+                self.toCategoriesHeightConstraint.constant = toHeight
                 self.view.layoutIfNeeded()
             }, completion: { _ in
-                self.categoriesFlexView.updateViews()
+                self.fromCategoriesFlexView.updateViews()
+                self.toCategoriesFlexView.updateViews()
             })
     }
 }

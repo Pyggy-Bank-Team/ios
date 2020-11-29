@@ -26,7 +26,7 @@ final class APIManager {
             guard let data = data, let httpResponse = response as? HTTPURLResponse else {
                 return completion(.error(APIError()))
             }
-            
+
             if httpResponse.statusCode == 200 {
                 guard let response = try? JSONDecoder().decode(UserCredentialsResponse.self, from: data) else {
                     return completion(.error(APIError()))
