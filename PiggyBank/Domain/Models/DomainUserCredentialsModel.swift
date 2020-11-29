@@ -1,15 +1,11 @@
 import Foundation
 
-final class DomainUserCredentialsModel: Codable {
+final class DomainUserCredentialsModel {
+
+    let accessToken: String
     
-    private let nickname: String
-    private let accessToken: String
-    private let refreshToken: String
-    
-    init(nickname: String, accessToken: String, refreshToken: String) {
-        self.nickname = nickname
+    init(accessToken: String) {
         self.accessToken = accessToken
-        self.refreshToken = refreshToken
     }
     
 }

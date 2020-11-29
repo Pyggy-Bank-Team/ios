@@ -10,7 +10,7 @@ final class APIManager {
     
     private let baseURL = "https://dev.piggybank.pro"
     
-    private var token = ""
+    private lazy var token = UserDefaults.standard.string(forKey: CREDENTIALS_STORE_KEY) ?? ""
     
     func signUp(request: DomainSignUpModel, completion: @escaping (Result<DomainAuthModel>) -> Void) {
         guard let url = URL(string: baseURL + "/api/users") else { return }

@@ -5,14 +5,11 @@ final class GetUserCredentialsUseCase {
     private let userDefaults = UserDefaults.standard
     
     func execute(completion: @escaping (Result<DomainUserCredentialsModel?>) -> Void) {
-        guard let data = userDefaults.data(forKey: CREDENTIALS_STORE_KEY) else {
+        guard let token = userDefaults.string(forKey: CREDENTIALS_STORE_KEY) else {
             return completion(.success(nil))
         }
-        
-        guard let model = try? JSONDecoder().decode(DomainUserCredentialsModel.self, from: data) else {
-            return completion(.error(APIError()))
-        }
-        
+
+        let model = DomainUserCredentialsModel(accessToken: token)
         completion(.success((model)))
     }
 

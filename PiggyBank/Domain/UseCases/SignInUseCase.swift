@@ -16,9 +16,7 @@ final class SignInUseCase {
             }
             
             let credentialsModel = DomainUserCredentialsModel(
-                nickname: domainSignInModel.nickname,
-                accessToken: model.accessToken,
-                refreshToken: model.refreshToken
+                accessToken: model.accessToken
             )
             
             self.saveUserUseCase.execute(domainModel: credentialsModel, completion: completion)
