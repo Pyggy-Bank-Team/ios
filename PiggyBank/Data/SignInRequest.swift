@@ -1,13 +1,12 @@
 import Foundation
 
-class DomainSignInModel {
-    
-    let nickname: String
+final class SignInRequest: Codable {
+
+    let userName: String
     let password: String
 
     init(nickname: String, password: String) {
-        self.nickname = nickname
+        self.userName = nickname
         self.password = password
     }
-    
 }

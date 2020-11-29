@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C15C54625734722005E209B /* SignInRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C15C54525734722005E209B /* SignInRequest.swift */; };
 		3C247C402572A21A00658BC4 /* FlexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C247C3F2572A21A00658BC4 /* FlexView.swift */; };
 		3CC950CD256A714C0074C7B6 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC950CC256A714C0074C7B6 /* UIImage.swift */; };
 		3CC950D0256A75450074C7B6 /* UISegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC950CF256A75450074C7B6 /* UISegmentedControl.swift */; };
@@ -98,6 +99,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3C15C54525734722005E209B /* SignInRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInRequest.swift; sourceTree = "<group>"; };
 		3C247C3F2572A21A00658BC4 /* FlexView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexView.swift; sourceTree = "<group>"; };
 		3CC950CC256A714C0074C7B6 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		3CC950CF256A75450074C7B6 /* UISegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISegmentedControl.swift; sourceTree = "<group>"; };
@@ -386,6 +388,7 @@
 				91C028342515B616005F30F0 /* CreateUpdateCategoryRequest.swift */,
 				91957A792531717D0027249A /* OperationResponse.swift */,
 				91957A7B253171A00027249A /* PaginatedResponse.swift */,
+				3C15C54525734722005E209B /* SignInRequest.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -590,6 +593,7 @@
 				91957A7E253172A30027249A /* DomainOperationModel.swift in Sources */,
 				9104C1A4250F1FEC003BF041 /* DomainAuthModel.swift in Sources */,
 				9104C1A0250F1D9E003BF041 /* UserCredentialsResponse.swift in Sources */,
+				3C15C54625734722005E209B /* SignInRequest.swift in Sources */,
 				9104C1A2250F1F3C003BF041 /* DomainUserCredentialsModel.swift in Sources */,
 				9104C17F250DDBB6003BF041 /* AccountPresenter.swift in Sources */,
 				91A85DDF24B4C49300B7A630 /* SignUpUseCase.swift in Sources */,

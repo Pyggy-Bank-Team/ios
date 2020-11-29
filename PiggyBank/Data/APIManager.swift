@@ -8,7 +8,7 @@ final class APIManager {
     
     private init() { }
     
-    private let baseURL = "http://dev.piggybank.pro"
+    private let baseURL = "https://dev.piggybank.pro"
     
     private var token = ""
     
@@ -43,20 +43,13 @@ final class APIManager {
     
     func signIn(request: DomainSignInModel, completion: @escaping (Result<DomainAuthModel>) -> Void) {
         guard let url = URL(string: baseURL + "/api/tokens/connect") else { return }
+
+        let requestModel = GrandConverter.convertToRequestModel(domain: request)
         
         var urlRequst = URLRequest(url: url)
         urlRequst.httpMethod = "POST"
-        
-        var params = ""
-        params += "client_id=client"
-        params += "&username=\(request.nickname)"
-        params += "&password=\(request.password)"
-        params += "&client_secret=secret"
-        params += "&scope=api1 offline_access"
-        params += "&grant_type=password"
-        
-        urlRequst.httpBody = params.data(using: .utf8)
-        urlRequst.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        urlRequst.httpBody = try? JSONEncoder().encode(requestModel)
+        urlRequst.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         URLSession.shared.dataTask(with: urlRequst) { data, response, error in
             guard let data = data, let httpResponse = response as? HTTPURLResponse else {

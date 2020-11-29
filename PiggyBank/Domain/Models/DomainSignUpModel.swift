@@ -8,5 +8,4 @@ final class DomainSignUpModel: DomainSignInModel {
         self.currency = currency
         super.init(nickname: nickname, password: password)
     }
-    
 }

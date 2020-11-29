@@ -39,9 +39,13 @@ final class GrandConverter {
     static func convertToRequestModel(domain: DomainSignUpModel) -> SignUpRequest {
         return SignUpRequest(nickname: domain.nickname, password: domain.password, currency: domain.currency)
     }
+
+    static func convertToRequestModel(domain: DomainSignInModel) -> SignInRequest {
+        return SignInRequest(nickname: domain.nickname, password: domain.password)
+    }
     
     static func convertToDomainModel(authResponse: UserCredentialsResponse) -> DomainAuthModel {
-        return DomainAuthModel(accessToken: authResponse.accessToken, refreshToken: authResponse.refreshToken)
+        return DomainAuthModel(accessToken: authResponse.accessToken, refreshToken: "")
     }
     
     static func convertToRequestModel(domain: DomainAccountModel) -> CreateUpdateAccountRequest {
