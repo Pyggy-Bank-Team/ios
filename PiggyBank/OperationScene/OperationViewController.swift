@@ -15,12 +15,13 @@ class OperationViewController: UIViewController {
     private lazy var fromCategoriesFlexView = FlexView()
     private lazy var toLabel = UILabel()
     private lazy var toCategoriesFlexView = FlexView()
+    private lazy var createButton = UIButton(type: .system)
 
     private var fromCategoriesHeightConstraint: NSLayoutConstraint!
     private var toCategoriesHeightConstraint: NSLayoutConstraint!
 
-    var selectedFrom: Int?
-    var selectedTo: Int?
+    private var selectedFrom: Int?
+    private var selectedTo: Int?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,6 +93,14 @@ class OperationViewController: UIViewController {
         toCategoriesHeightConstraint = toCategoriesFlexView.heightAnchor.constraint(equalToConstant: 15)
         toCategoriesFlexView.delegate = self
         view.addSubview(toCategoriesFlexView)
+
+        createButton.setTitle("OK", for: .normal)
+        createButton.setTitleColor(.white, for: .normal)
+        createButton.backgroundColor = .systemBlue
+        createButton.translatesAutoresizingMaskIntoConstraints = false
+        createButton.layer.cornerRadius = 20
+        createButton.addTarget(self, action: #selector(onCreate(_:)), for: .touchUpInside)
+        view.addSubview(createButton)
         
         NSLayoutConstraint.activate([
             backButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
@@ -135,6 +144,11 @@ class OperationViewController: UIViewController {
             toCategoriesFlexView.topAnchor.constraint(equalTo: toLabel.safeAreaLayoutGuide.bottomAnchor, constant: 10),
             toCategoriesFlexView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             toCategoriesHeightConstraint,
+
+            createButton.leadingAnchor.constraint(equalTo: dateLabel.safeAreaLayoutGuide.leadingAnchor),
+            createButton.topAnchor.constraint(equalTo: toCategoriesFlexView.safeAreaLayoutGuide.bottomAnchor, constant: 50),
+            createButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            createButton.heightAnchor.constraint(equalToConstant: 50)
         ])
 
         presenter.onViewDidLoad()
@@ -143,6 +157,15 @@ class OperationViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+
+    func show(alert: String) {
+        let alertController = UIAlertController(title: alert, message: "", preferredStyle: .alert)
+
+        let action = UIAlertAction(title: "OK", style: .default)
+        alertController.addAction(action)
+
+        present(alertController, animated: true, completion: nil)
     }
 }
 
@@ -165,6 +188,22 @@ extension OperationViewController {
                 self.toCategoriesFlexView.updateViews()
             })
     }
+
+    var sourceAccount: Int {
+        return selectedFrom ?? 0
+    }
+
+    var targetAccount: Int {
+        return selectedTo ?? 0
+    }
+
+    var transferDate: Date {
+        return datePicker.date
+    }
+
+    var total: Int {
+        return Int(totalField.text ?? "") ?? 0
+    }
 }
 
 extension OperationViewController: FlexViewDelegate {
@@ -186,5 +225,9 @@ private extension OperationViewController {
     
     @objc func onBack(_ sender: UIButton) {
         navigationController?.popViewController(animated: true)
+    }
+
+    @objc func onCreate(_ sender: UIButton) {
+        presenter.onCreate()
     }
 }

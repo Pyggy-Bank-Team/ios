@@ -43,6 +43,15 @@ final class GrandConverter {
     static func convertToRequestModel(domain: DomainSignInModel) -> SignInRequest {
         return SignInRequest(nickname: domain.nickname, password: domain.password)
     }
+
+    static func convertToRequestModel(domain: DomainCreateUpdateTransferOperationModel) -> CreateUpdateTransferOperationRequest {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS"
+        let date = formatter.string(from: domain.createdOn)
+
+        return CreateUpdateTransferOperationRequest(createdOn: date, from: domain.from, to: domain.to, amount: domain.amount, comment: domain.comment)
+    }
     
     static func convertToDomainModel(authResponse: UserCredentialsResponse) -> DomainAuthModel {
         return DomainAuthModel(accessToken: authResponse.accessToken)

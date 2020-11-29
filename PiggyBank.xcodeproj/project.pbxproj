@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		3C15C54625734722005E209B /* SignInRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C15C54525734722005E209B /* SignInRequest.swift */; };
+		3C15C549257385D7005E209B /* CreateUpdateTransferOperationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C15C548257385D7005E209B /* CreateUpdateTransferOperationUseCase.swift */; };
+		3C15C54D2573E795005E209B /* CreateUpdateTransferOperationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C15C54C2573E795005E209B /* CreateUpdateTransferOperationRequest.swift */; };
+		3C15C5502573EA46005E209B /* DomainCreateUpdateTransferOperationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C15C54F2573EA46005E209B /* DomainCreateUpdateTransferOperationModel.swift */; };
 		3C247C402572A21A00658BC4 /* FlexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C247C3F2572A21A00658BC4 /* FlexView.swift */; };
 		3CC950CD256A714C0074C7B6 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC950CC256A714C0074C7B6 /* UIImage.swift */; };
 		3CC950D0256A75450074C7B6 /* UISegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC950CF256A75450074C7B6 /* UISegmentedControl.swift */; };
@@ -80,7 +83,6 @@
 		91A85DE524B4C5D900B7A630 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DE424B4C5D900B7A630 /* Result.swift */; };
 		91A85DE724B4C7BC00B7A630 /* UseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DE624B4C7BC00B7A630 /* UseCase.swift */; };
 		91A85DE924B64B7D00B7A630 /* SignInUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DE824B64B7D00B7A630 /* SignInUseCase.swift */; };
-		91A85DEB24B650C400B7A630 /* SignInResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DEA24B650C400B7A630 /* SignInResponse.swift */; };
 		91A85DEE24CB308000B7A630 /* AccountsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DED24CB308000B7A630 /* AccountsViewController.swift */; };
 		91A85DF024CB30BC00B7A630 /* AccountsDTOs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DEF24CB30BC00B7A630 /* AccountsDTOs.swift */; };
 		91A85DF224CB326700B7A630 /* AccountsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DF124CB326700B7A630 /* AccountsPresenter.swift */; };
@@ -100,6 +102,9 @@
 
 /* Begin PBXFileReference section */
 		3C15C54525734722005E209B /* SignInRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInRequest.swift; sourceTree = "<group>"; };
+		3C15C548257385D7005E209B /* CreateUpdateTransferOperationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUpdateTransferOperationUseCase.swift; sourceTree = "<group>"; };
+		3C15C54C2573E795005E209B /* CreateUpdateTransferOperationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUpdateTransferOperationRequest.swift; sourceTree = "<group>"; };
+		3C15C54F2573EA46005E209B /* DomainCreateUpdateTransferOperationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainCreateUpdateTransferOperationModel.swift; sourceTree = "<group>"; };
 		3C247C3F2572A21A00658BC4 /* FlexView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexView.swift; sourceTree = "<group>"; };
 		3CC950CC256A714C0074C7B6 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		3CC950CF256A75450074C7B6 /* UISegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISegmentedControl.swift; sourceTree = "<group>"; };
@@ -174,7 +179,6 @@
 		91A85DE424B4C5D900B7A630 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		91A85DE624B4C7BC00B7A630 /* UseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCase.swift; sourceTree = "<group>"; };
 		91A85DE824B64B7D00B7A630 /* SignInUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInUseCase.swift; sourceTree = "<group>"; };
-		91A85DEA24B650C400B7A630 /* SignInResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInResponse.swift; sourceTree = "<group>"; };
 		91A85DED24CB308000B7A630 /* AccountsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsViewController.swift; sourceTree = "<group>"; };
 		91A85DEF24CB30BC00B7A630 /* AccountsDTOs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsDTOs.swift; sourceTree = "<group>"; };
 		91A85DF124CB326700B7A630 /* AccountsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsPresenter.swift; sourceTree = "<group>"; };
@@ -232,6 +236,7 @@
 				9104C1A3250F1FEC003BF041 /* DomainAuthModel.swift */,
 				9104C1AB250F2539003BF041 /* DomainSignInModel.swift */,
 				91957A7D253172A30027249A /* DomainOperationModel.swift */,
+				3C15C54F2573EA46005E209B /* DomainCreateUpdateTransferOperationModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -378,7 +383,6 @@
 			isa = PBXGroup;
 			children = (
 				91A85DD824AC611F00B7A630 /* APIManager.swift */,
-				91A85DEA24B650C400B7A630 /* SignInResponse.swift */,
 				91A85DF324CB385400B7A630 /* AccountResponse.swift */,
 				9104C13824FBCEF3003BF041 /* CategoryResponse.swift */,
 				9104C193250E1C96003BF041 /* CurrencyResponse.swift */,
@@ -389,6 +393,7 @@
 				91957A792531717D0027249A /* OperationResponse.swift */,
 				91957A7B253171A00027249A /* PaginatedResponse.swift */,
 				3C15C54525734722005E209B /* SignInRequest.swift */,
+				3C15C54C2573E795005E209B /* CreateUpdateTransferOperationRequest.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -422,6 +427,7 @@
 				9104C1B3250F33B8003BF041 /* GetUserCredentialsUseCase.swift */,
 				91957A7F2531791F0027249A /* GetOperationsUseCase.swift */,
 				9166BC922532E27600A23196 /* DeleteOperationUseCase.swift */,
+				3C15C548257385D7005E209B /* CreateUpdateTransferOperationUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -564,6 +570,7 @@
 				9104C189250DF76D003BF041 /* AuthPresenter.swift in Sources */,
 				9104C181250DE01F003BF041 /* DomainAccountModel.swift in Sources */,
 				9104C13524FBC705003BF041 /* ProfileViewController.swift in Sources */,
+				3C15C549257385D7005E209B /* CreateUpdateTransferOperationUseCase.swift in Sources */,
 				9104C1AA250F2428003BF041 /* SaveUserCredentialsUseCase.swift in Sources */,
 				9104C17325051C3B003BF041 /* DeleteCategoryUseCase.swift in Sources */,
 				91957A8925318F3A0027249A /* OperationsSceneAssembly.swift in Sources */,
@@ -574,6 +581,7 @@
 				3CC950D0256A75450074C7B6 /* UISegmentedControl.swift in Sources */,
 				9104C21925130B43003BF041 /* CreateUpdateAccountRequest.swift in Sources */,
 				3C247C402572A21A00658BC4 /* FlexView.swift in Sources */,
+				3C15C5502573EA46005E209B /* DomainCreateUpdateTransferOperationModel.swift in Sources */,
 				9104C18C250E174D003BF041 /* BaseCurrencyViewController.swift in Sources */,
 				9104C1AC250F2539003BF041 /* DomainSignInModel.swift in Sources */,
 				91A85DE224B4C50300B7A630 /* UseCasesDTOs.swift in Sources */,
@@ -596,6 +604,7 @@
 				3C15C54625734722005E209B /* SignInRequest.swift in Sources */,
 				9104C1A2250F1F3C003BF041 /* DomainUserCredentialsModel.swift in Sources */,
 				9104C17F250DDBB6003BF041 /* AccountPresenter.swift in Sources */,
+				3C15C54D2573E795005E209B /* CreateUpdateTransferOperationRequest.swift in Sources */,
 				91A85DDF24B4C49300B7A630 /* SignUpUseCase.swift in Sources */,
 				91A85DF224CB326700B7A630 /* AccountsPresenter.swift in Sources */,
 				9104C194250E1C96003BF041 /* CurrencyResponse.swift in Sources */,
@@ -618,7 +627,6 @@
 				9166BC98256A2F0E00A23196 /* OperationPresenter.swift in Sources */,
 				9104C13724FBC86B003BF041 /* CategoriesAssembly.swift in Sources */,
 				9104C17725052CDE003BF041 /* CreateUpdateCategoryUseCase.swift in Sources */,
-				91A85DEB24B650C400B7A630 /* SignInResponse.swift in Sources */,
 				91A85DF824CB3D0E00B7A630 /* AccountsAssembly.swift in Sources */,
 				91A85E0224D04F0700B7A630 /* MainBarViewController.swift in Sources */,
 				9104C198250E20B1003BF041 /* BaseCurrencySceneAssembly.swift in Sources */,
