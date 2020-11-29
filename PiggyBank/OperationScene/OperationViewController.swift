@@ -19,6 +19,9 @@ class OperationViewController: UIViewController {
     private var fromCategoriesHeightConstraint: NSLayoutConstraint!
     private var toCategoriesHeightConstraint: NSLayoutConstraint!
 
+    var selectedFrom: Int?
+    var selectedTo: Int?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -78,6 +81,7 @@ class OperationViewController: UIViewController {
 
         fromCategoriesFlexView.translatesAutoresizingMaskIntoConstraints = false
         fromCategoriesHeightConstraint = fromCategoriesFlexView.heightAnchor.constraint(equalToConstant: 15)
+        fromCategoriesFlexView.delegate = self
         view.addSubview(fromCategoriesFlexView)
 
         toLabel.text = "To"
@@ -85,7 +89,8 @@ class OperationViewController: UIViewController {
         view.addSubview(toLabel)
 
         toCategoriesFlexView.translatesAutoresizingMaskIntoConstraints = false
-        toCategoriesHeightConstraint = fromCategoriesFlexView.heightAnchor.constraint(equalToConstant: 15)
+        toCategoriesHeightConstraint = toCategoriesFlexView.heightAnchor.constraint(equalToConstant: 15)
+        toCategoriesFlexView.delegate = self
         view.addSubview(toCategoriesFlexView)
         
         NSLayoutConstraint.activate([
@@ -159,6 +164,21 @@ extension OperationViewController {
                 self.fromCategoriesFlexView.updateViews()
                 self.toCategoriesFlexView.updateViews()
             })
+    }
+}
+
+extension OperationViewController: FlexViewDelegate {
+
+    func flexView(_ flexView: FlexView, didSelectRowAt index: Int) {
+        if flexView == fromCategoriesFlexView {
+            selectedFrom = index
+        }
+
+        if flexView == toCategoriesFlexView {
+            selectedTo = index
+        }
+
+        print("\(selectedFrom ?? 0) -> \(selectedTo ?? 0)")
     }
 }
 
