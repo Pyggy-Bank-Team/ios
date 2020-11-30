@@ -4,6 +4,7 @@ final class OperationsViewController: UIViewController {
     
     private lazy var tableView = UITableView()
     private lazy var typeControl = UISegmentedControl()
+    private lazy var menuView = BottomBar()
     
     private var operations: [OperationViewModel] = []
     
@@ -29,17 +30,30 @@ final class OperationsViewController: UIViewController {
         tableView.dataSource = self
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorInset = .zero
+        tableView.separatorStyle = .none
         view.addSubview(tableView)
+        
+        menuView.translatesAutoresizingMaskIntoConstraints = false
+        menuView.backgroundColor = .clear
+        menuView.layer.shadowRadius = 0.1
+        menuView.layer.shadowColor = UIColor.black.cgColor
+        menuView.layer.shadowOpacity = 0.1
+        view.addSubview(menuView)
         
         NSLayoutConstraint.activate([
             typeControl.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.8),
             typeControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             typeControl.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
             
+            menuView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            menuView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            menuView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            menuView.heightAnchor.constraint(equalToConstant: 65),
+            
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            tableView.topAnchor.constraint(equalTo: typeControl.safeAreaLayoutGuide.bottomAnchor, constant: 20)
+            tableView.bottomAnchor.constraint(equalTo: menuView.safeAreaLayoutGuide.topAnchor, constant: -20),
+            tableView.topAnchor.constraint(equalTo: typeControl.safeAreaLayoutGuide.bottomAnchor, constant: 20),
         ])
         
         presenter.onViewDidLoad()

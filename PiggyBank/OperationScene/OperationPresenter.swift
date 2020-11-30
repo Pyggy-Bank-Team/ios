@@ -43,7 +43,7 @@ final class OperationPresenter {
         )
 
         createUpdateTransferOperationUseCase.execute(request: model) { [weak self] result in
-            if case let .success = result {
+            if case .success = result {
                 DispatchQueue.main.async {
                     self?.view?.show(alert: "Success")
                 }

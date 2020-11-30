@@ -60,6 +60,7 @@
 		9104C21925130B43003BF041 /* CreateUpdateAccountRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C21825130B43003BF041 /* CreateUpdateAccountRequest.swift */; };
 		9104C21D25147475003BF041 /* CategoryCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C21C25147475003BF041 /* CategoryCollectionCell.swift */; };
 		9104C22025147874003BF041 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C21F25147874003BF041 /* UIColor.swift */; };
+		910DEEB42574A50F0053A2E0 /* BottomBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910DEEB32574A50F0053A2E0 /* BottomBar.swift */; };
 		9166BC932532E27600A23196 /* DeleteOperationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9166BC922532E27600A23196 /* DeleteOperationUseCase.swift */; };
 		9166BC96256A2EFC00A23196 /* OperationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9166BC95256A2EFC00A23196 /* OperationViewController.swift */; };
 		9166BC98256A2F0E00A23196 /* OperationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9166BC97256A2F0E00A23196 /* OperationPresenter.swift */; };
@@ -154,6 +155,7 @@
 		9104C21825130B43003BF041 /* CreateUpdateAccountRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUpdateAccountRequest.swift; sourceTree = "<group>"; };
 		9104C21C25147475003BF041 /* CategoryCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionCell.swift; sourceTree = "<group>"; };
 		9104C21F25147874003BF041 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		910DEEB32574A50F0053A2E0 /* BottomBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBar.swift; sourceTree = "<group>"; };
 		9166BC922532E27600A23196 /* DeleteOperationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteOperationUseCase.swift; sourceTree = "<group>"; };
 		9166BC95256A2EFC00A23196 /* OperationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationViewController.swift; sourceTree = "<group>"; };
 		9166BC97256A2F0E00A23196 /* OperationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationPresenter.swift; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				3C247C3F2572A21A00658BC4 /* FlexView.swift */,
+				910DEEB32574A50F0053A2E0 /* BottomBar.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -600,6 +603,7 @@
 				91C26FA62515D28B00C999BE /* ColorCollectionCell.swift in Sources */,
 				91957A7E253172A30027249A /* DomainOperationModel.swift in Sources */,
 				9104C1A4250F1FEC003BF041 /* DomainAuthModel.swift in Sources */,
+				910DEEB42574A50F0053A2E0 /* BottomBar.swift in Sources */,
 				9104C1A0250F1D9E003BF041 /* UserCredentialsResponse.swift in Sources */,
 				3C15C54625734722005E209B /* SignInRequest.swift in Sources */,
 				9104C1A2250F1F3C003BF041 /* DomainUserCredentialsModel.swift in Sources */,
