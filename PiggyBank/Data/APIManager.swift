@@ -325,29 +325,34 @@ final class APIManager {
     // MARK: - Operations
     
     func getOperations(completion: @escaping (Result<[DomainOperationModel]>) -> Void) {
-        guard let url = URL(string: baseURL + "/api/Operations") else { return }
-        
-        var urlRequst = URLRequest(url: url)
+        guard var components = URLComponents(string: baseURL + "/api/Operations") else { return }
+        components.queryItems = [
+            URLQueryItem(name: "all", value: "true")
+        ]
+
+        var urlRequst = URLRequest(url: components.url!)
+        urlRequst.httpMethod = "GET"
         urlRequst.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         
         print("LOGGER: Start for \(urlRequst.url!)")
         URLSession.shared.dataTask(with: urlRequst) { data, response, error in
             print("LOGGER: Finish for \(urlRequst.url!)")
             
-            guard let data = data, let httpResponse = response as? HTTPURLResponse else {
+            guard let data = data,
+                  let httpResponse = response as? HTTPURLResponse,
+                  httpResponse.statusCode == 200 else {
                 return completion(.error(APIError()))
             }
-            
-            if httpResponse.statusCode == 200 {
-                guard let model = try? JSONDecoder().decode(PaginatedResponse<OperationResponse>.self, from: data) else {
-                    return completion(.error(APIError()))
-                }
-                
+
+            do {
+                let model = try JSONDecoder().decode(PaginatedResponse<OperationResponse>.self, from: data)
                 let categories = model.result.map { GrandConverter.convertToDomain(response: $0) }
                 completion(.success(categories))
-            } else {
-                completion(.error(APIError()))
+            } catch {
+                print("decode error: \(error)")
+                return completion(.error(APIError()))
             }
+
         }.resume()
     }
     

@@ -3,18 +3,15 @@ import Foundation
 final class DomainOperationModel {
     
     enum OperationType: UInt {
-        
-        case budget = 1
+        case undefined
+        case budget
         case transfer
         case plan
-        
     }
 
     let id: UInt
-    let categoryID: Int
     let categoryHexColor: String?
     let amount: Double
-    let accountID: UInt
     let accountTitle: String?
     let comment: String?
     let type: OperationType
@@ -26,10 +23,8 @@ final class DomainOperationModel {
     
     init(
         id: UInt,
-        categoryID: Int,
         categoryHexColor: String?,
         amount: Double,
-        accountID: UInt,
         accountTitle: String?,
         comment: String?,
         type: UInt,
@@ -47,12 +42,10 @@ final class DomainOperationModel {
         if let plan = planDate, let date = formatter.date(from: plan) {
             planDateResult = date
         }
-        
+
         self.id = id
-        self.categoryID = categoryID
         self.categoryHexColor = categoryHexColor
         self.amount = amount
-        self.accountID = accountID
         self.accountTitle = accountTitle
         self.comment = comment
         self.type = OperationType(rawValue: type)!
