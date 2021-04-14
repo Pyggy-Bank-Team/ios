@@ -3,12 +3,11 @@ import Foundation
 final class DomainAccountModel {
     
     enum AccountType: Int {
-        
+        case undefined
         case cash
         case card
-        
     }
-    
+
     let id: Int?
     let type: AccountType
     let title: String

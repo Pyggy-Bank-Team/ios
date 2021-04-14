@@ -49,10 +49,12 @@ extension ProfileViewController: UITableViewDelegate {
             navigationController?.pushViewController(CategoriesAssembly().build(), animated: true)
         case 2:
             navigationController?.pushViewController(OperationsSceneAssembly().build(), animated: true)
+        case 3:
+            navigationController?.pushViewController(ReportsSceneAssembly().build(), animated: true)
         default:
             break
         }
-        
+
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
@@ -61,7 +63,7 @@ extension ProfileViewController: UITableViewDelegate {
 extension ProfileViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 4
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -74,6 +76,8 @@ extension ProfileViewController: UITableViewDataSource {
             cell.textLabel?.text = "Categories"
         case 2:
             cell.textLabel?.text = "Operations"
+        case 3:
+            cell.textLabel?.text = "Reports"
         default:
             break
         }
