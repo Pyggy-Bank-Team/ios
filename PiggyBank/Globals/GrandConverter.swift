@@ -111,7 +111,6 @@ final class GrandConverter {
                                     toTitle: response.toAcount?.title,
                                     isDeleted: response.isDeleted)
     }
-    }
     
     static func convertToViewModel(operationModel: DomainOperationModel) -> OperationViewModel {
         let type: OperationViewModel.OperationType
