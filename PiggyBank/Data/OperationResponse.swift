@@ -21,5 +21,5 @@ struct OperationResponse: Codable {
     let amount: Double
     let type: UInt
     let date: String
-    let comment: String
+    let comment: String?
 }

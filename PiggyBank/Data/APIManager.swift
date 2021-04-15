@@ -331,7 +331,6 @@ final class APIManager {
         ]
 
         var urlRequst = URLRequest(url: components.url!)
-        urlRequst.httpMethod = "GET"
         urlRequst.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         
         print("LOGGER: Start for \(urlRequst.url!)")
@@ -350,9 +349,9 @@ final class APIManager {
                 completion(.success(categories))
             } catch {
                 print("decode error: \(error)")
+                assertionFailure("getOperations decode error");
                 return completion(.error(APIError()))
             }
-
         }.resume()
     }
     
