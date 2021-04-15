@@ -12,6 +12,8 @@ final class DeleteOperationUseCase {
             apiManager.deleteTransferOperation(operationID: operation.id, completion: completion)
         case .plan:
             apiManager.deletePlanOperation(operationID: operation.id, completion: completion)
+        default:
+            break
         }
     }
 

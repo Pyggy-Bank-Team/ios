@@ -99,21 +99,17 @@ final class GrandConverter {
     }
     
     static func convertToDomain(response: OperationResponse) -> DomainOperationModel {
-        return DomainOperationModel(
-            id: response.id,
-            categoryID: response.categoryID,
-            categoryHexColor: response.categoryHexColor,
-            amount: response.amount,
-            accountID: response.accountID,
-            accountTitle: response.accountTitle,
-            comment: response.comment,
-            type: response.type,
-            createdOn: response.createdOn,
-            planDate: response.planDate,
-            fromTitle: response.fromTitle,
-            toTitle: response.toTitle,
-            isDeleted: response.isDeleted
-        )
+        return DomainOperationModel(id: response.id,
+                                    categoryHexColor: response.category?.hexColor,
+                                    amount: response.amount,
+                                    accountTitle: response.account.title,
+                                    comment: response.comment,
+                                    type: response.type,
+                                    createdOn: response.date,
+                                    planDate: nil,
+                                    fromTitle: response.account.title,
+                                    toTitle: response.toAcount?.title,
+                                    isDeleted: response.isDeleted)
     }
     
     static func convertToViewModel(operationModel: DomainOperationModel) -> OperationViewModel {
@@ -126,6 +122,8 @@ final class GrandConverter {
             type = .budget
         case .plan:
             type = .plan
+        default:
+            fatalError("Unsupported OperationType")
         }
         
         return OperationViewModel(id: operationModel.id, type: type)
