@@ -13,20 +13,28 @@ final class ReportViewModel {
         let amount: Int64
     }
 
-    var sign: String
+    var sign: String {
+        switch type {
+        case .undefined:
+            return ""
+        case .income:
+            return "+"
+        case .outcome:
+            return "-"
+        }
+    }
+
     var type: CategoryViewModel.CategoryType
     var startDate: Date
     var endDate: Date
     var total: Int64
     var categoryList: [ReportCategory]
 
-    init(sign: String,
-         type: CategoryViewModel.CategoryType,
+    init(type: CategoryViewModel.CategoryType,
          startDate: Date,
          endDate: Date,
          total: Int64,
          categoryList: [ReportCategory]) {
-        self.sign = sign
         self.type = type
         self.startDate = startDate
         self.endDate = endDate
