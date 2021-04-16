@@ -13,6 +13,17 @@ final class ReportViewModel {
         let amount: Int64
     }
 
+    var sign: String {
+        switch type {
+        case .undefined:
+            return ""
+        case .income:
+            return "+"
+        case .outcome:
+            return "-"
+        }
+    }
+
     var type: CategoryViewModel.CategoryType
     var startDate: Date
     var endDate: Date
