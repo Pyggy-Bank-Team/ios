@@ -24,6 +24,7 @@
 		7113503C2625CB5000572CB9 /* ReportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7113503B2625CB5000572CB9 /* ReportViewModel.swift */; };
 		7113503F2626141E00572CB9 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7113503E2626141E00572CB9 /* DateFormatter.swift */; };
 		7113505426272C8A00572CB9 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 7113505326272C8A00572CB9 /* Charts */; };
+		7152CFA62629628A00096331 /* CategoryOperationInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7152CFA52629628A00096331 /* CategoryOperationInfoTableViewCell.swift */; };
 		9104C13524FBC705003BF041 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C13424FBC705003BF041 /* ProfileViewController.swift */; };
 		9104C13724FBC86B003BF041 /* CategoriesAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C13624FBC86B003BF041 /* CategoriesAssembly.swift */; };
 		9104C13924FBCEF3003BF041 /* CategoryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C13824FBCEF3003BF041 /* CategoryResponse.swift */; };
@@ -128,6 +129,7 @@
 		711350332622075E00572CB9 /* DomainCategoryReportModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainCategoryReportModel.swift; sourceTree = "<group>"; };
 		7113503B2625CB5000572CB9 /* ReportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewModel.swift; sourceTree = "<group>"; };
 		7113503E2626141E00572CB9 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
+		7152CFA52629628A00096331 /* CategoryOperationInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryOperationInfoTableViewCell.swift; sourceTree = "<group>"; };
 		9104C13424FBC705003BF041 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		9104C13624FBC86B003BF041 /* CategoriesAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesAssembly.swift; sourceTree = "<group>"; };
 		9104C13824FBCEF3003BF041 /* CategoryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryResponse.swift; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 			children = (
 				3C247C3F2572A21A00658BC4 /* FlexView.swift */,
 				910DEEB32574A50F0053A2E0 /* BottomBar.swift */,
+				7152CFA52629628A00096331 /* CategoryOperationInfoTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -644,6 +647,7 @@
 				9104C1AA250F2428003BF041 /* SaveUserCredentialsUseCase.swift in Sources */,
 				9104C17325051C3B003BF041 /* DeleteCategoryUseCase.swift in Sources */,
 				91957A8925318F3A0027249A /* OperationsSceneAssembly.swift in Sources */,
+				7152CFA62629628A00096331 /* CategoryOperationInfoTableViewCell.swift in Sources */,
 				9104C19C250E65AD003BF041 /* DomainSignUpModel.swift in Sources */,
 				91C028352515B616005F30F0 /* CreateUpdateCategoryRequest.swift in Sources */,
 				9166BC932532E27600A23196 /* DeleteOperationUseCase.swift in Sources */,

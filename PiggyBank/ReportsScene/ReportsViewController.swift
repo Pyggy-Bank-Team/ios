@@ -6,7 +6,7 @@
 import UIKit
 import Charts
 
-public final class ReportsViewController: UIViewController {
+final class ReportsViewController: UIViewController {
     var presenter: ReportsPresenter!
 
     private lazy var startDateLabel: UILabel = {
@@ -29,6 +29,11 @@ public final class ReportsViewController: UIViewController {
         return endDateLabel
     }()
 
+    private let controlIndexToCategoryType: [Int: CategoryViewModel.CategoryType] = [
+        0: .outcome,
+        1: .income
+    ]
+
     private lazy var categoryControl: UISegmentedControl = {
         let categoryControl = UISegmentedControl(items: ["Outcome", "Income"])
         categoryControl.translatesAutoresizingMaskIntoConstraints = false
@@ -48,11 +53,29 @@ public final class ReportsViewController: UIViewController {
         return chartView
     }()
 
-    private lazy var totalLabel: UILabel = {
-        let totalLabel = UILabel()
-        totalLabel.translatesAutoresizingMaskIntoConstraints = false
-        totalLabel.textAlignment = .center
-        return totalLabel
+    private var totalValueLabel: UILabel!
+    private lazy var totalStackView: UIStackView = {
+        let totalTitleLabel = UILabel()
+        totalTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        totalTitleLabel.font = .systemFont(ofSize: 15.0, weight: .medium)
+        totalTitleLabel.text = "Total"
+
+        totalValueLabel = UILabel()
+        totalValueLabel.translatesAutoresizingMaskIntoConstraints = false
+        totalValueLabel.font = .systemFont(ofSize: 15.0, weight: .medium)
+
+        let totalStackView = UIStackView(arrangedSubviews: [totalTitleLabel, totalValueLabel])
+        totalStackView.translatesAutoresizingMaskIntoConstraints = false
+        return totalStackView
+    }()
+
+
+    private let dividerView: UIView = {
+        let dividerView = UIView()
+        dividerView.translatesAutoresizingMaskIntoConstraints = false
+        dividerView.heightAnchor.constraint(equalToConstant: 1.0).isActive = true
+        dividerView.backgroundColor = UIColor(hexString: "#D6D8E7")
+        return dividerView
     }()
 
     private lazy var categoryList: UITableView = {
@@ -62,7 +85,9 @@ public final class ReportsViewController: UIViewController {
         categoryList.dataSource = self
         categoryList.allowsSelection = false
         categoryList.separatorStyle = .none
-        categoryList.register(UITableViewCell.self, forCellReuseIdentifier: "UITableViewCell")
+        categoryList.showsVerticalScrollIndicator = false
+        categoryList.register(CategoryOperationInfoTableViewCell.self,
+                              forCellReuseIdentifier: CategoryOperationInfoTableViewCell.identifier)
         return categoryList
     }()
 
@@ -75,7 +100,8 @@ public final class ReportsViewController: UIViewController {
         configureStartDateLabel()
         configureEndDateLabel()
         configureChartView()
-        configureTotalLabel()
+        configureTotalStackView()
+        configureDividerView()
         configureCategoryList()
 
         presenter.prepareData()
@@ -118,20 +144,30 @@ public final class ReportsViewController: UIViewController {
         ])
     }
 
-    private func configureTotalLabel() {
-        view.addSubview(totalLabel)
+    private func configureTotalStackView() {
+        view.addSubview(totalStackView)
         NSLayoutConstraint.activate([
-            totalLabel.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
-            totalLabel.topAnchor.constraint(equalTo: chartView.bottomAnchor, constant: 20),
-            totalLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            totalStackView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, constant: -50),
+            totalStackView.topAnchor.constraint(equalTo: chartView.bottomAnchor, constant: 20),
+            totalStackView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+        ])
+    }
+
+    private func configureDividerView() {
+        view.addSubview(dividerView)
+        NSLayoutConstraint.activate([
+            dividerView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, constant: -50),
+            dividerView.topAnchor.constraint(equalTo: totalStackView.bottomAnchor, constant: 14.0),
+            dividerView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
         ])
     }
 
     private func configureCategoryList() {
         view.addSubview(categoryList)
         NSLayoutConstraint.activate([
-            categoryList.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
-            categoryList.topAnchor.constraint(equalTo: totalLabel.bottomAnchor, constant: 20),
+            categoryList.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, constant: -50.0),
+            categoryList.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            categoryList.topAnchor.constraint(equalTo: dividerView.bottomAnchor, constant: 15),
             categoryList.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
@@ -139,7 +175,7 @@ public final class ReportsViewController: UIViewController {
     @objc
     private func onCategoryChange(sender: UISegmentedControl) {
         let index = sender.selectedSegmentIndex
-        presenter.onCategoryTypeChange(type: CategoryViewModel.CategoryType(rawValue: index) ?? .outcome)
+        presenter.onCategoryTypeChange(type: controlIndexToCategoryType[index] ?? .outcome)
     }
 
     @objc
@@ -155,19 +191,24 @@ public final class ReportsViewController: UIViewController {
 
 extension ReportsViewController: UITableViewDelegate, UITableViewDataSource {
 
-    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        41.0
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        62.0
     }
 
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         presenter.reportViewModel.categoryList.count
     }
 
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CategoryOperationInfoTableViewCell.identifier,
+                                                       for: indexPath) as? CategoryOperationInfoTableViewCell
+        else {
+            return UITableViewCell()
+        }
+
         let category = presenter.reportViewModel.categoryList[indexPath.row]
-        cell.textLabel?.text = "\(category.name): \(category.amount)"
-        cell.backgroundColor = category.color
+        let amount = "\(presenter.reportViewModel.sign) \(category.amount)"
+        cell.build(color: category.color, name: category.name, amount: amount)
         return cell
     }
 }
@@ -177,7 +218,7 @@ extension ReportsViewController: UITableViewDelegate, UITableViewDataSource {
 extension ReportsViewController {
 
     func updateView() {
-        totalLabel.text = "Total: \(presenter.reportViewModel.total)"
+        totalValueLabel.text = "\(presenter.reportViewModel.sign) \(presenter.reportViewModel.total)"
         categoryList.reloadData()
         updateChartData()
     }
