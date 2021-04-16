@@ -166,11 +166,13 @@ final class AccountViewController: UIViewController {
 
 private extension AccountViewController {
     
-    @objc func onSave(_ sender: UIBarButtonItem) {
+    @objc
+    func onSave(_ sender: UIBarButtonItem) {
         presenter.onSave()
     }
     
-    @objc func onDelete(_ sender: UIButton) {
+    @objc
+    func onDelete(_ sender: UIButton) {
         presenter.onDelete()
     }
     
@@ -179,7 +181,9 @@ private extension AccountViewController {
 extension AccountViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        guard textField == titleField else { return true }
+        guard textField == titleField else {
+            return true
+        }
         
         titleField.resignFirstResponder()
         balanceField.becomeFirstResponder()

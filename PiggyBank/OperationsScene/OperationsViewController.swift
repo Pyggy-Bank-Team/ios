@@ -142,7 +142,8 @@ extension OperationsViewController: UITableViewDataSource {
 
 private extension OperationsViewController {
     
-    @objc func onAdd(_ sender: UIBarButtonItem) {
+    @objc
+    func onAdd(_ sender: UIBarButtonItem) {
         navigationController?.pushViewController(OperationSceneAssembly().build(), animated: true)
     }
 }

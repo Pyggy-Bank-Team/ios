@@ -3,7 +3,7 @@
 //  PiggyBank
 //
 
-struct ReportsByCategoryRequest: Codable {
+public struct ReportsByCategoryRequest: Codable {
     let type: Int
     let from: String
     let to: String

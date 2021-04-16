@@ -2,7 +2,7 @@ import Foundation
 
 struct APIError: Error { }
 
-final class APIManager {
+public final class APIManager {
     
     static let shared = APIManager()
     
@@ -13,7 +13,9 @@ final class APIManager {
     private lazy var token = UserDefaults.standard.string(forKey: CREDENTIALS_STORE_KEY) ?? ""
     
     func signUp(request: DomainSignUpModel, completion: @escaping (Result<DomainAuthModel>) -> Void) {
-        guard let url = URL(string: baseURL + "/api/users") else { return }
+        guard let url = URL(string: baseURL + "/api/users") else {
+            return
+        }
         
         let requestModel = GrandConverter.convertToRequestModel(domain: request)
         
@@ -42,7 +44,9 @@ final class APIManager {
     }
     
     func signIn(request: DomainSignInModel, completion: @escaping (Result<DomainAuthModel>) -> Void) {
-        guard let url = URL(string: baseURL + "/api/tokens/connect") else { return }
+        guard let url = URL(string: baseURL + "/api/tokens/connect") else {
+            return
+        }
 
         let requestModel = GrandConverter.convertToRequestModel(domain: request)
         
@@ -75,7 +79,9 @@ final class APIManager {
     // MARK: - Accounts
     
     func getAccounts(completion: @escaping (Result<[DomainAccountModel]>) -> Void) {
-        guard let url = URL(string: baseURL + "/api/Accounts") else { return }
+        guard let url = URL(string: baseURL + "/api/Accounts") else {
+            return
+        }
         
         var urlRequst = URLRequest(url: url)
         urlRequst.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
@@ -102,7 +108,9 @@ final class APIManager {
     }
     
     func deleteAccount(accountID: Int, completion: @escaping (Result<Void>) -> Void) {
-        guard let url = URL(string: baseURL + "/api/Accounts/\(accountID)") else { return }
+        guard let url = URL(string: baseURL + "/api/Accounts/\(accountID)") else {
+            return
+        }
         
         var urlRequst = URLRequest(url: url)
         urlRequst.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
@@ -129,7 +137,9 @@ final class APIManager {
             fatalError("APIManager: updateAccount - ID can't be null")
         }
         
-        guard let url = URL(string: baseURL + "/api/Accounts/\(id)") else { return }
+        guard let url = URL(string: baseURL + "/api/Accounts/\(id)") else {
+            return
+        }
         
         let requestModel = GrandConverter.convertToRequestModel(domain: request)
         
@@ -156,7 +166,9 @@ final class APIManager {
     }
     
     func createAccount(request: DomainAccountModel, completion: @escaping (Result<Void>) -> Void) {
-        guard let url = URL(string: baseURL + "/api/Accounts") else { return }
+        guard let url = URL(string: baseURL + "/api/Accounts") else {
+            return
+        }
         
         let requestModel = GrandConverter.convertToRequestModel(domain: request)
         
@@ -185,7 +197,9 @@ final class APIManager {
     // MARK: - Categories
     
     func getCategories(completion: @escaping (Result<[DomainCategoryModel]>) -> Void) {
-        guard let url = URL(string: baseURL + "/api/Categories") else { return }
+        guard let url = URL(string: baseURL + "/api/Categories") else {
+            return
+        }
         
         var urlRequst = URLRequest(url: url)
         urlRequst.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
@@ -213,7 +227,9 @@ final class APIManager {
     }
     
     func createCategory(request: DomainCategoryModel, completion: @escaping (Result<Void>) -> Void) {
-        guard let url = URL(string: baseURL + "/api/Categories") else { return }
+        guard let url = URL(string: baseURL + "/api/Categories") else {
+            return
+        }
         
         let requestModel = GrandConverter.convertToRequestModel(domain: request)
         
@@ -244,7 +260,9 @@ final class APIManager {
             fatalError("APIManager: updateCategory - ID can't be null")
         }
         
-        guard let url = URL(string: baseURL + "/api/Categories/\(id)") else { return }
+        guard let url = URL(string: baseURL + "/api/Categories/\(id)") else {
+            return
+        }
         
         let requestModel = GrandConverter.convertToRequestModel(domain: request)
         
@@ -271,7 +289,9 @@ final class APIManager {
     }
     
     func deleteCategory(categoryID: Int, completion: @escaping (Result<Void>) -> Void) {
-        guard let url = URL(string: baseURL + "/api/Categories/\(categoryID)") else { return }
+        guard let url = URL(string: baseURL + "/api/Categories/\(categoryID)") else {
+            return
+        }
         
         var urlRequst = URLRequest(url: url)
         urlRequst.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
@@ -296,7 +316,9 @@ final class APIManager {
     // MARK: - Currencies
     
     func getCurrencies(completion: @escaping (Result<[DomainCurrencyModel]>) -> Void) {
-        guard let url = URL(string: baseURL + "/api/Currencies") else { return }
+        guard let url = URL(string: baseURL + "/api/Currencies") else {
+            return
+        }
         
         let urlRequst = URLRequest(url: url)
         
@@ -325,7 +347,10 @@ final class APIManager {
     // MARK: - Operations
     
     func getOperations(completion: @escaping (Result<[DomainOperationModel]>) -> Void) {
-        guard var components = URLComponents(string: baseURL + "/api/Operations") else { return }
+        guard var components = URLComponents(string: baseURL + "/api/Operations") else {
+            return
+        }
+        
         components.queryItems = [
             URLQueryItem(name: "all", value: "true")
         ]
@@ -356,7 +381,9 @@ final class APIManager {
     }
     
     func deleteBudgetOperation(operationID: UInt, completion: @escaping (Result<Void>) -> Void) {
-        guard let url = URL(string: baseURL + "/api/Operations/Budget/\(operationID)") else { return }
+        guard let url = URL(string: baseURL + "/api/Operations/Budget/\(operationID)") else {
+            return
+        }
         
         var urlRequst = URLRequest(url: url)
         urlRequst.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
@@ -379,7 +406,9 @@ final class APIManager {
     }
 
     func createTransferOperation(request: DomainCreateUpdateTransferOperationModel, completion: @escaping (Result<Void>) -> Void) {
-        guard let url = URL(string: baseURL + "/api/Operations/Transfer") else { return }
+        guard let url = URL(string: baseURL + "/api/Operations/Transfer") else {
+            return
+        }
 
         let requestModel = GrandConverter.convertToRequestModel(domain: request)
 
@@ -406,7 +435,9 @@ final class APIManager {
     }
     
     func deleteTransferOperation(operationID: UInt, completion: @escaping (Result<Void>) -> Void) {
-        guard let url = URL(string: baseURL + "/api/Operations/Transfer/\(operationID)") else { return }
+        guard let url = URL(string: baseURL + "/api/Operations/Transfer/\(operationID)") else {
+            return
+        }
         
         var urlRequst = URLRequest(url: url)
         urlRequst.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
@@ -429,7 +460,9 @@ final class APIManager {
     }
     
     func deletePlanOperation(operationID: UInt, completion: @escaping (Result<Void>) -> Void) {
-        guard let url = URL(string: baseURL + "/api/Operations/Plan/\(operationID)") else { return }
+        guard let url = URL(string: baseURL + "/api/Operations/Plan/\(operationID)") else {
+            return
+        }
         
         var urlRequst = URLRequest(url: url)
         urlRequst.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
@@ -455,7 +488,9 @@ final class APIManager {
                               from: Date,
                               to: Date,
                               completion: @escaping (Result<[DomainCategoryReportModel]>) -> Void) {
-        guard let url = URL(string: baseURL + "/api/Reports/Chart/byCategories") else { return }
+        guard let url = URL(string: baseURL + "/api/Reports/Chart/byCategories") else {
+            return
+        }
 
         let requestModel = GrandConverter.convertToRequestModel(category: category, fromDate: from, toDate: to)
         var urlRequst = URLRequest(url: url)
@@ -480,7 +515,7 @@ final class APIManager {
                 completion(.success(operations))
             } catch {
                 print("decode error: \(error)")
-                assert(false, "getReportsByCategory decode error")
+                assertionFailure("getReportsByCategory decode error")
                 return completion(.error(APIError()))
             }
         }.resume()

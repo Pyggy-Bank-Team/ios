@@ -64,7 +64,8 @@ extension CategoryViewController {
 
 private extension CategoryViewController {
     
-    @objc func onSave(_ sender: UIBarButtonItem) {
+    @objc
+    func onSave(_ sender: UIBarButtonItem) {
         presenter.onSave()
     }
     

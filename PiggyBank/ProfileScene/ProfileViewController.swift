@@ -91,7 +91,8 @@ extension ProfileViewController: UITableViewDataSource {
 
 private extension ProfileViewController {
     
-    @objc func onSignOut(_ sender: UIBarButtonItem) {
+    @objc
+    func onSignOut(_ sender: UIBarButtonItem) {
         presenter.onSignOut()
     }
     

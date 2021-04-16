@@ -14,7 +14,9 @@ final class CategoriesPresenter {
     
     func onViewDidLoad() {
         getCategoriesUseCase.execute { [weak self] response in
-            guard let self = self else { return }
+            guard let self = self else {
+                return
+            }
             
             DispatchQueue.main.async {
                 if case let .success(items) = response {

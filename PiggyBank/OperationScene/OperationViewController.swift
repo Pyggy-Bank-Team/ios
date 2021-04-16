@@ -70,7 +70,7 @@ class OperationViewController: UIViewController {
         view.addSubview(dateLabel)
 
         if #available(iOS 14.0, *) {
-            //datePicker.preferredDatePickerStyle = .compact
+            // datePicker.preferredDatePickerStyle = .compact
         }
         datePicker.translatesAutoresizingMaskIntoConstraints = false
         datePicker.date = Date()
@@ -223,11 +223,13 @@ extension OperationViewController: FlexViewDelegate {
 
 private extension OperationViewController {
     
-    @objc func onBack(_ sender: UIButton) {
+    @objc
+    func onBack(_ sender: UIButton) {
         navigationController?.popViewController(animated: true)
     }
 
-    @objc func onCreate(_ sender: UIButton) {
+    @objc
+    func onCreate(_ sender: UIButton) {
         presenter.onCreate()
     }
 }

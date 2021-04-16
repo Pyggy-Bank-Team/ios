@@ -1,10 +1,12 @@
 import Foundation
 import UIKit
 
-final class GrandConverter {
+public enum GrandConverter {
     
     static func convertToViewModel(domainAccount: DomainAccountModel?) -> AccountViewModel? {
-        guard let account = domainAccount else { return nil }
+        guard let account = domainAccount else {
+            return nil
+        }
         
         return AccountViewModel(
             id: account.id!,
@@ -17,7 +19,9 @@ final class GrandConverter {
     }
     
     static func convertToViewModel(domainCategory: DomainCategoryModel?) -> CategoryViewModel? {
-        guard let category = domainCategory else { return nil }
+        guard let category = domainCategory else {
+            return nil
+        }
         
         return CategoryViewModel(
             id: category.id!,
@@ -27,7 +31,6 @@ final class GrandConverter {
             isArchived: category.isArchived
         )
     }
-    
     
     static func convertToViewModel(domainCurrency: DomainCurrencyModel) -> CurrencyViewModel {
         return CurrencyViewModel(code: domainCurrency.code, symbol: domainCurrency.symbol)

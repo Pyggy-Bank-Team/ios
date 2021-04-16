@@ -1,12 +1,12 @@
 import Foundation
 
-struct AccountsDTOs {
+enum AccountsDTOs {
     
-    struct ViewDidLoad {
+    enum ViewDidLoad {
         
         struct Request { }
         
-        struct Response {
+        enum Response {
             
             struct Title {
                 
@@ -35,7 +35,7 @@ struct AccountsDTOs {
         
     }
     
-    struct OnAdd {
+    enum OnAdd {
         
         struct Request {
             

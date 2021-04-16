@@ -123,7 +123,9 @@ extension CategoriesViewController: UICollectionViewDelegateFlowLayout {
 extension CategoriesViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard typeControl.selectedSegmentIndex >= 0 else { return 0 }
+        guard typeControl.selectedSegmentIndex >= 0 else {
+            return 0
+        }
         
         let selected = typeControl.selectedSegmentIndex
         
@@ -156,11 +158,13 @@ extension CategoriesViewController: UICollectionViewDataSource {
 
 private extension CategoriesViewController {
     
-    @objc func onAdd(_ sender: UIBarButtonItem) {
+    @objc
+    func onAdd(_ sender: UIBarButtonItem) {
         presenter.onAdd()
     }
     
-    @objc func onChangeType(_ sender: UISegmentedControl) {
+    @objc
+    func onChangeType(_ sender: UISegmentedControl) {
         collectionView.reloadData()
     }
     

@@ -3,9 +3,9 @@ import Foundation
 final class DomainCategoryModel {
 
     enum CategoryType: Int {
-        case undefined
-        case income
-        case outcome
+        case undefined = 0
+        case income = 1
+        case outcome = 2
     }
 
     let id: Int?

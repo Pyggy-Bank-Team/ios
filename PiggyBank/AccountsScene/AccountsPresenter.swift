@@ -15,8 +15,10 @@ final class AccountsPresenter {
     }
     
     func onViewDidLoad(request: AccountsDTOs.ViewDidLoad.Request) {
-        getAccountsUseCase.execute() { [weak self] response in
-            guard let self = self else { return }
+        getAccountsUseCase.execute { [weak self] response in
+            guard let self = self else {
+                return
+            }
             
             DispatchQueue.main.async {
                 if case let .success(items) = response {

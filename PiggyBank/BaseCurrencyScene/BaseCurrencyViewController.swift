@@ -78,7 +78,8 @@ extension BaseCurrencyViewController: UITableViewDataSource {
 
 private extension BaseCurrencyViewController {
     
-    @objc func onDone(_ sender: UIBarButtonItem) {
+    @objc
+    func onDone(_ sender: UIBarButtonItem) {
         presenter.onDone(indexPath: tableView.indexPathForSelectedRow ?? IndexPath(row: 0, section: 0))
     }
     

@@ -3,9 +3,9 @@ import Foundation
 final class DomainAccountModel {
     
     enum AccountType: Int {
-        case undefined
-        case cash
-        case card
+        case undefined = 0
+        case cash = 1
+        case card = 2
     }
 
     let id: Int?

@@ -3,10 +3,10 @@ import Foundation
 final class DomainOperationModel {
     
     enum OperationType: UInt {
-        case undefined
-        case budget
-        case transfer
-        case plan
+        case undefined = 0
+        case budget = 1
+        case transfer = 2
+        case plan = 3
     }
 
     let id: UInt

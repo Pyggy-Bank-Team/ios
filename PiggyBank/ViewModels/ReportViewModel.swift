@@ -5,7 +5,7 @@
 
 import UIKit
 
-final class ReportViewModel {
+public final class ReportViewModel {
 
     struct ReportCategory {
         let color: UIColor

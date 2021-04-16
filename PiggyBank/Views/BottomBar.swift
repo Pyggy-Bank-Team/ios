@@ -39,8 +39,6 @@ final class BottomBar: UIView {
         path.addLine(to: .init(x: 0, y: rect.height))
         path.fill()
         
-        
-        
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "add"), for: .normal)
         button.tintColor = .black

@@ -1,11 +1,11 @@
 import Foundation
 
-final class AccountViewModel {
+public final class AccountViewModel {
     
     enum AccountType: Int {
         
-        case cash
-        case card
+        case cash = 0
+        case card = 1
         
     }
     

@@ -207,9 +207,15 @@ extension CategoryView: UICollectionViewDataSource {
 
 private extension CategoryView {
     
-    @objc func onKeyboardChange(_ sender: Notification) {
-        guard !deleteButton.isHidden else { return }
-        guard let endFrame = (sender.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
+    @objc
+    func onKeyboardChange(_ sender: Notification) {
+        guard !deleteButton.isHidden else {
+            return
+        }
+        
+        guard let endFrame = (sender.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
+            return
+        }
         
         layoutIfNeeded()
         UIView.animate(withDuration: 0.3) {
@@ -218,7 +224,8 @@ private extension CategoryView {
         }
     }
     
-    @objc func onDelete(_ sender: UIButton) {
+    @objc
+    func onDelete(_ sender: UIButton) {
         onDelete?()
     }
     

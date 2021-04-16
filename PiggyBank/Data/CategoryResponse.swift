@@ -1,6 +1,6 @@
 import Foundation
 
-final class CategoryResponse: Codable {
+public final class CategoryResponse: Codable {
     
     let id: Int
     let title: String

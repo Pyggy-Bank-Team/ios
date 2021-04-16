@@ -26,7 +26,9 @@ final class OperationPresenter {
     }
 
     func onCreate() {
-        guard let view = view else { return }
+        guard let view = view else {
+            return
+        }
 
         let targetAccount = accounts[view.targetAccount]
         let sourceAccount = accounts[view.sourceAccount]

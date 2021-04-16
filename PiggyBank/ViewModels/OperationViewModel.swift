@@ -1,12 +1,12 @@
 import Foundation
 
-final class OperationViewModel {
+public final class OperationViewModel {
     
     enum OperationType: UInt {
         
         case budget = 1
-        case transfer
-        case plan
+        case transfer = 2
+        case plan = 3
         
     }
     

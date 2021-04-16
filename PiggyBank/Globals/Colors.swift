@@ -1,6 +1,6 @@
 import Foundation
 
-let COLORS = [
+public let COLORS = [
     "#ffb900",
     "#ff8c00",
     "#f7630c",

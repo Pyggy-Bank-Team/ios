@@ -1,6 +1,6 @@
 import UIKit
 
-final class CategoryCollectionCell: UICollectionViewCell {
+public final class CategoryCollectionCell: UICollectionViewCell {
     
     let titleLabel = UILabel()
     

@@ -6,7 +6,7 @@
 import UIKit
 import Charts
 
-final class ReportsViewController: UIViewController {
+public final class ReportsViewController: UIViewController {
     var presenter: ReportsPresenter!
 
     private lazy var startDateLabel: UILabel = {
@@ -66,7 +66,7 @@ final class ReportsViewController: UIViewController {
         return categoryList
     }()
 
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
 
         title = "Reports"
@@ -155,15 +155,15 @@ final class ReportsViewController: UIViewController {
 
 extension ReportsViewController: UITableViewDelegate, UITableViewDataSource {
 
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         41.0
     }
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         presenter.reportViewModel.categoryList.count
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
         let category = presenter.reportViewModel.categoryList[indexPath.row]
         cell.textLabel?.text = "\(category.name): \(category.amount)"
