@@ -7,7 +7,8 @@ import UIKit
 
 final class ReportsPresenter {
 
-    private(set) var reportViewModel = ReportViewModel(type: .outcome,
+    private(set) var reportViewModel = ReportViewModel(sign: "-",
+                                                       type: .outcome,
                                                        startDate: Calendar.current.date(byAdding: .year, value: -1, to: Date())!,
                                                        endDate: Calendar.current.date(byAdding: .year, value: 1, to: Date())!,
                                                        total: 0,
@@ -15,6 +16,10 @@ final class ReportsPresenter {
 
     private weak var view: ReportsViewController?
     private let getReportsByCategoryUseCase = GetReportsByCategoryUseCase()
+    private let typeToSign: [CategoryViewModel.CategoryType: String] = [
+        .outcome: "-",
+        .income: "+"
+    ]
 
     init(view: ReportsViewController) {
         self.view = view
@@ -32,6 +37,7 @@ final class ReportsPresenter {
 
     func onCategoryTypeChange(type: CategoryViewModel.CategoryType) {
         reportViewModel.type = type
+        reportViewModel.sign = typeToSign[type] ?? ""
         executeUseCase()
     }
 
