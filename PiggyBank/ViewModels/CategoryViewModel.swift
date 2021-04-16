@@ -3,10 +3,9 @@ import Foundation
 final class CategoryViewModel {
     
     enum CategoryType: Int {
-        
+        case undefined
         case income
         case outcome
-        
     }
     
     let id: Int

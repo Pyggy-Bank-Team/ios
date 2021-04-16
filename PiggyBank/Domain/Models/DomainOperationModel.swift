@@ -34,12 +34,8 @@ final class DomainOperationModel {
         toTitle: String?,
         isDeleted: Bool
     ) {
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "en_US_POSIX")
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS"
-        
         var planDateResult: Date?
-        if let plan = planDate, let date = formatter.date(from: plan) {
+        if let plan = planDate, let date = plan.dateFromString() {
             planDateResult = date
         }
 
@@ -49,7 +45,7 @@ final class DomainOperationModel {
         self.accountTitle = accountTitle
         self.comment = comment
         self.type = OperationType(rawValue: type)!
-        self.createdOn = formatter.date(from: createdOn)!
+        self.createdOn = createdOn.dateFromString() ?? Date()
         self.planDate = planDateResult
         self.fromTitle = fromTitle
         self.toTitle = toTitle

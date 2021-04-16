@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 final class GrandConverter {
     
@@ -45,12 +46,11 @@ final class GrandConverter {
     }
 
     static func convertToRequestModel(domain: DomainCreateUpdateTransferOperationModel) -> CreateUpdateTransferOperationRequest {
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "en_US_POSIX")
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS"
-        let date = formatter.string(from: domain.createdOn)
-
-        return CreateUpdateTransferOperationRequest(createdOn: date, from: domain.from, to: domain.to, amount: domain.amount, comment: domain.comment)
+        CreateUpdateTransferOperationRequest(createdOn: domain.createdOn.stringFromDate(),
+                                             from: domain.from,
+                                             to: domain.to,
+                                             amount: domain.amount,
+                                             comment: domain.comment)
     }
     
     static func convertToDomainModel(authResponse: UserCredentialsResponse) -> DomainAuthModel {
@@ -74,7 +74,15 @@ final class GrandConverter {
             isArchived: domain.isArchived
         )
     }
-    
+
+    static func convertToRequestModel(category: DomainCategoryModel.CategoryType,
+                                      fromDate: Date,
+                                      toDate: Date) -> ReportsByCategoryRequest {
+        ReportsByCategoryRequest(type: category.rawValue,
+                                 from: fromDate.stringFromDate(),
+                                 to: toDate.stringFromDate())
+    }
+
     static func convertToDomain(response: AccountResponse) -> DomainAccountModel {
         return DomainAccountModel(
             id: response.id,
@@ -111,7 +119,14 @@ final class GrandConverter {
                                     toTitle: response.toAcount?.title,
                                     isDeleted: response.isDeleted)
     }
-    
+
+    static func convertToDomain(response: ReportsByCategoryResponse) -> DomainCategoryReportModel {
+        DomainCategoryReportModel(categoryId: response.categoryId,
+                                   categoryTitle: response.categoryTitle,
+                                   categoryHexColor: response.categoryHexColor,
+                                   amount: Int64(response.amount))
+    }
+
     static func convertToViewModel(operationModel: DomainOperationModel) -> OperationViewModel {
         let type: OperationViewModel.OperationType
         
@@ -128,5 +143,10 @@ final class GrandConverter {
         
         return OperationViewModel(id: operationModel.id, type: type)
     }
-    
+
+    static func convertToViewModel(domainModel: DomainCategoryReportModel) -> ReportViewModel.ReportCategory {
+        ReportViewModel.ReportCategory(color: UIColor(hexString: domainModel.categoryHexColor),
+                                       name: domainModel.categoryTitle,
+                                       amount: domainModel.amount)
+    }
 }

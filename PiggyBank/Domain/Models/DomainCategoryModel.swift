@@ -3,12 +3,11 @@ import Foundation
 final class DomainCategoryModel {
 
     enum CategoryType: Int {
-        
+        case undefined
         case income
         case outcome
-        
     }
-    
+
     let id: Int?
     let title: String
     let hexColor: String
