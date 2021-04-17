@@ -196,19 +196,19 @@ extension AccountViewController: UITextFieldDelegate {
 extension AccountViewController {
     
     var accountType: Int {
-        return typeControl.selectedSegmentIndex
+        typeControl.selectedSegmentIndex
     }
     
     var accountTitle: String {
-        return titleField.text ?? ""
+        titleField.text ?? ""
     }
     
     var accountBalance: Double {
-        return Double(balanceField.text ?? "") ?? 0.0
+        Double(balanceField.text ?? "") ?? 0.0
     }
     
     var accountArchived: Bool {
-        return archiveSwitch.isOn
+        archiveSwitch.isOn
     }
     
 }

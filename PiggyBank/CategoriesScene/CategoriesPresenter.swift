@@ -45,7 +45,7 @@ final class CategoriesPresenter {
 extension CategoriesPresenter {
     
     func getCategory(at id: Int) -> DomainCategoryModel {
-        return categories.first { $0.id == id }!
+        categories.first { $0.id == id }!
     }
     
 }

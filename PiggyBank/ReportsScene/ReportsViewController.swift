@@ -3,8 +3,8 @@
 //  PiggyBank
 //
 
-import UIKit
 import Charts
+import UIKit
 
 final class ReportsViewController: UIViewController {
     var presenter: ReportsPresenter!
@@ -86,12 +86,14 @@ final class ReportsViewController: UIViewController {
         categoryList.allowsSelection = false
         categoryList.separatorStyle = .none
         categoryList.showsVerticalScrollIndicator = false
-        categoryList.register(CategoryOperationInfoTableViewCell.self,
-                              forCellReuseIdentifier: CategoryOperationInfoTableViewCell.identifier)
+        categoryList.register(
+            CategoryOperationInfoTableViewCell.self,
+            forCellReuseIdentifier: CategoryOperationInfoTableViewCell.identifier
+        )
         return categoryList
     }()
 
-    public override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
 
         title = "Reports"
@@ -200,9 +202,10 @@ extension ReportsViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CategoryOperationInfoTableViewCell.identifier,
-                                                       for: indexPath) as? CategoryOperationInfoTableViewCell
-        else {
+        guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: CategoryOperationInfoTableViewCell.identifier,
+                for: indexPath
+        ) as? CategoryOperationInfoTableViewCell else {
             return UITableViewCell()
         }
 

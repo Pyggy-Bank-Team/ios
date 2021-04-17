@@ -107,7 +107,7 @@ extension CategoriesViewController: UICollectionViewDelegateFlowLayout {
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
-        return CGSize(width: collectionView.bounds.width * 0.8, height: 60)
+        CGSize(width: collectionView.bounds.width * 0.8, height: 60)
     }
     
     func collectionView(
@@ -115,7 +115,7 @@ extension CategoriesViewController: UICollectionViewDelegateFlowLayout {
         layout collectionViewLayout: UICollectionViewLayout,
         minimumLineSpacingForSectionAt section: Int
     ) -> CGFloat {
-        return 20
+        20
     }
     
 }

@@ -130,7 +130,7 @@ final class CategoryView: UIView {
             archiveSwitch.isOn = category.isArchived
             colorView.backgroundColor = UIColor(hexString: category.hexColor)
             
-            let index = COLORS.firstIndex(of: category.hexColor)!
+            let index = kCOLORS.firstIndex(of: category.hexColor)!
 //            collectionView.reloadData()
 //            collectionView.layoutIfNeeded()
             collectionView.selectItem(at: IndexPath(row: index, section: 0), animated: true, scrollPosition: .right)
@@ -140,7 +140,7 @@ final class CategoryView: UIView {
             deleteButton.isHidden = true
             titleField.becomeFirstResponder()
             archiveSwitch.isOn = false
-            colorView.backgroundColor = UIColor(hexString: COLORS.first!)
+            colorView.backgroundColor = UIColor(hexString: kCOLORS.first!)
         }
     }
     
@@ -162,7 +162,7 @@ extension CategoryView: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         UIView.animate(withDuration: 0.3) {
-            self.colorView.backgroundColor = UIColor(hexString: COLORS[indexPath.row])
+            self.colorView.backgroundColor = UIColor(hexString: kCOLORS[indexPath.row])
         }
     }
     
@@ -175,7 +175,7 @@ extension CategoryView: UICollectionViewDelegateFlowLayout {
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
-        return CGSize(width: 50, height: 50)
+        CGSize(width: 50, height: 50)
     }
     
     func collectionView(
@@ -183,7 +183,7 @@ extension CategoryView: UICollectionViewDelegateFlowLayout {
         layout collectionViewLayout: UICollectionViewLayout,
         minimumLineSpacingForSectionAt section: Int
     ) -> CGFloat {
-        return 20
+        20
     }
     
 }
@@ -191,12 +191,12 @@ extension CategoryView: UICollectionViewDelegateFlowLayout {
 extension CategoryView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return COLORS.count
+        kCOLORS.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
-        let color = COLORS[indexPath.row]
+        let color = kCOLORS[indexPath.row]
         
         cell.backgroundColor = UIColor(hexString: color)
         

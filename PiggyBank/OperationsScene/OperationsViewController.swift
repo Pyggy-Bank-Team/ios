@@ -110,7 +110,7 @@ extension OperationsViewController: UITableViewDelegate {
 extension OperationsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return operations.count
+        operations.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

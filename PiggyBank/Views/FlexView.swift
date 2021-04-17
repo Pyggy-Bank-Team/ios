@@ -59,7 +59,7 @@ public final class FlexView: UIView {
                 let origin = CGPoint(x: lastFrame.minX + lastFrame.width + labelLeftMargin, y: lastFrame.minY)
                 newLabel.frame = CGRect(origin: origin, size: CGSize(width: labelWidth, height: labelHeight))
             } else {
-                result = result + labelHeight + labelTopMargin
+                result += labelHeight + labelTopMargin
                 newLabel.frame = CGRect(x: 0, y: lastFrame.maxY + labelTopMargin, width: labelWidth, height: labelHeight)
             }
 
@@ -92,7 +92,7 @@ public final class FlexView: UIView {
         }
     }
 
-    public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override public func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let location = touches.first?.location(in: self) else {
             return
         }

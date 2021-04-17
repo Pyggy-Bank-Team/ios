@@ -9,7 +9,8 @@ class ProfileViewController: UIViewController {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             title: "Sign out",
-            style: .plain, target: self,
+            style: .plain,
+            target: self,
             action: #selector(onSignOut(_:))
         )
         
@@ -63,7 +64,7 @@ extension ProfileViewController: UITableViewDelegate {
 extension ProfileViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        4
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

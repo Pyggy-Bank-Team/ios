@@ -49,7 +49,7 @@ final class OperationsPresenter {
 extension OperationsPresenter {
     
     func getOperation(at id: UInt) -> DomainOperationModel {
-        return operations.first { $0.id == id }!
+        operations.first { $0.id == id }!
     }
     
 }

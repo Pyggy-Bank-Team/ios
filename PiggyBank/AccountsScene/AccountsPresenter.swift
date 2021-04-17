@@ -85,7 +85,7 @@ final class AccountsPresenter {
 extension AccountsPresenter {
     
     func getAccount(at id: Int) -> DomainAccountModel {
-        return accounts.first { $0.id == id }!
+        accounts.first { $0.id == id }!
     }
     
 }

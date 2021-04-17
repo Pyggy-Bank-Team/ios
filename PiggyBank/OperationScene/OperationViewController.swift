@@ -190,19 +190,19 @@ extension OperationViewController {
     }
 
     var sourceAccount: Int {
-        return selectedFrom ?? 0
+        selectedFrom ?? 0
     }
 
     var targetAccount: Int {
-        return selectedTo ?? 0
+        selectedTo ?? 0
     }
 
     var transferDate: Date {
-        return datePicker.date
+        datePicker.date
     }
 
     var total: Int {
-        return Int(totalField.text ?? "") ?? 0
+        Int(totalField.text ?? "") ?? 0
     }
 }
 

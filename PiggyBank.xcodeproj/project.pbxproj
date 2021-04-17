@@ -22,7 +22,7 @@
 		711350312622061C00572CB9 /* ReportsByCategoryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711350302622061C00572CB9 /* ReportsByCategoryResponse.swift */; };
 		711350342622075E00572CB9 /* DomainCategoryReportModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711350332622075E00572CB9 /* DomainCategoryReportModel.swift */; };
 		7113503C2625CB5000572CB9 /* ReportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7113503B2625CB5000572CB9 /* ReportViewModel.swift */; };
-		7113503F2626141E00572CB9 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7113503E2626141E00572CB9 /* DateFormatter.swift */; };
+		7113503F2626141E00572CB9 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7113503E2626141E00572CB9 /* Date.swift */; };
 		7113505426272C8A00572CB9 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 7113505326272C8A00572CB9 /* Charts */; };
 		7152CFA62629628A00096331 /* CategoryOperationInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7152CFA52629628A00096331 /* CategoryOperationInfoTableViewCell.swift */; };
 		9104C13524FBC705003BF041 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C13424FBC705003BF041 /* ProfileViewController.swift */; };
@@ -76,6 +76,7 @@
 		9166BC96256A2EFC00A23196 /* OperationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9166BC95256A2EFC00A23196 /* OperationViewController.swift */; };
 		9166BC98256A2F0E00A23196 /* OperationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9166BC97256A2F0E00A23196 /* OperationPresenter.swift */; };
 		9166BC9A256A2F1E00A23196 /* OperationSceneAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9166BC99256A2F1E00A23196 /* OperationSceneAssembly.swift */; };
+		9175DB92262A891200480957 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9175DB91262A891200480957 /* String.swift */; };
 		91957A782515D7730027249A /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91957A772515D7720027249A /* CategoryView.swift */; };
 		91957A7A2531717D0027249A /* OperationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91957A792531717D0027249A /* OperationResponse.swift */; };
 		91957A7C253171A00027249A /* PaginatedResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91957A7B253171A00027249A /* PaginatedResponse.swift */; };
@@ -128,7 +129,7 @@
 		711350302622061C00572CB9 /* ReportsByCategoryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsByCategoryResponse.swift; sourceTree = "<group>"; };
 		711350332622075E00572CB9 /* DomainCategoryReportModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainCategoryReportModel.swift; sourceTree = "<group>"; };
 		7113503B2625CB5000572CB9 /* ReportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewModel.swift; sourceTree = "<group>"; };
-		7113503E2626141E00572CB9 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
+		7113503E2626141E00572CB9 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		7152CFA52629628A00096331 /* CategoryOperationInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryOperationInfoTableViewCell.swift; sourceTree = "<group>"; };
 		9104C13424FBC705003BF041 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		9104C13624FBC86B003BF041 /* CategoriesAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesAssembly.swift; sourceTree = "<group>"; };
@@ -181,6 +182,7 @@
 		9166BC95256A2EFC00A23196 /* OperationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationViewController.swift; sourceTree = "<group>"; };
 		9166BC97256A2F0E00A23196 /* OperationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationPresenter.swift; sourceTree = "<group>"; };
 		9166BC99256A2F1E00A23196 /* OperationSceneAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationSceneAssembly.swift; sourceTree = "<group>"; };
+		9175DB91262A891200480957 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		91957A772515D7720027249A /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		91957A792531717D0027249A /* OperationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationResponse.swift; sourceTree = "<group>"; };
 		91957A7B253171A00027249A /* PaginatedResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginatedResponse.swift; sourceTree = "<group>"; };
@@ -329,7 +331,8 @@
 				9104C21F25147874003BF041 /* UIColor.swift */,
 				3CC950CC256A714C0074C7B6 /* UIImage.swift */,
 				3CC950CF256A75450074C7B6 /* UISegmentedControl.swift */,
-				7113503E2626141E00572CB9 /* DateFormatter.swift */,
+				7113503E2626141E00572CB9 /* Date.swift */,
+				9175DB91262A891200480957 /* String.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -641,7 +644,7 @@
 				711350342622075E00572CB9 /* DomainCategoryReportModel.swift in Sources */,
 				9104C189250DF76D003BF041 /* AuthPresenter.swift in Sources */,
 				9104C181250DE01F003BF041 /* DomainAccountModel.swift in Sources */,
-				7113503F2626141E00572CB9 /* DateFormatter.swift in Sources */,
+				7113503F2626141E00572CB9 /* Date.swift in Sources */,
 				9104C13524FBC705003BF041 /* ProfileViewController.swift in Sources */,
 				3C15C549257385D7005E209B /* CreateUpdateTransferOperationUseCase.swift in Sources */,
 				9104C1AA250F2428003BF041 /* SaveUserCredentialsUseCase.swift in Sources */,
@@ -689,6 +692,7 @@
 				9104C194250E1C96003BF041 /* CurrencyResponse.swift in Sources */,
 				91A85DA924ABDDA400B7A630 /* AppDelegate.swift in Sources */,
 				9104C14124FBD86D003BF041 /* CategoryViewModel.swift in Sources */,
+				9175DB92262A891200480957 /* String.swift in Sources */,
 				9104C1AE250F29F8003BF041 /* ProfilePresenter.swift in Sources */,
 				711350282621C3B900572CB9 /* ReportsSceneAssembly.swift in Sources */,
 				9104C1B2250F2B92003BF041 /* DeleteUserCredentialsUseCase.swift in Sources */,
