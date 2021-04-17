@@ -1,7 +1,7 @@
 import UIKit
 
 final class BottomBar: UIView {
-
+    
     override func draw(_ rect: CGRect) {
         let path = UIBezierPath()
         
@@ -31,25 +31,44 @@ final class BottomBar: UIView {
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "add"), for: .normal)
         button.tintColor = .black
-        button.backgroundColor = .systemGreen
+        button.backgroundColor = UIColor(hexString: "#00B294")
         button.frame = CGRect(x: (frame.width / 2) - (realButtonWidth / 2),
                               y: -(realButtonWidth / 2),
                               width: realButtonWidth,
                               height: realButtonWidth)
         button.layer.cornerRadius = button.frame.width / 2
         addSubview(button)
-    }
-    
-    override func layoutSubviews() {
-//        let view = UIView(frame: .init(x: 10, y: 0, width: 20, height: bounds.height))
-//        view.backgroundColor = .red
-//        addSubview(view)
         
-        let button = UIButton(type: .system)
-        button.setImage(#imageLiteral(resourceName: "ico_bar_accounts_24"), for: .normal)
-        button.setTitle("Accounts", for: .normal)
-        button.tintColor = .black
-        button.frame = CGRect(origin: .zero, size: CGSize(width: 24, height: 24))
-        addSubview(button)
+        // Buttons
+        
+        let leftStackView = UIStackView()
+        leftStackView.axis = .horizontal
+        leftStackView.distribution = .fillEqually
+        leftStackView.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(leftStackView)
+        
+        let rightStackView = UIStackView()
+        rightStackView.axis = .horizontal
+        rightStackView.distribution = .fillEqually
+        rightStackView.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(rightStackView)
+        
+        leftStackView.addArrangedSubview(MenuButton(image: #imageLiteral(resourceName: "ico_bar_accounts_24"), title: "Accounts"))
+        leftStackView.addArrangedSubview(MenuButton(image: #imageLiteral(resourceName: "ico_bar_reports_24"), title: "Reports"))
+        
+        rightStackView.addArrangedSubview(MenuButton(image: #imageLiteral(resourceName: "ico_bar_operations_24"), title: "Operations"))
+        rightStackView.addArrangedSubview(MenuButton(image: #imageLiteral(resourceName: "ico_bar_profile_24"), title: "Profile"))
+        
+        NSLayoutConstraint.activate([
+            leftStackView.topAnchor.constraint(equalTo: topAnchor),
+            leftStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            leftStackView.leftAnchor.constraint(equalTo: leftAnchor),
+            leftStackView.widthAnchor.constraint(equalToConstant: halfBeforeFirstArc),
+            
+            rightStackView.topAnchor.constraint(equalTo: topAnchor),
+            rightStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            rightStackView.rightAnchor.constraint(equalTo: rightAnchor),
+            rightStackView.widthAnchor.constraint(equalToConstant: halfBeforeFirstArc)
+        ])
     }
 }
