@@ -93,7 +93,7 @@ private extension AuthViewController {
             actionButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: 40),
             
             hintButton.centerXAnchor.constraint(equalTo: actionButton.centerXAnchor),
-            hintButton.topAnchor.constraint(equalTo: actionButton.bottomAnchor, constant: 15),
+            hintButton.topAnchor.constraint(equalTo: actionButton.bottomAnchor, constant: 15)
         ])
     }
     

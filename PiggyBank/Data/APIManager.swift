@@ -128,7 +128,7 @@ public final class APIManager {
         print("LOGGER: Start for \(urlRequst.url!)")
         URLSession
             .shared
-            .dataTask(with: urlRequst) { data, response, error in
+            .dataTask(with: urlRequst) { _, response, error in
                 print("LOGGER: Finish for \(urlRequst.url!)")
                 
                 guard let httpResponse = response as? HTTPURLResponse else {
@@ -164,7 +164,7 @@ public final class APIManager {
         print("LOGGER: Start for \(urlRequst.url!)")
         URLSession
             .shared
-            .dataTask(with: urlRequst) { data, response, error in
+            .dataTask(with: urlRequst) { _, response, error in
                 print("LOGGER: Finish for \(urlRequst.url!)")
                 
                 guard let httpResponse = response as? HTTPURLResponse else {
@@ -196,7 +196,7 @@ public final class APIManager {
         print("LOGGER: Start for \(urlRequst.url!)")
         URLSession
             .shared
-            .dataTask(with: urlRequst) { data, response, error in
+            .dataTask(with: urlRequst) { _, response, error in
                 print("LOGGER: Finish for \(urlRequst.url!)")
                 
                 guard let httpResponse = response as? HTTPURLResponse else {
@@ -263,7 +263,7 @@ public final class APIManager {
         print("LOGGER: Start for \(urlRequst.url!)")
         URLSession
             .shared
-            .dataTask(with: urlRequst) { data, response, error in
+            .dataTask(with: urlRequst) { _, response, error in
                 print("LOGGER: Finish for \(urlRequst.url!)")
                 
                 guard let httpResponse = response as? HTTPURLResponse else {
@@ -299,7 +299,7 @@ public final class APIManager {
         print("LOGGER: Start for \(urlRequst.url!)")
         URLSession
             .shared
-            .dataTask(with: urlRequst) { data, response, error in
+            .dataTask(with: urlRequst) { _, response, error in
                 print("LOGGER: Finish for \(urlRequst.url!)")
                 
                 guard let httpResponse = response as? HTTPURLResponse else {
@@ -327,7 +327,7 @@ public final class APIManager {
         print("LOGGER: Start for \(urlRequst.url!)")
         URLSession
             .shared
-            .dataTask(with: urlRequst) { data, response, error in
+            .dataTask(with: urlRequst) { _, response, error in
                 print("LOGGER: Finish for \(urlRequst.url!)")
                 
                 guard let httpResponse = response as? HTTPURLResponse else {
@@ -409,7 +409,7 @@ public final class APIManager {
                     completion(.success(categories))
                 } catch {
                     print("decode error: \(error)")
-                    assertionFailure("getOperations decode error");
+                    assertionFailure("getOperations decode error")
                     return completion(.error(APIError()))
                 }
             }
@@ -428,7 +428,7 @@ public final class APIManager {
         print("LOGGER: Start for \(urlRequst.url!)")
         URLSession
             .shared
-            .dataTask(with: urlRequst) { data, response, error in
+            .dataTask(with: urlRequst) { _, response, error in
                 print("LOGGER: Finish for \(urlRequst.url!)")
                 
                 guard let httpResponse = response as? HTTPURLResponse else {
@@ -460,7 +460,7 @@ public final class APIManager {
         print("LOGGER: Start for \(urlRequst.url!)")
         URLSession
             .shared
-            .dataTask(with: urlRequst) { data, response, error in
+            .dataTask(with: urlRequst) { _, response, error in
                 print("LOGGER: Finish for \(urlRequst.url!)")
 
                 guard let httpResponse = response as? HTTPURLResponse else {
@@ -488,7 +488,7 @@ public final class APIManager {
         print("LOGGER: Start for \(urlRequst.url!)")
         URLSession
             .shared
-            .dataTask(with: urlRequst) { data, response, error in
+            .dataTask(with: urlRequst) { _, response, error in
                 print("LOGGER: Finish for \(urlRequst.url!)")
                 
                 guard let httpResponse = response as? HTTPURLResponse else {
@@ -516,7 +516,7 @@ public final class APIManager {
         print("LOGGER: Start for \(urlRequst.url!)")
         URLSession
             .shared
-            .dataTask(with: urlRequst) { data, response, error in
+            .dataTask(with: urlRequst) { _, response, error in
                 print("LOGGER: Finish for \(urlRequst.url!)")
                 
                 guard let httpResponse = response as? HTTPURLResponse else {

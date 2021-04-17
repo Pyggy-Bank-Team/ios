@@ -108,7 +108,7 @@ final class CategoryView: UIView {
             deleteButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
             deleteButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
             bottomConstraint,
-            deleteButton.heightAnchor.constraint(equalToConstant: 40),
+            deleteButton.heightAnchor.constraint(equalToConstant: 40)
         ])
         
         NotificationCenter.default.addObserver(

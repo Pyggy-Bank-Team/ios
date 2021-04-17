@@ -115,23 +115,23 @@ public enum GrandConverter {
     
     static func convertToDomain(response: OperationResponse) -> DomainOperationModel {
         DomainOperationModel(id: response.id,
-                                    categoryHexColor: response.category?.hexColor,
-                                    amount: response.amount,
-                                    accountTitle: response.account.title,
-                                    comment: response.comment,
-                                    type: response.type,
-                                    createdOn: response.date,
-                                    planDate: nil,
-                                    fromTitle: response.account.title,
-                                    toTitle: response.toAcount?.title,
-                                    isDeleted: response.isDeleted)
+                             categoryHexColor: response.category?.hexColor,
+                             amount: response.amount,
+                             accountTitle: response.account.title,
+                             comment: response.comment,
+                             type: response.type,
+                             createdOn: response.date,
+                             planDate: nil,
+                             fromTitle: response.account.title,
+                             toTitle: response.toAcount?.title,
+                             isDeleted: response.isDeleted)
     }
 
     static func convertToDomain(response: ReportsByCategoryResponse) -> DomainCategoryReportModel {
         DomainCategoryReportModel(categoryId: response.categoryId,
-                                   categoryTitle: response.categoryTitle,
-                                   categoryHexColor: response.categoryHexColor,
-                                   amount: Int64(response.amount))
+                                  categoryTitle: response.categoryTitle,
+                                  categoryHexColor: response.categoryHexColor,
+                                  amount: Int64(response.amount))
     }
 
     static func convertToViewModel(operationModel: DomainOperationModel) -> OperationViewModel {
