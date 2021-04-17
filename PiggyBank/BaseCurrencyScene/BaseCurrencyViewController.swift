@@ -30,7 +30,7 @@ final class BaseCurrencyViewController: UIViewController {
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
         ])
         
         presenter.loadCurrencies()
@@ -50,7 +50,7 @@ final class BaseCurrencyViewController: UIViewController {
 extension BaseCurrencyViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        for (index, _) in currencies.enumerated() where index != indexPath.row {
+        for index in currencies.indices where index != indexPath.row {
             tableView.cellForRow(at: IndexPath(row: index, section: 0))?.accessoryType = .none
         }
         
@@ -62,7 +62,7 @@ extension BaseCurrencyViewController: UITableViewDelegate {
 extension BaseCurrencyViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return currencies.count
+        currencies.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -78,7 +78,8 @@ extension BaseCurrencyViewController: UITableViewDataSource {
 
 private extension BaseCurrencyViewController {
     
-    @objc func onDone(_ sender: UIBarButtonItem) {
+    @objc
+    func onDone(_ sender: UIBarButtonItem) {
         presenter.onDone(indexPath: tableView.indexPathForSelectedRow ?? IndexPath(row: 0, section: 0))
     }
     

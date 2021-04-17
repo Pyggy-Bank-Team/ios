@@ -113,7 +113,7 @@ final class AccountViewController: UIViewController {
             deleteButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             deleteButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             deleteButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            deleteButton.heightAnchor.constraint(equalToConstant: 40),
+            deleteButton.heightAnchor.constraint(equalToConstant: 40)
         ])
         
         presenter.loadData()
@@ -166,11 +166,13 @@ final class AccountViewController: UIViewController {
 
 private extension AccountViewController {
     
-    @objc func onSave(_ sender: UIBarButtonItem) {
+    @objc
+    func onSave(_ sender: UIBarButtonItem) {
         presenter.onSave()
     }
     
-    @objc func onDelete(_ sender: UIButton) {
+    @objc
+    func onDelete(_ sender: UIButton) {
         presenter.onDelete()
     }
     
@@ -179,7 +181,9 @@ private extension AccountViewController {
 extension AccountViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        guard textField == titleField else { return true }
+        guard textField == titleField else {
+            return true
+        }
         
         titleField.resignFirstResponder()
         balanceField.becomeFirstResponder()
@@ -192,19 +196,19 @@ extension AccountViewController: UITextFieldDelegate {
 extension AccountViewController {
     
     var accountType: Int {
-        return typeControl.selectedSegmentIndex
+        typeControl.selectedSegmentIndex
     }
     
     var accountTitle: String {
-        return titleField.text ?? ""
+        titleField.text ?? ""
     }
     
     var accountBalance: Double {
-        return Double(balanceField.text ?? "") ?? 0.0
+        Double(balanceField.text ?? "") ?? 0.0
     }
     
     var accountArchived: Bool {
-        return archiveSwitch.isOn
+        archiveSwitch.isOn
     }
     
 }

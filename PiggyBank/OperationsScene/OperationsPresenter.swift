@@ -14,8 +14,10 @@ final class OperationsPresenter {
     }
     
     func onViewDidLoad() {
-        getOperationsUseCase.execute() { [weak self] response in
-            guard let self = self else { return }
+        getOperationsUseCase.execute { [weak self] response in
+            guard let self = self else {
+                return
+            }
             
             DispatchQueue.main.async {
                 if case let .success(items) = response {
@@ -47,8 +49,7 @@ final class OperationsPresenter {
 extension OperationsPresenter {
     
     func getOperation(at id: UInt) -> DomainOperationModel {
-        return operations.first { $0.id == id }!
+        operations.first { $0.id == id }!
     }
     
 }
-

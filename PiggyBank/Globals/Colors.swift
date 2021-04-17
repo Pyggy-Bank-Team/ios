@@ -1,6 +1,6 @@
 import Foundation
 
-let COLORS = [
+public let kCOLORS = [
     "#ffb900",
     "#ff8c00",
     "#f7630c",
@@ -32,5 +32,5 @@ let COLORS = [
     "#515c6b",
     "#7e735f",
     "#847545",
-    "#525e54",
+    "#525e54"
 ]

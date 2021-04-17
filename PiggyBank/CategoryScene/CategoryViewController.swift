@@ -44,27 +44,28 @@ final class CategoryViewController: UIViewController {
 extension CategoryViewController {
     
     var categoryType: Int {
-        return (view as! CategoryView).typeControl.selectedSegmentIndex
+        (view as! CategoryView).typeControl.selectedSegmentIndex
     }
     
     var categoryTitle: String {
-        return (view as! CategoryView).titleField.text ?? ""
+        (view as! CategoryView).titleField.text ?? ""
     }
     
     var categoryArchived: Bool {
-        return (view as! CategoryView).archiveSwitch.isOn
+        (view as! CategoryView).archiveSwitch.isOn
     }
     
     var categoryHex: String {
         let indexPath = (view as! CategoryView).collectionView.indexPathsForSelectedItems?.first ?? IndexPath(row: 0, section: 0)
-        return COLORS[indexPath.row]
+        return kCOLORS[indexPath.row]
     }
     
 }
 
 private extension CategoryViewController {
     
-    @objc func onSave(_ sender: UIBarButtonItem) {
+    @objc
+    func onSave(_ sender: UIBarButtonItem) {
         presenter.onSave()
     }
     

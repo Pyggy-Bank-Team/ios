@@ -3,11 +3,10 @@
 //  PiggyBank
 //
 
-import UIKit
 import Charts
+import UIKit
 
 final class ReportsViewController: UIViewController {
-
     var presenter: ReportsPresenter!
 
     private lazy var startDateLabel: UILabel = {
@@ -70,7 +69,6 @@ final class ReportsViewController: UIViewController {
         return totalStackView
     }()
 
-
     private let dividerView: UIView = {
         let dividerView = UIView()
         dividerView.translatesAutoresizingMaskIntoConstraints = false
@@ -87,8 +85,10 @@ final class ReportsViewController: UIViewController {
         categoryList.allowsSelection = false
         categoryList.separatorStyle = .none
         categoryList.showsVerticalScrollIndicator = false
-        categoryList.register(CategoryOperationInfoTableViewCell.self,
-                              forCellReuseIdentifier: CategoryOperationInfoTableViewCell.identifier)
+        categoryList.register(
+            CategoryOperationInfoTableViewCell.self,
+            forCellReuseIdentifier: CategoryOperationInfoTableViewCell.identifier
+        )
         return categoryList
     }()
 
@@ -113,7 +113,7 @@ final class ReportsViewController: UIViewController {
         NSLayoutConstraint.activate([
             categoryControl.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.8),
             categoryControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            categoryControl.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            categoryControl.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor)
         ])
     }
 
@@ -122,7 +122,7 @@ final class ReportsViewController: UIViewController {
         NSLayoutConstraint.activate([
             startDateLabel.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
             startDateLabel.topAnchor.constraint(equalTo: categoryControl.bottomAnchor, constant: 20),
-            startDateLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            startDateLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor)
         ])
     }
 
@@ -131,7 +131,7 @@ final class ReportsViewController: UIViewController {
         NSLayoutConstraint.activate([
             endDateLabel.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
             endDateLabel.topAnchor.constraint(equalTo: startDateLabel.bottomAnchor),
-            endDateLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            endDateLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor)
         ])
     }
 
@@ -141,7 +141,7 @@ final class ReportsViewController: UIViewController {
             chartView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, constant: -148.0),
             chartView.heightAnchor.constraint(equalTo: chartView.widthAnchor),
             chartView.topAnchor.constraint(equalTo: endDateLabel.bottomAnchor, constant: 20),
-            chartView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            chartView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor)
         ])
     }
 
@@ -150,7 +150,7 @@ final class ReportsViewController: UIViewController {
         NSLayoutConstraint.activate([
             totalStackView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, constant: -50),
             totalStackView.topAnchor.constraint(equalTo: chartView.bottomAnchor, constant: 20),
-            totalStackView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            totalStackView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor)
         ])
     }
 
@@ -159,7 +159,7 @@ final class ReportsViewController: UIViewController {
         NSLayoutConstraint.activate([
             dividerView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, constant: -50),
             dividerView.topAnchor.constraint(equalTo: totalStackView.bottomAnchor, constant: 14.0),
-            dividerView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            dividerView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor)
         ])
     }
 
@@ -196,14 +196,15 @@ extension ReportsViewController: UITableViewDelegate, UITableViewDataSource {
         62.0
     }
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         presenter.reportViewModel.categoryList.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CategoryOperationInfoTableViewCell.identifier,
-                                                       for: indexPath) as? CategoryOperationInfoTableViewCell
-        else {
+        guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: CategoryOperationInfoTableViewCell.identifier,
+                for: indexPath
+        ) as? CategoryOperationInfoTableViewCell else {
             return UITableViewCell()
         }
 
@@ -226,10 +227,13 @@ extension ReportsViewController {
 
     private func updateChartData() {
         var colors: [UIColor] = []
-        let entries = presenter.reportViewModel.categoryList.map({ category -> PieChartDataEntry in
-            colors.append(category.color)
-            return PieChartDataEntry(value: Double(category.amount))
-        })
+        let entries = presenter
+            .reportViewModel
+            .categoryList
+            .map { category -> PieChartDataEntry in
+                colors.append(category.color)
+                return PieChartDataEntry(value: Double(category.amount))
+            }
 
         let set = PieChartDataSet(entries: entries, label: "")
         set.colors = colors

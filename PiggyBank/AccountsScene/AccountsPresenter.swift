@@ -15,8 +15,10 @@ final class AccountsPresenter {
     }
     
     func onViewDidLoad(request: AccountsDTOs.ViewDidLoad.Request) {
-        getAccountsUseCase.execute() { [weak self] response in
-            guard let self = self else { return }
+        getAccountsUseCase.execute { [weak self] response in
+            guard let self = self else {
+                return
+            }
             
             DispatchQueue.main.async {
                 if case let .success(items) = response {
@@ -83,7 +85,7 @@ final class AccountsPresenter {
 extension AccountsPresenter {
     
     func getAccount(at id: Int) -> DomainAccountModel {
-        return accounts.first { $0.id == id }!
+        accounts.first { $0.id == id }!
     }
     
 }

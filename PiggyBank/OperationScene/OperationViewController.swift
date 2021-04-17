@@ -70,7 +70,7 @@ class OperationViewController: UIViewController {
         view.addSubview(dateLabel)
 
         if #available(iOS 14.0, *) {
-            //datePicker.preferredDatePickerStyle = .compact
+            // datePicker.preferredDatePickerStyle = .compact
         }
         datePicker.translatesAutoresizingMaskIntoConstraints = false
         datePicker.date = Date()
@@ -190,19 +190,19 @@ extension OperationViewController {
     }
 
     var sourceAccount: Int {
-        return selectedFrom ?? 0
+        selectedFrom ?? 0
     }
 
     var targetAccount: Int {
-        return selectedTo ?? 0
+        selectedTo ?? 0
     }
 
     var transferDate: Date {
-        return datePicker.date
+        datePicker.date
     }
 
     var total: Int {
-        return Int(totalField.text ?? "") ?? 0
+        Int(totalField.text ?? "") ?? 0
     }
 }
 
@@ -223,11 +223,13 @@ extension OperationViewController: FlexViewDelegate {
 
 private extension OperationViewController {
     
-    @objc func onBack(_ sender: UIButton) {
+    @objc
+    func onBack(_ sender: UIButton) {
         navigationController?.popViewController(animated: true)
     }
 
-    @objc func onCreate(_ sender: UIButton) {
+    @objc
+    func onCreate(_ sender: UIButton) {
         presenter.onCreate()
     }
 }

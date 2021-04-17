@@ -53,7 +53,7 @@ final class OperationsViewController: UIViewController {
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: menuView.safeAreaLayoutGuide.topAnchor, constant: -20),
-            tableView.topAnchor.constraint(equalTo: typeControl.safeAreaLayoutGuide.bottomAnchor, constant: 20),
+            tableView.topAnchor.constraint(equalTo: typeControl.safeAreaLayoutGuide.bottomAnchor, constant: 20)
         ])
         
         presenter.onViewDidLoad()
@@ -110,7 +110,7 @@ extension OperationsViewController: UITableViewDelegate {
 extension OperationsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return operations.count
+        operations.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -142,7 +142,8 @@ extension OperationsViewController: UITableViewDataSource {
 
 private extension OperationsViewController {
     
-    @objc func onAdd(_ sender: UIBarButtonItem) {
+    @objc
+    func onAdd(_ sender: UIBarButtonItem) {
         navigationController?.pushViewController(OperationSceneAssembly().build(), animated: true)
     }
 }

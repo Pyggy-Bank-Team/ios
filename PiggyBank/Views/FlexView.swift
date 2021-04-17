@@ -5,7 +5,7 @@ protocol FlexViewDelegate: AnyObject {
     func flexView(_ flexView: FlexView, didSelectRowAt index: Int)
 }
 
-final class FlexView: UIView {
+public final class FlexView: UIView {
 
     private var activityIndicator = UIActivityIndicatorView(style: .gray)
 
@@ -59,7 +59,7 @@ final class FlexView: UIView {
                 let origin = CGPoint(x: lastFrame.minX + lastFrame.width + labelLeftMargin, y: lastFrame.minY)
                 newLabel.frame = CGRect(origin: origin, size: CGSize(width: labelWidth, height: labelHeight))
             } else {
-                result = result + labelHeight + labelTopMargin
+                result += labelHeight + labelTopMargin
                 newLabel.frame = CGRect(x: 0, y: lastFrame.maxY + labelTopMargin, width: labelWidth, height: labelHeight)
             }
 
@@ -92,9 +92,14 @@ final class FlexView: UIView {
         }
     }
 
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let location = touches.first?.location(in: self) else { return }
-        guard let targetLabel = allLabels.first(where: { $0.frame.contains(location) }) else { return }
+    override public func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let location = touches.first?.location(in: self) else {
+            return
+        }
+        
+        guard let targetLabel = allLabels.first(where: { $0.frame.contains(location) }) else {
+            return
+        }
 
         select(view: targetLabel)
     }

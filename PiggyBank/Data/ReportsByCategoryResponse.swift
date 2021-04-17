@@ -3,7 +3,7 @@
 //  PiggyBank
 //
 
-struct ReportsByCategoryResponse: Codable {
+public struct ReportsByCategoryResponse: Codable {
     let categoryId: Int
     let categoryTitle: String
     let categoryHexColor: String

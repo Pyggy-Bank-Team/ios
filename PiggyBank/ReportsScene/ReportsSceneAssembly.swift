@@ -5,7 +5,7 @@
 
 import UIKit
 
-final class ReportsSceneAssembly {
+public final class ReportsSceneAssembly {
     func build() -> UIViewController {
         let viewController = ReportsViewController()
         let presenter = ReportsPresenter(view: viewController)

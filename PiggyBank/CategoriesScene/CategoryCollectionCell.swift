@@ -1,6 +1,6 @@
 import UIKit
 
-final class CategoryCollectionCell: UICollectionViewCell {
+public final class CategoryCollectionCell: UICollectionViewCell {
     
     let titleLabel = UILabel()
     
@@ -14,7 +14,7 @@ final class CategoryCollectionCell: UICollectionViewCell {
         
         NSLayoutConstraint.activate([
             titleLabel.centerXAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.centerXAnchor),
-            titleLabel.centerYAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.centerYAnchor),
+            titleLabel.centerYAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.centerYAnchor)
         ])
     }
     

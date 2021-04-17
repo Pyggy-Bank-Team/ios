@@ -54,7 +54,9 @@ final class AccountPresenter {
         )
         
         createUpdateAccountUseCase.execute(request: createUpdateDomain) { [weak self] result in
-            guard let self = self else { return }
+            guard let self = self else {
+                return
+            }
             
             if case .success = result {
                 DispatchQueue.main.async {
@@ -70,7 +72,9 @@ final class AccountPresenter {
         }
         
         deleteAccountUseCase.execute(accountID: id) { [weak self] result in
-            guard let self = self else { return }
+            guard let self = self else {
+                return
+            }
             
             if case .success = result {
                 DispatchQueue.main.async {

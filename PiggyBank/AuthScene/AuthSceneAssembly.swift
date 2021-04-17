@@ -7,7 +7,7 @@ enum AuthSceneMode {
     
 }
 
-final class AuthSceneAssembly {
+public final class AuthSceneAssembly {
     
     let mode: AuthSceneMode
     

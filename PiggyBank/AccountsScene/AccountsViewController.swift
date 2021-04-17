@@ -92,11 +92,13 @@ final class AccountsViewController: UIViewController {
 
 private extension AccountsViewController {
     
-    @objc func onAdd(_ sender: UIBarButtonItem) {
+    @objc
+    func onAdd(_ sender: UIBarButtonItem) {
         presenter.onAdd()
     }
     
-    @objc func onChangeType(_ sender: UISegmentedControl) {
+    @objc
+    func onChangeType(_ sender: UISegmentedControl) {
         tableView.reloadData()
     }
     
@@ -130,7 +132,6 @@ extension AccountsViewController: UITableViewDelegate {
         deleteAction.image = #imageLiteral(resourceName: "delete")
         actions.append(deleteAction)
         
-        
         let archiveAction = UIContextualAction(style: .normal, title: "") { [weak self] _, _, complete in
             self?.presenter.onArchiveAccount(id: account.id)
             complete(true)
@@ -159,7 +160,9 @@ extension AccountsViewController: UITableViewDelegate {
 extension AccountsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard typeControl.selectedSegmentIndex >= 0 else { return 0 }
+        guard typeControl.selectedSegmentIndex >= 0 else {
+            return 0
+        }
         
         let selected = typeControl.selectedSegmentIndex
         

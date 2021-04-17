@@ -1,8 +1,8 @@
 import Foundation
 
-struct UseCasesDTOs {
+enum UseCasesDTOs {
     
-    struct SignUp {
+    enum SignUp {
         
         struct Request {
             
@@ -19,7 +19,7 @@ struct UseCasesDTOs {
         
     }
     
-    struct SignIn {
+    enum SignIn {
         
         struct Request {
             
@@ -36,7 +36,7 @@ struct UseCasesDTOs {
         
     }
     
-    struct GetAccounts {
+    enum GetAccounts {
         
         struct Request { }
         
@@ -59,7 +59,7 @@ struct UseCasesDTOs {
         
     }
     
-    struct CreateAccount {
+    enum CreateAccount {
         
         struct Request {
             
@@ -75,7 +75,7 @@ struct UseCasesDTOs {
         
     }
     
-    struct ArchiveAccount {
+    enum ArchiveAccount {
         
         struct Request {
             
@@ -91,7 +91,7 @@ struct UseCasesDTOs {
         
     }
     
-    struct DeleteAccount {
+    enum DeleteAccount {
         
         struct Request {
             
@@ -107,7 +107,7 @@ struct UseCasesDTOs {
         
     }
     
-    struct RenameAccount {
+    enum RenameAccount {
         
         struct Request {
             
@@ -134,7 +134,7 @@ struct UseCasesDTOs {
         
     }
     
-    struct GetCategories {
+    enum GetCategories {
         
         struct Request { }
         
@@ -145,7 +145,7 @@ struct UseCasesDTOs {
                 enum CategoryType: Int {
                     
                     case income = 0
-                    case outcome
+                    case outcome = 1
                     
                 }
                 
@@ -171,7 +171,7 @@ struct UseCasesDTOs {
         
     }
     
-    struct CreateCategory {
+    enum CreateCategory {
         
         struct Request {
             
@@ -189,7 +189,7 @@ struct UseCasesDTOs {
         
     }
     
-    struct ArchiveCategory {
+    enum ArchiveCategory {
         
         struct Request {
             
@@ -205,7 +205,7 @@ struct UseCasesDTOs {
         
     }
     
-    struct DeleteCategory {
+    enum DeleteCategory {
         
         struct Request {
             
@@ -221,7 +221,7 @@ struct UseCasesDTOs {
         
     }
     
-    struct ChangeCategory {
+    enum ChangeCategory {
         
         struct Request {
             

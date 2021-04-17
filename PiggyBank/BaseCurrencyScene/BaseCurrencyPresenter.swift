@@ -20,7 +20,9 @@ final class BaseCurrencyPresenter {
     
     func loadCurrencies() {
         getCurrenciesUseCase.execute { [weak self] result in
-            guard let self = self else { return }
+            guard let self = self else {
+                return
+            }
             
             if case let .success(currenciesDomainModels) = result {
                 self.currencies = currenciesDomainModels
@@ -39,7 +41,9 @@ final class BaseCurrencyPresenter {
         let signUpModel = DomainSignUpModel(nickname: initialNickname, password: initialPassword, currency: currency.code)
         
         signUpUseCase.execute(domainSignUpModel: signUpModel) { [weak self] result in
-            guard let self = self else { return }
+            guard let self = self else {
+                return
+            }
             
             if case .success = result {
                 DispatchQueue.main.async {

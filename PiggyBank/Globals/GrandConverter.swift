@@ -1,10 +1,12 @@
 import Foundation
 import UIKit
 
-final class GrandConverter {
+public enum GrandConverter {
     
     static func convertToViewModel(domainAccount: DomainAccountModel?) -> AccountViewModel? {
-        guard let account = domainAccount else { return nil }
+        guard let account = domainAccount else {
+            return nil
+        }
         
         return AccountViewModel(
             id: account.id!,
@@ -17,7 +19,9 @@ final class GrandConverter {
     }
     
     static func convertToViewModel(domainCategory: DomainCategoryModel?) -> CategoryViewModel? {
-        guard let category = domainCategory else { return nil }
+        guard let category = domainCategory else {
+            return nil
+        }
         
         return CategoryViewModel(
             id: category.id!,
@@ -28,37 +32,38 @@ final class GrandConverter {
         )
     }
     
-    
     static func convertToViewModel(domainCurrency: DomainCurrencyModel) -> CurrencyViewModel {
-        return CurrencyViewModel(code: domainCurrency.code, symbol: domainCurrency.symbol)
+        CurrencyViewModel(code: domainCurrency.code, symbol: domainCurrency.symbol)
     }
     
     static func convertToDomainModel(currencyResponse: CurrencyResponse) -> DomainCurrencyModel {
-        return DomainCurrencyModel(code: currencyResponse.code, symbol: currencyResponse.symbol)
+        DomainCurrencyModel(code: currencyResponse.code, symbol: currencyResponse.symbol)
     }
     
     static func convertToRequestModel(domain: DomainSignUpModel) -> SignUpRequest {
-        return SignUpRequest(nickname: domain.nickname, password: domain.password, currency: domain.currency)
+        SignUpRequest(nickname: domain.nickname, password: domain.password, currency: domain.currency)
     }
 
     static func convertToRequestModel(domain: DomainSignInModel) -> SignInRequest {
-        return SignInRequest(nickname: domain.nickname, password: domain.password)
+        SignInRequest(nickname: domain.nickname, password: domain.password)
     }
 
     static func convertToRequestModel(domain: DomainCreateUpdateTransferOperationModel) -> CreateUpdateTransferOperationRequest {
-        CreateUpdateTransferOperationRequest(createdOn: domain.createdOn.stringFromDate(),
-                                             from: domain.from,
-                                             to: domain.to,
-                                             amount: domain.amount,
-                                             comment: domain.comment)
+        CreateUpdateTransferOperationRequest(
+            createdOn: domain.createdOn.stringFromDate(),
+            from: domain.from,
+            to: domain.to,
+            amount: domain.amount,
+            comment: domain.comment
+        )
     }
     
     static func convertToDomainModel(authResponse: UserCredentialsResponse) -> DomainAuthModel {
-        return DomainAuthModel(accessToken: authResponse.accessToken)
+        DomainAuthModel(accessToken: authResponse.accessToken)
     }
     
     static func convertToRequestModel(domain: DomainAccountModel) -> CreateUpdateAccountRequest {
-        return CreateUpdateAccountRequest(
+        CreateUpdateAccountRequest(
             type: domain.type.rawValue,
             title: domain.title,
             balance: domain.balance,
@@ -67,7 +72,7 @@ final class GrandConverter {
     }
     
     static func convertToRequestModel(domain: DomainCategoryModel) -> CreateUpdateCategoryRequest {
-        return CreateUpdateCategoryRequest(
+        CreateUpdateCategoryRequest(
             title: domain.title,
             hexColor: domain.hexColor,
             type: domain.type.rawValue,
@@ -75,16 +80,18 @@ final class GrandConverter {
         )
     }
 
-    static func convertToRequestModel(category: DomainCategoryModel.CategoryType,
-                                      fromDate: Date,
-                                      toDate: Date) -> ReportsByCategoryRequest {
+    static func convertToRequestModel(
+        category: DomainCategoryModel.CategoryType,
+        fromDate: Date,
+        toDate: Date
+    ) -> ReportsByCategoryRequest {
         ReportsByCategoryRequest(type: category.rawValue,
                                  from: fromDate.stringFromDate(),
                                  to: toDate.stringFromDate())
     }
 
     static func convertToDomain(response: AccountResponse) -> DomainAccountModel {
-        return DomainAccountModel(
+        DomainAccountModel(
             id: response.id,
             type: response.type,
             title: response.title,
@@ -96,7 +103,7 @@ final class GrandConverter {
     }
     
     static func convertToDomain(response: CategoryResponse) -> DomainCategoryModel {
-        return DomainCategoryModel(
+        DomainCategoryModel(
             id: response.id,
             title: response.title,
             hexColor: response.hexColor,
@@ -107,24 +114,24 @@ final class GrandConverter {
     }
     
     static func convertToDomain(response: OperationResponse) -> DomainOperationModel {
-        return DomainOperationModel(id: response.id,
-                                    categoryHexColor: response.category?.hexColor,
-                                    amount: response.amount,
-                                    accountTitle: response.account.title,
-                                    comment: response.comment,
-                                    type: response.type,
-                                    createdOn: response.date,
-                                    planDate: nil,
-                                    fromTitle: response.account.title,
-                                    toTitle: response.toAcount?.title,
-                                    isDeleted: response.isDeleted)
+        DomainOperationModel(id: response.id,
+                             categoryHexColor: response.category?.hexColor,
+                             amount: response.amount,
+                             accountTitle: response.account.title,
+                             comment: response.comment,
+                             type: response.type,
+                             createdOn: response.date,
+                             planDate: nil,
+                             fromTitle: response.account.title,
+                             toTitle: response.toAcount?.title,
+                             isDeleted: response.isDeleted)
     }
 
     static func convertToDomain(response: ReportsByCategoryResponse) -> DomainCategoryReportModel {
         DomainCategoryReportModel(categoryId: response.categoryId,
-                                   categoryTitle: response.categoryTitle,
-                                   categoryHexColor: response.categoryHexColor,
-                                   amount: Int64(response.amount))
+                                  categoryTitle: response.categoryTitle,
+                                  categoryHexColor: response.categoryHexColor,
+                                  amount: Int64(response.amount))
     }
 
     static func convertToViewModel(operationModel: DomainOperationModel) -> OperationViewModel {

@@ -46,7 +46,9 @@ final class CategoryPresenter {
         )
 
         createUpdateCategoryUseCase.execute(request: createUpdateDomain) { [weak self] result in
-            guard let self = self else { return }
+            guard let self = self else {
+                return
+            }
 
             if case .success = result {
                 DispatchQueue.main.async {
@@ -62,7 +64,9 @@ final class CategoryPresenter {
         }
         
         deleteCategoryUseCase.execute(categoryID: id) { [weak self] result in
-            guard let self = self else { return }
+            guard let self = self else {
+                return
+            }
             
             if case .success = result {
                 DispatchQueue.main.async {
@@ -73,4 +77,3 @@ final class CategoryPresenter {
     }
     
 }
-

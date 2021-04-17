@@ -1,3 +1,3 @@
 import Foundation
 
-let CREDENTIALS_STORE_KEY = "piggy.credentials"
+let kCREDENTIALS_STORE_KEY = "piggy.credentials"

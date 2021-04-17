@@ -14,7 +14,9 @@ final class CategoriesPresenter {
     
     func onViewDidLoad() {
         getCategoriesUseCase.execute { [weak self] response in
-            guard let self = self else { return }
+            guard let self = self else {
+                return
+            }
             
             DispatchQueue.main.async {
                 if case let .success(items) = response {
@@ -43,7 +45,7 @@ final class CategoriesPresenter {
 extension CategoriesPresenter {
     
     func getCategory(at id: Int) -> DomainCategoryModel {
-        return categories.first { $0.id == id }!
+        categories.first { $0.id == id }!
     }
     
 }

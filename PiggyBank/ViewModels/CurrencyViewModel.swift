@@ -1,6 +1,6 @@
 import Foundation
 
-final class CurrencyViewModel {
+public final class CurrencyViewModel {
     
     let code: String
     let symbol: String

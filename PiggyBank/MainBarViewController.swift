@@ -1,8 +1,8 @@
 import UIKit
 
-final class MainBarViewController: UITabBarController {
+public final class MainBarViewController: UITabBarController {
 
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         
         let accountsViewController = AccountsAssembly().build()
@@ -16,14 +16,9 @@ final class MainBarViewController: UITabBarController {
         ], animated: false)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
-    
-    
-    
-    
-
 }

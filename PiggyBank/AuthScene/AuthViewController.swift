@@ -93,15 +93,17 @@ private extension AuthViewController {
             actionButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: 40),
             
             hintButton.centerXAnchor.constraint(equalTo: actionButton.centerXAnchor),
-            hintButton.topAnchor.constraint(equalTo: actionButton.bottomAnchor, constant: 15),
+            hintButton.topAnchor.constraint(equalTo: actionButton.bottomAnchor, constant: 15)
         ])
     }
     
-    @objc func onPrimaryAction(_ sender: UIButton) {
+    @objc
+    func onPrimaryAction(_ sender: UIButton) {
         presenter.onPrimaryAction(username: nicknameField.text ?? "", password: passwordField.text ?? "")
     }
     
-    @objc func onSecondaryAction(_ sender: UIButton) {
+    @objc
+    func onSecondaryAction(_ sender: UIButton) {
         if mode == .signIn {
             presenter.onSecondaryAction()
         } else {

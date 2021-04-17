@@ -3,7 +3,7 @@
 //  PiggyBank
 //
 
-final class DomainCategoryReportModel {
+public final class DomainCategoryReportModel {
     let categoryId: Int
     let categoryTitle: String
     let categoryHexColor: String
