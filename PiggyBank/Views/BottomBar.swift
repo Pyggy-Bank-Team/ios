@@ -41,16 +41,10 @@ final class BottomBar: UIView {
         
         // Buttons
         
-        let leftStackView = UIStackView()
-        leftStackView.axis = .horizontal
-        leftStackView.distribution = .fillEqually
-        leftStackView.translatesAutoresizingMaskIntoConstraints = false
+        let leftStackView = stackView()
         addSubview(leftStackView)
         
-        let rightStackView = UIStackView()
-        rightStackView.axis = .horizontal
-        rightStackView.distribution = .fillEqually
-        rightStackView.translatesAutoresizingMaskIntoConstraints = false
+        let rightStackView = stackView()
         addSubview(rightStackView)
         
         leftStackView.addArrangedSubview(MenuButton(image: #imageLiteral(resourceName: "ico_bar_accounts_24"), title: "Accounts"))
@@ -70,5 +64,18 @@ final class BottomBar: UIView {
             rightStackView.rightAnchor.constraint(equalTo: rightAnchor),
             rightStackView.widthAnchor.constraint(equalToConstant: halfBeforeFirstArc)
         ])
+    }
+}
+
+private extension BottomBar {
+    
+    func stackView() -> UIStackView {
+        let stackView = UIStackView()
+        
+        stackView.axis = .horizontal
+        stackView.distribution = .fillEqually
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return stackView
     }
 }
