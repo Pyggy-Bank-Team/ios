@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "Chart-pie.pdf",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
