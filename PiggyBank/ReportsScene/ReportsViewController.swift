@@ -34,10 +34,16 @@ final class ReportsViewController: UIViewController {
         1: .income
     ]
 
-    private lazy var categoryControl: UISegmentedControl = {
-        let categoryControl = UISegmentedControl(items: ["Outcome", "Income"])
+    private lazy var categoryControl: PiggySegmentedControl = {
+        let controlFrame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 50, height: 28.0)
+        let categoryControl = PiggySegmentedControl(frame: controlFrame)
         categoryControl.translatesAutoresizingMaskIntoConstraints = false
-        categoryControl.selectedSegmentIndex = 0
+        categoryControl.setSegmentedWith(items: ["Outcome", "Income"])
+        categoryControl.padding = -2.0
+        categoryControl.titlesFont = .systemFont(ofSize: 16.0, weight: .regular)
+        categoryControl.textColor = UIColor(hexString: "#4E4B66")
+        categoryControl.selectedTextColor = UIColor(hexString: "#0063B1")
+        categoryControl.thumbViewColor = UIColor(hexString: "#0063B1")
         categoryControl.addTarget(self, action: #selector(onCategoryChange), for: .valueChanged)
         return categoryControl
     }()
@@ -111,7 +117,7 @@ final class ReportsViewController: UIViewController {
     private func configureCategoryControl() {
         view.addSubview(categoryControl)
         NSLayoutConstraint.activate([
-            categoryControl.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.8),
+            categoryControl.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, constant: -50.0),
             categoryControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             categoryControl.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor)
         ])
@@ -174,8 +180,8 @@ final class ReportsViewController: UIViewController {
     }
 
     @objc
-    private func onCategoryChange(sender: UISegmentedControl) {
-        let index = sender.selectedSegmentIndex
+    private func onCategoryChange(sender: UIButton) {
+        let index = categoryControl.selectedSegmentIndex
         presenter.onCategoryTypeChange(type: controlIndexToCategoryType[index] ?? .outcome)
     }
 
