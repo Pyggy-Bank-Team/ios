@@ -25,6 +25,7 @@
 		7113503F2626141E00572CB9 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7113503E2626141E00572CB9 /* Date.swift */; };
 		7113505426272C8A00572CB9 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 7113505326272C8A00572CB9 /* Charts */; };
 		7152CFA62629628A00096331 /* CategoryOperationInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7152CFA52629628A00096331 /* CategoryOperationInfoTableViewCell.swift */; };
+		71E5D7BC262C832F002A9827 /* DatePickerDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E5D7BB262C832F002A9827 /* DatePickerDialog.swift */; };
 		9104C13524FBC705003BF041 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C13424FBC705003BF041 /* ProfileViewController.swift */; };
 		9104C13724FBC86B003BF041 /* CategoriesAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C13624FBC86B003BF041 /* CategoriesAssembly.swift */; };
 		9104C13924FBCEF3003BF041 /* CategoryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C13824FBCEF3003BF041 /* CategoryResponse.swift */; };
@@ -132,6 +133,7 @@
 		7113503B2625CB5000572CB9 /* ReportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewModel.swift; sourceTree = "<group>"; };
 		7113503E2626141E00572CB9 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		7152CFA52629628A00096331 /* CategoryOperationInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryOperationInfoTableViewCell.swift; sourceTree = "<group>"; };
+		71E5D7BB262C832F002A9827 /* DatePickerDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerDialog.swift; sourceTree = "<group>"; };
 		9104C13424FBC705003BF041 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		9104C13624FBC86B003BF041 /* CategoriesAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesAssembly.swift; sourceTree = "<group>"; };
 		9104C13824FBCEF3003BF041 /* CategoryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryResponse.swift; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 				3C247C3F2572A21A00658BC4 /* FlexView.swift */,
 				910DEEB32574A50F0053A2E0 /* BottomBar.swift */,
 				7152CFA52629628A00096331 /* CategoryOperationInfoTableViewCell.swift */,
+				71E5D7BB262C832F002A9827 /* DatePickerDialog.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -676,6 +679,7 @@
 				9104C1AC250F2539003BF041 /* DomainSignInModel.swift in Sources */,
 				91A85DE224B4C50300B7A630 /* UseCasesDTOs.swift in Sources */,
 				91A85DFA24CD229800B7A630 /* CreateUpdateAccountUseCase.swift in Sources */,
+				71E5D7BC262C832F002A9827 /* DatePickerDialog.swift in Sources */,
 				91C26FA22515C0E300C999BE /* CategorySceneAssembly.swift in Sources */,
 				91C26FA42515CF7700C999BE /* Colors.swift in Sources */,
 				9104C192250E1B5E003BF041 /* DomainCurrencyModel.swift in Sources */,

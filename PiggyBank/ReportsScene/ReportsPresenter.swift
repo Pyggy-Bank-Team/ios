@@ -26,7 +26,7 @@ public final class ReportsPresenter {
 
     func onIntervalChange(fromDate: Date, toDate: Date) {
         reportViewModel.startDate = fromDate
-        reportViewModel.endDate = toDate
+        reportViewModel.endDate = fromDate > toDate ? fromDate : toDate
         executeUseCase()
     }
 
