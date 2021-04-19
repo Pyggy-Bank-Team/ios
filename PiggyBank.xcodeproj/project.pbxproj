@@ -26,6 +26,7 @@
 		7113505426272C8A00572CB9 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 7113505326272C8A00572CB9 /* Charts */; };
 		7152CFA62629628A00096331 /* CategoryOperationInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7152CFA52629628A00096331 /* CategoryOperationInfoTableViewCell.swift */; };
 		719C433F262B5AE8004C92F3 /* PiggySegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719C433E262B5AE8004C92F3 /* PiggySegmentedControl.swift */; };
+		71E5D7BC262C832F002A9827 /* DatePickerDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E5D7BB262C832F002A9827 /* DatePickerDialog.swift */; };
 		9104C13524FBC705003BF041 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C13424FBC705003BF041 /* ProfileViewController.swift */; };
 		9104C13724FBC86B003BF041 /* CategoriesAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C13624FBC86B003BF041 /* CategoriesAssembly.swift */; };
 		9104C13924FBCEF3003BF041 /* CategoryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C13824FBCEF3003BF041 /* CategoryResponse.swift */; };
@@ -87,6 +88,7 @@
 		91957A8525318D000027249A /* OperationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91957A8425318D000027249A /* OperationViewModel.swift */; };
 		91957A8725318D580027249A /* OperationsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91957A8625318D580027249A /* OperationsPresenter.swift */; };
 		91957A8925318F3A0027249A /* OperationsSceneAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91957A8825318F3A0027249A /* OperationsSceneAssembly.swift */; };
+		91A39C68262B49AF00A44080 /* MenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A39C67262B49AF00A44080 /* MenuButton.swift */; };
 		91A85DA924ABDDA400B7A630 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DA824ABDDA400B7A630 /* AppDelegate.swift */; };
 		91A85DB224ABDDA800B7A630 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91A85DB124ABDDA800B7A630 /* Assets.xcassets */; };
 		91A85DB524ABDDA800B7A630 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91A85DB324ABDDA800B7A630 /* LaunchScreen.storyboard */; };
@@ -133,6 +135,7 @@
 		7113503E2626141E00572CB9 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		7152CFA52629628A00096331 /* CategoryOperationInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryOperationInfoTableViewCell.swift; sourceTree = "<group>"; };
 		719C433E262B5AE8004C92F3 /* PiggySegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiggySegmentedControl.swift; sourceTree = "<group>"; };
+		71E5D7BB262C832F002A9827 /* DatePickerDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerDialog.swift; sourceTree = "<group>"; };
 		9104C13424FBC705003BF041 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		9104C13624FBC86B003BF041 /* CategoriesAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesAssembly.swift; sourceTree = "<group>"; };
 		9104C13824FBCEF3003BF041 /* CategoryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryResponse.swift; sourceTree = "<group>"; };
@@ -194,6 +197,7 @@
 		91957A8425318D000027249A /* OperationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationViewModel.swift; sourceTree = "<group>"; };
 		91957A8625318D580027249A /* OperationsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationsPresenter.swift; sourceTree = "<group>"; };
 		91957A8825318F3A0027249A /* OperationsSceneAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationsSceneAssembly.swift; sourceTree = "<group>"; };
+		91A39C67262B49AF00A44080 /* MenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButton.swift; sourceTree = "<group>"; };
 		91A85DA524ABDDA400B7A630 /* PiggyBank.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PiggyBank.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		91A85DA824ABDDA400B7A630 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		91A85DB124ABDDA800B7A630 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -238,10 +242,12 @@
 		3C247C3E2572A20100658BC4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				91A39C66262B499C00A44080 /* Menu */,
 				3C247C3F2572A21A00658BC4 /* FlexView.swift */,
 				910DEEB32574A50F0053A2E0 /* BottomBar.swift */,
 				7152CFA52629628A00096331 /* CategoryOperationInfoTableViewCell.swift */,
 				719C433E262B5AE8004C92F3 /* PiggySegmentedControl.swift */,
+				71E5D7BB262C832F002A9827 /* DatePickerDialog.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -358,6 +364,14 @@
 				91957A8825318F3A0027249A /* OperationsSceneAssembly.swift */,
 			);
 			path = OperationsScene;
+			sourceTree = "<group>";
+		};
+		91A39C66262B499C00A44080 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				91A39C67262B49AF00A44080 /* MenuButton.swift */,
+			);
+			path = Menu;
 			sourceTree = "<group>";
 		};
 		91A85D9C24ABDDA400B7A630 = {
@@ -646,6 +660,7 @@
 				91A85DF424CB385400B7A630 /* AccountResponse.swift in Sources */,
 				711350342622075E00572CB9 /* DomainCategoryReportModel.swift in Sources */,
 				9104C189250DF76D003BF041 /* AuthPresenter.swift in Sources */,
+				91A39C68262B49AF00A44080 /* MenuButton.swift in Sources */,
 				9104C181250DE01F003BF041 /* DomainAccountModel.swift in Sources */,
 				7113503F2626141E00572CB9 /* Date.swift in Sources */,
 				9104C13524FBC705003BF041 /* ProfileViewController.swift in Sources */,
@@ -667,6 +682,7 @@
 				9104C1AC250F2539003BF041 /* DomainSignInModel.swift in Sources */,
 				91A85DE224B4C50300B7A630 /* UseCasesDTOs.swift in Sources */,
 				91A85DFA24CD229800B7A630 /* CreateUpdateAccountUseCase.swift in Sources */,
+				71E5D7BC262C832F002A9827 /* DatePickerDialog.swift in Sources */,
 				91C26FA22515C0E300C999BE /* CategorySceneAssembly.swift in Sources */,
 				91C26FA42515CF7700C999BE /* Colors.swift in Sources */,
 				9104C192250E1B5E003BF041 /* DomainCurrencyModel.swift in Sources */,

@@ -9,11 +9,40 @@ import UIKit
 final class ReportsViewController: UIViewController {
     var presenter: ReportsPresenter!
 
+    private lazy var headerStackView: UIStackView = {
+        let headerStackView = UIStackView(arrangedSubviews: [screenTitle, startDateLabel, dashLabel, endDateLabel])
+        headerStackView.translatesAutoresizingMaskIntoConstraints = false
+        headerStackView.isUserInteractionEnabled = true
+        return headerStackView
+    }()
+
+    private lazy var screenTitle: UILabel = {
+        let screenTitle = UILabel()
+        screenTitle.translatesAutoresizingMaskIntoConstraints = false
+        screenTitle.text = "Reports"
+        screenTitle.font = .systemFont(ofSize: 30.0, weight: .semibold)
+        screenTitle.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        return screenTitle
+    }()
+
+    private lazy var dashLabel: UILabel = {
+        let dashLabel = UILabel()
+        dashLabel.translatesAutoresizingMaskIntoConstraints = false
+        dashLabel.text = " — "
+        dashLabel.font = .systemFont(ofSize: 14.0, weight: .regular)
+        dashLabel.textColor = UIColor(hexString: "#14142B")
+        dashLabel.setContentHuggingPriority(.required, for: .horizontal)
+        return dashLabel
+    }()
+
     private lazy var startDateLabel: UILabel = {
         let startDateLabel = UILabel()
         startDateLabel.translatesAutoresizingMaskIntoConstraints = false
-        startDateLabel.text = presenter.reportViewModel.startDate.stringFromDate(format: "yyyy-MM-dd")
-        startDateLabel.textAlignment = .center
+        startDateLabel.attributedText = getUnderlinedStringForDate(presenter.reportViewModel.startDate)
+        startDateLabel.font = .systemFont(ofSize: 14.0, weight: .regular)
+        startDateLabel.textColor = UIColor(hexString: "#14142B")
+        startDateLabel.setContentHuggingPriority(.required, for: .horizontal)
+        startDateLabel.isUserInteractionEnabled = true
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onStartDatePressed))
         startDateLabel.addGestureRecognizer(gestureRecognizer)
         return startDateLabel
@@ -22,8 +51,11 @@ final class ReportsViewController: UIViewController {
     private lazy var endDateLabel: UILabel = {
         let endDateLabel = UILabel()
         endDateLabel.translatesAutoresizingMaskIntoConstraints = false
-        endDateLabel.text = presenter.reportViewModel.endDate.stringFromDate(format: "yyyy-MM-dd")
-        endDateLabel.textAlignment = .center
+        endDateLabel.attributedText = getUnderlinedStringForDate(presenter.reportViewModel.endDate)
+        endDateLabel.font = .systemFont(ofSize: 14.0, weight: .regular)
+        endDateLabel.textColor = UIColor(hexString: "#14142B")
+        endDateLabel.setContentHuggingPriority(.required, for: .horizontal)
+        endDateLabel.isUserInteractionEnabled = true
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onEndDatePressed))
         endDateLabel.addGestureRecognizer(gestureRecognizer)
         return endDateLabel
@@ -101,11 +133,8 @@ final class ReportsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "Reports"
-
+        configureHeaderView()
         configureCategoryControl()
-        configureStartDateLabel()
-        configureEndDateLabel()
         configureChartView()
         configureTotalStackView()
         configureDividerView()
@@ -114,30 +143,22 @@ final class ReportsViewController: UIViewController {
         presenter.prepareData()
     }
 
+    private func configureHeaderView() {
+        view.addSubview(headerStackView)
+        NSLayoutConstraint.activate([
+            headerStackView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, constant: -50),
+            headerStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40),
+            headerStackView.heightAnchor.constraint(equalToConstant: 45.0),
+            headerStackView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor)
+        ])
+    }
+
     private func configureCategoryControl() {
         view.addSubview(categoryControl)
         NSLayoutConstraint.activate([
-            categoryControl.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, constant: -50.0),
-            categoryControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            categoryControl.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.8),
+            categoryControl.topAnchor.constraint(equalTo: headerStackView.bottomAnchor, constant: 20),
             categoryControl.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor)
-        ])
-    }
-
-    private func configureStartDateLabel() {
-        view.addSubview(startDateLabel)
-        NSLayoutConstraint.activate([
-            startDateLabel.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
-            startDateLabel.topAnchor.constraint(equalTo: categoryControl.bottomAnchor, constant: 20),
-            startDateLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor)
-        ])
-    }
-
-    private func configureEndDateLabel() {
-        view.addSubview(endDateLabel)
-        NSLayoutConstraint.activate([
-            endDateLabel.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
-            endDateLabel.topAnchor.constraint(equalTo: startDateLabel.bottomAnchor),
-            endDateLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor)
         ])
     }
 
@@ -146,7 +167,7 @@ final class ReportsViewController: UIViewController {
         NSLayoutConstraint.activate([
             chartView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, constant: -148.0),
             chartView.heightAnchor.constraint(equalTo: chartView.widthAnchor),
-            chartView.topAnchor.constraint(equalTo: endDateLabel.bottomAnchor, constant: 20),
+            chartView.topAnchor.constraint(equalTo: categoryControl.bottomAnchor, constant: 35),
             chartView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor)
         ])
     }
@@ -187,12 +208,31 @@ final class ReportsViewController: UIViewController {
 
     @objc
     private func onStartDatePressed() {
-
+        DatePickerDialog().show("Start Date",
+                                doneButtonTitle: "Done",
+                                cancelButtonTitle: "Cancel",
+                                defaultDate: presenter.reportViewModel.startDate,
+                                datePickerMode: .date) { [weak self] selectedStartDate in
+            guard let selectedStartDate = selectedStartDate, let self = self else {
+                return
+            }
+            self.presenter.onIntervalChange(fromDate: selectedStartDate, toDate: self.presenter.reportViewModel.endDate)
+        }
     }
 
     @objc
     private func onEndDatePressed() {
-
+        DatePickerDialog().show("End Date",
+                                doneButtonTitle: "Done",
+                                cancelButtonTitle: "Cancel",
+                                defaultDate: presenter.reportViewModel.endDate,
+                                minimumDate: presenter.reportViewModel.startDate,
+                                datePickerMode: .date) { [weak self] selectedEndDate in
+            guard let selectedEndDate = selectedEndDate, let self = self else {
+                return
+            }
+            self.presenter.onIntervalChange(fromDate: self.presenter.reportViewModel.startDate, toDate: selectedEndDate)
+        }
     }
 }
 
@@ -226,6 +266,8 @@ extension ReportsViewController: UITableViewDelegate, UITableViewDataSource {
 extension ReportsViewController {
 
     func updateView() {
+        startDateLabel.attributedText = getUnderlinedStringForDate(presenter.reportViewModel.startDate)
+        endDateLabel.attributedText = getUnderlinedStringForDate(presenter.reportViewModel.endDate)
         totalValueLabel.text = "\(presenter.reportViewModel.sign) \(presenter.reportViewModel.total)"
         categoryList.reloadData()
         updateChartData()
@@ -253,5 +295,15 @@ extension ReportsViewController {
         chartView.data = data
         // FIXME: need to find most suitable animation
 //        chartView.animate(xAxisDuration: 0.3, easingOption: .easeInCubic)
+    }
+}
+
+// MARK: - Helpers
+
+extension ReportsViewController {
+
+    private func getUnderlinedStringForDate(_ date: Date) -> NSAttributedString {
+        NSAttributedString(string: date.stringFromDate(format: "d MMM. YYYY"),
+                           attributes: [.underlineStyle: NSUnderlineStyle.single.rawValue])
     }
 }

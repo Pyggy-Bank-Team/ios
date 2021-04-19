@@ -35,7 +35,7 @@ final class OperationsViewController: UIViewController {
         
         menuView.translatesAutoresizingMaskIntoConstraints = false
         menuView.backgroundColor = .clear
-        menuView.layer.shadowRadius = 0.1
+        menuView.layer.shadowRadius = 1
         menuView.layer.shadowColor = UIColor.black.cgColor
         menuView.layer.shadowOpacity = 0.1
         view.addSubview(menuView)
@@ -52,7 +52,7 @@ final class OperationsViewController: UIViewController {
             
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: menuView.safeAreaLayoutGuide.topAnchor, constant: -20),
+            tableView.bottomAnchor.constraint(equalTo: menuView.safeAreaLayoutGuide.topAnchor),
             tableView.topAnchor.constraint(equalTo: typeControl.safeAreaLayoutGuide.bottomAnchor, constant: 20)
         ])
         
