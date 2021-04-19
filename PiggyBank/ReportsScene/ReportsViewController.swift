@@ -156,7 +156,7 @@ final class ReportsViewController: UIViewController {
     private func configureCategoryControl() {
         view.addSubview(categoryControl)
         NSLayoutConstraint.activate([
-            categoryControl.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.8),
+            categoryControl.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, constant: -50),
             categoryControl.topAnchor.constraint(equalTo: headerStackView.bottomAnchor, constant: 20),
             categoryControl.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor)
         ])
