@@ -1,11 +1,19 @@
 import Foundation
 
+protocol GetOperationsRepository {
+    func getOperations(completion: @escaping (Result<[DomainOperationModel]>) -> Void)
+}
+
 final class GetOperationsUseCase {
     
-    private let apiManager = APIManager.shared
-    
+    private let getOperationsRepository: GetOperationsRepository
+
+    init(getOperationsRepository: GetOperationsRepository) {
+        self.getOperationsRepository = getOperationsRepository
+    }
+
     func execute(completion: @escaping (Result<[DomainOperationModel]>) -> Void) {
-        apiManager.getOperations(completion: completion)
+        getOperationsRepository.getOperations(completion: completion)
     }
 
 }

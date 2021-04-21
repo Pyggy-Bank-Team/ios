@@ -1,11 +1,19 @@
 import Foundation
 
+protocol GetAccountsRepository {
+    func getAccounts(completion: @escaping (Result<[DomainAccountModel]>) -> Void)
+}
+
 final class GetAccountsUseCase {
-    
-    private let apiManager = APIManager.shared
-    
+
+    private let getAccountsRepository: GetAccountsRepository
+
+    init(getAccountsRepository: GetAccountsRepository) {
+        self.getAccountsRepository = getAccountsRepository
+    }
+
     func execute(completion: @escaping (Result<[DomainAccountModel]>) -> Void) {
-        apiManager.getAccounts(completion: completion)
+        getAccountsRepository.getAccounts(completion: completion)
     }
 
 }

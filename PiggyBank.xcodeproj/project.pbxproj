@@ -23,9 +23,32 @@
 		7113503C2625CB5000572CB9 /* ReportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7113503B2625CB5000572CB9 /* ReportViewModel.swift */; };
 		7113503F2626141E00572CB9 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7113503E2626141E00572CB9 /* Date.swift */; };
 		7113505426272C8A00572CB9 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 7113505326272C8A00572CB9 /* Charts */; };
+		711F584226300B7500381BEF /* SignInDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711F584126300B7500381BEF /* SignInDataRepository.swift */; };
+		711F584626300CD000381BEF /* SignUpRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711F584526300CD000381BEF /* SignUpRemoteDataSource.swift */; };
+		711F584A26300DE900381BEF /* SignInRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711F584926300DE900381BEF /* SignInRemoteDataSource.swift */; };
+		711F584E26300F2E00381BEF /* GetAccountsDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711F584D26300F2E00381BEF /* GetAccountsDataRepository.swift */; };
+		711F585126300FA300381BEF /* GetAccountsRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711F585026300FA300381BEF /* GetAccountsRemoteDataSource.swift */; };
+		711F5854263010EB00381BEF /* CreateUpdateAccountDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711F5853263010EB00381BEF /* CreateUpdateAccountDataRepository.swift */; };
+		711F5857263011A900381BEF /* CreateUpdateAccountRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711F5856263011A900381BEF /* CreateUpdateAccountRemoteDataSource.swift */; };
+		711F585A2630129E00381BEF /* DeleteAccountDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711F58592630129E00381BEF /* DeleteAccountDataRepository.swift */; };
+		711F585D263012ED00381BEF /* DeleteAccountRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711F585C263012ED00381BEF /* DeleteAccountRemoteDataSource.swift */; };
+		711F58602630139D00381BEF /* GetCategoriesDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711F585F2630139D00381BEF /* GetCategoriesDataRepository.swift */; };
+		711F5863263013E500381BEF /* GetCategoriesRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711F5862263013E500381BEF /* GetCategoriesRemoteDataSource.swift */; };
+		711F5866263014A300381BEF /* DeleteCategoryDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711F5865263014A300381BEF /* DeleteCategoryDataRepository.swift */; };
+		711F5869263014FE00381BEF /* DeleteCategoryRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711F5868263014FE00381BEF /* DeleteCategoryRemoteDataSource.swift */; };
+		711F586C2630169F00381BEF /* CreateUpdateCategoryDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711F586B2630169F00381BEF /* CreateUpdateCategoryDataRepository.swift */; };
+		711F586F2630170000381BEF /* CreateUpdateCategoryRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711F586E2630170000381BEF /* CreateUpdateCategoryRemoteDataSource.swift */; };
+		711F5872263017E200381BEF /* GetCurrenciesDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711F5871263017E200381BEF /* GetCurrenciesDataRepository.swift */; };
+		711F58752630182600381BEF /* GetCurrenciesRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711F58742630182600381BEF /* GetCurrenciesRemoteDataSource.swift */; };
+		711F58782630190800381BEF /* SaveUserCredentialsDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711F58772630190800381BEF /* SaveUserCredentialsDataRepository.swift */; };
+		711F587B26301B1E00381BEF /* DeleteUserCredentialsDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711F587A26301B1E00381BEF /* DeleteUserCredentialsDataRepository.swift */; };
+		711F587E26301BE100381BEF /* GetUserCredentialsDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711F587D26301BE100381BEF /* GetUserCredentialsDataRepository.swift */; };
+		711F588126301C8D00381BEF /* GetOperationsDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711F588026301C8D00381BEF /* GetOperationsDataRepository.swift */; };
+		711F588426301CD700381BEF /* GetOperationsRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711F588326301CD700381BEF /* GetOperationsRemoteDataSource.swift */; };
 		7152CFA62629628A00096331 /* CategoryOperationInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7152CFA52629628A00096331 /* CategoryOperationInfoTableViewCell.swift */; };
 		719C433F262B5AE8004C92F3 /* PiggySegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719C433E262B5AE8004C92F3 /* PiggySegmentedControl.swift */; };
 		71E5D7BC262C832F002A9827 /* DatePickerDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E5D7BB262C832F002A9827 /* DatePickerDialog.swift */; };
+		71E5D7D92630098F002A9827 /* SignUpDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E5D7D82630098F002A9827 /* SignUpDataRepository.swift */; };
 		9104C13524FBC705003BF041 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C13424FBC705003BF041 /* ProfileViewController.swift */; };
 		9104C13724FBC86B003BF041 /* CategoriesAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C13624FBC86B003BF041 /* CategoriesAssembly.swift */; };
 		9104C13924FBCEF3003BF041 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C13824FBCEF3003BF041 /* Category.swift */; };
@@ -96,7 +119,6 @@
 		91A85DDF24B4C49300B7A630 /* SignUpUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DDE24B4C49300B7A630 /* SignUpUseCase.swift */; };
 		91A85DE224B4C50300B7A630 /* UseCasesDTOs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DE124B4C50300B7A630 /* UseCasesDTOs.swift */; };
 		91A85DE524B4C5D900B7A630 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DE424B4C5D900B7A630 /* Result.swift */; };
-		91A85DE724B4C7BC00B7A630 /* UseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DE624B4C7BC00B7A630 /* UseCase.swift */; };
 		91A85DE924B64B7D00B7A630 /* SignInUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DE824B64B7D00B7A630 /* SignInUseCase.swift */; };
 		91A85DEE24CB308000B7A630 /* AccountsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DED24CB308000B7A630 /* AccountsViewController.swift */; };
 		91A85DF024CB30BC00B7A630 /* AccountsDTOs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DEF24CB30BC00B7A630 /* AccountsDTOs.swift */; };
@@ -131,9 +153,32 @@
 		711350332622075E00572CB9 /* DomainCategoryReportModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainCategoryReportModel.swift; sourceTree = "<group>"; };
 		7113503B2625CB5000572CB9 /* ReportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewModel.swift; sourceTree = "<group>"; };
 		7113503E2626141E00572CB9 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		711F584126300B7500381BEF /* SignInDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInDataRepository.swift; sourceTree = "<group>"; };
+		711F584526300CD000381BEF /* SignUpRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRemoteDataSource.swift; sourceTree = "<group>"; };
+		711F584926300DE900381BEF /* SignInRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInRemoteDataSource.swift; sourceTree = "<group>"; };
+		711F584D26300F2E00381BEF /* GetAccountsDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAccountsDataRepository.swift; sourceTree = "<group>"; };
+		711F585026300FA300381BEF /* GetAccountsRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAccountsRemoteDataSource.swift; sourceTree = "<group>"; };
+		711F5853263010EB00381BEF /* CreateUpdateAccountDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUpdateAccountDataRepository.swift; sourceTree = "<group>"; };
+		711F5856263011A900381BEF /* CreateUpdateAccountRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUpdateAccountRemoteDataSource.swift; sourceTree = "<group>"; };
+		711F58592630129E00381BEF /* DeleteAccountDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountDataRepository.swift; sourceTree = "<group>"; };
+		711F585C263012ED00381BEF /* DeleteAccountRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountRemoteDataSource.swift; sourceTree = "<group>"; };
+		711F585F2630139D00381BEF /* GetCategoriesDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCategoriesDataRepository.swift; sourceTree = "<group>"; };
+		711F5862263013E500381BEF /* GetCategoriesRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCategoriesRemoteDataSource.swift; sourceTree = "<group>"; };
+		711F5865263014A300381BEF /* DeleteCategoryDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteCategoryDataRepository.swift; sourceTree = "<group>"; };
+		711F5868263014FE00381BEF /* DeleteCategoryRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteCategoryRemoteDataSource.swift; sourceTree = "<group>"; };
+		711F586B2630169F00381BEF /* CreateUpdateCategoryDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUpdateCategoryDataRepository.swift; sourceTree = "<group>"; };
+		711F586E2630170000381BEF /* CreateUpdateCategoryRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUpdateCategoryRemoteDataSource.swift; sourceTree = "<group>"; };
+		711F5871263017E200381BEF /* GetCurrenciesDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCurrenciesDataRepository.swift; sourceTree = "<group>"; };
+		711F58742630182600381BEF /* GetCurrenciesRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCurrenciesRemoteDataSource.swift; sourceTree = "<group>"; };
+		711F58772630190800381BEF /* SaveUserCredentialsDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveUserCredentialsDataRepository.swift; sourceTree = "<group>"; };
+		711F587A26301B1E00381BEF /* DeleteUserCredentialsDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteUserCredentialsDataRepository.swift; sourceTree = "<group>"; };
+		711F587D26301BE100381BEF /* GetUserCredentialsDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserCredentialsDataRepository.swift; sourceTree = "<group>"; };
+		711F588026301C8D00381BEF /* GetOperationsDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetOperationsDataRepository.swift; sourceTree = "<group>"; };
+		711F588326301CD700381BEF /* GetOperationsRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetOperationsRemoteDataSource.swift; sourceTree = "<group>"; };
 		7152CFA52629628A00096331 /* CategoryOperationInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryOperationInfoTableViewCell.swift; sourceTree = "<group>"; };
 		719C433E262B5AE8004C92F3 /* PiggySegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiggySegmentedControl.swift; sourceTree = "<group>"; };
 		71E5D7BB262C832F002A9827 /* DatePickerDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerDialog.swift; sourceTree = "<group>"; };
+		71E5D7D82630098F002A9827 /* SignUpDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpDataRepository.swift; sourceTree = "<group>"; };
 		9104C13424FBC705003BF041 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		9104C13624FBC86B003BF041 /* CategoriesAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesAssembly.swift; sourceTree = "<group>"; };
 		9104C13824FBCEF3003BF041 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
@@ -206,7 +251,6 @@
 		91A85DDE24B4C49300B7A630 /* SignUpUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpUseCase.swift; sourceTree = "<group>"; };
 		91A85DE124B4C50300B7A630 /* UseCasesDTOs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCasesDTOs.swift; sourceTree = "<group>"; };
 		91A85DE424B4C5D900B7A630 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
-		91A85DE624B4C7BC00B7A630 /* UseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCase.swift; sourceTree = "<group>"; };
 		91A85DE824B64B7D00B7A630 /* SignInUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInUseCase.swift; sourceTree = "<group>"; };
 		91A85DED24CB308000B7A630 /* AccountsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsViewController.swift; sourceTree = "<group>"; };
 		91A85DEF24CB30BC00B7A630 /* AccountsDTOs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsDTOs.swift; sourceTree = "<group>"; };
@@ -260,6 +304,23 @@
 			path = ReportsScene;
 			sourceTree = "<group>";
 		};
+		711F584426300C7600381BEF /* RemoteDataSources */ = {
+			isa = PBXGroup;
+			children = (
+				711F584526300CD000381BEF /* SignUpRemoteDataSource.swift */,
+				711F584926300DE900381BEF /* SignInRemoteDataSource.swift */,
+				711F585026300FA300381BEF /* GetAccountsRemoteDataSource.swift */,
+				711F5856263011A900381BEF /* CreateUpdateAccountRemoteDataSource.swift */,
+				711F585C263012ED00381BEF /* DeleteAccountRemoteDataSource.swift */,
+				711F5862263013E500381BEF /* GetCategoriesRemoteDataSource.swift */,
+				711F5868263014FE00381BEF /* DeleteCategoryRemoteDataSource.swift */,
+				711F586E2630170000381BEF /* CreateUpdateCategoryRemoteDataSource.swift */,
+				711F58742630182600381BEF /* GetCurrenciesRemoteDataSource.swift */,
+				711F588326301CD700381BEF /* GetOperationsRemoteDataSource.swift */,
+			);
+			path = RemoteDataSources;
+			sourceTree = "<group>";
+		};
 		71E5D7C1262FFD88002A9827 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -277,6 +338,44 @@
 				7113502D2621CFF500572CB9 /* Reports.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		71E5D7D526300830002A9827 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				9104C178250DD6BC003BF041 /* AccountScene */,
+				91A85DEC24CB304B00B7A630 /* AccountsScene */,
+				91A85DC224ABE8AD00B7A630 /* AuthScene */,
+				9104C18A250E1722003BF041 /* BaseCurrencyScene */,
+				91A85E0324D0517000B7A630 /* CategoriesScene */,
+				91C26F9E2515BE3800C999BE /* CategoryScene */,
+				9166BC94256A2EEB00A23196 /* OperationScene */,
+				91957A8125318C540027249A /* OperationsScene */,
+				9104C13324FBC6EC003BF041 /* ProfileScene */,
+				7113501F2621C34200572CB9 /* ReportsScene */,
+				9104C1B5250F347C003BF041 /* StartScene */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		71E5D7D626300900002A9827 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				71E5D7D82630098F002A9827 /* SignUpDataRepository.swift */,
+				711F584126300B7500381BEF /* SignInDataRepository.swift */,
+				711F584D26300F2E00381BEF /* GetAccountsDataRepository.swift */,
+				711F5853263010EB00381BEF /* CreateUpdateAccountDataRepository.swift */,
+				711F58592630129E00381BEF /* DeleteAccountDataRepository.swift */,
+				711F585F2630139D00381BEF /* GetCategoriesDataRepository.swift */,
+				711F5865263014A300381BEF /* DeleteCategoryDataRepository.swift */,
+				711F586B2630169F00381BEF /* CreateUpdateCategoryDataRepository.swift */,
+				711F5871263017E200381BEF /* GetCurrenciesDataRepository.swift */,
+				711F58772630190800381BEF /* SaveUserCredentialsDataRepository.swift */,
+				711F587A26301B1E00381BEF /* DeleteUserCredentialsDataRepository.swift */,
+				711F587D26301BE100381BEF /* GetUserCredentialsDataRepository.swift */,
+				711F588026301C8D00381BEF /* GetOperationsDataRepository.swift */,
+			);
+			path = Repository;
 			sourceTree = "<group>";
 		};
 		9104C13324FBC6EC003BF041 /* ProfileScene */ = {
@@ -410,24 +509,14 @@
 		91A85DA724ABDDA400B7A630 /* PiggyBank */ = {
 			isa = PBXGroup;
 			children = (
-				7113501F2621C34200572CB9 /* ReportsScene */,
+				71E5D7D526300830002A9827 /* Scenes */,
 				3C247C3E2572A20100658BC4 /* Views */,
-				9166BC94256A2EEB00A23196 /* OperationScene */,
-				91957A8125318C540027249A /* OperationsScene */,
-				91C26F9E2515BE3800C999BE /* CategoryScene */,
 				9104C21E2514785E003BF041 /* Extensions */,
-				9104C1B5250F347C003BF041 /* StartScene */,
-				9104C18A250E1722003BF041 /* BaseCurrencyScene */,
 				9104C17B250DD7FB003BF041 /* ViewModels */,
-				9104C178250DD6BC003BF041 /* AccountScene */,
-				9104C13324FBC6EC003BF041 /* ProfileScene */,
-				91A85E0324D0517000B7A630 /* CategoriesScene */,
-				91A85DEC24CB304B00B7A630 /* AccountsScene */,
 				91A85DE324B4C5CC00B7A630 /* Globals */,
 				91A85DDC24B4C43500B7A630 /* Domain */,
 				91A85DD724AC610C00B7A630 /* Network */,
 				91A85DCB24AC4B1400B7A630 /* Assemblies */,
-				91A85DC224ABE8AD00B7A630 /* AuthScene */,
 				91A85DA824ABDDA400B7A630 /* AppDelegate.swift */,
 				91A85DB124ABDDA800B7A630 /* Assets.xcassets */,
 				91A85DB324ABDDA800B7A630 /* LaunchScreen.storyboard */,
@@ -459,6 +548,7 @@
 		91A85DD724AC610C00B7A630 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				711F584426300C7600381BEF /* RemoteDataSources */,
 				71E5D7C1262FFD88002A9827 /* Models */,
 				91A85DD824AC611F00B7A630 /* APIManager.swift */,
 			);
@@ -468,6 +558,7 @@
 		91A85DDC24B4C43500B7A630 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				71E5D7D626300900002A9827 /* Repository */,
 				9104C16B250409A4003BF041 /* Models */,
 				91A85DDD24B4C45100B7A630 /* UseCases */,
 				91A85DE124B4C50300B7A630 /* UseCasesDTOs.swift */,
@@ -480,7 +571,6 @@
 			children = (
 				91A85DDE24B4C49300B7A630 /* SignUpUseCase.swift */,
 				91A85DE824B64B7D00B7A630 /* SignInUseCase.swift */,
-				91A85DE624B4C7BC00B7A630 /* UseCase.swift */,
 				91A85DF524CB39DE00B7A630 /* GetAccountsUseCase.swift */,
 				91A85DF924CD229800B7A630 /* CreateUpdateAccountUseCase.swift */,
 				91A85DFD24CEFC1500B7A630 /* DeleteAccountUseCase.swift */,
@@ -650,19 +740,26 @@
 				9104C19E250E6D40003BF041 /* SignUp.swift in Sources */,
 				9166BC96256A2EFC00A23196 /* OperationViewController.swift in Sources */,
 				91A85DBD24ABDE2C00B7A630 /* AuthViewController.swift in Sources */,
+				711F5863263013E500381BEF /* GetCategoriesRemoteDataSource.swift in Sources */,
 				9104C1A8250F2383003BF041 /* Constants.swift in Sources */,
+				711F584626300CD000381BEF /* SignUpRemoteDataSource.swift in Sources */,
 				9104C1B4250F33B8003BF041 /* GetUserCredentialsUseCase.swift in Sources */,
+				711F584A26300DE900381BEF /* SignInRemoteDataSource.swift in Sources */,
+				711F588426301CD700381BEF /* GetOperationsRemoteDataSource.swift in Sources */,
 				9104C1B0250F2A3C003BF041 /* ProfileSceneAssembly.swift in Sources */,
 				9104C16D250409CF003BF041 /* DomainCategoryModel.swift in Sources */,
 				91957A7A2531717D0027249A /* Operation.swift in Sources */,
+				711F5866263014A300381BEF /* DeleteCategoryDataRepository.swift in Sources */,
 				711350252621C39F00572CB9 /* ReportsPresenter.swift in Sources */,
 				91957A8525318D000027249A /* OperationViewModel.swift in Sources */,
 				9104C22025147874003BF041 /* UIColor.swift in Sources */,
+				711F585126300FA300381BEF /* GetAccountsRemoteDataSource.swift in Sources */,
 				91A85DFE24CEFC1500B7A630 /* DeleteAccountUseCase.swift in Sources */,
 				9104C13B24FBCFD3003BF041 /* GetCategoriesUseCase.swift in Sources */,
 				91A85DF024CB30BC00B7A630 /* AccountsDTOs.swift in Sources */,
 				9104C21D25147475003BF041 /* CategoryCollectionCell.swift in Sources */,
 				91A85DF424CB385400B7A630 /* Account.swift in Sources */,
+				711F5857263011A900381BEF /* CreateUpdateAccountRemoteDataSource.swift in Sources */,
 				711350342622075E00572CB9 /* DomainCategoryReportModel.swift in Sources */,
 				9104C189250DF76D003BF041 /* AuthPresenter.swift in Sources */,
 				91A39C68262B49AF00A44080 /* MenuButton.swift in Sources */,
@@ -675,6 +772,7 @@
 				91957A8925318F3A0027249A /* OperationsSceneAssembly.swift in Sources */,
 				7152CFA62629628A00096331 /* CategoryOperationInfoTableViewCell.swift in Sources */,
 				9104C19C250E65AD003BF041 /* DomainSignUpModel.swift in Sources */,
+				711F5872263017E200381BEF /* GetCurrenciesDataRepository.swift in Sources */,
 				91C028352515B616005F30F0 /* CreateUpdateCategory.swift in Sources */,
 				9166BC932532E27600A23196 /* DeleteOperationUseCase.swift in Sources */,
 				9104C1C525107F82003BF041 /* AccountTextFieldTableCell.swift in Sources */,
@@ -684,6 +782,7 @@
 				3C247C402572A21A00658BC4 /* FlexView.swift in Sources */,
 				3C15C5502573EA46005E209B /* DomainCreateUpdateTransferOperationModel.swift in Sources */,
 				9104C18C250E174D003BF041 /* BaseCurrencyViewController.swift in Sources */,
+				711F5869263014FE00381BEF /* DeleteCategoryRemoteDataSource.swift in Sources */,
 				9104C1AC250F2539003BF041 /* DomainSignInModel.swift in Sources */,
 				91A85DE224B4C50300B7A630 /* UseCasesDTOs.swift in Sources */,
 				91A85DFA24CD229800B7A630 /* CreateUpdateAccountUseCase.swift in Sources */,
@@ -691,10 +790,13 @@
 				91C26FA22515C0E300C999BE /* CategorySceneAssembly.swift in Sources */,
 				91C26FA42515CF7700C999BE /* Colors.swift in Sources */,
 				9104C192250E1B5E003BF041 /* DomainCurrencyModel.swift in Sources */,
+				711F586F2630170000381BEF /* CreateUpdateCategoryRemoteDataSource.swift in Sources */,
 				9104C13924FBCEF3003BF041 /* Category.swift in Sources */,
 				9104C1B9250F34B0003BF041 /* StartPresenter.swift in Sources */,
 				9104C18E250E177D003BF041 /* CurrencyViewModel.swift in Sources */,
+				711F58752630182600381BEF /* GetCurrenciesRemoteDataSource.swift in Sources */,
 				9104C171250415C4003BF041 /* CategoryViewController.swift in Sources */,
+				711F5854263010EB00381BEF /* CreateUpdateAccountDataRepository.swift in Sources */,
 				9104C1C725108459003BF041 /* AccountSegmentedTableCell.swift in Sources */,
 				9104C13D24FBD2BF003BF041 /* CategoriesPresenter.swift in Sources */,
 				91957A7C253171A00027249A /* Paginated.swift in Sources */,
@@ -702,17 +804,23 @@
 				7113502B2621CBEA00572CB9 /* GetReportsByCategoryUseCase.swift in Sources */,
 				91C26FA62515D28B00C999BE /* ColorCollectionCell.swift in Sources */,
 				91957A7E253172A30027249A /* DomainOperationModel.swift in Sources */,
+				711F58602630139D00381BEF /* GetCategoriesDataRepository.swift in Sources */,
 				9104C1A4250F1FEC003BF041 /* DomainAuthModel.swift in Sources */,
+				711F587E26301BE100381BEF /* GetUserCredentialsDataRepository.swift in Sources */,
 				910DEEB42574A50F0053A2E0 /* BottomBar.swift in Sources */,
+				711F588126301C8D00381BEF /* GetOperationsDataRepository.swift in Sources */,
 				9104C1A0250F1D9E003BF041 /* UserCredentials.swift in Sources */,
 				3C15C54625734722005E209B /* SignIn.swift in Sources */,
 				9104C1A2250F1F3C003BF041 /* DomainUserCredentialsModel.swift in Sources */,
+				711F587B26301B1E00381BEF /* DeleteUserCredentialsDataRepository.swift in Sources */,
 				9104C17F250DDBB6003BF041 /* AccountPresenter.swift in Sources */,
+				711F58782630190800381BEF /* SaveUserCredentialsDataRepository.swift in Sources */,
 				3C15C54D2573E795005E209B /* CreateUpdateTransferOperation.swift in Sources */,
 				91A85DDF24B4C49300B7A630 /* SignUpUseCase.swift in Sources */,
 				7113503C2625CB5000572CB9 /* ReportViewModel.swift in Sources */,
 				91A85DF224CB326700B7A630 /* AccountsPresenter.swift in Sources */,
 				9104C194250E1C96003BF041 /* Currency.swift in Sources */,
+				711F584226300B7500381BEF /* SignInDataRepository.swift in Sources */,
 				91A85DA924ABDDA400B7A630 /* AppDelegate.swift in Sources */,
 				9104C14124FBD86D003BF041 /* CategoryViewModel.swift in Sources */,
 				9175DB92262A891200480957 /* String.swift in Sources */,
@@ -724,12 +832,13 @@
 				91A85DF624CB39DE00B7A630 /* GetAccountsUseCase.swift in Sources */,
 				91A85DD924AC611F00B7A630 /* APIManager.swift in Sources */,
 				9104C1BB250F379F003BF041 /* StartSceneAssembly.swift in Sources */,
+				71E5D7D92630098F002A9827 /* SignUpDataRepository.swift in Sources */,
+				711F586C2630169F00381BEF /* CreateUpdateCategoryDataRepository.swift in Sources */,
 				719C433F262B5AE8004C92F3 /* PiggySegmentedControl.swift in Sources */,
 				9104C185250DE3D7003BF041 /* AccountSceneAssembly.swift in Sources */,
 				91A85DE524B4C5D900B7A630 /* Result.swift in Sources */,
 				7113502E2621CFF500572CB9 /* Reports.swift in Sources */,
 				3CC950CD256A714C0074C7B6 /* UIImage.swift in Sources */,
-				91A85DE724B4C7BC00B7A630 /* UseCase.swift in Sources */,
 				91957A8725318D580027249A /* OperationsPresenter.swift in Sources */,
 				9104C196250E1F37003BF041 /* GetCurrenciesUseCase.swift in Sources */,
 				91957A782515D7730027249A /* CategoryView.swift in Sources */,
@@ -742,6 +851,9 @@
 				91A85DEE24CB308000B7A630 /* AccountsViewController.swift in Sources */,
 				9104C183250DE2B3003BF041 /* GrandConverter.swift in Sources */,
 				91A85E0524D0519800B7A630 /* CategoriesViewController.swift in Sources */,
+				711F585D263012ED00381BEF /* DeleteAccountRemoteDataSource.swift in Sources */,
+				711F585A2630129E00381BEF /* DeleteAccountDataRepository.swift in Sources */,
+				711F584E26300F2E00381BEF /* GetAccountsDataRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

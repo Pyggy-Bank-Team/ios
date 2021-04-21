@@ -1,16 +1,19 @@
 import Foundation
 
+protocol GetUserCredentialsRepository {
+    func getUserCredentials(completion: @escaping (Result<DomainUserCredentialsModel?>) -> Void)
+}
+
 final class GetUserCredentialsUseCase {
     
-    private let userDefaults = UserDefaults.standard
-    
-    func execute(completion: @escaping (Result<DomainUserCredentialsModel?>) -> Void) {
-        guard let token = userDefaults.string(forKey: kCREDENTIALS_STORE_KEY) else {
-            return completion(.success(nil))
-        }
+    private let getUserCredentialsRepository: GetUserCredentialsRepository
 
-        let model = DomainUserCredentialsModel(accessToken: token)
-        completion(.success((model)))
+    init(getUserCredentialsRepository: GetUserCredentialsRepository) {
+        self.getUserCredentialsRepository = getUserCredentialsRepository
+    }
+
+    func execute(completion: @escaping (Result<DomainUserCredentialsModel?>) -> Void) {
+        getUserCredentialsRepository.getUserCredentials(completion: completion)
     }
 
 }

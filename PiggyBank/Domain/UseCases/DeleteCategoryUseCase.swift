@@ -1,11 +1,19 @@
 import Foundation
 
+protocol DeleteCategoryRepository {
+    func deleteCategory(categoryID: Int, completion: @escaping (Result<Void>) -> Void)
+}
+
 final class DeleteCategoryUseCase {
     
-    private let apiManager = APIManager.shared
-    
+    private let deleteCategoryRepository: DeleteCategoryRepository
+
+    init(deleteCategoryRepository: DeleteCategoryRepository) {
+        self.deleteCategoryRepository = deleteCategoryRepository
+    }
+
     func execute(categoryID: Int, completion: @escaping (Result<Void>) -> Void) {
-        apiManager.deleteCategory(categoryID: categoryID, completion: completion)
+        deleteCategoryRepository.deleteCategory(categoryID: categoryID, completion: completion)
     }
 
 }
