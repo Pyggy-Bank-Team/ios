@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3C15C54625734722005E209B /* SignInRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C15C54525734722005E209B /* SignInRequest.swift */; };
+		3C15C54625734722005E209B /* SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C15C54525734722005E209B /* SignIn.swift */; };
 		3C15C549257385D7005E209B /* CreateUpdateTransferOperationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C15C548257385D7005E209B /* CreateUpdateTransferOperationUseCase.swift */; };
-		3C15C54D2573E795005E209B /* CreateUpdateTransferOperationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C15C54C2573E795005E209B /* CreateUpdateTransferOperationRequest.swift */; };
+		3C15C54D2573E795005E209B /* CreateUpdateTransferOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C15C54C2573E795005E209B /* CreateUpdateTransferOperation.swift */; };
 		3C15C5502573EA46005E209B /* DomainCreateUpdateTransferOperationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C15C54F2573EA46005E209B /* DomainCreateUpdateTransferOperationModel.swift */; };
 		3C247C402572A21A00658BC4 /* FlexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C247C3F2572A21A00658BC4 /* FlexView.swift */; };
 		3CC950CD256A714C0074C7B6 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC950CC256A714C0074C7B6 /* UIImage.swift */; };
@@ -18,8 +18,7 @@
 		711350252621C39F00572CB9 /* ReportsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711350242621C39F00572CB9 /* ReportsPresenter.swift */; };
 		711350282621C3B900572CB9 /* ReportsSceneAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711350272621C3B900572CB9 /* ReportsSceneAssembly.swift */; };
 		7113502B2621CBEA00572CB9 /* GetReportsByCategoryUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7113502A2621CBEA00572CB9 /* GetReportsByCategoryUseCase.swift */; };
-		7113502E2621CFF500572CB9 /* ReportsByCategoryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7113502D2621CFF500572CB9 /* ReportsByCategoryRequest.swift */; };
-		711350312622061C00572CB9 /* ReportsByCategoryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711350302622061C00572CB9 /* ReportsByCategoryResponse.swift */; };
+		7113502E2621CFF500572CB9 /* Reports.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7113502D2621CFF500572CB9 /* Reports.swift */; };
 		711350342622075E00572CB9 /* DomainCategoryReportModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711350332622075E00572CB9 /* DomainCategoryReportModel.swift */; };
 		7113503C2625CB5000572CB9 /* ReportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7113503B2625CB5000572CB9 /* ReportViewModel.swift */; };
 		7113503F2626141E00572CB9 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7113503E2626141E00572CB9 /* Date.swift */; };
@@ -29,7 +28,7 @@
 		71E5D7BC262C832F002A9827 /* DatePickerDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E5D7BB262C832F002A9827 /* DatePickerDialog.swift */; };
 		9104C13524FBC705003BF041 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C13424FBC705003BF041 /* ProfileViewController.swift */; };
 		9104C13724FBC86B003BF041 /* CategoriesAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C13624FBC86B003BF041 /* CategoriesAssembly.swift */; };
-		9104C13924FBCEF3003BF041 /* CategoryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C13824FBCEF3003BF041 /* CategoryResponse.swift */; };
+		9104C13924FBCEF3003BF041 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C13824FBCEF3003BF041 /* Category.swift */; };
 		9104C13B24FBCFD3003BF041 /* GetCategoriesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C13A24FBCFD3003BF041 /* GetCategoriesUseCase.swift */; };
 		9104C13D24FBD2BF003BF041 /* CategoriesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C13C24FBD2BF003BF041 /* CategoriesPresenter.swift */; };
 		9104C14124FBD86D003BF041 /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C14024FBD86D003BF041 /* CategoryViewModel.swift */; };
@@ -49,13 +48,13 @@
 		9104C18E250E177D003BF041 /* CurrencyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C18D250E177D003BF041 /* CurrencyViewModel.swift */; };
 		9104C190250E1AFE003BF041 /* BaseCurrencyPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C18F250E1AFE003BF041 /* BaseCurrencyPresenter.swift */; };
 		9104C192250E1B5E003BF041 /* DomainCurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C191250E1B5E003BF041 /* DomainCurrencyModel.swift */; };
-		9104C194250E1C96003BF041 /* CurrencyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C193250E1C96003BF041 /* CurrencyResponse.swift */; };
+		9104C194250E1C96003BF041 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C193250E1C96003BF041 /* Currency.swift */; };
 		9104C196250E1F37003BF041 /* GetCurrenciesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C195250E1F37003BF041 /* GetCurrenciesUseCase.swift */; };
 		9104C198250E20B1003BF041 /* BaseCurrencySceneAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C197250E20B1003BF041 /* BaseCurrencySceneAssembly.swift */; };
 		9104C19A250E239D003BF041 /* CurrencyTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C199250E239D003BF041 /* CurrencyTableCell.swift */; };
 		9104C19C250E65AD003BF041 /* DomainSignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C19B250E65AD003BF041 /* DomainSignUpModel.swift */; };
-		9104C19E250E6D40003BF041 /* SignUpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C19D250E6D40003BF041 /* SignUpRequest.swift */; };
-		9104C1A0250F1D9E003BF041 /* UserCredentialsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C19F250F1D9E003BF041 /* UserCredentialsResponse.swift */; };
+		9104C19E250E6D40003BF041 /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C19D250E6D40003BF041 /* SignUp.swift */; };
+		9104C1A0250F1D9E003BF041 /* UserCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C19F250F1D9E003BF041 /* UserCredentials.swift */; };
 		9104C1A2250F1F3C003BF041 /* DomainUserCredentialsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C1A1250F1F3C003BF041 /* DomainUserCredentialsModel.swift */; };
 		9104C1A4250F1FEC003BF041 /* DomainAuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C1A3250F1FEC003BF041 /* DomainAuthModel.swift */; };
 		9104C1A8250F2383003BF041 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C1A7250F2383003BF041 /* Constants.swift */; };
@@ -70,7 +69,7 @@
 		9104C1BB250F379F003BF041 /* StartSceneAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C1BA250F379F003BF041 /* StartSceneAssembly.swift */; };
 		9104C1C525107F82003BF041 /* AccountTextFieldTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C1C425107F82003BF041 /* AccountTextFieldTableCell.swift */; };
 		9104C1C725108459003BF041 /* AccountSegmentedTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C1C625108459003BF041 /* AccountSegmentedTableCell.swift */; };
-		9104C21925130B43003BF041 /* CreateUpdateAccountRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C21825130B43003BF041 /* CreateUpdateAccountRequest.swift */; };
+		9104C21925130B43003BF041 /* CreateUpdateAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C21825130B43003BF041 /* CreateUpdateAccount.swift */; };
 		9104C21D25147475003BF041 /* CategoryCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C21C25147475003BF041 /* CategoryCollectionCell.swift */; };
 		9104C22025147874003BF041 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C21F25147874003BF041 /* UIColor.swift */; };
 		910DEEB42574A50F0053A2E0 /* BottomBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910DEEB32574A50F0053A2E0 /* BottomBar.swift */; };
@@ -80,8 +79,8 @@
 		9166BC9A256A2F1E00A23196 /* OperationSceneAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9166BC99256A2F1E00A23196 /* OperationSceneAssembly.swift */; };
 		9175DB92262A891200480957 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9175DB91262A891200480957 /* String.swift */; };
 		91957A782515D7730027249A /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91957A772515D7720027249A /* CategoryView.swift */; };
-		91957A7A2531717D0027249A /* OperationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91957A792531717D0027249A /* OperationResponse.swift */; };
-		91957A7C253171A00027249A /* PaginatedResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91957A7B253171A00027249A /* PaginatedResponse.swift */; };
+		91957A7A2531717D0027249A /* Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91957A792531717D0027249A /* Operation.swift */; };
+		91957A7C253171A00027249A /* Paginated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91957A7B253171A00027249A /* Paginated.swift */; };
 		91957A7E253172A30027249A /* DomainOperationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91957A7D253172A30027249A /* DomainOperationModel.swift */; };
 		91957A802531791F0027249A /* GetOperationsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91957A7F2531791F0027249A /* GetOperationsUseCase.swift */; };
 		91957A8325318C700027249A /* OperationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91957A8225318C700027249A /* OperationsViewController.swift */; };
@@ -102,14 +101,14 @@
 		91A85DEE24CB308000B7A630 /* AccountsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DED24CB308000B7A630 /* AccountsViewController.swift */; };
 		91A85DF024CB30BC00B7A630 /* AccountsDTOs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DEF24CB30BC00B7A630 /* AccountsDTOs.swift */; };
 		91A85DF224CB326700B7A630 /* AccountsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DF124CB326700B7A630 /* AccountsPresenter.swift */; };
-		91A85DF424CB385400B7A630 /* AccountResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DF324CB385400B7A630 /* AccountResponse.swift */; };
+		91A85DF424CB385400B7A630 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DF324CB385400B7A630 /* Account.swift */; };
 		91A85DF624CB39DE00B7A630 /* GetAccountsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DF524CB39DE00B7A630 /* GetAccountsUseCase.swift */; };
 		91A85DF824CB3D0E00B7A630 /* AccountsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DF724CB3D0E00B7A630 /* AccountsAssembly.swift */; };
 		91A85DFA24CD229800B7A630 /* CreateUpdateAccountUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DF924CD229800B7A630 /* CreateUpdateAccountUseCase.swift */; };
 		91A85DFE24CEFC1500B7A630 /* DeleteAccountUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DFD24CEFC1500B7A630 /* DeleteAccountUseCase.swift */; };
 		91A85E0224D04F0700B7A630 /* MainBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85E0124D04F0700B7A630 /* MainBarViewController.swift */; };
 		91A85E0524D0519800B7A630 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85E0424D0519800B7A630 /* CategoriesViewController.swift */; };
-		91C028352515B616005F30F0 /* CreateUpdateCategoryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C028342515B616005F30F0 /* CreateUpdateCategoryRequest.swift */; };
+		91C028352515B616005F30F0 /* CreateUpdateCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C028342515B616005F30F0 /* CreateUpdateCategory.swift */; };
 		91C26FA02515C01B00C999BE /* CategoryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C26F9F2515C01B00C999BE /* CategoryPresenter.swift */; };
 		91C26FA22515C0E300C999BE /* CategorySceneAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C26FA12515C0E300C999BE /* CategorySceneAssembly.swift */; };
 		91C26FA42515CF7700C999BE /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C26FA32515CF7700C999BE /* Colors.swift */; };
@@ -117,9 +116,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3C15C54525734722005E209B /* SignInRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInRequest.swift; sourceTree = "<group>"; };
+		3C15C54525734722005E209B /* SignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignIn.swift; sourceTree = "<group>"; };
 		3C15C548257385D7005E209B /* CreateUpdateTransferOperationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUpdateTransferOperationUseCase.swift; sourceTree = "<group>"; };
-		3C15C54C2573E795005E209B /* CreateUpdateTransferOperationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUpdateTransferOperationRequest.swift; sourceTree = "<group>"; };
+		3C15C54C2573E795005E209B /* CreateUpdateTransferOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUpdateTransferOperation.swift; sourceTree = "<group>"; };
 		3C15C54F2573EA46005E209B /* DomainCreateUpdateTransferOperationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainCreateUpdateTransferOperationModel.swift; sourceTree = "<group>"; };
 		3C247C3F2572A21A00658BC4 /* FlexView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexView.swift; sourceTree = "<group>"; };
 		3CC950CC256A714C0074C7B6 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
@@ -128,8 +127,7 @@
 		711350242621C39F00572CB9 /* ReportsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsPresenter.swift; sourceTree = "<group>"; };
 		711350272621C3B900572CB9 /* ReportsSceneAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsSceneAssembly.swift; sourceTree = "<group>"; };
 		7113502A2621CBEA00572CB9 /* GetReportsByCategoryUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetReportsByCategoryUseCase.swift; sourceTree = "<group>"; };
-		7113502D2621CFF500572CB9 /* ReportsByCategoryRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsByCategoryRequest.swift; sourceTree = "<group>"; };
-		711350302622061C00572CB9 /* ReportsByCategoryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsByCategoryResponse.swift; sourceTree = "<group>"; };
+		7113502D2621CFF500572CB9 /* Reports.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reports.swift; sourceTree = "<group>"; };
 		711350332622075E00572CB9 /* DomainCategoryReportModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainCategoryReportModel.swift; sourceTree = "<group>"; };
 		7113503B2625CB5000572CB9 /* ReportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewModel.swift; sourceTree = "<group>"; };
 		7113503E2626141E00572CB9 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
@@ -138,7 +136,7 @@
 		71E5D7BB262C832F002A9827 /* DatePickerDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerDialog.swift; sourceTree = "<group>"; };
 		9104C13424FBC705003BF041 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		9104C13624FBC86B003BF041 /* CategoriesAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesAssembly.swift; sourceTree = "<group>"; };
-		9104C13824FBCEF3003BF041 /* CategoryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryResponse.swift; sourceTree = "<group>"; };
+		9104C13824FBCEF3003BF041 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		9104C13A24FBCFD3003BF041 /* GetCategoriesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCategoriesUseCase.swift; sourceTree = "<group>"; };
 		9104C13C24FBD2BF003BF041 /* CategoriesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesPresenter.swift; sourceTree = "<group>"; };
 		9104C14024FBD86D003BF041 /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
@@ -158,13 +156,13 @@
 		9104C18D250E177D003BF041 /* CurrencyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyViewModel.swift; sourceTree = "<group>"; };
 		9104C18F250E1AFE003BF041 /* BaseCurrencyPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCurrencyPresenter.swift; sourceTree = "<group>"; };
 		9104C191250E1B5E003BF041 /* DomainCurrencyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainCurrencyModel.swift; sourceTree = "<group>"; };
-		9104C193250E1C96003BF041 /* CurrencyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyResponse.swift; sourceTree = "<group>"; };
+		9104C193250E1C96003BF041 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		9104C195250E1F37003BF041 /* GetCurrenciesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCurrenciesUseCase.swift; sourceTree = "<group>"; };
 		9104C197250E20B1003BF041 /* BaseCurrencySceneAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCurrencySceneAssembly.swift; sourceTree = "<group>"; };
 		9104C199250E239D003BF041 /* CurrencyTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTableCell.swift; sourceTree = "<group>"; };
 		9104C19B250E65AD003BF041 /* DomainSignUpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainSignUpModel.swift; sourceTree = "<group>"; };
-		9104C19D250E6D40003BF041 /* SignUpRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRequest.swift; sourceTree = "<group>"; };
-		9104C19F250F1D9E003BF041 /* UserCredentialsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCredentialsResponse.swift; sourceTree = "<group>"; };
+		9104C19D250E6D40003BF041 /* SignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp.swift; sourceTree = "<group>"; };
+		9104C19F250F1D9E003BF041 /* UserCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCredentials.swift; sourceTree = "<group>"; };
 		9104C1A1250F1F3C003BF041 /* DomainUserCredentialsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainUserCredentialsModel.swift; sourceTree = "<group>"; };
 		9104C1A3250F1FEC003BF041 /* DomainAuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainAuthModel.swift; sourceTree = "<group>"; };
 		9104C1A7250F2383003BF041 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -179,7 +177,7 @@
 		9104C1BA250F379F003BF041 /* StartSceneAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartSceneAssembly.swift; sourceTree = "<group>"; };
 		9104C1C425107F82003BF041 /* AccountTextFieldTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTextFieldTableCell.swift; sourceTree = "<group>"; };
 		9104C1C625108459003BF041 /* AccountSegmentedTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSegmentedTableCell.swift; sourceTree = "<group>"; };
-		9104C21825130B43003BF041 /* CreateUpdateAccountRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUpdateAccountRequest.swift; sourceTree = "<group>"; };
+		9104C21825130B43003BF041 /* CreateUpdateAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUpdateAccount.swift; sourceTree = "<group>"; };
 		9104C21C25147475003BF041 /* CategoryCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionCell.swift; sourceTree = "<group>"; };
 		9104C21F25147874003BF041 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		910DEEB32574A50F0053A2E0 /* BottomBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBar.swift; sourceTree = "<group>"; };
@@ -189,8 +187,8 @@
 		9166BC99256A2F1E00A23196 /* OperationSceneAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationSceneAssembly.swift; sourceTree = "<group>"; };
 		9175DB91262A891200480957 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		91957A772515D7720027249A /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
-		91957A792531717D0027249A /* OperationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationResponse.swift; sourceTree = "<group>"; };
-		91957A7B253171A00027249A /* PaginatedResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginatedResponse.swift; sourceTree = "<group>"; };
+		91957A792531717D0027249A /* Operation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operation.swift; sourceTree = "<group>"; };
+		91957A7B253171A00027249A /* Paginated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Paginated.swift; sourceTree = "<group>"; };
 		91957A7D253172A30027249A /* DomainOperationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainOperationModel.swift; sourceTree = "<group>"; };
 		91957A7F2531791F0027249A /* GetOperationsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetOperationsUseCase.swift; sourceTree = "<group>"; };
 		91957A8225318C700027249A /* OperationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationsViewController.swift; sourceTree = "<group>"; };
@@ -213,14 +211,14 @@
 		91A85DED24CB308000B7A630 /* AccountsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsViewController.swift; sourceTree = "<group>"; };
 		91A85DEF24CB30BC00B7A630 /* AccountsDTOs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsDTOs.swift; sourceTree = "<group>"; };
 		91A85DF124CB326700B7A630 /* AccountsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsPresenter.swift; sourceTree = "<group>"; };
-		91A85DF324CB385400B7A630 /* AccountResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountResponse.swift; sourceTree = "<group>"; };
+		91A85DF324CB385400B7A630 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		91A85DF524CB39DE00B7A630 /* GetAccountsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAccountsUseCase.swift; sourceTree = "<group>"; };
 		91A85DF724CB3D0E00B7A630 /* AccountsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsAssembly.swift; sourceTree = "<group>"; };
 		91A85DF924CD229800B7A630 /* CreateUpdateAccountUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUpdateAccountUseCase.swift; sourceTree = "<group>"; };
 		91A85DFD24CEFC1500B7A630 /* DeleteAccountUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountUseCase.swift; sourceTree = "<group>"; };
 		91A85E0124D04F0700B7A630 /* MainBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBarViewController.swift; sourceTree = "<group>"; };
 		91A85E0424D0519800B7A630 /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
-		91C028342515B616005F30F0 /* CreateUpdateCategoryRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUpdateCategoryRequest.swift; sourceTree = "<group>"; };
+		91C028342515B616005F30F0 /* CreateUpdateCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUpdateCategory.swift; sourceTree = "<group>"; };
 		91C26F9F2515C01B00C999BE /* CategoryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPresenter.swift; sourceTree = "<group>"; };
 		91C26FA12515C0E300C999BE /* CategorySceneAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySceneAssembly.swift; sourceTree = "<group>"; };
 		91C26FA32515CF7700C999BE /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -260,6 +258,25 @@
 				711350272621C3B900572CB9 /* ReportsSceneAssembly.swift */,
 			);
 			path = ReportsScene;
+			sourceTree = "<group>";
+		};
+		71E5D7C1262FFD88002A9827 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				91A85DF324CB385400B7A630 /* Account.swift */,
+				9104C13824FBCEF3003BF041 /* Category.swift */,
+				9104C193250E1C96003BF041 /* Currency.swift */,
+				9104C19D250E6D40003BF041 /* SignUp.swift */,
+				9104C19F250F1D9E003BF041 /* UserCredentials.swift */,
+				9104C21825130B43003BF041 /* CreateUpdateAccount.swift */,
+				91C028342515B616005F30F0 /* CreateUpdateCategory.swift */,
+				91957A792531717D0027249A /* Operation.swift */,
+				91957A7B253171A00027249A /* Paginated.swift */,
+				3C15C54525734722005E209B /* SignIn.swift */,
+				3C15C54C2573E795005E209B /* CreateUpdateTransferOperation.swift */,
+				7113502D2621CFF500572CB9 /* Reports.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		9104C13324FBC6EC003BF041 /* ProfileScene */ = {
@@ -408,7 +425,7 @@
 				91A85DEC24CB304B00B7A630 /* AccountsScene */,
 				91A85DE324B4C5CC00B7A630 /* Globals */,
 				91A85DDC24B4C43500B7A630 /* Domain */,
-				91A85DD724AC610C00B7A630 /* Data */,
+				91A85DD724AC610C00B7A630 /* Network */,
 				91A85DCB24AC4B1400B7A630 /* Assemblies */,
 				91A85DC224ABE8AD00B7A630 /* AuthScene */,
 				91A85DA824ABDDA400B7A630 /* AppDelegate.swift */,
@@ -439,25 +456,13 @@
 			path = Assemblies;
 			sourceTree = "<group>";
 		};
-		91A85DD724AC610C00B7A630 /* Data */ = {
+		91A85DD724AC610C00B7A630 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				71E5D7C1262FFD88002A9827 /* Models */,
 				91A85DD824AC611F00B7A630 /* APIManager.swift */,
-				91A85DF324CB385400B7A630 /* AccountResponse.swift */,
-				9104C13824FBCEF3003BF041 /* CategoryResponse.swift */,
-				9104C193250E1C96003BF041 /* CurrencyResponse.swift */,
-				9104C19D250E6D40003BF041 /* SignUpRequest.swift */,
-				9104C19F250F1D9E003BF041 /* UserCredentialsResponse.swift */,
-				9104C21825130B43003BF041 /* CreateUpdateAccountRequest.swift */,
-				91C028342515B616005F30F0 /* CreateUpdateCategoryRequest.swift */,
-				91957A792531717D0027249A /* OperationResponse.swift */,
-				91957A7B253171A00027249A /* PaginatedResponse.swift */,
-				3C15C54525734722005E209B /* SignInRequest.swift */,
-				3C15C54C2573E795005E209B /* CreateUpdateTransferOperationRequest.swift */,
-				7113502D2621CFF500572CB9 /* ReportsByCategoryRequest.swift */,
-				711350302622061C00572CB9 /* ReportsByCategoryResponse.swift */,
 			);
-			path = Data;
+			path = Network;
 			sourceTree = "<group>";
 		};
 		91A85DDC24B4C43500B7A630 /* Domain */ = {
@@ -642,14 +647,14 @@
 				9104C187250DF6D9003BF041 /* AuthSceneAssembly.swift in Sources */,
 				91957A8325318C700027249A /* OperationsViewController.swift in Sources */,
 				91C26FA02515C01B00C999BE /* CategoryPresenter.swift in Sources */,
-				9104C19E250E6D40003BF041 /* SignUpRequest.swift in Sources */,
+				9104C19E250E6D40003BF041 /* SignUp.swift in Sources */,
 				9166BC96256A2EFC00A23196 /* OperationViewController.swift in Sources */,
 				91A85DBD24ABDE2C00B7A630 /* AuthViewController.swift in Sources */,
 				9104C1A8250F2383003BF041 /* Constants.swift in Sources */,
 				9104C1B4250F33B8003BF041 /* GetUserCredentialsUseCase.swift in Sources */,
 				9104C1B0250F2A3C003BF041 /* ProfileSceneAssembly.swift in Sources */,
 				9104C16D250409CF003BF041 /* DomainCategoryModel.swift in Sources */,
-				91957A7A2531717D0027249A /* OperationResponse.swift in Sources */,
+				91957A7A2531717D0027249A /* Operation.swift in Sources */,
 				711350252621C39F00572CB9 /* ReportsPresenter.swift in Sources */,
 				91957A8525318D000027249A /* OperationViewModel.swift in Sources */,
 				9104C22025147874003BF041 /* UIColor.swift in Sources */,
@@ -657,7 +662,7 @@
 				9104C13B24FBCFD3003BF041 /* GetCategoriesUseCase.swift in Sources */,
 				91A85DF024CB30BC00B7A630 /* AccountsDTOs.swift in Sources */,
 				9104C21D25147475003BF041 /* CategoryCollectionCell.swift in Sources */,
-				91A85DF424CB385400B7A630 /* AccountResponse.swift in Sources */,
+				91A85DF424CB385400B7A630 /* Account.swift in Sources */,
 				711350342622075E00572CB9 /* DomainCategoryReportModel.swift in Sources */,
 				9104C189250DF76D003BF041 /* AuthPresenter.swift in Sources */,
 				91A39C68262B49AF00A44080 /* MenuButton.swift in Sources */,
@@ -670,12 +675,12 @@
 				91957A8925318F3A0027249A /* OperationsSceneAssembly.swift in Sources */,
 				7152CFA62629628A00096331 /* CategoryOperationInfoTableViewCell.swift in Sources */,
 				9104C19C250E65AD003BF041 /* DomainSignUpModel.swift in Sources */,
-				91C028352515B616005F30F0 /* CreateUpdateCategoryRequest.swift in Sources */,
+				91C028352515B616005F30F0 /* CreateUpdateCategory.swift in Sources */,
 				9166BC932532E27600A23196 /* DeleteOperationUseCase.swift in Sources */,
 				9104C1C525107F82003BF041 /* AccountTextFieldTableCell.swift in Sources */,
 				3CC950D0256A75450074C7B6 /* UISegmentedControl.swift in Sources */,
 				711350212621C38F00572CB9 /* ReportsViewController.swift in Sources */,
-				9104C21925130B43003BF041 /* CreateUpdateAccountRequest.swift in Sources */,
+				9104C21925130B43003BF041 /* CreateUpdateAccount.swift in Sources */,
 				3C247C402572A21A00658BC4 /* FlexView.swift in Sources */,
 				3C15C5502573EA46005E209B /* DomainCreateUpdateTransferOperationModel.swift in Sources */,
 				9104C18C250E174D003BF041 /* BaseCurrencyViewController.swift in Sources */,
@@ -686,29 +691,28 @@
 				91C26FA22515C0E300C999BE /* CategorySceneAssembly.swift in Sources */,
 				91C26FA42515CF7700C999BE /* Colors.swift in Sources */,
 				9104C192250E1B5E003BF041 /* DomainCurrencyModel.swift in Sources */,
-				9104C13924FBCEF3003BF041 /* CategoryResponse.swift in Sources */,
+				9104C13924FBCEF3003BF041 /* Category.swift in Sources */,
 				9104C1B9250F34B0003BF041 /* StartPresenter.swift in Sources */,
-				711350312622061C00572CB9 /* ReportsByCategoryResponse.swift in Sources */,
 				9104C18E250E177D003BF041 /* CurrencyViewModel.swift in Sources */,
 				9104C171250415C4003BF041 /* CategoryViewController.swift in Sources */,
 				9104C1C725108459003BF041 /* AccountSegmentedTableCell.swift in Sources */,
 				9104C13D24FBD2BF003BF041 /* CategoriesPresenter.swift in Sources */,
-				91957A7C253171A00027249A /* PaginatedResponse.swift in Sources */,
+				91957A7C253171A00027249A /* Paginated.swift in Sources */,
 				9104C17A250DD6DD003BF041 /* AccountViewController.swift in Sources */,
 				7113502B2621CBEA00572CB9 /* GetReportsByCategoryUseCase.swift in Sources */,
 				91C26FA62515D28B00C999BE /* ColorCollectionCell.swift in Sources */,
 				91957A7E253172A30027249A /* DomainOperationModel.swift in Sources */,
 				9104C1A4250F1FEC003BF041 /* DomainAuthModel.swift in Sources */,
 				910DEEB42574A50F0053A2E0 /* BottomBar.swift in Sources */,
-				9104C1A0250F1D9E003BF041 /* UserCredentialsResponse.swift in Sources */,
-				3C15C54625734722005E209B /* SignInRequest.swift in Sources */,
+				9104C1A0250F1D9E003BF041 /* UserCredentials.swift in Sources */,
+				3C15C54625734722005E209B /* SignIn.swift in Sources */,
 				9104C1A2250F1F3C003BF041 /* DomainUserCredentialsModel.swift in Sources */,
 				9104C17F250DDBB6003BF041 /* AccountPresenter.swift in Sources */,
-				3C15C54D2573E795005E209B /* CreateUpdateTransferOperationRequest.swift in Sources */,
+				3C15C54D2573E795005E209B /* CreateUpdateTransferOperation.swift in Sources */,
 				91A85DDF24B4C49300B7A630 /* SignUpUseCase.swift in Sources */,
 				7113503C2625CB5000572CB9 /* ReportViewModel.swift in Sources */,
 				91A85DF224CB326700B7A630 /* AccountsPresenter.swift in Sources */,
-				9104C194250E1C96003BF041 /* CurrencyResponse.swift in Sources */,
+				9104C194250E1C96003BF041 /* Currency.swift in Sources */,
 				91A85DA924ABDDA400B7A630 /* AppDelegate.swift in Sources */,
 				9104C14124FBD86D003BF041 /* CategoryViewModel.swift in Sources */,
 				9175DB92262A891200480957 /* String.swift in Sources */,
@@ -723,7 +727,7 @@
 				719C433F262B5AE8004C92F3 /* PiggySegmentedControl.swift in Sources */,
 				9104C185250DE3D7003BF041 /* AccountSceneAssembly.swift in Sources */,
 				91A85DE524B4C5D900B7A630 /* Result.swift in Sources */,
-				7113502E2621CFF500572CB9 /* ReportsByCategoryRequest.swift in Sources */,
+				7113502E2621CFF500572CB9 /* Reports.swift in Sources */,
 				3CC950CD256A714C0074C7B6 /* UIImage.swift in Sources */,
 				91A85DE724B4C7BC00B7A630 /* UseCase.swift in Sources */,
 				91957A8725318D580027249A /* OperationsPresenter.swift in Sources */,

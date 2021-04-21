@@ -69,8 +69,8 @@ private extension AuthViewController {
             $0.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0.01, bottom: 0.01, right: 0)
         }
         
-        nicknameField.text = "vasyapupkin"
-        passwordField.text = "Qwerty123!"
+        nicknameField.text = "vmalyasov"
+        passwordField.text = "otffjooFG4&CL9Zz"
         
         nicknameField.placeholder = "nickname..."
         

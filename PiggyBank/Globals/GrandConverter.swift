@@ -36,20 +36,20 @@ public enum GrandConverter {
         CurrencyViewModel(code: domainCurrency.code, symbol: domainCurrency.symbol)
     }
     
-    static func convertToDomainModel(currencyResponse: CurrencyResponse) -> DomainCurrencyModel {
+    static func convertToDomainModel(currencyResponse: Currency.Response) -> DomainCurrencyModel {
         DomainCurrencyModel(code: currencyResponse.code, symbol: currencyResponse.symbol)
     }
     
-    static func convertToRequestModel(domain: DomainSignUpModel) -> SignUpRequest {
-        SignUpRequest(nickname: domain.nickname, password: domain.password, currency: domain.currency)
+    static func convertToRequestModel(domain: DomainSignUpModel) -> SignUp.Request {
+        SignUp.Request(nickname: domain.nickname, password: domain.password, currency: domain.currency)
     }
 
-    static func convertToRequestModel(domain: DomainSignInModel) -> SignInRequest {
-        SignInRequest(nickname: domain.nickname, password: domain.password)
+    static func convertToRequestModel(domain: DomainSignInModel) -> SignIn.Request {
+        SignIn.Request(nickname: domain.nickname, password: domain.password)
     }
 
-    static func convertToRequestModel(domain: DomainCreateUpdateTransferOperationModel) -> CreateUpdateTransferOperationRequest {
-        CreateUpdateTransferOperationRequest(
+    static func convertToRequestModel(domain: DomainCreateUpdateTransferOperationModel) -> CreateUpdateTransferOperation.Request {
+        CreateUpdateTransferOperation.Request(
             createdOn: domain.createdOn.stringFromDate(),
             from: domain.from,
             to: domain.to,
@@ -58,21 +58,21 @@ public enum GrandConverter {
         )
     }
     
-    static func convertToDomainModel(authResponse: UserCredentialsResponse) -> DomainAuthModel {
+    static func convertToDomainModel(authResponse: UserCredentials.Response) -> DomainAuthModel {
         DomainAuthModel(accessToken: authResponse.accessToken)
     }
     
-    static func convertToRequestModel(domain: DomainAccountModel) -> CreateUpdateAccountRequest {
-        CreateUpdateAccountRequest(
+    static func convertToRequestModel(domain: DomainAccountModel) -> CreateUpdateAccount.Request {
+        CreateUpdateAccount.Request(
             type: domain.type.rawValue,
             title: domain.title,
             balance: domain.balance,
             isArchived: domain.isArchived
         )
     }
-    
-    static func convertToRequestModel(domain: DomainCategoryModel) -> CreateUpdateCategoryRequest {
-        CreateUpdateCategoryRequest(
+
+    static func convertToRequestModel(domain: DomainCategoryModel) -> CreateUpdateCategory.Request {
+        CreateUpdateCategory.Request(
             title: domain.title,
             hexColor: domain.hexColor,
             type: domain.type.rawValue,
@@ -84,13 +84,11 @@ public enum GrandConverter {
         category: DomainCategoryModel.CategoryType,
         fromDate: Date,
         toDate: Date
-    ) -> ReportsByCategoryRequest {
-        ReportsByCategoryRequest(type: category.rawValue,
-                                 from: fromDate.stringFromDate(),
-                                 to: toDate.stringFromDate())
+    ) -> Reports.Request {
+        Reports.Request(type: category.rawValue, from: fromDate.stringFromDate(), to: toDate.stringFromDate())
     }
 
-    static func convertToDomain(response: AccountResponse) -> DomainAccountModel {
+    static func convertToDomain(response: Account.Response) -> DomainAccountModel {
         DomainAccountModel(
             id: response.id,
             type: response.type,
@@ -102,7 +100,7 @@ public enum GrandConverter {
         )
     }
     
-    static func convertToDomain(response: CategoryResponse) -> DomainCategoryModel {
+    static func convertToDomain(response: Category.Response) -> DomainCategoryModel {
         DomainCategoryModel(
             id: response.id,
             title: response.title,
@@ -113,7 +111,7 @@ public enum GrandConverter {
         )
     }
     
-    static func convertToDomain(response: OperationResponse) -> DomainOperationModel {
+    static func convertToDomain(response: Operation.Response) -> DomainOperationModel {
         DomainOperationModel(id: response.id,
                              categoryHexColor: response.category?.hexColor,
                              amount: response.amount,
@@ -127,7 +125,7 @@ public enum GrandConverter {
                              isDeleted: response.isDeleted)
     }
 
-    static func convertToDomain(response: ReportsByCategoryResponse) -> DomainCategoryReportModel {
+    static func convertToDomain(response: Reports.Response) -> DomainCategoryReportModel {
         DomainCategoryReportModel(categoryId: response.categoryId,
                                   categoryTitle: response.categoryTitle,
                                   categoryHexColor: response.categoryHexColor,

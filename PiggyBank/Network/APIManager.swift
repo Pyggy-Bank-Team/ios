@@ -32,7 +32,7 @@ public final class APIManager {
                 }
 
                 if httpResponse.statusCode == 200 {
-                    guard let response = try? JSONDecoder().decode(UserCredentialsResponse.self, from: data) else {
+                    guard let response = try? JSONDecoder().decode(UserCredentials.Response.self, from: data) else {
                         return completion(.error(APIError()))
                     }
                     
@@ -66,7 +66,7 @@ public final class APIManager {
                 }
                 
                 if httpResponse.statusCode == 200 {
-                    guard let response = try? JSONDecoder().decode(UserCredentialsResponse.self, from: data) else {
+                    guard let response = try? JSONDecoder().decode(UserCredentials.Response.self, from: data) else {
                         return completion(.error(APIError()))
                     }
                     
@@ -103,7 +103,7 @@ public final class APIManager {
                 }
                 
                 if httpResponse.statusCode == 200 {
-                    guard let model = try? JSONDecoder().decode(Array<AccountResponse>.self, from: data) else {
+                    guard let model = try? JSONDecoder().decode([Account.Response].self, from: data) else {
                         return completion(.error(APIError()))
                     }
                     
@@ -233,10 +233,10 @@ public final class APIManager {
                 }
                 
                 if httpResponse.statusCode == 200 {
-                    guard let model = try? JSONDecoder().decode(Array<CategoryResponse>.self, from: data) else {
+                    guard let model = try? JSONDecoder().decode([Category.Response].self, from: data) else {
                         return completion(.error(APIError()))
                     }
-                    
+
                     let categories = model.map { GrandConverter.convertToDomain(response: $0) }
                     
                     completion(.success(categories))
@@ -363,7 +363,7 @@ public final class APIManager {
                 }
                 
                 if httpResponse.statusCode == 200 {
-                    guard let models = try? JSONDecoder().decode(Array<CurrencyResponse>.self, from: data) else {
+                    guard let models = try? JSONDecoder().decode([Currency.Response].self, from: data) else {
                         return completion(.error(APIError()))
                     }
                     
@@ -404,7 +404,7 @@ public final class APIManager {
                 }
 
                 do {
-                    let model = try JSONDecoder().decode(PaginatedResponse<OperationResponse>.self, from: data)
+                    let model = try JSONDecoder().decode(Paginated.Response<Operation.Response>.self, from: data)
                     let categories = model.result.map { GrandConverter.convertToDomain(response: $0) }
                     completion(.success(categories))
                 } catch {
@@ -562,7 +562,7 @@ public final class APIManager {
                     return completion(.error(APIError()))
                 }
                 do {
-                    let model = try JSONDecoder().decode([ReportsByCategoryResponse].self, from: data)
+                    let model = try JSONDecoder().decode([Reports.Response].self, from: data)
                     let operations = model.map { GrandConverter.convertToDomain(response: $0) }
                     completion(.success(operations))
                 } catch {
