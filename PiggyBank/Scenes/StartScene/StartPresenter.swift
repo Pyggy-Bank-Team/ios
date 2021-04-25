@@ -3,20 +3,23 @@ import UIKit
 final class StartPresenter {
     
     private weak var view: StartViewController?
-    
-    private let getUserCredentials = GetUserCredentialsUseCase(getUserCredentialsRepository: GetUserCredentialsDataRepository())
+    private let getUserCredentials: GetUserCredentialsUseCase?
 
-    init(view: StartViewController?) {
+    init(view: StartViewController?, getUserCredentials: GetUserCredentialsUseCase?) {
         self.view = view
+        self.getUserCredentials = getUserCredentials
     }
-    
+
     func viewDidLoad() {
-        getUserCredentials.execute { [weak self] result in
+        getUserCredentials?.execute { [weak self] result in
             if case let .success(model) = result {
-                var vcs = [AuthSceneAssembly(mode: .signIn).build()]
+                let assembler = DependencyProvider.shared.assembler
+                assembler.apply(assembly: AuthSceneAssembly(mode: .signIn))
+                var vcs: [UIViewController] = [assembler.resolver.resolve(AuthViewController.self)!]
 
                 if model != nil {
-                    vcs.append(ProfileSceneAssembly().build())
+                    let profileVC = DependencyProvider.shared.assembler.resolver.resolve(ProfileViewController.self)!
+                    vcs.append(profileVC)
                 }
 
                 DispatchQueue.main.async {
@@ -24,7 +27,7 @@ final class StartPresenter {
                 }
             }
         }
-        
+
 //        view?.viewDidLoad(vcs: [AuthSceneAssembly(mode: .signIn).build()])
     }
     

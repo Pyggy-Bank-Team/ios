@@ -6,14 +6,14 @@ protocol GetUserCredentialsRepository {
 
 final class GetUserCredentialsUseCase {
     
-    private let getUserCredentialsRepository: GetUserCredentialsRepository
+    private let getUserCredentialsRepository: GetUserCredentialsRepository?
 
-    init(getUserCredentialsRepository: GetUserCredentialsRepository) {
+    init(getUserCredentialsRepository: GetUserCredentialsRepository?) {
         self.getUserCredentialsRepository = getUserCredentialsRepository
     }
 
     func execute(completion: @escaping (Result<DomainUserCredentialsModel?>) -> Void) {
-        getUserCredentialsRepository.getUserCredentials(completion: completion)
+        getUserCredentialsRepository?.getUserCredentials(completion: completion)
     }
 
 }

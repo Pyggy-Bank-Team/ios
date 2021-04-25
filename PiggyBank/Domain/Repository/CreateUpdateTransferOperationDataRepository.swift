@@ -2,8 +2,26 @@
 //  CreateUpdateTransferOperationDataRepository.swift
 //  PiggyBank
 //
-//  Created by Vladislav on 21.04.2021.
-//  Copyright © 2021 Dave Chupreev. All rights reserved.
-//
 
-import Foundation
+protocol CreateUpdateTransferOperationDataSource {
+    func createTransferOperation(
+        request: DomainCreateUpdateTransferOperationModel,
+        completion: @escaping (Result<Void>) -> Void
+    )
+}
+
+class CreateUpdateTransferOperationDataRepository: CreateUpdateTransferOperationRepository {
+
+    private let remoteDataSource: CreateUpdateTransferOperationDataSource?
+
+    init(remoteDataSource: CreateUpdateTransferOperationDataSource?) {
+        self.remoteDataSource = remoteDataSource
+    }
+
+    func createTransferOperation(
+        request: DomainCreateUpdateTransferOperationModel,
+        completion: @escaping (Result<Void>) -> Void
+    ) {
+        remoteDataSource?.createTransferOperation(request: request, completion: completion)
+    }
+}

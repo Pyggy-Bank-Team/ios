@@ -8,14 +8,14 @@ protocol SignInDataSource {
 }
 
 class SignInDataRepository: SignInRepository {
-    private let remoteDataSource: SignInDataSource
+    private let remoteDataSource: SignInDataSource?
 
-    init(remoteDataSource: SignInDataSource) {
+    init(remoteDataSource: SignInDataSource?) {
         self.remoteDataSource = remoteDataSource
     }
 
     func signIn(request: DomainSignInModel, completion: @escaping (Result<DomainAuthModel>) -> Void) {
-        remoteDataSource.signIn(request: request, completion: completion)
+        remoteDataSource?.signIn(request: request, completion: completion)
     }
 
 }

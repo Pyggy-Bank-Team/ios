@@ -7,17 +7,17 @@ protocol CreateUpdateAccountRepository {
 
 final class CreateUpdateAccountUseCase {
 
-    private let createUpdateAccountRepository: CreateUpdateAccountRepository
+    private let createUpdateAccountRepository: CreateUpdateAccountRepository?
 
-    init(createUpdateAccountRepository: CreateUpdateAccountRepository) {
+    init(createUpdateAccountRepository: CreateUpdateAccountRepository?) {
         self.createUpdateAccountRepository = createUpdateAccountRepository
     }
 
     func execute(request: DomainAccountModel, completion: @escaping (Result<Void>) -> Void) {
         if request.id != nil {
-            createUpdateAccountRepository.updateAccount(request: request, completion: completion)
+            createUpdateAccountRepository?.updateAccount(request: request, completion: completion)
         } else {
-            createUpdateAccountRepository.createAccount(request: request, completion: completion)
+            createUpdateAccountRepository?.createAccount(request: request, completion: completion)
         }
     }
 

@@ -1,19 +1,19 @@
 import Foundation
 
 final class CategoriesPresenter {
-    
+
     private weak var view: CategoriesViewController?
-    
-    private let getCategoriesUseCase = GetCategoriesUseCase(getCategoriesRepository: GetCategoriesDataRepository(remoteDataSource: GetCategoriesRemoteDataSource()))
-    
+    private let getCategoriesUseCase: GetCategoriesUseCase?
+
     private var categories: [DomainCategoryModel] = []
-    
-    init(view: CategoriesViewController) {
+
+    init(view: CategoriesViewController?, getCategoriesUseCase: GetCategoriesUseCase?) {
         self.view = view
+        self.getCategoriesUseCase = getCategoriesUseCase
     }
-    
+
     func onViewDidLoad() {
-        getCategoriesUseCase.execute { [weak self] response in
+        getCategoriesUseCase?.execute { [weak self] response in
             guard let self = self else {
                 return
             }
@@ -28,18 +28,18 @@ final class CategoriesPresenter {
             }
         }
     }
-    
+
     func onAdd() {
-        let categoryVC = CategorySceneAssembly(categoryDomainModel: nil).build()
-        view?.push(viewController: categoryVC)
+        let assembler = DependencyProvider.shared.assembler
+        assembler.apply(assembly: CategorySceneAssembly(categoryDomainModel: nil))
+        view?.push(viewController: assembler.resolver.resolve(CategoryViewController.self)!)
     }
-    
+
     func onSelect(id: Int) {
-        let category = getCategory(at: id)
-        let categoryVC = CategorySceneAssembly(categoryDomainModel: category).build()
-        view?.push(viewController: categoryVC)
+        let assembler = DependencyProvider.shared.assembler
+        assembler.apply(assembly: CategorySceneAssembly(categoryDomainModel: getCategory(at: id)))
+        view?.push(viewController: assembler.resolver.resolve(CategoryViewController.self)!)
     }
-    
 }
 
 extension CategoriesPresenter {

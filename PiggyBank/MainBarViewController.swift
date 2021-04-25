@@ -5,7 +5,7 @@ public final class MainBarViewController: UITabBarController {
     override public func viewDidLoad() {
         super.viewDidLoad()
         
-        let accountsViewController = AccountsAssembly().build()
+        let accountsViewController = DependencyProvider.shared.assembler.resolver.resolve(AccountsViewController.self)!
         accountsViewController.tabBarItem = UITabBarItem(title: "Accounts", image: nil, tag: 0)
         
         let categoriesViewController = CategoriesViewController()

@@ -4,19 +4,23 @@ final class OperationPresenter {
     
     private weak var view: OperationViewController?
 
-    private let getAccountsUseCase = GetAccountsUseCase(
-        getAccountsRepository: GetAccountsDataRepository(
-            remoteDataSource: GetAccountsRemoteDataSource()))
-    private let createUpdateTransferOperationUseCase = CreateUpdateTransferOperationUseCase()
+    private let getAccountsUseCase: GetAccountsUseCase?
+    private let createUpdateTransferOperationUseCase: CreateUpdateTransferOperationUseCase?
 
     private var accounts: [DomainAccountModel] = []
     
-    init(view: OperationViewController) {
+    init(
+        view: OperationViewController,
+        getAccountsUseCase: GetAccountsUseCase?,
+        createUpdateTransferOperationUseCase: CreateUpdateTransferOperationUseCase?
+    ) {
         self.view = view
+        self.getAccountsUseCase = getAccountsUseCase
+        self.createUpdateTransferOperationUseCase = createUpdateTransferOperationUseCase
     }
 
     func onViewDidLoad() {
-        getAccountsUseCase.execute { [weak self] accounts in
+        getAccountsUseCase?.execute { [weak self] accounts in
             if case let .success(items) = accounts {
                 self?.accounts = items
 
@@ -46,7 +50,7 @@ final class OperationPresenter {
             comment: comment
         )
 
-        createUpdateTransferOperationUseCase.execute(request: model) { [weak self] result in
+        createUpdateTransferOperationUseCase?.execute(request: model) { [weak self] result in
             if case .success = result {
                 DispatchQueue.main.async {
                     self?.view?.show(alert: "Success")

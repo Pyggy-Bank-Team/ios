@@ -9,14 +9,14 @@ protocol GetCategoriesDataSource {
 
 class GetCategoriesDataRepository: GetCategoriesRepository {
 
-    private let remoteDataSource: GetCategoriesDataSource
+    private let remoteDataSource: GetCategoriesDataSource?
 
-    init(remoteDataSource: GetCategoriesDataSource) {
+    init(remoteDataSource: GetCategoriesDataSource?) {
         self.remoteDataSource = remoteDataSource
     }
 
     func getCategories(completion: @escaping (Result<[DomainCategoryModel]>) -> Void) {
-        remoteDataSource.getCategories(completion: completion)
+        remoteDataSource?.getCategories(completion: completion)
     }
 
 }

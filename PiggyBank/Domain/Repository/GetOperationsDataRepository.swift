@@ -9,13 +9,13 @@ protocol GetOperationsDataSource {
 
 class GetOperationsDataRepository: GetOperationsRepository {
 
-    private let remoteDataSource: GetOperationsDataSource
+    private let remoteDataSource: GetOperationsDataSource?
 
-    init(remoteDataSource: GetOperationsDataSource) {
+    init(remoteDataSource: GetOperationsDataSource?) {
         self.remoteDataSource = remoteDataSource
     }
 
     func getOperations(completion: @escaping (Result<[DomainOperationModel]>) -> Void) {
-        remoteDataSource.getOperations(completion: completion)
+        remoteDataSource?.getOperations(completion: completion)
     }
 }

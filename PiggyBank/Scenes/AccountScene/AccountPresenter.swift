@@ -4,16 +4,22 @@ final class AccountPresenter {
     
     private let accountDomainModel: DomainAccountModel?
     
-    private let createUpdateAccountUseCase = CreateUpdateAccountUseCase(createUpdateAccountRepository: CreateUpdateAccountDataRepository(remoteDataSource: CreateUpdateAccountRemoteDataSource()))
-    private let deleteAccountUseCase = DeleteAccountUseCase(deleteAccountRepository: DeleteAccountDataRepository(remoteDataSource: DeleteAccountRemoteDataSource()))
-
+    private let createUpdateAccountUseCase: CreateUpdateAccountUseCase?
+    private let deleteAccountUseCase: DeleteAccountUseCase?
     weak var view: AccountViewController?
     
-    init(accountDomainModel: DomainAccountModel?, view: AccountViewController?) {
+    init(
+        accountDomainModel: DomainAccountModel?,
+        view: AccountViewController?,
+        createUpdateAccountUseCase: CreateUpdateAccountUseCase?,
+        deleteAccountUseCase: DeleteAccountUseCase?
+    ) {
         self.accountDomainModel = accountDomainModel
         self.view = view
+        self.createUpdateAccountUseCase = createUpdateAccountUseCase
+        self.deleteAccountUseCase = deleteAccountUseCase
     }
-    
+
     func loadData() {
         let accountViewModel = GrandConverter.convertToViewModel(domainAccount: accountDomainModel)
         view?.loadAccount(account: accountViewModel)
@@ -53,7 +59,7 @@ final class AccountPresenter {
             isDeleted: false
         )
         
-        createUpdateAccountUseCase.execute(request: createUpdateDomain) { [weak self] result in
+        createUpdateAccountUseCase?.execute(request: createUpdateDomain) { [weak self] result in
             guard let self = self else {
                 return
             }
@@ -71,7 +77,7 @@ final class AccountPresenter {
             fatalError("AccountPresenter: onDelete - accountDomainModel?.id is nil")
         }
         
-        deleteAccountUseCase.execute(accountID: id) { [weak self] result in
+        deleteAccountUseCase?.execute(accountID: id) { [weak self] result in
             guard let self = self else {
                 return
             }

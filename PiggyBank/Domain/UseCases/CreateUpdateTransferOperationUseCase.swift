@@ -1,11 +1,22 @@
 import Foundation
 
+protocol CreateUpdateTransferOperationRepository {
+    func createTransferOperation(
+        request: DomainCreateUpdateTransferOperationModel,
+        completion: @escaping (Result<Void>) -> Void
+    )
+}
+
 final class CreateUpdateTransferOperationUseCase {
 
-    private let apiManager = APIManager.shared
+    private let createUpdateTransferOperationRepository: CreateUpdateTransferOperationRepository
+
+    init(createUpdateTransferOperationRepository: CreateUpdateTransferOperationRepository) {
+        self.createUpdateTransferOperationRepository = createUpdateTransferOperationRepository
+    }
 
     func execute(request: DomainCreateUpdateTransferOperationModel, completion: @escaping (Result<Void>) -> Void) {
-        apiManager.createTransferOperation(request: request, completion: completion)
+        createUpdateTransferOperationRepository.createTransferOperation(request: request, completion: completion)
     }
 
 }

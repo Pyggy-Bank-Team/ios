@@ -4,19 +4,26 @@ final class AccountsPresenter {
     
     private weak var view: AccountsViewController?
     
-    private let getAccountsUseCase = GetAccountsUseCase(getAccountsRepository:
-        GetAccountsDataRepository(remoteDataSource: GetAccountsRemoteDataSource()))
-    private let deleteAccountUseCase = DeleteAccountUseCase(deleteAccountRepository: DeleteAccountDataRepository(remoteDataSource: DeleteAccountRemoteDataSource()))
-    private let createUpdateAccountUseCase = CreateUpdateAccountUseCase(createUpdateAccountRepository: CreateUpdateAccountDataRepository(remoteDataSource: CreateUpdateAccountRemoteDataSource()))
+    private let getAccountsUseCase: GetAccountsUseCase?
+    private let deleteAccountUseCase: DeleteAccountUseCase?
+    private let createUpdateAccountUseCase: CreateUpdateAccountUseCase?
     
     private var accounts: [DomainAccountModel] = []
     
-    init(view: AccountsViewController) {
+    init(
+        view: AccountsViewController?,
+        getAccountsUseCase: GetAccountsUseCase?,
+        deleteAccountUseCase: DeleteAccountUseCase?,
+        createUpdateAccountUseCase: CreateUpdateAccountUseCase?
+    ) {
         self.view = view
+        self.getAccountsUseCase = getAccountsUseCase
+        self.deleteAccountUseCase = deleteAccountUseCase
+        self.createUpdateAccountUseCase = createUpdateAccountUseCase
     }
-    
+
     func onViewDidLoad(request: AccountsDTOs.ViewDidLoad.Request) {
-        getAccountsUseCase.execute { [weak self] response in
+        getAccountsUseCase?.execute { [weak self] response in
             guard let self = self else {
                 return
             }
@@ -45,7 +52,7 @@ final class AccountsPresenter {
             isDeleted: account.isDeleted
         )
         
-        createUpdateAccountUseCase.execute(request: createUpdateModel) { response in
+        createUpdateAccountUseCase?.execute(request: createUpdateModel) { response in
             DispatchQueue.main.async {
                 if case .success = response {
                     self.view?.onAdd(response: .init(title: "Account has been successfully \(account.isArchived ? "unarchived" : "archived")"))
@@ -59,7 +66,7 @@ final class AccountsPresenter {
     func onDeleteAccount(id: Int) {
         let account = getAccount(at: id)
         
-        deleteAccountUseCase.execute(accountID: account.id!) { response in
+        deleteAccountUseCase?.execute(accountID: account.id!) { response in
             DispatchQueue.main.async {
                 if case .success = response {
                     self.view?.onAdd(response: .init(title: "Account has been successfully deleted"))
@@ -71,16 +78,17 @@ final class AccountsPresenter {
     }
     
     func onAdd() {
-        let accountVC = AccountSceneAssembly(accountDomainModel: nil).build()
-        view?.onAdd(viewController: accountVC)
+        let assembler = DependencyProvider.shared.assembler
+        assembler.apply(assembly: AccountSceneAssembly(accountDomainModel: nil))
+        view?.onAdd(viewController: assembler.resolver.resolve(AccountViewController.self)!)
     }
-    
+
     func onSelect(id: Int) {
-        let account = getAccount(at: id)
-        let accountVC = AccountSceneAssembly(accountDomainModel: account).build()
-        view?.onSelect(viewController: accountVC)
+        let assembler = DependencyProvider.shared.assembler
+        assembler.apply(assembly: AccountSceneAssembly(accountDomainModel: getAccount(at: id)))
+        view?.onSelect(viewController: assembler.resolver.resolve(AccountViewController.self)!)
     }
-    
+
 }
 
 extension AccountsPresenter {

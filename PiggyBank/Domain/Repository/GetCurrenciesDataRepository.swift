@@ -9,14 +9,14 @@ protocol GetCurrenciesDataSource {
 
 class GetCurrenciesDataRepository: GetCurrenciesRepository {
 
-    private let remoteDataSource: GetCurrenciesDataSource
+    private let remoteDataSource: GetCurrenciesDataSource?
 
-    init(remoteDataSource: GetCurrenciesDataSource) {
+    init(remoteDataSource: GetCurrenciesDataSource?) {
         self.remoteDataSource = remoteDataSource
     }
 
     func getCurrencies(completion: @escaping (Result<[DomainCurrencyModel]>) -> Void) {
-        remoteDataSource.getCurrencies(completion: completion)
+        remoteDataSource?.getCurrencies(completion: completion)
     }
 
 }

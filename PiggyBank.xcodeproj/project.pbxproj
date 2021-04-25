@@ -45,6 +45,15 @@
 		711F587E26301BE100381BEF /* GetUserCredentialsDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711F587D26301BE100381BEF /* GetUserCredentialsDataRepository.swift */; };
 		711F588126301C8D00381BEF /* GetOperationsDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711F588026301C8D00381BEF /* GetOperationsDataRepository.swift */; };
 		711F588426301CD700381BEF /* GetOperationsRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711F588326301CD700381BEF /* GetOperationsRemoteDataSource.swift */; };
+		711F588726301D8D00381BEF /* DeleteOperationDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711F588626301D8D00381BEF /* DeleteOperationDataRepository.swift */; };
+		711F588A26301E0200381BEF /* DeleteOperationRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711F588926301E0200381BEF /* DeleteOperationRemoteDataSource.swift */; };
+		711F588D26301EF900381BEF /* CreateUpdateTransferOperationDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711F588C26301EF900381BEF /* CreateUpdateTransferOperationDataRepository.swift */; };
+		711F589026301F5300381BEF /* CreateUpdateTransferOperationRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711F588F26301F5300381BEF /* CreateUpdateTransferOperationRemoteDataSource.swift */; };
+		711F5893263020BB00381BEF /* GetReportsByCategoryDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711F5892263020BB00381BEF /* GetReportsByCategoryDataRepository.swift */; };
+		711F58962630212600381BEF /* GetReportsByCategoryRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711F58952630212600381BEF /* GetReportsByCategoryRemoteDataSource.swift */; };
+		711F589C26331ADF00381BEF /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 711F589B26331ADF00381BEF /* Swinject */; };
+		711F58A026331B1600381BEF /* SwinjectAutoregistration in Frameworks */ = {isa = PBXBuildFile; productRef = 711F589F26331B1600381BEF /* SwinjectAutoregistration */; };
+		711F58A32633252E00381BEF /* DependencyProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711F58A22633252E00381BEF /* DependencyProvider.swift */; };
 		7152CFA62629628A00096331 /* CategoryOperationInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7152CFA52629628A00096331 /* CategoryOperationInfoTableViewCell.swift */; };
 		719C433F262B5AE8004C92F3 /* PiggySegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719C433E262B5AE8004C92F3 /* PiggySegmentedControl.swift */; };
 		71E5D7BC262C832F002A9827 /* DatePickerDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E5D7BB262C832F002A9827 /* DatePickerDialog.swift */; };
@@ -175,6 +184,13 @@
 		711F587D26301BE100381BEF /* GetUserCredentialsDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserCredentialsDataRepository.swift; sourceTree = "<group>"; };
 		711F588026301C8D00381BEF /* GetOperationsDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetOperationsDataRepository.swift; sourceTree = "<group>"; };
 		711F588326301CD700381BEF /* GetOperationsRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetOperationsRemoteDataSource.swift; sourceTree = "<group>"; };
+		711F588626301D8D00381BEF /* DeleteOperationDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteOperationDataRepository.swift; sourceTree = "<group>"; };
+		711F588926301E0200381BEF /* DeleteOperationRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteOperationRemoteDataSource.swift; sourceTree = "<group>"; };
+		711F588C26301EF900381BEF /* CreateUpdateTransferOperationDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUpdateTransferOperationDataRepository.swift; sourceTree = "<group>"; };
+		711F588F26301F5300381BEF /* CreateUpdateTransferOperationRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUpdateTransferOperationRemoteDataSource.swift; sourceTree = "<group>"; };
+		711F5892263020BB00381BEF /* GetReportsByCategoryDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetReportsByCategoryDataRepository.swift; sourceTree = "<group>"; };
+		711F58952630212600381BEF /* GetReportsByCategoryRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetReportsByCategoryRemoteDataSource.swift; sourceTree = "<group>"; };
+		711F58A22633252E00381BEF /* DependencyProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyProvider.swift; sourceTree = "<group>"; };
 		7152CFA52629628A00096331 /* CategoryOperationInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryOperationInfoTableViewCell.swift; sourceTree = "<group>"; };
 		719C433E262B5AE8004C92F3 /* PiggySegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiggySegmentedControl.swift; sourceTree = "<group>"; };
 		71E5D7BB262C832F002A9827 /* DatePickerDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerDialog.swift; sourceTree = "<group>"; };
@@ -275,6 +291,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7113505426272C8A00572CB9 /* Charts in Frameworks */,
+				711F589C26331ADF00381BEF /* Swinject in Frameworks */,
+				711F58A026331B1600381BEF /* SwinjectAutoregistration in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,7 +317,6 @@
 			children = (
 				711350202621C38F00572CB9 /* ReportsViewController.swift */,
 				711350242621C39F00572CB9 /* ReportsPresenter.swift */,
-				711350272621C3B900572CB9 /* ReportsSceneAssembly.swift */,
 			);
 			path = ReportsScene;
 			sourceTree = "<group>";
@@ -317,6 +334,9 @@
 				711F586E2630170000381BEF /* CreateUpdateCategoryRemoteDataSource.swift */,
 				711F58742630182600381BEF /* GetCurrenciesRemoteDataSource.swift */,
 				711F588326301CD700381BEF /* GetOperationsRemoteDataSource.swift */,
+				711F588926301E0200381BEF /* DeleteOperationRemoteDataSource.swift */,
+				711F588F26301F5300381BEF /* CreateUpdateTransferOperationRemoteDataSource.swift */,
+				711F58952630212600381BEF /* GetReportsByCategoryRemoteDataSource.swift */,
 			);
 			path = RemoteDataSources;
 			sourceTree = "<group>";
@@ -343,6 +363,7 @@
 		71E5D7D526300830002A9827 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				7113501F2621C34200572CB9 /* ReportsScene */,
 				9104C178250DD6BC003BF041 /* AccountScene */,
 				91A85DEC24CB304B00B7A630 /* AccountsScene */,
 				91A85DC224ABE8AD00B7A630 /* AuthScene */,
@@ -352,7 +373,6 @@
 				9166BC94256A2EEB00A23196 /* OperationScene */,
 				91957A8125318C540027249A /* OperationsScene */,
 				9104C13324FBC6EC003BF041 /* ProfileScene */,
-				7113501F2621C34200572CB9 /* ReportsScene */,
 				9104C1B5250F347C003BF041 /* StartScene */,
 			);
 			path = Scenes;
@@ -374,6 +394,9 @@
 				711F587A26301B1E00381BEF /* DeleteUserCredentialsDataRepository.swift */,
 				711F587D26301BE100381BEF /* GetUserCredentialsDataRepository.swift */,
 				711F588026301C8D00381BEF /* GetOperationsDataRepository.swift */,
+				711F588626301D8D00381BEF /* DeleteOperationDataRepository.swift */,
+				711F588C26301EF900381BEF /* CreateUpdateTransferOperationDataRepository.swift */,
+				711F5892263020BB00381BEF /* GetReportsByCategoryDataRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -383,7 +406,6 @@
 			children = (
 				9104C13424FBC705003BF041 /* ProfileViewController.swift */,
 				9104C1AD250F29F8003BF041 /* ProfilePresenter.swift */,
-				9104C1AF250F2A3C003BF041 /* ProfileSceneAssembly.swift */,
 			);
 			path = ProfileScene;
 			sourceTree = "<group>";
@@ -410,7 +432,6 @@
 			children = (
 				9104C179250DD6DD003BF041 /* AccountViewController.swift */,
 				9104C17E250DDBB6003BF041 /* AccountPresenter.swift */,
-				9104C184250DE3D7003BF041 /* AccountSceneAssembly.swift */,
 				9104C1C425107F82003BF041 /* AccountTextFieldTableCell.swift */,
 				9104C1C625108459003BF041 /* AccountSegmentedTableCell.swift */,
 			);
@@ -434,7 +455,6 @@
 			children = (
 				9104C18B250E174D003BF041 /* BaseCurrencyViewController.swift */,
 				9104C18F250E1AFE003BF041 /* BaseCurrencyPresenter.swift */,
-				9104C197250E20B1003BF041 /* BaseCurrencySceneAssembly.swift */,
 				9104C199250E239D003BF041 /* CurrencyTableCell.swift */,
 			);
 			path = BaseCurrencyScene;
@@ -445,7 +465,6 @@
 			children = (
 				9104C1B6250F3497003BF041 /* StartViewController.swift */,
 				9104C1B8250F34B0003BF041 /* StartPresenter.swift */,
-				9104C1BA250F379F003BF041 /* StartSceneAssembly.swift */,
 			);
 			path = StartScene;
 			sourceTree = "<group>";
@@ -467,7 +486,6 @@
 			children = (
 				9166BC95256A2EFC00A23196 /* OperationViewController.swift */,
 				9166BC97256A2F0E00A23196 /* OperationPresenter.swift */,
-				9166BC99256A2F1E00A23196 /* OperationSceneAssembly.swift */,
 			);
 			path = OperationScene;
 			sourceTree = "<group>";
@@ -477,7 +495,6 @@
 			children = (
 				91957A8225318C700027249A /* OperationsViewController.swift */,
 				91957A8625318D580027249A /* OperationsPresenter.swift */,
-				91957A8825318F3A0027249A /* OperationsSceneAssembly.swift */,
 			);
 			path = OperationsScene;
 			sourceTree = "<group>";
@@ -530,7 +547,6 @@
 			isa = PBXGroup;
 			children = (
 				91A85DBC24ABDE2C00B7A630 /* AuthViewController.swift */,
-				9104C186250DF6D9003BF041 /* AuthSceneAssembly.swift */,
 				9104C188250DF76D003BF041 /* AuthPresenter.swift */,
 			);
 			path = AuthScene;
@@ -539,8 +555,18 @@
 		91A85DCB24AC4B1400B7A630 /* Assemblies */ = {
 			isa = PBXGroup;
 			children = (
+				711F58A22633252E00381BEF /* DependencyProvider.swift */,
+				9104C1BA250F379F003BF041 /* StartSceneAssembly.swift */,
+				711350272621C3B900572CB9 /* ReportsSceneAssembly.swift */,
 				91A85DF724CB3D0E00B7A630 /* AccountsAssembly.swift */,
 				9104C13624FBC86B003BF041 /* CategoriesAssembly.swift */,
+				91957A8825318F3A0027249A /* OperationsSceneAssembly.swift */,
+				9104C1AF250F2A3C003BF041 /* ProfileSceneAssembly.swift */,
+				9104C184250DE3D7003BF041 /* AccountSceneAssembly.swift */,
+				9104C186250DF6D9003BF041 /* AuthSceneAssembly.swift */,
+				9104C197250E20B1003BF041 /* BaseCurrencySceneAssembly.swift */,
+				91C26FA12515C0E300C999BE /* CategorySceneAssembly.swift */,
+				9166BC99256A2F1E00A23196 /* OperationSceneAssembly.swift */,
 			);
 			path = Assemblies;
 			sourceTree = "<group>";
@@ -625,7 +651,6 @@
 			children = (
 				9104C170250415C4003BF041 /* CategoryViewController.swift */,
 				91C26F9F2515C01B00C999BE /* CategoryPresenter.swift */,
-				91C26FA12515C0E300C999BE /* CategorySceneAssembly.swift */,
 				91C26FA52515D28B00C999BE /* ColorCollectionCell.swift */,
 				91957A772515D7720027249A /* CategoryView.swift */,
 			);
@@ -651,6 +676,8 @@
 			name = PiggyBank;
 			packageProductDependencies = (
 				7113505326272C8A00572CB9 /* Charts */,
+				711F589B26331ADF00381BEF /* Swinject */,
+				711F589F26331B1600381BEF /* SwinjectAutoregistration */,
 			);
 			productName = PiggyBank;
 			productReference = 91A85DA524ABDDA400B7A630 /* PiggyBank.app */;
@@ -682,6 +709,8 @@
 			mainGroup = 91A85D9C24ABDDA400B7A630;
 			packageReferences = (
 				7113505226272C8A00572CB9 /* XCRemoteSwiftPackageReference "Charts" */,
+				711F589A26331ADF00381BEF /* XCRemoteSwiftPackageReference "Swinject" */,
+				711F589E26331B1600381BEF /* XCRemoteSwiftPackageReference "SwinjectAutoregistration" */,
 			);
 			productRefGroup = 91A85DA624ABDDA400B7A630 /* Products */;
 			projectDirPath = "";
@@ -736,6 +765,7 @@
 				9104C17D250DD814003BF041 /* AccountViewModel.swift in Sources */,
 				9104C187250DF6D9003BF041 /* AuthSceneAssembly.swift in Sources */,
 				91957A8325318C700027249A /* OperationsViewController.swift in Sources */,
+				711F5893263020BB00381BEF /* GetReportsByCategoryDataRepository.swift in Sources */,
 				91C26FA02515C01B00C999BE /* CategoryPresenter.swift in Sources */,
 				9104C19E250E6D40003BF041 /* SignUp.swift in Sources */,
 				9166BC96256A2EFC00A23196 /* OperationViewController.swift in Sources */,
@@ -749,6 +779,7 @@
 				9104C1B0250F2A3C003BF041 /* ProfileSceneAssembly.swift in Sources */,
 				9104C16D250409CF003BF041 /* DomainCategoryModel.swift in Sources */,
 				91957A7A2531717D0027249A /* Operation.swift in Sources */,
+				711F589026301F5300381BEF /* CreateUpdateTransferOperationRemoteDataSource.swift in Sources */,
 				711F5866263014A300381BEF /* DeleteCategoryDataRepository.swift in Sources */,
 				711350252621C39F00572CB9 /* ReportsPresenter.swift in Sources */,
 				91957A8525318D000027249A /* OperationViewModel.swift in Sources */,
@@ -805,8 +836,10 @@
 				91C26FA62515D28B00C999BE /* ColorCollectionCell.swift in Sources */,
 				91957A7E253172A30027249A /* DomainOperationModel.swift in Sources */,
 				711F58602630139D00381BEF /* GetCategoriesDataRepository.swift in Sources */,
+				711F588A26301E0200381BEF /* DeleteOperationRemoteDataSource.swift in Sources */,
 				9104C1A4250F1FEC003BF041 /* DomainAuthModel.swift in Sources */,
 				711F587E26301BE100381BEF /* GetUserCredentialsDataRepository.swift in Sources */,
+				711F58A32633252E00381BEF /* DependencyProvider.swift in Sources */,
 				910DEEB42574A50F0053A2E0 /* BottomBar.swift in Sources */,
 				711F588126301C8D00381BEF /* GetOperationsDataRepository.swift in Sources */,
 				9104C1A0250F1D9E003BF041 /* UserCredentials.swift in Sources */,
@@ -821,6 +854,7 @@
 				91A85DF224CB326700B7A630 /* AccountsPresenter.swift in Sources */,
 				9104C194250E1C96003BF041 /* Currency.swift in Sources */,
 				711F584226300B7500381BEF /* SignInDataRepository.swift in Sources */,
+				711F588726301D8D00381BEF /* DeleteOperationDataRepository.swift in Sources */,
 				91A85DA924ABDDA400B7A630 /* AppDelegate.swift in Sources */,
 				9104C14124FBD86D003BF041 /* CategoryViewModel.swift in Sources */,
 				9175DB92262A891200480957 /* String.swift in Sources */,
@@ -842,9 +876,11 @@
 				91957A8725318D580027249A /* OperationsPresenter.swift in Sources */,
 				9104C196250E1F37003BF041 /* GetCurrenciesUseCase.swift in Sources */,
 				91957A782515D7730027249A /* CategoryView.swift in Sources */,
+				711F588D26301EF900381BEF /* CreateUpdateTransferOperationDataRepository.swift in Sources */,
 				9166BC98256A2F0E00A23196 /* OperationPresenter.swift in Sources */,
 				9104C13724FBC86B003BF041 /* CategoriesAssembly.swift in Sources */,
 				9104C17725052CDE003BF041 /* CreateUpdateCategoryUseCase.swift in Sources */,
+				711F58962630212600381BEF /* GetReportsByCategoryRemoteDataSource.swift in Sources */,
 				91A85DF824CB3D0E00B7A630 /* AccountsAssembly.swift in Sources */,
 				91A85E0224D04F0700B7A630 /* MainBarViewController.swift in Sources */,
 				9104C198250E20B1003BF041 /* BaseCurrencySceneAssembly.swift in Sources */,
@@ -1055,6 +1091,22 @@
 				minimumVersion = 4.0.1;
 			};
 		};
+		711F589A26331ADF00381BEF /* XCRemoteSwiftPackageReference "Swinject" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Swinject/Swinject";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.7.1;
+			};
+		};
+		711F589E26331B1600381BEF /* XCRemoteSwiftPackageReference "SwinjectAutoregistration" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Swinject/SwinjectAutoregistration";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.7.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1062,6 +1114,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7113505226272C8A00572CB9 /* XCRemoteSwiftPackageReference "Charts" */;
 			productName = Charts;
+		};
+		711F589B26331ADF00381BEF /* Swinject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 711F589A26331ADF00381BEF /* XCRemoteSwiftPackageReference "Swinject" */;
+			productName = Swinject;
+		};
+		711F589F26331B1600381BEF /* SwinjectAutoregistration */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 711F589E26331B1600381BEF /* XCRemoteSwiftPackageReference "SwinjectAutoregistration" */;
+			productName = SwinjectAutoregistration;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -2,16 +2,16 @@ import Foundation
 
 final class ProfilePresenter {
     
-    private let deleteCredentials = DeleteUserCredentialsUseCase(deleteUserCredentialsRepository: DeleteUserCredentialsDataRepository())
-
+    private let deleteCredentialsUseCase: DeleteUserCredentialsUseCase?
     private weak var view: ProfileViewController?
     
-    init(view: ProfileViewController?) {
+    init(view: ProfileViewController?, deleteCredentials: DeleteUserCredentialsUseCase?) {
         self.view = view
+        self.deleteCredentialsUseCase = deleteCredentials
     }
-    
+
     func onSignOut() {
-        deleteCredentials.execute { [weak self] _ in
+        deleteCredentialsUseCase?.execute { [weak self] _ in
             DispatchQueue.main.async {
                 self?.view?.onSignOut()
             }

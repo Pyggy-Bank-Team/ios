@@ -9,13 +9,13 @@ protocol GetAccountsDataSource {
 
 class GetAccountsDataRepository: GetAccountsRepository {
 
-    private let remoteDataSource: GetAccountsDataSource
+    private let remoteDataSource: GetAccountsDataSource?
 
-    init(remoteDataSource: GetAccountsDataSource) {
+    init(remoteDataSource: GetAccountsDataSource?) {
         self.remoteDataSource = remoteDataSource
     }
 
     func getAccounts(completion: @escaping (Result<[DomainAccountModel]>) -> Void) {
-        remoteDataSource.getAccounts(completion: completion)
+        remoteDataSource?.getAccounts(completion: completion)
     }
 }

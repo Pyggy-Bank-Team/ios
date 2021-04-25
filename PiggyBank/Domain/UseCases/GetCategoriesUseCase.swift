@@ -6,14 +6,14 @@ protocol GetCategoriesRepository {
 
 final class GetCategoriesUseCase {
 
-    private let getCategoriesRepository: GetCategoriesRepository
+    private let getCategoriesRepository: GetCategoriesRepository?
 
-    init(getCategoriesRepository: GetCategoriesRepository) {
+    init(getCategoriesRepository: GetCategoriesRepository?) {
         self.getCategoriesRepository = getCategoriesRepository
     }
 
     func execute(completion: @escaping (Result<[DomainCategoryModel]>) -> Void) {
-        getCategoriesRepository.getCategories(completion: completion)
+        getCategoriesRepository?.getCategories(completion: completion)
     }
 
 }

@@ -1,17 +1,27 @@
 import Foundation
 
+protocol DeleteOperationRepository {
+    func deleteBudgetOperation(operationID: UInt, completion: @escaping (Result<Void>) -> Void)
+    func deleteTransferOperation(operationID: UInt, completion: @escaping (Result<Void>) -> Void)
+    func deletePlanOperation(operationID: UInt, completion: @escaping (Result<Void>) -> Void)
+}
+
 final class DeleteOperationUseCase {
     
-    private let apiManager = APIManager.shared
-    
+    private let deleteOperationRepository: DeleteOperationRepository
+
+    init(deleteOperationRepository: DeleteOperationRepository) {
+        self.deleteOperationRepository = deleteOperationRepository
+    }
+
     func execute(operation: DomainOperationModel, completion: @escaping (Result<Void>) -> Void) {
         switch operation.type {
         case .budget:
-            apiManager.deleteBudgetOperation(operationID: operation.id, completion: completion)
+            deleteOperationRepository.deleteBudgetOperation(operationID: operation.id, completion: completion)
         case .transfer:
-            apiManager.deleteTransferOperation(operationID: operation.id, completion: completion)
+            deleteOperationRepository.deleteTransferOperation(operationID: operation.id, completion: completion)
         case .plan:
-            apiManager.deletePlanOperation(operationID: operation.id, completion: completion)
+            deleteOperationRepository.deletePlanOperation(operationID: operation.id, completion: completion)
         default:
             break
         }

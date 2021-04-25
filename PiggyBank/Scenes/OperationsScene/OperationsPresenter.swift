@@ -4,17 +4,23 @@ final class OperationsPresenter {
     
     private weak var view: OperationsViewController?
     
-    private let getOperationsUseCase = GetOperationsUseCase(getOperationsRepository: GetOperationsDataRepository(remoteDataSource: GetOperationsRemoteDataSource()))
-    private let deleteOperationUseCase = DeleteOperationUseCase()
+    private let getOperationsUseCase: GetOperationsUseCase?
+    private let deleteOperationUseCase: DeleteOperationUseCase?
 
     private var operations: [DomainOperationModel] = []
     
-    init(view: OperationsViewController) {
+    init(
+        view: OperationsViewController?,
+        getOperationsUseCase: GetOperationsUseCase?,
+        deleteOperationUseCase: DeleteOperationUseCase?
+    ) {
         self.view = view
+        self.getOperationsUseCase = getOperationsUseCase
+        self.deleteOperationUseCase = deleteOperationUseCase
     }
     
     func onViewDidLoad() {
-        getOperationsUseCase.execute { [weak self] response in
+        getOperationsUseCase?.execute { [weak self] response in
             guard let self = self else {
                 return
             }
@@ -29,11 +35,11 @@ final class OperationsPresenter {
             }
         }
     }
-    
+
     func onDeleteOperation(id: UInt) {
         let operation = getOperation(at: id)
         
-        deleteOperationUseCase.execute(operation: operation) { response in
+        deleteOperationUseCase?.execute(operation: operation) { response in
             DispatchQueue.main.async {
                 if case .success = response {
                     self.view?.show(alert: "Operation has been successfully deleted")
@@ -43,7 +49,7 @@ final class OperationsPresenter {
             }
         }
     }
-    
+
 }
 
 extension OperationsPresenter {

@@ -14,10 +14,11 @@ public final class ReportsPresenter {
                                                        categoryList: [])
 
     private weak var view: ReportsViewController?
-    private let getReportsByCategoryUseCase = GetReportsByCategoryUseCase()
+    private let getReportsByCategoryUseCase: GetReportsByCategoryUseCase?
 
-    init(view: ReportsViewController) {
+    init(view: ReportsViewController?, getReportsByCategoryUseCase: GetReportsByCategoryUseCase?) {
         self.view = view
+        self.getReportsByCategoryUseCase = getReportsByCategoryUseCase
     }
 
     func prepareData() {
@@ -37,7 +38,7 @@ public final class ReportsPresenter {
 
     private func executeUseCase() {
         let category = DomainCategoryModel.CategoryType(rawValue: reportViewModel.type.rawValue) ?? .undefined
-        getReportsByCategoryUseCase.execute(category: category, from: reportViewModel.startDate, to: reportViewModel.endDate) { [weak self] response in
+        getReportsByCategoryUseCase?.execute(category: category, from: reportViewModel.startDate, to: reportViewModel.endDate) { [weak self] response in
             guard let self = self else {
                 return
             }

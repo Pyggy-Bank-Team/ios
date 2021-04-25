@@ -8,13 +8,13 @@ protocol SignUpDataSource {
 }
 
 class SignUpDataRepository: SignUpRepository {
-    private let remoteDataSource: SignUpDataSource
+    private let remoteDataSource: SignUpDataSource?
 
-    init(remoteDataSource: SignUpDataSource) {
+    init(remoteDataSource: SignUpDataSource?) {
         self.remoteDataSource = remoteDataSource
     }
 
     func signUp(request: DomainSignUpModel, completion: @escaping (Result<DomainAuthModel>) -> Void) {
-        remoteDataSource.signUp(request: request, completion: completion)
+        remoteDataSource?.signUp(request: request, completion: completion)
     }
 }
