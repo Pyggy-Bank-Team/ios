@@ -1,19 +1,15 @@
 import Foundation
 
-protocol GetOperationsRepository {
-    func getOperations(completion: @escaping (Result<[DomainOperationModel]>) -> Void)
-}
-
 final class GetOperationsUseCase {
     
-    private let getOperationsRepository: GetOperationsRepository
+    private let getOperationsRepository: OperationsRepository?
 
-    init(getOperationsRepository: GetOperationsRepository) {
+    init(getOperationsRepository: OperationsRepository?) {
         self.getOperationsRepository = getOperationsRepository
     }
 
     func execute(completion: @escaping (Result<[DomainOperationModel]>) -> Void) {
-        getOperationsRepository.getOperations(completion: completion)
+        getOperationsRepository?.getOperations(completion: completion)
     }
 
 }

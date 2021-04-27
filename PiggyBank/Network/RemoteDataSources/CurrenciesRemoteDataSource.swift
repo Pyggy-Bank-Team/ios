@@ -1,19 +1,18 @@
 //
-//  GetAccountsRemoteDataSource.swift
+//  CurrenciesRemoteDataSource.swift
 //  PiggyBank
 //
 
 import Foundation
 
-struct GetAccountsRemoteDataSource: GetAccountsDataSource {
+struct CurrenciesRemoteDataSource: CurrenciesDataSource {
 
-    func getAccounts(completion: @escaping (Result<[DomainAccountModel]>) -> Void) {
-        guard let url = URL(string: APIManager.shared.baseURL + "/api/Accounts") else {
+    func getCurrencies(completion: @escaping (Result<[DomainCurrencyModel]>) -> Void) {
+        guard let url = URL(string: APIManager.shared.baseURL + "/api/Currencies") else {
             return
         }
 
-        var urlRequst = URLRequest(url: url)
-        urlRequst.setValue("Bearer \(APIManager.shared.token)", forHTTPHeaderField: "Authorization")
+        let urlRequst = URLRequest(url: url)
 
         print("LOGGER: Start for \(urlRequst.url!)")
         URLSession
@@ -26,12 +25,13 @@ struct GetAccountsRemoteDataSource: GetAccountsDataSource {
                 }
 
                 if httpResponse.statusCode == 200 {
-                    guard let model = try? JSONDecoder().decode([Account.Response].self, from: data) else {
+                    guard let models = try? JSONDecoder().decode([Currency.Response].self, from: data) else {
                         return completion(.error(APIError()))
                     }
 
-                    let accounts = model.map { GrandConverter.convertToDomain(response: $0) }
-                    completion(.success(accounts))
+                    let domainCurrencies = models.map { GrandConverter.convertToDomainModel(currencyResponse: $0) }
+
+                    completion(.success(domainCurrencies))
                 } else {
                     completion(.error(APIError()))
                 }

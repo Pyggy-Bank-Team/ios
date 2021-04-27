@@ -9,8 +9,8 @@ import UIKit
 class ReportsSceneAssembly: Assembly {
 
     func assemble(container: Container) {
-        container.autoregister(GetReportsByCategoryDataSource.self, initializer: GetReportsByCategoryRemoteDataSource.init)
-        container.autoregister(GetReportsByCategoryRepository.self, initializer: GetReportsByCategoryDataRepository.init)
+        container.autoregister(ReportsDataSource.self, initializer: ReportsRemoteDataSource.init)
+        container.autoregister(ReportsRepository.self, initializer: ReportsDataRepository.init)
         container.autoregister(GetReportsByCategoryUseCase.self, initializer: GetReportsByCategoryUseCase.init)
         container.autoregister(ReportsPresenter.self, initializer: ReportsPresenter.init)
         container.register(ReportsViewController.self) { _ in ReportsViewController() }

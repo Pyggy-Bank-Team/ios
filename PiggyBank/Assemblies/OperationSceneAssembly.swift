@@ -5,12 +5,12 @@ import UIKit
 final class OperationSceneAssembly: Assembly {
 
     func assemble(container: Container) {
-        container.autoregister(GetAccountsDataSource.self, initializer: GetAccountsRemoteDataSource.init)
-        container.autoregister(GetAccountsRepository.self, initializer: GetAccountsDataRepository.init)
+        container.autoregister(AccountDataSource.self, initializer: AccountRemoteDataSource.init)
+        container.autoregister(AccountRepository.self, initializer: AccountDataRepository.init)
         container.autoregister(GetAccountsUseCase.self, initializer: GetAccountsUseCase.init)
 
-        container.autoregister(CreateUpdateTransferOperationDataSource.self, initializer: CreateUpdateTransferOperationRemoteDataSource.init)
-        container.autoregister(CreateUpdateTransferOperationRepository.self, initializer: CreateUpdateTransferOperationDataRepository.init)
+        container.autoregister(OperationsDataSource.self, initializer: OperationsRemoteDataSource.init)
+        container.autoregister(OperationsRepository.self, initializer: OperationsDataRepository.init)
         container.autoregister(CreateUpdateTransferOperationUseCase.self, initializer: CreateUpdateTransferOperationUseCase.init)
 
         container.autoregister(OperationPresenter.self, initializer: OperationPresenter.init)

@@ -5,20 +5,11 @@
 
 import UIKit
 
-protocol GetReportsByCategoryRepository {
-    func getReportsByCategory(
-        category: DomainCategoryModel.CategoryType,
-        from: Date,
-        to: Date,
-        completion: @escaping (Result<[DomainCategoryReportModel]>) -> Void
-    )
-}
-
 public final class GetReportsByCategoryUseCase {
 
-    private let getReportsByCategoryRepository: GetReportsByCategoryRepository?
+    private let getReportsByCategoryRepository: ReportsRepository?
 
-    init(getReportsByCategoryRepository: GetReportsByCategoryRepository?) {
+    init(getReportsByCategoryRepository: ReportsRepository?) {
         self.getReportsByCategoryRepository = getReportsByCategoryRepository
     }
 

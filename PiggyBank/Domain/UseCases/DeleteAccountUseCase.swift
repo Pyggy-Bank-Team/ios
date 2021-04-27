@@ -1,14 +1,10 @@
 import Foundation
 
-protocol DeleteAccountRepository {
-    func deleteAccount(accountID: Int, completion: @escaping (Result<Void>) -> Void)
-}
-
 final class DeleteAccountUseCase {
 
-    private let deleteAccountRepository: DeleteAccountRepository?
+    private let deleteAccountRepository: AccountRepository?
 
-    init(deleteAccountRepository: DeleteAccountRepository?) {
+    init(deleteAccountRepository: AccountRepository?) {
         self.deleteAccountRepository = deleteAccountRepository
     }
 

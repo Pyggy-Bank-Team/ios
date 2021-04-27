@@ -11,12 +11,9 @@ final class CategorySceneAssembly: Assembly {
     }
 
     func assemble(container: Container) {
-        container.autoregister(CreateUpdateCategoryDataSource.self, initializer: CreateUpdateCategoryRemoteDataSource.init)
-        container.autoregister(CreateUpdateCategoryRepository.self, initializer: CreateUpdateCategoryDataRepository.init)
+        container.autoregister(CategoriesDataSource.self, initializer: CategoriesRemoteDataSource.init)
+        container.autoregister(CategoriesRepository.self, initializer: CategoriesDataRepository.init)
         container.autoregister(CreateUpdateCategoryUseCase.self, initializer: CreateUpdateCategoryUseCase.init)
-
-        container.autoregister(DeleteCategoryDataSource.self, initializer: DeleteCategoryRemoteDataSource.init)
-        container.autoregister(DeleteCategoryRepository.self, initializer: DeleteCategoryDataRepository.init)
         container.autoregister(DeleteCategoryUseCase.self, initializer: DeleteCategoryUseCase.init)
 
         container.register(CategoryPresenter.self) { resolver in

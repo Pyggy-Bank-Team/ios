@@ -3,16 +3,18 @@
 //  PiggyBank
 //
 
-protocol CreateUpdateAccountDataSource {
+protocol AccountDataSource {
     func createAccount(request: DomainAccountModel, completion: @escaping (Result<Void>) -> Void)
     func updateAccount(request: DomainAccountModel, completion: @escaping (Result<Void>) -> Void)
+    func deleteAccount(accountID: Int, completion: @escaping (Result<Void>) -> Void)
+    func getAccounts(completion: @escaping (Result<[DomainAccountModel]>) -> Void)
 }
 
-class CreateUpdateAccountDataRepository: CreateUpdateAccountRepository {
+class AccountDataRepository: AccountRepository {
 
-    private let remoteDataSource: CreateUpdateAccountDataSource?
+    private let remoteDataSource: AccountDataSource?
 
-    init(remoteDataSource: CreateUpdateAccountDataSource?) {
+    init(remoteDataSource: AccountDataSource?) {
         self.remoteDataSource = remoteDataSource
     }
 
@@ -24,4 +26,11 @@ class CreateUpdateAccountDataRepository: CreateUpdateAccountRepository {
         remoteDataSource?.updateAccount(request: request, completion: completion)
     }
 
+    func deleteAccount(accountID: Int, completion: @escaping (Result<Void>) -> Void) {
+        remoteDataSource?.deleteAccount(accountID: accountID, completion: completion)
+    }
+
+    func getAccounts(completion: @escaping (Result<[DomainAccountModel]>) -> Void) {
+        remoteDataSource?.getAccounts(completion: completion)
+    }
 }

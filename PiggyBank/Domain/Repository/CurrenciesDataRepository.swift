@@ -1,17 +1,17 @@
 //
-//  GetCurrenciesDataRepository.swift
+//  CurrenciesDataRepository.swift
 //  PiggyBank
 //
 
-protocol GetCurrenciesDataSource {
+protocol CurrenciesDataSource {
     func getCurrencies(completion: @escaping (Result<[DomainCurrencyModel]>) -> Void)
 }
 
-class GetCurrenciesDataRepository: GetCurrenciesRepository {
+class CurrenciesDataRepository: CurrenciesRepository {
 
-    private let remoteDataSource: GetCurrenciesDataSource?
+    private let remoteDataSource: CurrenciesDataSource?
 
-    init(remoteDataSource: GetCurrenciesDataSource?) {
+    init(remoteDataSource: CurrenciesDataSource?) {
         self.remoteDataSource = remoteDataSource
     }
 

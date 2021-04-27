@@ -1,11 +1,11 @@
 //
-//  GetReportsByCategoryRemoteDataSource.swift
+//  ReportsRemoteDataSource.swift
 //  PiggyBank
 //
 
 import Foundation
 
-struct GetReportsByCategoryRemoteDataSource: GetReportsByCategoryDataSource {
+struct ReportsRemoteDataSource: ReportsDataSource {
 
     func getReportsByCategory(
         category: DomainCategoryModel.CategoryType,

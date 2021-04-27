@@ -1,14 +1,10 @@
 import Foundation
 
-protocol GetUserCredentialsRepository {
-    func getUserCredentials(completion: @escaping (Result<DomainUserCredentialsModel?>) -> Void)
-}
-
 final class GetUserCredentialsUseCase {
     
-    private let getUserCredentialsRepository: GetUserCredentialsRepository?
+    private let getUserCredentialsRepository: UserCredentialsRepository?
 
-    init(getUserCredentialsRepository: GetUserCredentialsRepository?) {
+    init(getUserCredentialsRepository: UserCredentialsRepository?) {
         self.getUserCredentialsRepository = getUserCredentialsRepository
     }
 

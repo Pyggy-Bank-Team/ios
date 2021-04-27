@@ -1,11 +1,11 @@
 //
-//  GetReportsByCategoryDataRepository.swift
+//  ReportsDataRepository.swift
 //  PiggyBank
 //
 
 import UIKit
 
-protocol GetReportsByCategoryDataSource {
+protocol ReportsDataSource {
     func getReportsByCategory(
         category: DomainCategoryModel.CategoryType,
         from: Date,
@@ -14,11 +14,11 @@ protocol GetReportsByCategoryDataSource {
     )
 }
 
-class GetReportsByCategoryDataRepository: GetReportsByCategoryRepository {
+class ReportsDataRepository: ReportsRepository {
 
-    private let remoteDataSource: GetReportsByCategoryDataSource?
+    private let remoteDataSource: ReportsDataSource?
 
-    init(remoteDataSource: GetReportsByCategoryDataSource?) {
+    init(remoteDataSource: ReportsDataSource?) {
         self.remoteDataSource = remoteDataSource
     }
 

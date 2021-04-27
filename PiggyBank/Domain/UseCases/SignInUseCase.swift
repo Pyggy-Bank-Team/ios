@@ -1,22 +1,23 @@
 import Foundation
 
-protocol SignInRepository {
-    func signIn(request: DomainSignInModel, completion: @escaping (Result<DomainAuthModel>) -> Void)
-}
-
 final class SignInUseCase {
 
-    private let signInRepository: SignInRepository
-    private let saveUserCredentialsRepository: SaveUserCredentialsRepository
-    private lazy var saveUserUseCase = SaveUserCredentialsUseCase(saveUserCredentialsRepository: saveUserCredentialsRepository)
+    private let signInRepository: SignInRepository?
+    private let saveUserCredentialsRepository: UserCredentialsRepository?
+    private let saveUserUseCase: SaveUserCredentialsUseCase?
 
-    init(signInRepository: SignInRepository, saveUserCredentialsRepository: SaveUserCredentialsRepository) {
+    init(
+        signInRepository: SignInRepository?,
+        saveUserCredentialsRepository: UserCredentialsRepository?,
+        saveUserUseCase: SaveUserCredentialsUseCase?
+    ) {
         self.signInRepository = signInRepository
         self.saveUserCredentialsRepository = saveUserCredentialsRepository
+        self.saveUserUseCase = saveUserUseCase
     }
 
     func execute(domainSignInModel: DomainSignInModel, completion: @escaping (Result<Void>) -> Void) {
-        signInRepository.signIn(request: domainSignInModel) { [weak self] result in
+        signInRepository?.signIn(request: domainSignInModel) { [weak self] result in
             guard let self = self else {
                 return completion(.error(APIError()))
             }
@@ -29,7 +30,7 @@ final class SignInUseCase {
                 accessToken: model.accessToken
             )
             
-            self.saveUserUseCase.execute(domainModel: credentialsModel, completion: completion)
+            self.saveUserUseCase?.execute(domainModel: credentialsModel, completion: completion)
         }
     }
 

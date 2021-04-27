@@ -13,13 +13,14 @@ final class BaseCurrencySceneAssembly: Assembly {
     }
     
     func assemble(container: Container) {
-        container.autoregister(GetCurrenciesDataSource.self, initializer: GetCurrenciesRemoteDataSource.init)
-        container.autoregister(GetCurrenciesRepository.self, initializer: GetCurrenciesDataRepository.init)
-        container.autoregister(GetCurrenciesUseCase.self, initializer: GetCurrenciesUseCase.init)
-
+        container.autoregister(CurrenciesDataSource.self, initializer: CurrenciesRemoteDataSource.init)
+        container.autoregister(CurrenciesRepository.self, initializer: CurrenciesDataRepository.init)
         container.autoregister(SignUpDataSource.self, initializer: SignUpRemoteDataSource.init)
-        container.autoregister(SaveUserCredentialsRepository.self, initializer: SaveUserCredentialsDataRepository.init)
+        container.autoregister(UserCredentialsRepository.self, initializer: UserCredentialsDataRepository.init)
         container.autoregister(SignUpRepository.self, initializer: SignUpDataRepository.init)
+
+        container.autoregister(GetCurrenciesUseCase.self, initializer: GetCurrenciesUseCase.init)
+        container.autoregister(SaveUserCredentialsUseCase.self, initializer: SaveUserCredentialsUseCase.init)
         container.autoregister(SignUpUseCase.self, initializer: SignUpUseCase.init)
 
         container.register(BaseCurrencyPresenter.self) { resolver in

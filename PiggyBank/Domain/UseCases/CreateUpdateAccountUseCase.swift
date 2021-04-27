@@ -1,15 +1,10 @@
 import Foundation
 
-protocol CreateUpdateAccountRepository {
-    func createAccount(request: DomainAccountModel, completion: @escaping (Result<Void>) -> Void)
-    func updateAccount(request: DomainAccountModel, completion: @escaping (Result<Void>) -> Void)
-}
-
 final class CreateUpdateAccountUseCase {
 
-    private let createUpdateAccountRepository: CreateUpdateAccountRepository?
+    private let createUpdateAccountRepository: AccountRepository?
 
-    init(createUpdateAccountRepository: CreateUpdateAccountRepository?) {
+    init(createUpdateAccountRepository: AccountRepository?) {
         self.createUpdateAccountRepository = createUpdateAccountRepository
     }
 

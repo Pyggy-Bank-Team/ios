@@ -17,22 +17,14 @@ final class AuthSceneAssembly: Assembly {
 
     func assemble(container: Container) {
         container.autoregister(SignInDataSource.self, initializer: SignInRemoteDataSource.init)
-            .inObjectScope(.signIn)
-        container.autoregister(SaveUserCredentialsRepository.self, initializer: SaveUserCredentialsDataRepository.init)
-            .inObjectScope(.signIn)
+        container.autoregister(UserCredentialsRepository.self, initializer: UserCredentialsDataRepository.init)
         container.autoregister(SignInRepository.self, initializer: SignInDataRepository.init)
-            .inObjectScope(.signIn)
-        container.autoregister(SignInUseCase.self, initializer: SignInUseCase.init)
-            .inObjectScope(.signIn)
-
         container.autoregister(SignUpDataSource.self, initializer: SignUpRemoteDataSource.init)
-            .inObjectScope(.signUp)
-        container.autoregister(SaveUserCredentialsRepository.self, initializer: SaveUserCredentialsDataRepository.init)
-            .inObjectScope(.signUp)
         container.autoregister(SignUpRepository.self, initializer: SignUpDataRepository.init)
-            .inObjectScope(.signUp)
+
+        container.autoregister(SaveUserCredentialsUseCase.self, initializer: SaveUserCredentialsUseCase.init)
+        container.autoregister(SignInUseCase.self, initializer: SignInUseCase.init)
         container.autoregister(SignUpUseCase.self, initializer: SignUpUseCase.init)
-            .inObjectScope(.signUp)
 
         container.register(AuthPresenter.self) { resolver in
             AuthPresenter(
@@ -48,15 +40,4 @@ final class AuthSceneAssembly: Assembly {
             }
     }
 
-}
-
-extension ObjectScope {
-    static let signIn = ObjectScope(
-        storageFactory: PermanentStorage.init,
-        description: "signIn"
-    )
-    static let signUp = ObjectScope(
-        storageFactory: PermanentStorage.init,
-        description: "signIn"
-    )
 }

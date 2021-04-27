@@ -11,12 +11,9 @@ final class AccountSceneAssembly: Assembly {
     }
 
     func assemble(container: Container) {
-        container.autoregister(CreateUpdateAccountDataSource.self, initializer: CreateUpdateAccountRemoteDataSource.init)
-        container.autoregister(CreateUpdateAccountRepository.self, initializer: CreateUpdateAccountDataRepository.init)
+        container.autoregister(AccountDataSource.self, initializer: AccountRemoteDataSource.init)
+        container.autoregister(AccountRepository.self, initializer: AccountDataRepository.init)
         container.autoregister(CreateUpdateAccountUseCase.self, initializer: CreateUpdateAccountUseCase.init)
-
-        container.autoregister(DeleteAccountDataSource.self, initializer: DeleteAccountRemoteDataSource.init)
-        container.autoregister(DeleteAccountRepository.self, initializer: DeleteAccountDataRepository.init)
         container.autoregister(DeleteAccountUseCase.self, initializer: DeleteAccountUseCase.init)
 
         container.register(AccountPresenter.self) { resolver in

@@ -1,23 +1,18 @@
 import Foundation
 
-protocol CreateUpdateCategoryRepository {
-    func updateCategory(request: DomainCategoryModel, completion: @escaping (Result<Void>) -> Void)
-    func createCategory(request: DomainCategoryModel, completion: @escaping (Result<Void>) -> Void)
-}
-
 final class CreateUpdateCategoryUseCase {
     
-    private let createUpdateCategoryRepository: CreateUpdateCategoryRepository
+    private let createUpdateCategoryRepository: CategoriesRepository?
 
-    init(createUpdateCategoryRepository: CreateUpdateCategoryRepository) {
+    init(createUpdateCategoryRepository: CategoriesRepository?) {
         self.createUpdateCategoryRepository = createUpdateCategoryRepository
     }
 
     func execute(request: DomainCategoryModel, completion: @escaping (Result<Void>) -> Void) {
         if request.id != nil {
-            createUpdateCategoryRepository.updateCategory(request: request, completion: completion)
+            createUpdateCategoryRepository?.updateCategory(request: request, completion: completion)
         } else {
-            createUpdateCategoryRepository.createCategory(request: request, completion: completion)
+            createUpdateCategoryRepository?.createCategory(request: request, completion: completion)
         }
     }
 

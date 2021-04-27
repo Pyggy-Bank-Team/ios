@@ -1,14 +1,10 @@
 import Foundation
 
-protocol GetAccountsRepository {
-    func getAccounts(completion: @escaping (Result<[DomainAccountModel]>) -> Void)
-}
-
 final class GetAccountsUseCase {
 
-    private let getAccountsRepository: GetAccountsRepository?
+    private let getAccountsRepository: AccountRepository?
 
-    init(getAccountsRepository: GetAccountsRepository?) {
+    init(getAccountsRepository: AccountRepository?) {
         self.getAccountsRepository = getAccountsRepository
     }
 

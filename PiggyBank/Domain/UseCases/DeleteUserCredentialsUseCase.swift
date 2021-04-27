@@ -1,19 +1,15 @@
 import Foundation
 
-protocol DeleteUserCredentialsRepository {
-    func deleteUserCredentials(completion: @escaping (Result<Void>) -> Void)
-}
-
 final class DeleteUserCredentialsUseCase {
 
-    private let deleteUserCredentialsRepository: DeleteUserCredentialsRepository
+    private let deleteUserCredentialsRepository: UserCredentialsRepository?
     
-    init(deleteUserCredentialsRepository: DeleteUserCredentialsRepository) {
+    init(deleteUserCredentialsRepository: UserCredentialsRepository?) {
         self.deleteUserCredentialsRepository = deleteUserCredentialsRepository
     }
 
     func execute(completion: @escaping (Result<Void>) -> Void) {
-        deleteUserCredentialsRepository.deleteUserCredentials(completion: completion)
+        deleteUserCredentialsRepository?.deleteUserCredentials(completion: completion)
     }
 
 }

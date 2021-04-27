@@ -1,14 +1,10 @@
 import Foundation
 
-protocol GetCategoriesRepository {
-    func getCategories(completion: @escaping (Result<[DomainCategoryModel]>) -> Void)
-}
-
 final class GetCategoriesUseCase {
 
-    private let getCategoriesRepository: GetCategoriesRepository?
+    private let getCategoriesRepository: CategoriesRepository?
 
-    init(getCategoriesRepository: GetCategoriesRepository?) {
+    init(getCategoriesRepository: CategoriesRepository?) {
         self.getCategoriesRepository = getCategoriesRepository
     }
 
