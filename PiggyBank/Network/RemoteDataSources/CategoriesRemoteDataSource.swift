@@ -7,132 +7,30 @@ import Foundation
 
 struct CategoriesRemoteDataSource: CategoriesDataSource {
 
-    func createCategory(request: DomainCategoryModel, completion: @escaping (Result<Void>) -> Void) {
-        guard let url = URL(string: APIManager.shared.baseURL + "/api/Categories") else {
-            return
-        }
-
-        let requestModel = GrandConverter.convertToRequestModel(domain: request)
-
-        var urlRequst = URLRequest(url: url)
-        urlRequst.setValue("Bearer \(APIManager.shared.token)", forHTTPHeaderField: "Authorization")
-        urlRequst.httpMethod = "POST"
-        urlRequst.httpBody = try? JSONEncoder().encode(requestModel)
-        urlRequst.addValue("application/json", forHTTPHeaderField: "Content-Type")
-
-        print("LOGGER: Start for \(urlRequst.url!)")
-        URLSession
-            .shared
-            .dataTask(with: urlRequst) { _, response, error in
-                print("LOGGER: Finish for \(urlRequst.url!)")
-
-                guard let httpResponse = response as? HTTPURLResponse else {
-                    return completion(.error(APIError()))
-                }
-
-                if httpResponse.statusCode == 200 {
-                    completion(.success(()))
-                } else {
-                    completion(.error(APIError()))
-                }
+    func getCategories(completion: @escaping (Result<[DomainCategoryModel]>) -> Void) {
+        APIManager.shared.perform(request: .GetCategories) { (response: Result<[Category.Response]>) in
+            guard case let .success(responseModel) = response else {
+                return completion(.error(APIError()))
             }
-            .resume()
+            let categories = responseModel.map { GrandConverter.convertToDomain(response: $0) }
+            completion(.success(categories))
+        }
+    }
+
+    func createCategory(request: DomainCategoryModel, completion: @escaping (Result<Void>) -> Void) {
+        let requestModel = GrandConverter.convertToRequestModel(domain: request)
+        APIManager.shared.perform(request: .CreateCategory(requestModel), completion: completion)
     }
 
     func updateCategory(request: DomainCategoryModel, completion: @escaping (Result<Void>) -> Void) {
         guard let id = request.id else {
             fatalError("APIManager: updateCategory - ID can't be null")
         }
-
-        guard let url = URL(string: APIManager.shared.baseURL + "/api/Categories/\(id)") else {
-            return
-        }
-
         let requestModel = GrandConverter.convertToRequestModel(domain: request)
-
-        var urlRequst = URLRequest(url: url)
-        urlRequst.setValue("Bearer \(APIManager.shared.token)", forHTTPHeaderField: "Authorization")
-        urlRequst.httpMethod = "PATCH"
-        urlRequst.httpBody = try? JSONEncoder().encode(requestModel)
-        urlRequst.addValue("application/json", forHTTPHeaderField: "Content-Type")
-
-        print("LOGGER: Start for \(urlRequst.url!)")
-        URLSession
-            .shared
-            .dataTask(with: urlRequst) { _, response, error in
-                print("LOGGER: Finish for \(urlRequst.url!)")
-
-                guard let httpResponse = response as? HTTPURLResponse else {
-                    return completion(.error(APIError()))
-                }
-
-                if httpResponse.statusCode == 200 {
-                    completion(.success(()))
-                } else {
-                    completion(.error(APIError()))
-                }
-            }
-            .resume()
+        APIManager.shared.perform(request: .UpdateCategory(id, requestModel), completion: completion)
     }
 
     func deleteCategory(categoryID: Int, completion: @escaping (Result<Void>) -> Void) {
-        guard let url = URL(string: APIManager.shared.baseURL + "/api/Categories/\(categoryID)") else {
-            return
-        }
-
-        var urlRequst = URLRequest(url: url)
-        urlRequst.setValue("Bearer \(APIManager.shared.token)", forHTTPHeaderField: "Authorization")
-        urlRequst.httpMethod = "DELETE"
-
-        print("LOGGER: Start for \(urlRequst.url!)")
-        URLSession
-            .shared
-            .dataTask(with: urlRequst) { _, response, error in
-                print("LOGGER: Finish for \(urlRequst.url!)")
-
-                guard let httpResponse = response as? HTTPURLResponse else {
-                    return completion(.error(APIError()))
-                }
-
-                if httpResponse.statusCode == 200 {
-                    completion(.success(()))
-                } else {
-                    completion(.error(APIError()))
-                }
-            }
-            .resume()
-    }
-
-    func getCategories(completion: @escaping (Result<[DomainCategoryModel]>) -> Void) {
-        guard let url = URL(string: APIManager.shared.baseURL + "/api/Categories") else {
-            return
-        }
-
-        var urlRequst = URLRequest(url: url)
-        urlRequst.setValue("Bearer \(APIManager.shared.token)", forHTTPHeaderField: "Authorization")
-
-        print("LOGGER: Start for \(urlRequst.url!)")
-        URLSession
-            .shared
-            .dataTask(with: urlRequst) { data, response, error in
-                print("LOGGER: Finish for \(urlRequst.url!)")
-
-                guard let data = data, let httpResponse = response as? HTTPURLResponse else {
-                    return completion(.error(APIError()))
-                }
-
-                if httpResponse.statusCode == 200 {
-                    guard let model = try? JSONDecoder().decode([Category.Response].self, from: data) else {
-                        return completion(.error(APIError()))
-                    }
-
-                    let categories = model.map { GrandConverter.convertToDomain(response: $0) }
-
-                    completion(.success(categories))
-                } else {
-                    completion(.error(APIError()))
-                }
-            }
-            .resume()
+        APIManager.shared.perform(request: .DeleteCategory(categoryID), completion: completion)
     }
 }
