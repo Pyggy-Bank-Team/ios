@@ -78,15 +78,11 @@ final class AccountsPresenter {
     }
     
     func onAdd() {
-        let assembler = DependencyProvider.shared.assembler
-        assembler.apply(assembly: AccountSceneAssembly(accountDomainModel: nil))
-        view?.onAdd(viewController: assembler.resolver.resolve(AccountViewController.self)!)
+        view?.onAdd(viewController: DependencyProvider.shared.get(screen: .account(nil)))
     }
 
     func onSelect(id: Int) {
-        let assembler = DependencyProvider.shared.assembler
-        assembler.apply(assembly: AccountSceneAssembly(accountDomainModel: getAccount(at: id)))
-        view?.onSelect(viewController: assembler.resolver.resolve(AccountViewController.self)!)
+        view?.onSelect(viewController:  DependencyProvider.shared.get(screen: .account(getAccount(at: id))))
     }
 
 }

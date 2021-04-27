@@ -144,7 +144,6 @@ private extension OperationsViewController {
 
     @objc
     func onAdd(_ sender: UIBarButtonItem) {
-        let operationViewController = DependencyProvider.shared.assembler.resolver.resolve(OperationViewController.self)!
-        navigationController?.pushViewController(operationViewController, animated: true)
+        navigationController?.pushViewController(DependencyProvider.shared.get(screen: .operation), animated: true)
     }
 }

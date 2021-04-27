@@ -45,17 +45,13 @@ extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
         case 0:
-            let accountsViewController = DependencyProvider.shared.assembler.resolver.resolve(AccountsViewController.self)!
-            navigationController?.pushViewController(accountsViewController, animated: true)
+            navigationController?.pushViewController(DependencyProvider.shared.get(screen: .accounts), animated: true)
         case 1:
-            let categoriesViewController = DependencyProvider.shared.assembler.resolver.resolve(CategoriesViewController.self)!
-            navigationController?.pushViewController(categoriesViewController, animated: true)
+            navigationController?.pushViewController(DependencyProvider.shared.get(screen: .categories), animated: true)
         case 2:
-            let operationsViewController = DependencyProvider.shared.assembler.resolver.resolve(OperationsViewController.self)!
-            navigationController?.pushViewController(operationsViewController, animated: true)
+            navigationController?.pushViewController(DependencyProvider.shared.get(screen: .operations), animated: true)
         case 3:
-            let reportsViewController = DependencyProvider.shared.assembler.resolver.resolve(ReportsViewController.self)!
-            navigationController?.pushViewController(reportsViewController, animated: true)
+            navigationController?.pushViewController(DependencyProvider.shared.get(screen: .reports), animated: true)
         default:
             break
         }

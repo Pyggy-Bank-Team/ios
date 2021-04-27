@@ -24,23 +24,18 @@ final class AuthPresenter {
             signInUseCase?.execute(domainSignInModel: domainSignInModel) { [weak self] result in
                 DispatchQueue.main.async {
                     if case .success = result {
-                        let profileVC = DependencyProvider.shared.assembler.resolver.resolve(ProfileViewController.self)!
-                        self?.view?.onPrimaryAction(viewController: profileVC)
+                        self?.view?.onPrimaryAction(viewController: DependencyProvider.shared.get(screen: .profile))
                     }
                 }
             }
         } else {
-            let assembler = DependencyProvider.shared.assembler
-            assembler.apply(assembly: BaseCurrencySceneAssembly(initialNickname: username, initialPassword: password))
-            view?.onPrimaryAction(viewController: assembler.resolver.resolve(BaseCurrencyViewController.self)!)
+            view?.onPrimaryAction(viewController: DependencyProvider.shared.get(screen: .currency(username, password)))
         }
     }
 
     func onSecondaryAction() {
         if mode == .signIn {
-            let assembler = DependencyProvider.shared.assembler
-            assembler.apply(assembly: AuthSceneAssembly(mode: .signUp))
-            view?.onSecondaryAction(viewController: assembler.resolver.resolve(AuthViewController.self)!)
+            view?.onSecondaryAction(viewController: DependencyProvider.shared.get(screen: .auth(.signUp)))
         }
     }
 }

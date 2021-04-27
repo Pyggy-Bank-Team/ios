@@ -13,13 +13,9 @@ final class StartPresenter {
     func viewDidLoad() {
         getUserCredentials?.execute { [weak self] result in
             if case let .success(model) = result {
-                let assembler = DependencyProvider.shared.assembler
-                assembler.apply(assembly: AuthSceneAssembly(mode: .signIn))
-                var vcs: [UIViewController] = [assembler.resolver.resolve(AuthViewController.self)!]
-
+                var vcs: [UIViewController] = [DependencyProvider.shared.get(screen: .auth(.signIn))]
                 if model != nil {
-                    let profileVC = DependencyProvider.shared.assembler.resolver.resolve(ProfileViewController.self)!
-                    vcs.append(profileVC)
+                    vcs.append(DependencyProvider.shared.get(screen: .profile))
                 }
 
                 DispatchQueue.main.async {
@@ -27,8 +23,6 @@ final class StartPresenter {
                 }
             }
         }
-
-//        view?.viewDidLoad(vcs: [AuthSceneAssembly(mode: .signIn).build()])
     }
-    
+
 }

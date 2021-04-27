@@ -30,15 +30,11 @@ final class CategoriesPresenter {
     }
 
     func onAdd() {
-        let assembler = DependencyProvider.shared.assembler
-        assembler.apply(assembly: CategorySceneAssembly(categoryDomainModel: nil))
-        view?.push(viewController: assembler.resolver.resolve(CategoryViewController.self)!)
+        view?.push(viewController: DependencyProvider.shared.get(screen: .category(nil)))
     }
 
     func onSelect(id: Int) {
-        let assembler = DependencyProvider.shared.assembler
-        assembler.apply(assembly: CategorySceneAssembly(categoryDomainModel: getCategory(at: id)))
-        view?.push(viewController: assembler.resolver.resolve(CategoryViewController.self)!)
+        view?.push(viewController: DependencyProvider.shared.get(screen: .category(getCategory(at: id))))
     }
 }
 

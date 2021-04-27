@@ -52,11 +52,10 @@ final class BaseCurrencyPresenter {
             guard let self = self else {
                 return
             }
-            
+
             if case .success = result {
                 DispatchQueue.main.async {
-                    let profileVC = DependencyProvider.shared.assembler.resolver.resolve(ProfileViewController.self)!
-                    self.view?.onDone(viewController: profileVC)
+                    self.view?.onDone(viewController: DependencyProvider.shared.get(screen: .profile))
                 }
             }
         }
