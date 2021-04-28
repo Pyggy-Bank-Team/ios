@@ -129,7 +129,8 @@ public enum GrandConverter {
         DomainCategoryReportModel(categoryId: response.categoryId,
                                   categoryTitle: response.categoryTitle,
                                   categoryHexColor: response.categoryHexColor,
-                                  amount: Int64(response.amount))
+                                  amount: Int64(response.amount),
+                                  currency: response.currency)
     }
 
     static func convertToViewModel(operationModel: DomainOperationModel) -> OperationViewModel {
@@ -152,6 +153,7 @@ public enum GrandConverter {
     static func convertToViewModel(domainModel: DomainCategoryReportModel) -> ReportViewModel.ReportCategory {
         ReportViewModel.ReportCategory(color: UIColor(hexString: domainModel.categoryHexColor),
                                        name: domainModel.categoryTitle,
-                                       amount: domainModel.amount)
+                                       amount: domainModel.amount,
+                                       currency: domainModel.currency.getCurrencySymbol() ?? domainModel.currency)
     }
 }

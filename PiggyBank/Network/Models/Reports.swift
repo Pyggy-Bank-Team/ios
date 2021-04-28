@@ -16,5 +16,6 @@ enum Reports {
         let categoryTitle: String
         let categoryHexColor: String
         let amount: Int
+        let currency: String
     }
 }

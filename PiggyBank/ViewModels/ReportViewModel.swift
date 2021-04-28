@@ -11,6 +11,7 @@ public final class ReportViewModel {
         let color: UIColor
         let name: String
         let amount: Int64
+        let currency: String
     }
 
     var sign: String {
@@ -29,6 +30,9 @@ public final class ReportViewModel {
     var endDate: Date
     var total: Int64
     var categoryList: [ReportCategory]
+    var currency: String {
+        self.categoryList.first?.currency ?? ""
+    }
 
     init(
         type: CategoryViewModel.CategoryType,
