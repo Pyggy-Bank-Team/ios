@@ -2,13 +2,17 @@ import Foundation
 
 final class CreateUpdateCategoryUseCase {
     
-    private let apiManager = APIManager.shared
-    
+    private let createUpdateCategoryRepository: CategoriesRepository?
+
+    init(createUpdateCategoryRepository: CategoriesRepository?) {
+        self.createUpdateCategoryRepository = createUpdateCategoryRepository
+    }
+
     func execute(request: DomainCategoryModel, completion: @escaping (Result<Void>) -> Void) {
         if request.id != nil {
-            apiManager.updateCategory(request: request, completion: completion)
+            createUpdateCategoryRepository?.updateCategory(request: request, completion: completion)
         } else {
-            apiManager.createCategory(request: request, completion: completion)
+            createUpdateCategoryRepository?.createCategory(request: request, completion: completion)
         }
     }
 

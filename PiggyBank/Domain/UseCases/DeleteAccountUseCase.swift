@@ -1,11 +1,15 @@
 import Foundation
 
 final class DeleteAccountUseCase {
-    
-    private let apiManager = APIManager.shared
-    
+
+    private let deleteAccountRepository: AccountRepository?
+
+    init(deleteAccountRepository: AccountRepository?) {
+        self.deleteAccountRepository = deleteAccountRepository
+    }
+
     func execute(accountID: Int, completion: @escaping (Result<Void>) -> Void) {
-        apiManager.deleteAccount(accountID: accountID, completion: completion)
+        deleteAccountRepository?.deleteAccount(accountID: accountID, completion: completion)
     }
 
 }

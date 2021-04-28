@@ -1,14 +1,18 @@
 import Foundation
 
 final class CreateUpdateAccountUseCase {
-    
-    private let apiManager = APIManager.shared
-    
+
+    private let createUpdateAccountRepository: AccountRepository?
+
+    init(createUpdateAccountRepository: AccountRepository?) {
+        self.createUpdateAccountRepository = createUpdateAccountRepository
+    }
+
     func execute(request: DomainAccountModel, completion: @escaping (Result<Void>) -> Void) {
         if request.id != nil {
-            apiManager.updateAccount(request: request, completion: completion)
+            createUpdateAccountRepository?.updateAccount(request: request, completion: completion)
         } else {
-            apiManager.createAccount(request: request, completion: completion)
+            createUpdateAccountRepository?.createAccount(request: request, completion: completion)
         }
     }
 

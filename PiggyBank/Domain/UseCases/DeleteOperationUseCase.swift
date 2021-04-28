@@ -2,19 +2,22 @@ import Foundation
 
 final class DeleteOperationUseCase {
     
-    private let apiManager = APIManager.shared
-    
+    private let deleteOperationRepository: OperationsRepository?
+
+    init(deleteOperationRepository: OperationsRepository?) {
+        self.deleteOperationRepository = deleteOperationRepository
+    }
+
     func execute(operation: DomainOperationModel, completion: @escaping (Result<Void>) -> Void) {
         switch operation.type {
         case .budget:
-            apiManager.deleteBudgetOperation(operationID: operation.id, completion: completion)
+            deleteOperationRepository?.deleteBudgetOperation(operationID: operation.id, completion: completion)
         case .transfer:
-            apiManager.deleteTransferOperation(operationID: operation.id, completion: completion)
+            deleteOperationRepository?.deleteTransferOperation(operationID: operation.id, completion: completion)
         case .plan:
-            apiManager.deletePlanOperation(operationID: operation.id, completion: completion)
+            deleteOperationRepository?.deletePlanOperation(operationID: operation.id, completion: completion)
         default:
             break
         }
     }
-
 }

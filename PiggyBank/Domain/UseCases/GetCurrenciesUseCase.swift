@@ -2,10 +2,14 @@ import Foundation
 
 final class GetCurrenciesUseCase {
     
-    private let apiManager = APIManager.shared
-    
+    private let getCurrenciesRepository: CurrenciesRepository?
+
+    init(getCurrenciesRepository: CurrenciesRepository?) {
+        self.getCurrenciesRepository = getCurrenciesRepository
+    }
+
     func execute(completion: @escaping (Result<[DomainCurrencyModel]>) -> Void) {
-        apiManager.getCurrencies(completion: completion)
+        getCurrenciesRepository?.getCurrencies(completion: completion)
     }
 
 }

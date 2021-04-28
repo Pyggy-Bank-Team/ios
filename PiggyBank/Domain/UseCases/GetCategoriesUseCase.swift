@@ -1,11 +1,15 @@
 import Foundation
 
 final class GetCategoriesUseCase {
-    
-    private let apiManager = APIManager.shared
-    
+
+    private let getCategoriesRepository: CategoriesRepository?
+
+    init(getCategoriesRepository: CategoriesRepository?) {
+        self.getCategoriesRepository = getCategoriesRepository
+    }
+
     func execute(completion: @escaping (Result<[DomainCategoryModel]>) -> Void) {
-        apiManager.getCategories(completion: completion)
+        getCategoriesRepository?.getCategories(completion: completion)
     }
 
 }

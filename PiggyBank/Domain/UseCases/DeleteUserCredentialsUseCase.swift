@@ -1,12 +1,15 @@
 import Foundation
 
 final class DeleteUserCredentialsUseCase {
+
+    private let deleteUserCredentialsRepository: UserCredentialsRepository?
     
-    private let userDefaults = UserDefaults.standard
-    
+    init(deleteUserCredentialsRepository: UserCredentialsRepository?) {
+        self.deleteUserCredentialsRepository = deleteUserCredentialsRepository
+    }
+
     func execute(completion: @escaping (Result<Void>) -> Void) {
-        userDefaults.removeObject(forKey: kCREDENTIALS_STORE_KEY)
-        completion(.success(()))
+        deleteUserCredentialsRepository?.deleteUserCredentials(completion: completion)
     }
 
 }

@@ -1,12 +1,13 @@
-import Foundation
-
 final class SaveUserCredentialsUseCase {
-    
-    private let userDefaults = UserDefaults.standard
-    
+
+    private let saveUserCredentialsRepository: UserCredentialsRepository?
+
+    init(saveUserCredentialsRepository: UserCredentialsRepository?) {
+        self.saveUserCredentialsRepository = saveUserCredentialsRepository
+    }
+
     func execute(domainModel: DomainUserCredentialsModel, completion: @escaping (Result<Void>) -> Void) {
-        userDefaults.set(domainModel.accessToken, forKey: kCREDENTIALS_STORE_KEY)
-        completion(.success(()))
+        saveUserCredentialsRepository?.saveUserCredentials(domainModel: domainModel, completion: completion)
     }
 
 }
