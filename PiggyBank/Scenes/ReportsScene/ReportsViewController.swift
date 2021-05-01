@@ -255,7 +255,7 @@ extension ReportsViewController: UITableViewDelegate, UITableViewDataSource {
         }
 
         let category = presenter.reportViewModel.categoryList[indexPath.row]
-        let amount = "\(presenter.reportViewModel.sign) \(category.amount)"
+        let amount = "\(presenter.reportViewModel.sign) \(category.amount) \(category.currency)"
         cell.build(color: category.color, name: category.name, amount: amount)
         return cell
     }
@@ -266,9 +266,10 @@ extension ReportsViewController: UITableViewDelegate, UITableViewDataSource {
 extension ReportsViewController {
 
     func updateView() {
-        startDateLabel.attributedText = getUnderlinedStringForDate(presenter.reportViewModel.startDate)
-        endDateLabel.attributedText = getUnderlinedStringForDate(presenter.reportViewModel.endDate)
-        totalValueLabel.text = "\(presenter.reportViewModel.sign) \(presenter.reportViewModel.total)"
+        let viewModel = presenter.reportViewModel
+        startDateLabel.attributedText = getUnderlinedStringForDate(viewModel.startDate)
+        endDateLabel.attributedText = getUnderlinedStringForDate(viewModel.endDate)
+        totalValueLabel.text = "\(viewModel.sign) \(viewModel.total) \(viewModel.currency)"
         categoryList.reloadData()
         updateChartData()
     }
