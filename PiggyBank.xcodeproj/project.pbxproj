@@ -40,6 +40,11 @@
 		711F589C26331ADF00381BEF /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 711F589B26331ADF00381BEF /* Swinject */; };
 		711F58A026331B1600381BEF /* SwinjectAutoregistration in Frameworks */ = {isa = PBXBuildFile; productRef = 711F589F26331B1600381BEF /* SwinjectAutoregistration */; };
 		711F58A32633252E00381BEF /* DependencyProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711F58A22633252E00381BEF /* DependencyProvider.swift */; };
+		71337D18263D880A00EC7F3D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71337D17263D880A00EC7F3D /* HomeViewController.swift */; };
+		71337D1C263D88C300EC7F3D /* HomeSceneAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71337D1B263D88C300EC7F3D /* HomeSceneAssembly.swift */; };
+		71337D1F263E9B7200EC7F3D /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71337D1E263E9B7200EC7F3D /* PrimaryButton.swift */; };
+		71337D22263EA13800EC7F3D /* Apperance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71337D21263EA13800EC7F3D /* Apperance.swift */; };
+		71337D27263EA67A00EC7F3D /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71337D26263EA67A00EC7F3D /* SecondaryButton.swift */; };
 		71420C622638768200DAB9C7 /* SignUpRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71420C612638768200DAB9C7 /* SignUpRepository.swift */; };
 		71420C66263876D300DAB9C7 /* AccountRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71420C65263876D300DAB9C7 /* AccountRepository.swift */; };
 		71420C692638775E00DAB9C7 /* CategoriesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71420C682638775E00DAB9C7 /* CategoriesRepository.swift */; };
@@ -171,6 +176,11 @@
 		711F5892263020BB00381BEF /* ReportsDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsDataRepository.swift; sourceTree = "<group>"; };
 		711F58952630212600381BEF /* ReportsRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsRemoteDataSource.swift; sourceTree = "<group>"; };
 		711F58A22633252E00381BEF /* DependencyProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyProvider.swift; sourceTree = "<group>"; };
+		71337D17263D880A00EC7F3D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		71337D1B263D88C300EC7F3D /* HomeSceneAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSceneAssembly.swift; sourceTree = "<group>"; };
+		71337D1E263E9B7200EC7F3D /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
+		71337D21263EA13800EC7F3D /* Apperance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Apperance.swift; sourceTree = "<group>"; };
+		71337D26263EA67A00EC7F3D /* SecondaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButton.swift; sourceTree = "<group>"; };
 		71420C612638768200DAB9C7 /* SignUpRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRepository.swift; sourceTree = "<group>"; };
 		71420C65263876D300DAB9C7 /* AccountRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRepository.swift; sourceTree = "<group>"; };
 		71420C682638775E00DAB9C7 /* CategoriesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesRepository.swift; sourceTree = "<group>"; };
@@ -296,6 +306,8 @@
 				7152CFA52629628A00096331 /* CategoryOperationInfoTableViewCell.swift */,
 				719C433E262B5AE8004C92F3 /* PiggySegmentedControl.swift */,
 				71E5D7BB262C832F002A9827 /* DatePickerDialog.swift */,
+				71337D1E263E9B7200EC7F3D /* PrimaryButton.swift */,
+				71337D26263EA67A00EC7F3D /* SecondaryButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -321,6 +333,14 @@
 				711F58952630212600381BEF /* ReportsRemoteDataSource.swift */,
 			);
 			path = RemoteDataSources;
+			sourceTree = "<group>";
+		};
+		71337D16263D87DD00EC7F3D /* HomeScene */ = {
+			isa = PBXGroup;
+			children = (
+				71337D17263D880A00EC7F3D /* HomeViewController.swift */,
+			);
+			path = HomeScene;
 			sourceTree = "<group>";
 		};
 		71420C602638766A00DAB9C7 /* Protocols */ = {
@@ -360,6 +380,7 @@
 		71E5D7D526300830002A9827 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				71337D16263D87DD00EC7F3D /* HomeScene */,
 				7113501F2621C34200572CB9 /* ReportsScene */,
 				9104C178250DD6BC003BF041 /* AccountScene */,
 				91A85DEC24CB304B00B7A630 /* AccountsScene */,
@@ -557,6 +578,7 @@
 				9104C197250E20B1003BF041 /* BaseCurrencySceneAssembly.swift */,
 				91C26FA12515C0E300C999BE /* CategorySceneAssembly.swift */,
 				9166BC99256A2F1E00A23196 /* OperationSceneAssembly.swift */,
+				71337D1B263D88C300EC7F3D /* HomeSceneAssembly.swift */,
 			);
 			path = Assemblies;
 			sourceTree = "<group>";
@@ -612,6 +634,7 @@
 				91A85DE424B4C5D900B7A630 /* Result.swift */,
 				9104C182250DE2B3003BF041 /* GrandConverter.swift */,
 				91C26FA32515CF7700C999BE /* Colors.swift */,
+				71337D21263EA13800EC7F3D /* Apperance.swift */,
 			);
 			path = Globals;
 			sourceTree = "<group>";
@@ -757,12 +780,14 @@
 				91957A8325318C700027249A /* OperationsViewController.swift in Sources */,
 				71420C72263877CC00DAB9C7 /* UserCredentialsRepository.swift in Sources */,
 				711F5893263020BB00381BEF /* ReportsDataRepository.swift in Sources */,
+				71337D1F263E9B7200EC7F3D /* PrimaryButton.swift in Sources */,
 				91C26FA02515C01B00C999BE /* CategoryPresenter.swift in Sources */,
 				9104C19E250E6D40003BF041 /* SignUp.swift in Sources */,
 				9166BC96256A2EFC00A23196 /* OperationViewController.swift in Sources */,
 				71420C6F263877AA00DAB9C7 /* SignInRepository.swift in Sources */,
 				91A85DBD24ABDE2C00B7A630 /* AuthViewController.swift in Sources */,
 				711F5863263013E500381BEF /* CategoriesRemoteDataSource.swift in Sources */,
+				71337D18263D880A00EC7F3D /* HomeViewController.swift in Sources */,
 				9104C1A8250F2383003BF041 /* Constants.swift in Sources */,
 				711F584626300CD000381BEF /* SignUpRemoteDataSource.swift in Sources */,
 				9104C1B4250F33B8003BF041 /* GetUserCredentialsUseCase.swift in Sources */,
@@ -788,6 +813,7 @@
 				9104C13524FBC705003BF041 /* ProfileViewController.swift in Sources */,
 				3C15C549257385D7005E209B /* CreateUpdateTransferOperationUseCase.swift in Sources */,
 				9104C1AA250F2428003BF041 /* SaveUserCredentialsUseCase.swift in Sources */,
+				71337D1C263D88C300EC7F3D /* HomeSceneAssembly.swift in Sources */,
 				9104C17325051C3B003BF041 /* DeleteCategoryUseCase.swift in Sources */,
 				91957A8925318F3A0027249A /* OperationsSceneAssembly.swift in Sources */,
 				7152CFA62629628A00096331 /* CategoryOperationInfoTableViewCell.swift in Sources */,
@@ -810,6 +836,7 @@
 				71420C762638784A00DAB9C7 /* OperationsRepository.swift in Sources */,
 				91C26FA22515C0E300C999BE /* CategorySceneAssembly.swift in Sources */,
 				91C26FA42515CF7700C999BE /* Colors.swift in Sources */,
+				71337D27263EA67A00EC7F3D /* SecondaryButton.swift in Sources */,
 				9104C192250E1B5E003BF041 /* DomainCurrencyModel.swift in Sources */,
 				9104C13924FBCEF3003BF041 /* Category.swift in Sources */,
 				9104C1B9250F34B0003BF041 /* StartPresenter.swift in Sources */,
@@ -850,6 +877,7 @@
 				9104C1B2250F2B92003BF041 /* DeleteUserCredentialsUseCase.swift in Sources */,
 				9104C19A250E239D003BF041 /* CurrencyTableCell.swift in Sources */,
 				91A85DE924B64B7D00B7A630 /* SignInUseCase.swift in Sources */,
+				71337D22263EA13800EC7F3D /* Apperance.swift in Sources */,
 				91A85DF624CB39DE00B7A630 /* GetAccountsUseCase.swift in Sources */,
 				91A85DD924AC611F00B7A630 /* APIManager.swift in Sources */,
 				9104C1BB250F379F003BF041 /* StartSceneAssembly.swift in Sources */,
