@@ -9,6 +9,7 @@ import UIKit
 enum ScreenType {
     case start
     case home
+    case login
 
     case accounts
     case categories
@@ -35,6 +36,7 @@ final class DependencyProvider {
         Assembler([
             StartSceneAssembly(),
             HomeSceneAssembly(),
+            LoginSceneAssembly(),
             AccountsAssembly(),
             CategoriesAssembly(),
             OperationsSceneAssembly(),
@@ -56,6 +58,8 @@ final class DependencyProvider {
             retViewController = resolver.resolve(StartViewController.self)
         case .home:
             retViewController = resolver.resolve(HomeViewController.self)
+        case .login:
+            retViewController = resolver.resolve(LoginViewController.self)
         case .accounts:
             retViewController = resolver.resolve(AccountsViewController.self)
         case .categories:

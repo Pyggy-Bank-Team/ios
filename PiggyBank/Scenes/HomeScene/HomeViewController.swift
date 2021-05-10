@@ -5,7 +5,11 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+final class HomeViewController: UIViewController {
+
+    var presenter: HomePresenter!
+
+    private static var isAnimationShown = false
 
     var smallPinkCircleViewLeftAnchorConstraint: NSLayoutConstraint!
     private let smallPinkCircleView: UIView = {
@@ -67,7 +71,14 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         navigationController?.setNavigationBarHidden(true, animated: false)
+        let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = backBarButtonItem
+        if #available(iOS 14.0, *) {
+            self.navigationItem.backButtonTitle = nil
+            self.navigationItem.backButtonDisplayMode = .minimal
+        }
 
         view.addSubview(smallPinkCircleView)
         view.addSubview(bigPinkCircleView)
@@ -108,7 +119,7 @@ class HomeViewController: UIViewController {
             piggyDescriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 35.0),
             piggyDescriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -35.0),
 
-            loginButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10.0),
+            loginButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20.0),
             loginButton.heightAnchor.constraint(equalToConstant: 47.0),
             loginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
 
@@ -127,20 +138,22 @@ class HomeViewController: UIViewController {
 
     @objc
     private func onLoginPressed() {
-        // FIXME Implement me
-        print("onLoginPressed")
+        presenter.onLoginPressed()
     }
 
     @objc
     private func onRegisterPressed() {
-        // FIXME Implement me
-        print("onRegisterPressed")
+        presenter.onRegisterPressed()
     }
-
 }
 
 private extension HomeViewController {
     func animate() {
+        guard !HomeViewController.isAnimationShown else {
+            return
+        }
+        HomeViewController.isAnimationShown = true
+
         self.view.layoutIfNeeded()
         UIView.animate(withDuration: 0.5, delay: 0.5) {
             self.smallPinkCircleViewLeftAnchorConstraint.constant = 320.0
