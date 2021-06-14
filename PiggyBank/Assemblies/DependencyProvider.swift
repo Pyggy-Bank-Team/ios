@@ -8,6 +8,8 @@ import UIKit
 
 enum ScreenType {
     case start
+    case home
+    case login
 
     case accounts
     case categories
@@ -33,6 +35,8 @@ final class DependencyProvider {
         // order is matter
         Assembler([
             StartSceneAssembly(),
+            HomeSceneAssembly(),
+            LoginSceneAssembly(),
             AccountsAssembly(),
             CategoriesAssembly(),
             OperationsSceneAssembly(),
@@ -46,11 +50,16 @@ final class DependencyProvider {
         assembler.resolver
     }
 
+    // swiftlint:disable cyclomatic_complexity
     func get(screen: ScreenType) -> UIViewController {
         let retViewController: UIViewController?
         switch screen {
         case .start:
             retViewController = resolver.resolve(StartViewController.self)
+        case .home:
+            retViewController = resolver.resolve(HomeViewController.self)
+        case .login:
+            retViewController = resolver.resolve(LoginViewController.self)
         case .accounts:
             retViewController = resolver.resolve(AccountsViewController.self)
         case .categories:

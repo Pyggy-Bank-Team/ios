@@ -13,7 +13,7 @@ final class StartPresenter {
     func viewDidLoad() {
         getUserCredentials?.execute { [weak self] result in
             if case let .success(model) = result {
-                var vcs: [UIViewController] = [DependencyProvider.shared.get(screen: .auth(.signIn))]
+                var vcs: [UIViewController] = [DependencyProvider.shared.get(screen: .home)]
                 if model != nil {
                     vcs.append(DependencyProvider.shared.get(screen: .profile))
                 }

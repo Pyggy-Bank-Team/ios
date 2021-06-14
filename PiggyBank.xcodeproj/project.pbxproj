@@ -40,6 +40,15 @@
 		711F589C26331ADF00381BEF /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 711F589B26331ADF00381BEF /* Swinject */; };
 		711F58A026331B1600381BEF /* SwinjectAutoregistration in Frameworks */ = {isa = PBXBuildFile; productRef = 711F589F26331B1600381BEF /* SwinjectAutoregistration */; };
 		711F58A32633252E00381BEF /* DependencyProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711F58A22633252E00381BEF /* DependencyProvider.swift */; };
+		71337D18263D880A00EC7F3D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71337D17263D880A00EC7F3D /* HomeViewController.swift */; };
+		71337D1C263D88C300EC7F3D /* HomeSceneAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71337D1B263D88C300EC7F3D /* HomeSceneAssembly.swift */; };
+		71337D1F263E9B7200EC7F3D /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71337D1E263E9B7200EC7F3D /* PrimaryButton.swift */; };
+		71337D22263EA13800EC7F3D /* Apperance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71337D21263EA13800EC7F3D /* Apperance.swift */; };
+		71337D27263EA67A00EC7F3D /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71337D26263EA67A00EC7F3D /* SecondaryButton.swift */; };
+		71337D2A263EAA1D00EC7F3D /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71337D29263EAA1D00EC7F3D /* HomePresenter.swift */; };
+		71337D2F263EE8FB00EC7F3D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71337D2E263EE8FB00EC7F3D /* LoginViewController.swift */; };
+		71337D32263EE91200EC7F3D /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71337D31263EE91200EC7F3D /* LoginPresenter.swift */; };
+		71337D35263EE97200EC7F3D /* LoginSceneAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71337D34263EE97200EC7F3D /* LoginSceneAssembly.swift */; };
 		71420C622638768200DAB9C7 /* SignUpRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71420C612638768200DAB9C7 /* SignUpRepository.swift */; };
 		71420C66263876D300DAB9C7 /* AccountRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71420C65263876D300DAB9C7 /* AccountRepository.swift */; };
 		71420C692638775E00DAB9C7 /* CategoriesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71420C682638775E00DAB9C7 /* CategoriesRepository.swift */; };
@@ -49,6 +58,8 @@
 		71420C762638784A00DAB9C7 /* OperationsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71420C752638784A00DAB9C7 /* OperationsRepository.swift */; };
 		71420C79263878B700DAB9C7 /* ReportsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71420C78263878B700DAB9C7 /* ReportsRepository.swift */; };
 		7152CFA62629628A00096331 /* CategoryOperationInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7152CFA52629628A00096331 /* CategoryOperationInfoTableViewCell.swift */; };
+		7167A50126490A02000E39A4 /* UIViewController+NavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7167A50026490A02000E39A4 /* UIViewController+NavBar.swift */; };
+		7167A5032649146C000E39A4 /* PiggyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7167A5022649146C000E39A4 /* PiggyTextField.swift */; };
 		719C433F262B5AE8004C92F3 /* PiggySegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719C433E262B5AE8004C92F3 /* PiggySegmentedControl.swift */; };
 		71E5D7BC262C832F002A9827 /* DatePickerDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E5D7BB262C832F002A9827 /* DatePickerDialog.swift */; };
 		71E5D7D92630098F002A9827 /* SignUpDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E5D7D82630098F002A9827 /* SignUpDataRepository.swift */; };
@@ -171,6 +182,15 @@
 		711F5892263020BB00381BEF /* ReportsDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsDataRepository.swift; sourceTree = "<group>"; };
 		711F58952630212600381BEF /* ReportsRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsRemoteDataSource.swift; sourceTree = "<group>"; };
 		711F58A22633252E00381BEF /* DependencyProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyProvider.swift; sourceTree = "<group>"; };
+		71337D17263D880A00EC7F3D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		71337D1B263D88C300EC7F3D /* HomeSceneAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSceneAssembly.swift; sourceTree = "<group>"; };
+		71337D1E263E9B7200EC7F3D /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
+		71337D21263EA13800EC7F3D /* Apperance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Apperance.swift; sourceTree = "<group>"; };
+		71337D26263EA67A00EC7F3D /* SecondaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButton.swift; sourceTree = "<group>"; };
+		71337D29263EAA1D00EC7F3D /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
+		71337D2E263EE8FB00EC7F3D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		71337D31263EE91200EC7F3D /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
+		71337D34263EE97200EC7F3D /* LoginSceneAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSceneAssembly.swift; sourceTree = "<group>"; };
 		71420C612638768200DAB9C7 /* SignUpRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRepository.swift; sourceTree = "<group>"; };
 		71420C65263876D300DAB9C7 /* AccountRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRepository.swift; sourceTree = "<group>"; };
 		71420C682638775E00DAB9C7 /* CategoriesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesRepository.swift; sourceTree = "<group>"; };
@@ -180,6 +200,8 @@
 		71420C752638784A00DAB9C7 /* OperationsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationsRepository.swift; sourceTree = "<group>"; };
 		71420C78263878B700DAB9C7 /* ReportsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsRepository.swift; sourceTree = "<group>"; };
 		7152CFA52629628A00096331 /* CategoryOperationInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryOperationInfoTableViewCell.swift; sourceTree = "<group>"; };
+		7167A50026490A02000E39A4 /* UIViewController+NavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+NavBar.swift"; sourceTree = "<group>"; };
+		7167A5022649146C000E39A4 /* PiggyTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiggyTextField.swift; sourceTree = "<group>"; };
 		719C433E262B5AE8004C92F3 /* PiggySegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiggySegmentedControl.swift; sourceTree = "<group>"; };
 		71E5D7BB262C832F002A9827 /* DatePickerDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerDialog.swift; sourceTree = "<group>"; };
 		71E5D7D82630098F002A9827 /* SignUpDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpDataRepository.swift; sourceTree = "<group>"; };
@@ -296,6 +318,9 @@
 				7152CFA52629628A00096331 /* CategoryOperationInfoTableViewCell.swift */,
 				719C433E262B5AE8004C92F3 /* PiggySegmentedControl.swift */,
 				71E5D7BB262C832F002A9827 /* DatePickerDialog.swift */,
+				71337D1E263E9B7200EC7F3D /* PrimaryButton.swift */,
+				71337D26263EA67A00EC7F3D /* SecondaryButton.swift */,
+				7167A5022649146C000E39A4 /* PiggyTextField.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -321,6 +346,24 @@
 				711F58952630212600381BEF /* ReportsRemoteDataSource.swift */,
 			);
 			path = RemoteDataSources;
+			sourceTree = "<group>";
+		};
+		71337D16263D87DD00EC7F3D /* HomeScene */ = {
+			isa = PBXGroup;
+			children = (
+				71337D17263D880A00EC7F3D /* HomeViewController.swift */,
+				71337D29263EAA1D00EC7F3D /* HomePresenter.swift */,
+			);
+			path = HomeScene;
+			sourceTree = "<group>";
+		};
+		71337D2C263EE8A000EC7F3D /* LoginScene */ = {
+			isa = PBXGroup;
+			children = (
+				71337D2E263EE8FB00EC7F3D /* LoginViewController.swift */,
+				71337D31263EE91200EC7F3D /* LoginPresenter.swift */,
+			);
+			path = LoginScene;
 			sourceTree = "<group>";
 		};
 		71420C602638766A00DAB9C7 /* Protocols */ = {
@@ -360,6 +403,8 @@
 		71E5D7D526300830002A9827 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				71337D2C263EE8A000EC7F3D /* LoginScene */,
+				71337D16263D87DD00EC7F3D /* HomeScene */,
 				7113501F2621C34200572CB9 /* ReportsScene */,
 				9104C178250DD6BC003BF041 /* AccountScene */,
 				91A85DEC24CB304B00B7A630 /* AccountsScene */,
@@ -467,6 +512,7 @@
 				3CC950CF256A75450074C7B6 /* UISegmentedControl.swift */,
 				7113503E2626141E00572CB9 /* Date.swift */,
 				9175DB91262A891200480957 /* String.swift */,
+				7167A50026490A02000E39A4 /* UIViewController+NavBar.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -557,6 +603,8 @@
 				9104C197250E20B1003BF041 /* BaseCurrencySceneAssembly.swift */,
 				91C26FA12515C0E300C999BE /* CategorySceneAssembly.swift */,
 				9166BC99256A2F1E00A23196 /* OperationSceneAssembly.swift */,
+				71337D1B263D88C300EC7F3D /* HomeSceneAssembly.swift */,
+				71337D34263EE97200EC7F3D /* LoginSceneAssembly.swift */,
 			);
 			path = Assemblies;
 			sourceTree = "<group>";
@@ -612,6 +660,7 @@
 				91A85DE424B4C5D900B7A630 /* Result.swift */,
 				9104C182250DE2B3003BF041 /* GrandConverter.swift */,
 				91C26FA32515CF7700C999BE /* Colors.swift */,
+				71337D21263EA13800EC7F3D /* Apperance.swift */,
 			);
 			path = Globals;
 			sourceTree = "<group>";
@@ -757,12 +806,14 @@
 				91957A8325318C700027249A /* OperationsViewController.swift in Sources */,
 				71420C72263877CC00DAB9C7 /* UserCredentialsRepository.swift in Sources */,
 				711F5893263020BB00381BEF /* ReportsDataRepository.swift in Sources */,
+				71337D1F263E9B7200EC7F3D /* PrimaryButton.swift in Sources */,
 				91C26FA02515C01B00C999BE /* CategoryPresenter.swift in Sources */,
 				9104C19E250E6D40003BF041 /* SignUp.swift in Sources */,
 				9166BC96256A2EFC00A23196 /* OperationViewController.swift in Sources */,
 				71420C6F263877AA00DAB9C7 /* SignInRepository.swift in Sources */,
 				91A85DBD24ABDE2C00B7A630 /* AuthViewController.swift in Sources */,
 				711F5863263013E500381BEF /* CategoriesRemoteDataSource.swift in Sources */,
+				71337D18263D880A00EC7F3D /* HomeViewController.swift in Sources */,
 				9104C1A8250F2383003BF041 /* Constants.swift in Sources */,
 				711F584626300CD000381BEF /* SignUpRemoteDataSource.swift in Sources */,
 				9104C1B4250F33B8003BF041 /* GetUserCredentialsUseCase.swift in Sources */,
@@ -772,6 +823,7 @@
 				9104C16D250409CF003BF041 /* DomainCategoryModel.swift in Sources */,
 				91957A7A2531717D0027249A /* Operation.swift in Sources */,
 				711350252621C39F00572CB9 /* ReportsPresenter.swift in Sources */,
+				71337D35263EE97200EC7F3D /* LoginSceneAssembly.swift in Sources */,
 				91957A8525318D000027249A /* OperationViewModel.swift in Sources */,
 				9104C22025147874003BF041 /* UIColor.swift in Sources */,
 				91A85DFE24CEFC1500B7A630 /* DeleteAccountUseCase.swift in Sources */,
@@ -780,6 +832,7 @@
 				9104C21D25147475003BF041 /* CategoryCollectionCell.swift in Sources */,
 				91A85DF424CB385400B7A630 /* Account.swift in Sources */,
 				711F5857263011A900381BEF /* AccountRemoteDataSource.swift in Sources */,
+				71337D32263EE91200EC7F3D /* LoginPresenter.swift in Sources */,
 				711350342622075E00572CB9 /* DomainCategoryReportModel.swift in Sources */,
 				9104C189250DF76D003BF041 /* AuthPresenter.swift in Sources */,
 				91A39C68262B49AF00A44080 /* MenuButton.swift in Sources */,
@@ -788,6 +841,8 @@
 				9104C13524FBC705003BF041 /* ProfileViewController.swift in Sources */,
 				3C15C549257385D7005E209B /* CreateUpdateTransferOperationUseCase.swift in Sources */,
 				9104C1AA250F2428003BF041 /* SaveUserCredentialsUseCase.swift in Sources */,
+				71337D2F263EE8FB00EC7F3D /* LoginViewController.swift in Sources */,
+				71337D1C263D88C300EC7F3D /* HomeSceneAssembly.swift in Sources */,
 				9104C17325051C3B003BF041 /* DeleteCategoryUseCase.swift in Sources */,
 				91957A8925318F3A0027249A /* OperationsSceneAssembly.swift in Sources */,
 				7152CFA62629628A00096331 /* CategoryOperationInfoTableViewCell.swift in Sources */,
@@ -810,6 +865,7 @@
 				71420C762638784A00DAB9C7 /* OperationsRepository.swift in Sources */,
 				91C26FA22515C0E300C999BE /* CategorySceneAssembly.swift in Sources */,
 				91C26FA42515CF7700C999BE /* Colors.swift in Sources */,
+				71337D27263EA67A00EC7F3D /* SecondaryButton.swift in Sources */,
 				9104C192250E1B5E003BF041 /* DomainCurrencyModel.swift in Sources */,
 				9104C13924FBCEF3003BF041 /* Category.swift in Sources */,
 				9104C1B9250F34B0003BF041 /* StartPresenter.swift in Sources */,
@@ -823,6 +879,7 @@
 				91957A7C253171A00027249A /* Paginated.swift in Sources */,
 				9104C17A250DD6DD003BF041 /* AccountViewController.swift in Sources */,
 				7113502B2621CBEA00572CB9 /* GetReportsByCategoryUseCase.swift in Sources */,
+				7167A50126490A02000E39A4 /* UIViewController+NavBar.swift in Sources */,
 				91C26FA62515D28B00C999BE /* ColorCollectionCell.swift in Sources */,
 				91957A7E253172A30027249A /* DomainOperationModel.swift in Sources */,
 				711F58602630139D00381BEF /* CategoriesDataRepository.swift in Sources */,
@@ -831,6 +888,7 @@
 				910DEEB42574A50F0053A2E0 /* BottomBar.swift in Sources */,
 				711F588126301C8D00381BEF /* OperationsDataRepository.swift in Sources */,
 				9104C1A0250F1D9E003BF041 /* UserCredentials.swift in Sources */,
+				71337D2A263EAA1D00EC7F3D /* HomePresenter.swift in Sources */,
 				3C15C54625734722005E209B /* SignIn.swift in Sources */,
 				9104C1A2250F1F3C003BF041 /* DomainUserCredentialsModel.swift in Sources */,
 				9104C17F250DDBB6003BF041 /* AccountPresenter.swift in Sources */,
@@ -850,6 +908,7 @@
 				9104C1B2250F2B92003BF041 /* DeleteUserCredentialsUseCase.swift in Sources */,
 				9104C19A250E239D003BF041 /* CurrencyTableCell.swift in Sources */,
 				91A85DE924B64B7D00B7A630 /* SignInUseCase.swift in Sources */,
+				71337D22263EA13800EC7F3D /* Apperance.swift in Sources */,
 				91A85DF624CB39DE00B7A630 /* GetAccountsUseCase.swift in Sources */,
 				91A85DD924AC611F00B7A630 /* APIManager.swift in Sources */,
 				9104C1BB250F379F003BF041 /* StartSceneAssembly.swift in Sources */,
@@ -867,6 +926,7 @@
 				9166BC98256A2F0E00A23196 /* OperationPresenter.swift in Sources */,
 				9104C13724FBC86B003BF041 /* CategoriesAssembly.swift in Sources */,
 				9104C17725052CDE003BF041 /* CreateUpdateCategoryUseCase.swift in Sources */,
+				7167A5032649146C000E39A4 /* PiggyTextField.swift in Sources */,
 				711F58962630212600381BEF /* ReportsRemoteDataSource.swift in Sources */,
 				91A85DF824CB3D0E00B7A630 /* AccountsAssembly.swift in Sources */,
 				91A85E0224D04F0700B7A630 /* MainBarViewController.swift in Sources */,

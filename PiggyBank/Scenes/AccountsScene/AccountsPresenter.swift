@@ -82,7 +82,7 @@ final class AccountsPresenter {
     }
 
     func onSelect(id: Int) {
-        view?.onSelect(viewController:  DependencyProvider.shared.get(screen: .account(getAccount(at: id))))
+        view?.onSelect(viewController: DependencyProvider.shared.get(screen: .account(getAccount(at: id))))
     }
 
 }
