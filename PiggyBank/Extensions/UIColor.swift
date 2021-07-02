@@ -29,6 +29,15 @@ extension UIColor {
 // MARK: - Used for DatePickerDialog
 
 extension UIColor {
+    
+    // swiftlint:disable type_name
+    enum piggy {
+        
+        static let pink = UIColor(hexString: "#cf5ea4")
+        static let black = UIColor(hexString: "#14142B")
+        static let white = UIColor(hexString: "#ffffff")
+        static let gray = UIColor(hexString: "#a0a3bd")
+    }
 
     static var gradientBackground: [CGColor] {
         if #available(iOS 13.0, *) {

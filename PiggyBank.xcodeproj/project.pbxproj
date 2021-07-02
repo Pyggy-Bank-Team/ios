@@ -145,6 +145,9 @@
 		91A85E0224D04F0700B7A630 /* MainBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85E0124D04F0700B7A630 /* MainBarViewController.swift */; };
 		91A85E0524D0519800B7A630 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85E0424D0519800B7A630 /* CategoriesViewController.swift */; };
 		91C028352515B616005F30F0 /* CreateUpdateCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C028342515B616005F30F0 /* CreateUpdateCategory.swift */; };
+		91C0CD5F268FBADC000FBC49 /* AccountCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C0CD5E268FBADC000FBC49 /* AccountCollectionCell.swift */; };
+		91C0CD62268FBCDF000FBC49 /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C0CD61268FBCDF000FBC49 /* UIFont.swift */; };
+		91C0CD65268FCF20000FBC49 /* SeparatorCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C0CD64268FCF20000FBC49 /* SeparatorCollectionCell.swift */; };
 		91C26FA02515C01B00C999BE /* CategoryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C26F9F2515C01B00C999BE /* CategoryPresenter.swift */; };
 		91C26FA22515C0E300C999BE /* CategorySceneAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C26FA12515C0E300C999BE /* CategorySceneAssembly.swift */; };
 		91C26FA42515CF7700C999BE /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C26FA32515CF7700C999BE /* Colors.swift */; };
@@ -289,6 +292,9 @@
 		91A85E0124D04F0700B7A630 /* MainBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBarViewController.swift; sourceTree = "<group>"; };
 		91A85E0424D0519800B7A630 /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		91C028342515B616005F30F0 /* CreateUpdateCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUpdateCategory.swift; sourceTree = "<group>"; };
+		91C0CD5E268FBADC000FBC49 /* AccountCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCollectionCell.swift; sourceTree = "<group>"; };
+		91C0CD61268FBCDF000FBC49 /* UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
+		91C0CD64268FCF20000FBC49 /* SeparatorCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorCollectionCell.swift; sourceTree = "<group>"; };
 		91C26F9F2515C01B00C999BE /* CategoryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPresenter.swift; sourceTree = "<group>"; };
 		91C26FA12515C0E300C999BE /* CategorySceneAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySceneAssembly.swift; sourceTree = "<group>"; };
 		91C26FA32515CF7700C999BE /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -513,6 +519,7 @@
 				7113503E2626141E00572CB9 /* Date.swift */,
 				9175DB91262A891200480957 /* String.swift */,
 				7167A50026490A02000E39A4 /* UIViewController+NavBar.swift */,
+				91C0CD61268FBCDF000FBC49 /* UIFont.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -671,6 +678,8 @@
 				91A85DED24CB308000B7A630 /* AccountsViewController.swift */,
 				91A85DEF24CB30BC00B7A630 /* AccountsDTOs.swift */,
 				91A85DF124CB326700B7A630 /* AccountsPresenter.swift */,
+				91C0CD5E268FBADC000FBC49 /* AccountCollectionCell.swift */,
+				91C0CD64268FCF20000FBC49 /* SeparatorCollectionCell.swift */,
 			);
 			path = AccountsScene;
 			sourceTree = "<group>";
@@ -852,6 +861,7 @@
 				9166BC932532E27600A23196 /* DeleteOperationUseCase.swift in Sources */,
 				9104C1C525107F82003BF041 /* AccountTextFieldTableCell.swift in Sources */,
 				3CC950D0256A75450074C7B6 /* UISegmentedControl.swift in Sources */,
+				91C0CD62268FBCDF000FBC49 /* UIFont.swift in Sources */,
 				711350212621C38F00572CB9 /* ReportsViewController.swift in Sources */,
 				9104C21925130B43003BF041 /* CreateUpdateAccount.swift in Sources */,
 				3C247C402572A21A00658BC4 /* FlexView.swift in Sources */,
@@ -877,6 +887,7 @@
 				9104C1C725108459003BF041 /* AccountSegmentedTableCell.swift in Sources */,
 				9104C13D24FBD2BF003BF041 /* CategoriesPresenter.swift in Sources */,
 				91957A7C253171A00027249A /* Paginated.swift in Sources */,
+				91C0CD65268FCF20000FBC49 /* SeparatorCollectionCell.swift in Sources */,
 				9104C17A250DD6DD003BF041 /* AccountViewController.swift in Sources */,
 				7113502B2621CBEA00572CB9 /* GetReportsByCategoryUseCase.swift in Sources */,
 				7167A50126490A02000E39A4 /* UIViewController+NavBar.swift in Sources */,
@@ -886,6 +897,7 @@
 				9104C1A4250F1FEC003BF041 /* DomainAuthModel.swift in Sources */,
 				711F58A32633252E00381BEF /* DependencyProvider.swift in Sources */,
 				910DEEB42574A50F0053A2E0 /* BottomBar.swift in Sources */,
+				91C0CD5F268FBADC000FBC49 /* AccountCollectionCell.swift in Sources */,
 				711F588126301C8D00381BEF /* OperationsDataRepository.swift in Sources */,
 				9104C1A0250F1D9E003BF041 /* UserCredentials.swift in Sources */,
 				71337D2A263EAA1D00EC7F3D /* HomePresenter.swift in Sources */,
