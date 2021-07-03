@@ -5,6 +5,7 @@ final class AccountsViewController: UIViewController {
     private lazy var collectionLayout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
+        layout.sectionHeadersPinToVisibleBounds = true
         return layout
     }()
     
@@ -20,9 +21,7 @@ final class AccountsViewController: UIViewController {
         title = "Accounts"
         
         let rightBarItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(onAdd(_:)))
-        rightBarItem.tintColor = UIColor.piggy.black
         navigationItem.rightBarButtonItem = rightBarItem
-        navigationItem.hidesBackButton = true
 
         view.backgroundColor = .white
         

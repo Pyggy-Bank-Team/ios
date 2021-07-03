@@ -2,9 +2,20 @@ import UIKit
 
 final class CategoriesViewController: UIViewController {
     
+    private class SectionItem {
+        
+        let headerTitle: String?
+        var categories: [CategoryViewModel] = []
+        
+        init(title: String?) {
+            self.headerTitle = title
+        }
+    }
+    
     private lazy var collectionLayout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
+        layout.sectionHeadersPinToVisibleBounds = true
         return layout
     }()
     
@@ -14,7 +25,7 @@ final class CategoriesViewController: UIViewController {
     
     var presenter: CategoriesPresenter!
     
-    private var allCategories: [CategoryViewModel] = []
+    private var sections: [SectionItem] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,9 +33,7 @@ final class CategoriesViewController: UIViewController {
         title = "Categories"
         
         let rightBarItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(onAdd(_:)))
-        rightBarItem.tintColor = UIColor.piggy.black
         navigationItem.rightBarButtonItem = rightBarItem
-        navigationItem.hidesBackButton = true
 
         view.backgroundColor = .white
         
@@ -32,8 +41,11 @@ final class CategoriesViewController: UIViewController {
         collectionView.delegate = self
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(CategoryCollectionCell.self, forCellWithReuseIdentifier: "CategoryCollectionCell")
+        collectionView.register(CategoryCollectionHeader.self,
+                                forSupplementaryViewOfKind: "UICollectionElementKindSectionHeader",
+                                withReuseIdentifier: "CategoryCollectionHeader")
         collectionView.backgroundColor = UIColor.piggy.white
-        collectionView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
         view.addSubview(collectionView)
         
         NSLayoutConstraint.activate([
@@ -53,7 +65,28 @@ final class CategoriesViewController: UIViewController {
     }
     
     func viewDidLoad(categories: [CategoryViewModel]) {
-        allCategories = categories
+        let incomeCategories = SectionItem(title: "Income")
+        let outcomeCategories = SectionItem(title: "Outcome")
+        let archivedIncomeCategories = SectionItem(title: "Archive • Income")
+        let archivedOutcomeCategories = SectionItem(title: "Archive • Outcome")
+        
+        categories.forEach { category in
+            if category.type == .income {
+                if category.isArchived {
+                    archivedIncomeCategories.categories.append(category)
+                } else {
+                    incomeCategories.categories.append(category)
+                }
+            } else {
+                if category.isArchived {
+                    archivedOutcomeCategories.categories.append(category)
+                } else {
+                    outcomeCategories.categories.append(category)
+                }
+            }
+        }
+        
+        sections = [incomeCategories, outcomeCategories, archivedIncomeCategories, archivedOutcomeCategories]
         collectionView.reloadData()
     }
     
@@ -83,19 +116,11 @@ extension CategoriesViewController: UICollectionViewDelegate {
 
 extension CategoriesViewController: UICollectionViewDelegateFlowLayout {
     
-    func collectionView(
-        _ collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        sizeForItemAt indexPath: IndexPath
-    ) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         CGSize(width: cellWidth, height: CategoryCollectionCell.height)
     }
     
-    func collectionView(
-        _ collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        minimumLineSpacingForSectionAt section: Int
-    ) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         25
     }
     
@@ -103,8 +128,12 @@ extension CategoriesViewController: UICollectionViewDelegateFlowLayout {
 
 extension CategoriesViewController: UICollectionViewDataSource {
     
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        sections.filter { !$0.categories.isEmpty }.count
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return allCategories.count
+        sections[section].categories.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -117,6 +146,21 @@ extension CategoriesViewController: UICollectionViewDataSource {
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if kind == "UICollectionElementKindSectionHeader" {
+            let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "CategoryCollectionHeader", for: indexPath) as! CategoryCollectionHeader
+            let section = sections[indexPath.section]
+            
+            view.titleLabel.text = section.headerTitle
+            return view
+        }
+        
+        fatalError("Unregistered kind")
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        CGSize(width: cellWidth, height: 70)
+    }
 }
 
 private extension CategoriesViewController {
@@ -126,13 +170,8 @@ private extension CategoriesViewController {
         presenter.onAdd()
     }
     
-    @objc
-    func onChangeType(_ sender: UISegmentedControl) {
-        collectionView.reloadData()
-    }
-    
     func element(at indexPath: IndexPath) -> CategoryViewModel {
-        return allCategories[indexPath.row]
+        sections[indexPath.section].categories[indexPath.row]
     }
     
 }

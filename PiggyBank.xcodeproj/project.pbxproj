@@ -148,6 +148,7 @@
 		91C0CD5F268FBADC000FBC49 /* AccountCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C0CD5E268FBADC000FBC49 /* AccountCollectionCell.swift */; };
 		91C0CD62268FBCDF000FBC49 /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C0CD61268FBCDF000FBC49 /* UIFont.swift */; };
 		91C0CD65268FCF20000FBC49 /* SeparatorCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C0CD64268FCF20000FBC49 /* SeparatorCollectionCell.swift */; };
+		91C0CD68269077EC000FBC49 /* CategoryCollectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C0CD67269077EC000FBC49 /* CategoryCollectionHeader.swift */; };
 		91C26FA02515C01B00C999BE /* CategoryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C26F9F2515C01B00C999BE /* CategoryPresenter.swift */; };
 		91C26FA22515C0E300C999BE /* CategorySceneAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C26FA12515C0E300C999BE /* CategorySceneAssembly.swift */; };
 		91C26FA42515CF7700C999BE /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C26FA32515CF7700C999BE /* Colors.swift */; };
@@ -295,6 +296,7 @@
 		91C0CD5E268FBADC000FBC49 /* AccountCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCollectionCell.swift; sourceTree = "<group>"; };
 		91C0CD61268FBCDF000FBC49 /* UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
 		91C0CD64268FCF20000FBC49 /* SeparatorCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorCollectionCell.swift; sourceTree = "<group>"; };
+		91C0CD67269077EC000FBC49 /* CategoryCollectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionHeader.swift; sourceTree = "<group>"; };
 		91C26F9F2515C01B00C999BE /* CategoryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPresenter.swift; sourceTree = "<group>"; };
 		91C26FA12515C0E300C999BE /* CategorySceneAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySceneAssembly.swift; sourceTree = "<group>"; };
 		91C26FA32515CF7700C999BE /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -690,6 +692,7 @@
 				91A85E0424D0519800B7A630 /* CategoriesViewController.swift */,
 				9104C13C24FBD2BF003BF041 /* CategoriesPresenter.swift */,
 				9104C21C25147475003BF041 /* CategoryCollectionCell.swift */,
+				91C0CD67269077EC000FBC49 /* CategoryCollectionHeader.swift */,
 			);
 			path = CategoriesScene;
 			sourceTree = "<group>";
@@ -886,6 +889,7 @@
 				711F5854263010EB00381BEF /* AccountDataRepository.swift in Sources */,
 				9104C1C725108459003BF041 /* AccountSegmentedTableCell.swift in Sources */,
 				9104C13D24FBD2BF003BF041 /* CategoriesPresenter.swift in Sources */,
+				91C0CD68269077EC000FBC49 /* CategoryCollectionHeader.swift in Sources */,
 				91957A7C253171A00027249A /* Paginated.swift in Sources */,
 				91C0CD65268FCF20000FBC49 /* SeparatorCollectionCell.swift in Sources */,
 				9104C17A250DD6DD003BF041 /* AccountViewController.swift in Sources */,

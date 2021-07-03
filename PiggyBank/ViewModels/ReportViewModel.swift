@@ -16,8 +16,8 @@ public final class ReportViewModel {
 
     var sign: String {
         switch type {
-        case .undefined:
-            return ""
+//        case .undefined:
+//            return ""
         case .income:
             return "+"
         case .outcome:

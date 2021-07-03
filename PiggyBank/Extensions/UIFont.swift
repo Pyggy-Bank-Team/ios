@@ -14,6 +14,7 @@ extension UIFont {
     enum piggy {
         
         static let font14 = UIFont.systemFont(ofSize: 14)
+        static let fontSemibold14 = UIFont.systemFont(ofSize: 14, weight: .semibold)
         static let font25 = UIFont.systemFont(ofSize: 25)
         static let font30 = UIFont.systemFont(ofSize: 30)
     }

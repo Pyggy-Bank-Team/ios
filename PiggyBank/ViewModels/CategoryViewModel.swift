@@ -3,7 +3,7 @@ import Foundation
 public final class CategoryViewModel {
     
     enum CategoryType: Int {
-        case undefined = 0
+        
         case income = 1
         case outcome = 2
     }

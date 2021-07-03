@@ -16,6 +16,7 @@ final class StartViewController: UINavigationController {
         navigationBar.titleTextAttributes = [
             .foregroundColor: UIColor.piggy.black
         ]
+        navigationBar.tintColor = UIColor.piggy.black
 
         presenter.viewDidLoad()
     }
