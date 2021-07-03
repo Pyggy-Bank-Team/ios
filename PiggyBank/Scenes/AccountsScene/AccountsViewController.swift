@@ -23,8 +23,6 @@ final class AccountsViewController: UIViewController {
         rightBarItem.tintColor = UIColor.piggy.black
         navigationItem.rightBarButtonItem = rightBarItem
         navigationItem.hidesBackButton = true
-        navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.navigationBar.barTintColor = UIColor.piggy.white
 
         view.backgroundColor = .white
         
