@@ -5,7 +5,6 @@ final class AccountsViewController: UIViewController {
     private lazy var collectionLayout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.sectionHeadersPinToVisibleBounds = true
         return layout
     }()
     
@@ -14,6 +13,12 @@ final class AccountsViewController: UIViewController {
     private var cellWidth: CGFloat = 0
     
     var presenter: AccountsPresenter!
+    
+    var sections: [AccountsPresenter.SectionItem] = [] {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,8 +33,12 @@ final class AccountsViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.register(AccountCollectionTotalCell.self, forCellWithReuseIdentifier: "AccountCollectionTotalCell")
         collectionView.register(AccountCollectionCell.self, forCellWithReuseIdentifier: "AccountCollectionCell")
         collectionView.register(SeparatorCollectionCell.self, forCellWithReuseIdentifier: "SeparatorCollectionCell")
+        collectionView.register(CategoryCollectionHeader.self,
+                                forSupplementaryViewOfKind: "UICollectionElementKindSectionHeader",
+                                withReuseIdentifier: "CategoryCollectionHeader")
         collectionView.backgroundColor = UIColor.piggy.white
         collectionView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
         view.addSubview(collectionView)
@@ -41,7 +50,7 @@ final class AccountsViewController: UIViewController {
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
         
-        presenter.onViewDidLoad(request: .init())
+        presenter.getAccounts()
     }
     
     override func viewWillLayoutSubviews() {
@@ -49,36 +58,124 @@ final class AccountsViewController: UIViewController {
         
         cellWidth = view.bounds.size.width - 50
     }
+
+}
+
+extension AccountsViewController: UICollectionViewDelegate {
     
-    func viewDidLoad(response: [AccountViewModel]) {
-//        allAccounts = response
-//
-//        for account in allAccounts {
-//            if account.type == .cash {
-//                cashAccounts.append(account)
-//            } else {
-//                cardAccounts.append(account)
-//            }
-//        }
-        
-        collectionView.reloadData()
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let account = presenter.getAccount(at: indexPath)
+        let vc = DependencyProvider.shared.get(screen: .account(account))
+        navigationController?.pushViewController(vc, animated: true)
     }
     
-    func onAdd(response: AccountsDTOs.OnAdd.Response) {
-        let alertController = UIAlertController(title: response.title, message: "", preferredStyle: .alert)
+}
+
+extension AccountsViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let section = presenter.getSection(at: indexPath.section)
         
-        let action = UIAlertAction(title: "OK", style: .default)
-        alertController.addAction(action)
+        if section.total {
+            return CGSize(width: cellWidth, height: 113)
+        }
         
-        present(alertController, animated: true, completion: nil)
+        if section.separator {
+            return CGSize(width: cellWidth, height: 1)
+        }
+        
+        return CGSize(width: cellWidth, height: 86)
     }
     
-    func onAdd(viewController: UIViewController) {
-        navigationController?.pushViewController(viewController, animated: true)
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        let section = presenter.getSection(at: section)
+        
+        if !section.total && !section.separator {
+            return 15
+        }
+        
+        return 0
     }
     
-    func onSelect(viewController: UIViewController) {
-        navigationController?.pushViewController(viewController, animated: true)
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        let section = presenter.getSection(at: section)
+        
+        if section.separator {
+            return UIEdgeInsets(top: 25, left: 0, bottom: 0, right: 0)
+        }
+        
+        return .zero
+    }
+    
+}
+
+extension AccountsViewController: UICollectionViewDataSource {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        sections.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        let section = presenter.getSection(at: section)
+        
+        if section.total {
+            return 1
+        }
+        
+        if section.separator {
+            return 1
+        }
+        
+        return section.accounts.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let section = presenter.getSection(at: indexPath.section)
+        
+        if section.total {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AccountCollectionTotalCell", for: indexPath) as! AccountCollectionTotalCell
+            cell.subtitleLabel.text = section.totalText
+            return cell
+        }
+        
+        if section.separator {
+            return collectionView.dequeueReusableCell(withReuseIdentifier: "SeparatorCollectionCell", for: indexPath)
+        }
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AccountCollectionCell", for: indexPath) as! AccountCollectionCell
+        let account = presenter.getAccount(at: indexPath)
+        cell.titleLabel.text = account.title
+        cell.subtitleLabel.text = account.balance.description
+        cell.onConfigure = { [weak self] in
+            self?.showActionsList(indexPath: indexPath)
+        }
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if kind == "UICollectionElementKindSectionHeader" {
+            let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "CategoryCollectionHeader", for: indexPath) as! CategoryCollectionHeader
+            let section = presenter.getSection(at: indexPath.section)
+            
+            view.titleLabel.text = section.headerTitle
+            return view
+        }
+        
+        fatalError("Unregistered kind")
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        let section = presenter.getSection(at: section)
+        
+        if section.total {
+            return .zero
+        }
+        
+        if section.separator {
+            return .zero
+        }
+        
+        return CGSize(width: cellWidth, height: 70)
     }
 
 }
@@ -87,62 +184,28 @@ private extension AccountsViewController {
     
     @objc
     func onAdd(_ sender: UIBarButtonItem) {
-        presenter.onAdd()
-    }
-}
-
-extension AccountsViewController: UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if indexPath.section == 0 {
-            return CGSize(width: cellWidth, height: 113)
-        } else if indexPath.section == 1 {
-            return CGSize(width: cellWidth, height: 1)
-        } else {
-            return CGSize(width: cellWidth, height: 86)
-        }
+        let vc = DependencyProvider.shared.get(screen: .account(nil))
+        navigationController?.pushViewController(vc, animated: true)
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        if section == 1 {
-            return UIEdgeInsets(top: 25, left: 0, bottom: 25, right: 0)
+    func showActionsList(indexPath: IndexPath) {
+        let actionsViewController = UIAlertController(title: "Actions", message: nil, preferredStyle: .actionSheet)
+        let account = presenter.getAccount(at: indexPath)
+        
+        let archiveAction = UIAlertAction(title: account.isArchived ? "Unarchive" : "Archive", style: .default) { [weak self] _ in
+            self?.presenter.archive(at: indexPath)
         }
         
-        return .zero
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        if section == 2 {
-            return 15
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { [weak self] _ in
+            self?.presenter.delete(at: indexPath)
         }
         
-        return 0
-    }
-}
-
-extension AccountsViewController: UICollectionViewDataSource {
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        3
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        actionsViewController.addAction(archiveAction)
+        actionsViewController.addAction(deleteAction)
+        actionsViewController.addAction(cancelAction)
+        present(actionsViewController, animated: true, completion: nil)
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        section == 2 ? 9 : 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if indexPath.section == 0 {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AccountCollectionCell", for: indexPath) as! AccountCollectionCell
-            cell.contentViewColor = UIColor.piggy.pink
-            cell.borderColor = UIColor.piggy.pink
-            return cell
-        } else if indexPath.section == 1 {
-            return collectionView.dequeueReusableCell(withReuseIdentifier: "SeparatorCollectionCell", for: indexPath)
-        } else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AccountCollectionCell", for: indexPath) as! AccountCollectionCell
-            cell.contentViewColor = UIColor.piggy.white
-            cell.borderColor = UIColor.piggy.gray
-            return cell
-        }
-    }
 }

@@ -5,7 +5,6 @@ final class CategoriesViewController: UIViewController {
     private lazy var collectionLayout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.sectionHeadersPinToVisibleBounds = true
         return layout
     }()
     
@@ -120,6 +119,7 @@ extension CategoriesViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         CGSize(width: cellWidth, height: 70)
     }
+
 }
 
 private extension CategoriesViewController {

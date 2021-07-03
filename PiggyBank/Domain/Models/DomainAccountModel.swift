@@ -3,9 +3,10 @@ import Foundation
 final class DomainAccountModel {
     
     enum AccountType: Int {
-        case undefined = 0
+        
         case cash = 1
         case card = 2
+        
     }
 
     let id: Int?
@@ -24,6 +25,21 @@ final class DomainAccountModel {
         self.balance = balance
         self.isArchived = isArchived
         self.isDeleted = isDeleted
+    }
+    
+    // swiftlint:disable discouraged_optional_boolean
+    func update(type: AccountType? = nil, title: String? = nil, isArchived: Bool? = nil) -> DomainAccountModel {
+        let newType = type ?? self.type
+        let newTitle = title ?? self.title
+        let newArchived = isArchived ?? self.isArchived
+        
+        return DomainAccountModel(id: id,
+                                  type: newType.rawValue,
+                                  title: newTitle,
+                                  currency: currency,
+                                  balance: balance,
+                                  isArchived: newArchived,
+                                  isDeleted: isDeleted)
     }
     
 }
