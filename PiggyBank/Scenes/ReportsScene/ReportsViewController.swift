@@ -61,7 +61,7 @@ final class ReportsViewController: UIViewController {
         return endDateLabel
     }()
 
-    private let controlIndexToCategoryType: [Int: CategoryViewModel.CategoryType] = [
+    private let controlIndexToCategoryType: [Int: DomainCategoryModel.CategoryType] = [
         0: .outcome,
         1: .income
     ]

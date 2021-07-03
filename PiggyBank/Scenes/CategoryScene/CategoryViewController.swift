@@ -22,7 +22,7 @@ final class CategoryViewController: UIViewController {
         presenter.loadData()
     }
     
-    func loadCategory(category: CategoryViewModel?) {
+    func loadCategory(category: DomainCategoryModel?) {
         if category == nil {
             navigationItem.title = "New"
         }

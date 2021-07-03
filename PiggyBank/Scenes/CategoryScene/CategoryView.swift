@@ -123,7 +123,7 @@ final class CategoryView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func loadCategory(category: CategoryViewModel?) {
+    func loadCategory(category: DomainCategoryModel?) {
         if let category = category {
             typeControl.selectedSegmentIndex = category.type.rawValue
             titleField.text = category.title

@@ -18,20 +18,6 @@ public enum GrandConverter {
         )
     }
     
-    static func convertToViewModel(domainCategory: DomainCategoryModel?) -> CategoryViewModel? {
-        guard let category = domainCategory else {
-            return nil
-        }
-        
-        return CategoryViewModel(
-            id: category.id!,
-            title: category.title,
-            hexColor: category.hexColor,
-            type: category.type == .income ? .income : .outcome,
-            isArchived: category.isArchived
-        )
-    }
-    
     static func convertToViewModel(domainCurrency: DomainCurrencyModel) -> CurrencyViewModel {
         CurrencyViewModel(code: domainCurrency.code, symbol: domainCurrency.symbol)
     }

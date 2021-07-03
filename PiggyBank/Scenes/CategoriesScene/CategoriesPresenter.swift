@@ -1,47 +1,98 @@
 import Foundation
 
 final class CategoriesPresenter {
+    
+    class SectionItem {
+        
+        let headerTitle: String?
+        var categories: [DomainCategoryModel] = []
+        
+        init(title: String?) {
+            self.headerTitle = title
+        }
+
+    }
 
     private weak var view: CategoriesViewController?
-    private let getCategoriesUseCase: GetCategoriesUseCase?
+    
+    private let getCategoriesUseCase: GetCategoriesUseCase
+    private let changeAndUpdateCategoriesUseCase: ChangeAndUpdateCategoriesUseCase
+    private let deleteAndUpdateCategoriesUseCase: DeleteAndUpdateCategoriesUseCase
 
-    private var categories: [DomainCategoryModel] = []
+    private var sections: [SectionItem] = []
 
-    init(view: CategoriesViewController?, getCategoriesUseCase: GetCategoriesUseCase?) {
+    init(
+        view: CategoriesViewController?,
+        getCategoriesUseCase: GetCategoriesUseCase,
+        changeAndUpdateCategoriesUseCase: ChangeAndUpdateCategoriesUseCase,
+        deleteAndUpdateCategoriesUseCase: DeleteAndUpdateCategoriesUseCase
+    ) {
         self.view = view
         self.getCategoriesUseCase = getCategoriesUseCase
+        self.changeAndUpdateCategoriesUseCase = changeAndUpdateCategoriesUseCase
+        self.deleteAndUpdateCategoriesUseCase = deleteAndUpdateCategoriesUseCase
+    }
+    
+    func getCategory(at indexPath: IndexPath) -> DomainCategoryModel {
+        sections[indexPath.section].categories[indexPath.row]
     }
 
-    func onViewDidLoad() {
-        getCategoriesUseCase?.execute { [weak self] response in
-            guard let self = self else {
-                return
-            }
-            
-            DispatchQueue.main.async {
-                if case let .success(items) = response {
-                    self.categories = items
-                    
-                    let categoriesViewModels = items.compactMap { GrandConverter.convertToViewModel(domainCategory: $0) }
-                    self.view?.viewDidLoad(categories: categoriesViewModels)
-                }
-            }
+    func getCategories() {
+        getCategoriesUseCase.execute { [weak self] response in
+            self?.handleResponse(response)
         }
     }
-
-    func onAdd() {
-        view?.push(viewController: DependencyProvider.shared.get(screen: .category(nil)))
+    
+    func archive(at indexPath: IndexPath) {
+        let category = getCategory(at: indexPath)
+        let newCategory = category.update(isArchived: !category.isArchived)
+        
+        changeAndUpdateCategoriesUseCase.execute(category: newCategory) { [weak self] response in
+            self?.handleResponse(response)
+        }
     }
-
-    func onSelect(id: Int) {
-        view?.push(viewController: DependencyProvider.shared.get(screen: .category(getCategory(at: id))))
+    
+    func delete(at indexPath: IndexPath) {
+        let category = getCategory(at: indexPath)
+        deleteAndUpdateCategoriesUseCase.execute(category: category) { [weak self] response in
+            self?.handleResponse(response)
+        }
     }
+    
 }
 
-extension CategoriesPresenter {
+private extension CategoriesPresenter {
     
-    func getCategory(at id: Int) -> DomainCategoryModel {
-        categories.first { $0.id == id }!
+    func handleResponse(_ response: Result<[DomainCategoryModel]>) {
+        if case let .success(categories) = response {
+            let incomeCategories = SectionItem(title: "Income")
+            let outcomeCategories = SectionItem(title: "Outcome")
+            let archivedIncomeCategories = SectionItem(title: "Archive • Income")
+            let archivedOutcomeCategories = SectionItem(title: "Archive • Outcome")
+            
+            categories.forEach { category in
+                if category.type == .income {
+                    if category.isArchived {
+                        archivedIncomeCategories.categories.append(category)
+                    } else {
+                        incomeCategories.categories.append(category)
+                    }
+                } else {
+                    if category.isArchived {
+                        archivedOutcomeCategories.categories.append(category)
+                    } else {
+                        outcomeCategories.categories.append(category)
+                    }
+                }
+            }
+            
+            self.sections = [incomeCategories, outcomeCategories, archivedIncomeCategories, archivedOutcomeCategories]
+            self.sections = self.sections.filter { !$0.categories.isEmpty }
+            
+            DispatchQueue.main.async {
+                self.view?.sections = self.sections
+            }
+        }
     }
     
 }

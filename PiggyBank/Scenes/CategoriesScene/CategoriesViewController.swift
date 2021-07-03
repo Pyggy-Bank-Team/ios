@@ -2,16 +2,6 @@ import UIKit
 
 final class CategoriesViewController: UIViewController {
     
-    private class SectionItem {
-        
-        let headerTitle: String?
-        var categories: [CategoryViewModel] = []
-        
-        init(title: String?) {
-            self.headerTitle = title
-        }
-    }
-    
     private lazy var collectionLayout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -25,7 +15,11 @@ final class CategoriesViewController: UIViewController {
     
     var presenter: CategoriesPresenter!
     
-    private var sections: [SectionItem] = []
+    var sections: [CategoriesPresenter.SectionItem] = [] {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +49,7 @@ final class CategoriesViewController: UIViewController {
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
         
-        presenter.onViewDidLoad()
+        presenter.getCategories()
     }
     
     override func viewWillLayoutSubviews() {
@@ -63,53 +57,15 @@ final class CategoriesViewController: UIViewController {
         
         cellWidth = view.bounds.size.width - 50
     }
-    
-    func viewDidLoad(categories: [CategoryViewModel]) {
-        let incomeCategories = SectionItem(title: "Income")
-        let outcomeCategories = SectionItem(title: "Outcome")
-        let archivedIncomeCategories = SectionItem(title: "Archive • Income")
-        let archivedOutcomeCategories = SectionItem(title: "Archive • Outcome")
-        
-        categories.forEach { category in
-            if category.type == .income {
-                if category.isArchived {
-                    archivedIncomeCategories.categories.append(category)
-                } else {
-                    incomeCategories.categories.append(category)
-                }
-            } else {
-                if category.isArchived {
-                    archivedOutcomeCategories.categories.append(category)
-                } else {
-                    outcomeCategories.categories.append(category)
-                }
-            }
-        }
-        
-        sections = [incomeCategories, outcomeCategories, archivedIncomeCategories, archivedOutcomeCategories]
-        collectionView.reloadData()
-    }
-    
-    func showResult(str: String) {
-        let alertController = UIAlertController(title: str, message: "", preferredStyle: .alert)
-        
-        let action = UIAlertAction(title: "OK", style: .default)
-        alertController.addAction(action)
-        
-        present(alertController, animated: true, completion: nil)
-    }
-    
-    func push(viewController: UIViewController) {
-        navigationController?.pushViewController(viewController, animated: true)
-    }
 
 }
 
 extension CategoriesViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let category = element(at: indexPath)
-        presenter.onSelect(id: category.id)
+        let category = presenter.getCategory(at: indexPath)
+        let vc = DependencyProvider.shared.get(screen: .category(category))
+        navigationController?.pushViewController(vc, animated: true)
     }
     
 }
@@ -138,10 +94,13 @@ extension CategoriesViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCollectionCell", for: indexPath) as! CategoryCollectionCell
-        let category = element(at: indexPath)
+        let category = presenter.getCategory(at: indexPath)
         
         cell.titleLabel.text = category.title
         cell.colorView.backgroundColor = UIColor(hexString: category.hexColor)
+        cell.onConfigure = { [weak self] in
+            self?.showActionsList(indexPath: indexPath)
+        }
         
         return cell
     }
@@ -167,11 +126,28 @@ private extension CategoriesViewController {
     
     @objc
     func onAdd(_ sender: UIBarButtonItem) {
-        presenter.onAdd()
+        let vc = DependencyProvider.shared.get(screen: .category(nil))
+        navigationController?.pushViewController(vc, animated: true)
     }
     
-    func element(at indexPath: IndexPath) -> CategoryViewModel {
-        sections[indexPath.section].categories[indexPath.row]
+    func showActionsList(indexPath: IndexPath) {
+        let actionsViewController = UIAlertController(title: "Actions", message: nil, preferredStyle: .actionSheet)
+        let category = presenter.getCategory(at: indexPath)
+        
+        let archiveAction = UIAlertAction(title: category.isArchived ? "Unarchive" : "Archive", style: .default) { [weak self] _ in
+            self?.presenter.archive(at: indexPath)
+        }
+        
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { [weak self] _ in
+            self?.presenter.delete(at: indexPath)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        actionsViewController.addAction(archiveAction)
+        actionsViewController.addAction(deleteAction)
+        actionsViewController.addAction(cancelAction)
+        present(actionsViewController, animated: true, completion: nil)
     }
     
 }

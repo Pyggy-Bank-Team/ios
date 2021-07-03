@@ -3,9 +3,10 @@ import Foundation
 final class DomainCategoryModel {
 
     enum CategoryType: Int {
-        case undefined = 0
+
         case income = 1
         case outcome = 2
+
     }
 
     let id: Int?
@@ -22,6 +23,20 @@ final class DomainCategoryModel {
         self.type = CategoryType(rawValue: type) ?? .income
         self.isArchived = isArchived
         self.isDeleted = isDeleted
+    }
+    
+    // swiftlint:disable discouraged_optional_boolean
+    func update(title: String? = nil, hexColor: String? = nil, isArchived: Bool? = nil) -> DomainCategoryModel {
+        let newTitle = title ?? self.title
+        let newColor = hexColor ?? self.hexColor
+        let newArchived = isArchived ?? self.isArchived
+        
+        return DomainCategoryModel(id: id,
+                                   title: newTitle,
+                                   hexColor: newColor,
+                                   type: type.rawValue,
+                                   isArchived: newArchived,
+                                   isDeleted: isDeleted)
     }
     
 }

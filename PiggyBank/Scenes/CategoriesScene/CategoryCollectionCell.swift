@@ -9,6 +9,8 @@ public final class CategoryCollectionCell: UICollectionViewCell {
     
     private let configureButton = UIButton(type: .system)
     
+    var onConfigure: (() -> Void)?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -24,6 +26,7 @@ public final class CategoryCollectionCell: UICollectionViewCell {
         
         configureButton.setImage(UIImage.piggy.icoConfigure24, for: .normal)
         configureButton.tintColor = UIColor.piggy.black
+        configureButton.addTarget(self, action: #selector(onConfigure(_:)), for: .touchUpInside)
         configureButton.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(configureButton)
         
@@ -46,5 +49,13 @@ public final class CategoryCollectionCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+}
+
+private extension CategoryCollectionCell {
+    
+    @objc
+    func onConfigure(_ sender: UIButton) {
+        onConfigure?()
     }
 }
