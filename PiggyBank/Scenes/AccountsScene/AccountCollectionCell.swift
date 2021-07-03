@@ -46,8 +46,8 @@ final class AccountCollectionCell: UICollectionViewCell {
             subtitleLabel.topAnchor.constraint(equalTo: titleLabel.safeAreaLayoutGuide.bottomAnchor, constant: 4),
             subtitleLabel.trailingAnchor.constraint(equalTo: titleLabel.safeAreaLayoutGuide.trailingAnchor),
             
-            configureButton.topAnchor.constraint(equalTo: titleLabel.safeAreaLayoutGuide.topAnchor),
-            configureButton.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -30),
+            configureButton.topAnchor.constraint(equalTo: titleLabel.safeAreaLayoutGuide.topAnchor, constant: -8),
+            configureButton.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -22),
             configureButton.widthAnchor.constraint(equalToConstant: 40),
             configureButton.heightAnchor.constraint(equalToConstant: 40)
         ])
