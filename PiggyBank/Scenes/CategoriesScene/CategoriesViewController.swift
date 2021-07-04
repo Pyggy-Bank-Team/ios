@@ -34,11 +34,12 @@ final class CategoriesViewController: UIViewController {
         collectionView.delegate = self
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(CategoryCollectionCell.self, forCellWithReuseIdentifier: "CategoryCollectionCell")
+        collectionView.register(EmptyCollectionCell.self, forCellWithReuseIdentifier: "EmptyCollectionCell")
         collectionView.register(CategoryCollectionHeader.self,
                                 forSupplementaryViewOfKind: "UICollectionElementKindSectionHeader",
                                 withReuseIdentifier: "CategoryCollectionHeader")
         collectionView.backgroundColor = UIColor.piggy.white
-        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
+        collectionView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
         view.addSubview(collectionView)
         
         NSLayoutConstraint.activate([
@@ -72,11 +73,18 @@ extension CategoriesViewController: UICollectionViewDelegate {
 extension CategoriesViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: cellWidth, height: CategoryCollectionCell.height)
+        let section = presenter.getSection(at: indexPath.section)
+        
+        if section.emptyText != nil {
+            return CGSize(width: cellWidth, height: 86)
+        }
+        
+        return CGSize(width: cellWidth, height: CategoryCollectionCell.height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        25
+        let section = presenter.getSection(at: section)
+        return section.emptyText != nil ? 0 : 25
     }
     
 }
@@ -84,14 +92,28 @@ extension CategoriesViewController: UICollectionViewDelegateFlowLayout {
 extension CategoriesViewController: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        sections.filter { !$0.categories.isEmpty }.count
+        sections.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        sections[section].categories.count
+        let section = presenter.getSection(at: section)
+        
+        if section.emptyText != nil {
+            return 1
+        }
+        
+        return section.categories.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let section = presenter.getSection(at: indexPath.section)
+        
+        if section.emptyText != nil {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EmptyCollectionCell", for: indexPath) as! EmptyCollectionCell
+            cell.titleLabel.text = section.emptyText
+            return cell
+        }
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCollectionCell", for: indexPath) as! CategoryCollectionCell
         let category = presenter.getCategory(at: indexPath)
         
@@ -117,7 +139,8 @@ extension CategoriesViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        CGSize(width: cellWidth, height: 70)
+        let section = presenter.getSection(at: section)
+        return section.headerTitle != nil ? CGSize(width: cellWidth, height: 70) : .zero
     }
 
 }

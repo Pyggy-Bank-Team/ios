@@ -4,37 +4,45 @@ final class AccountsPresenter {
     
     class SectionItem {
         
-        let total: Bool
         let totalText: String?
         
         let separator: Bool
         
-        let headerTitle: String?
+        let emptyText: String?
         
+        let headerTitle: String?
         var accounts: [DomainAccountModel] = []
         
         init(totalText: String) {
             self.totalText = totalText
-            total = true
             
             separator = false
             headerTitle = nil
+            emptyText = nil
         }
         
-        init(headerTitle: String) {
+        init(headerTitle: String?) {
             self.headerTitle = headerTitle
             
-            total = false
             totalText = nil
             separator = false
+            emptyText = nil
         }
         
         init(separator: Bool) {
             self.separator = separator
             
-            total = false
             totalText = nil
             headerTitle = nil
+            emptyText = nil
+        }
+        
+        init(emptyText: String) {
+            self.emptyText = emptyText
+            
+            totalText = nil
+            headerTitle = nil
+            separator = false
         }
 
     }
@@ -95,30 +103,32 @@ private extension AccountsPresenter {
     
     func handleResponse(_ response: Result<[DomainAccountModel]>) {
         if case let .success(accounts) = response {
-            guard !accounts.isEmpty else { return }
+            defer {
+                DispatchQueue.main.async {
+                    self.view?.sections = self.sections
+                }
+            }
+            
+            sections.removeAll()
+            
+            if accounts.isEmpty {
+                let empty = SectionItem(emptyText: "No accounts")
+                sections.append(empty)
+                return
+            }
             
             let separator = SectionItem(separator: true)
-            let cashAccounts = SectionItem(headerTitle: "Cash")
-            let cardAccounts = SectionItem(headerTitle: "Card")
-            let archivedCashAccounts = SectionItem(headerTitle: "Archive • Cash")
-            let archivedCardAccounts = SectionItem(headerTitle: "Archive • Card")
+            let regularAccounts = SectionItem(headerTitle: nil)
+            let archivedAccounts = SectionItem(headerTitle: "Archive")
 
             var totalSum: Double = 0
             accounts.forEach { account in
-                if account.type == .cash {
-                    if account.isArchived {
-                        archivedCashAccounts.accounts.append(account)
-                    } else {
-                        cashAccounts.accounts.append(account)
-                    }
+                if account.isArchived {
+                    archivedAccounts.accounts.append(account)
                 } else {
-                    if account.isArchived {
-                        archivedCardAccounts.accounts.append(account)
-                    } else {
-                        cardAccounts.accounts.append(account)
-                    }
+                    regularAccounts.accounts.append(account)
                 }
-                
+
                 totalSum += account.balance
             }
             let total = SectionItem(totalText: totalSum.description)
@@ -126,21 +136,11 @@ private extension AccountsPresenter {
             sections.removeAll()
             sections.append(total)
             sections.append(separator)
-            if !cashAccounts.accounts.isEmpty {
-                sections.append(cashAccounts)
+            if !regularAccounts.accounts.isEmpty {
+                sections.append(regularAccounts)
             }
-            if !cardAccounts.accounts.isEmpty {
-                sections.append(cardAccounts)
-            }
-            if !archivedCashAccounts.accounts.isEmpty {
-                sections.append(archivedCashAccounts)
-            }
-            if !archivedCardAccounts.accounts.isEmpty {
-                sections.append(archivedCardAccounts)
-            }
-
-            DispatchQueue.main.async {
-                self.view?.sections = self.sections
+            if !archivedAccounts.accounts.isEmpty {
+                sections.append(archivedAccounts)
             }
         }
     }

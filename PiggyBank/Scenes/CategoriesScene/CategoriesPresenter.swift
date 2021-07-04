@@ -4,11 +4,19 @@ final class CategoriesPresenter {
     
     class SectionItem {
         
+        let emptyText: String?
+        
         let headerTitle: String?
         var categories: [DomainCategoryModel] = []
         
         init(title: String?) {
             self.headerTitle = title
+            emptyText = nil
+        }
+        
+        init(emptyText: String) {
+            self.emptyText = emptyText
+            headerTitle = nil
         }
 
     }
@@ -31,6 +39,10 @@ final class CategoriesPresenter {
         self.getCategoriesUseCase = getCategoriesUseCase
         self.changeAndUpdateCategoriesUseCase = changeAndUpdateCategoriesUseCase
         self.deleteAndUpdateCategoriesUseCase = deleteAndUpdateCategoriesUseCase
+    }
+    
+    func getSection(at index: Int) -> SectionItem {
+        sections[index]
     }
     
     func getCategory(at indexPath: IndexPath) -> DomainCategoryModel {
@@ -65,29 +77,38 @@ private extension CategoriesPresenter {
     
     func handleResponse(_ response: Result<[DomainCategoryModel]>) {
         if case let .success(categories) = response {
-            let incomeCategories = SectionItem(title: "Income")
-            let outcomeCategories = SectionItem(title: "Outcome")
-            let archivedIncomeCategories = SectionItem(title: "Archive • Income")
-            let archivedOutcomeCategories = SectionItem(title: "Archive • Outcome")
-            
-            categories.forEach { category in
-                if category.type == .income {
-                    if category.isArchived {
-                        archivedIncomeCategories.categories.append(category)
-                    } else {
-                        incomeCategories.categories.append(category)
-                    }
-                } else {
-                    if category.isArchived {
-                        archivedOutcomeCategories.categories.append(category)
-                    } else {
-                        outcomeCategories.categories.append(category)
-                    }
+            defer {
+                DispatchQueue.main.async {
+                    self.view?.sections = self.sections
                 }
             }
             
-            self.sections = [incomeCategories, outcomeCategories, archivedIncomeCategories, archivedOutcomeCategories]
-            self.sections = self.sections.filter { !$0.categories.isEmpty }
+            sections.removeAll()
+            
+            if categories.isEmpty {
+                let empty = SectionItem(emptyText: "No categories")
+                sections.append(empty)
+                return
+            }
+            
+            let regularCategories = SectionItem(title: nil)
+            let archivedCategories = SectionItem(title: "Archive")
+            
+            categories.forEach { category in
+                if category.isArchived {
+                    archivedCategories.categories.append(category)
+                } else {
+                    regularCategories.categories.append(category)
+                }
+            }
+            
+            sections.removeAll()
+            if !regularCategories.categories.isEmpty {
+                sections.append(regularCategories)
+            }
+            if !archivedCategories.categories.isEmpty {
+                sections.append(archivedCategories)
+            }
             
             DispatchQueue.main.async {
                 self.view?.sections = self.sections

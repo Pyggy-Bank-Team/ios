@@ -36,6 +36,7 @@ final class AccountsViewController: UIViewController {
         collectionView.register(AccountCollectionTotalCell.self, forCellWithReuseIdentifier: "AccountCollectionTotalCell")
         collectionView.register(AccountCollectionCell.self, forCellWithReuseIdentifier: "AccountCollectionCell")
         collectionView.register(SeparatorCollectionCell.self, forCellWithReuseIdentifier: "SeparatorCollectionCell")
+        collectionView.register(EmptyCollectionCell.self, forCellWithReuseIdentifier: "EmptyCollectionCell")
         collectionView.register(CategoryCollectionHeader.self,
                                 forSupplementaryViewOfKind: "UICollectionElementKindSectionHeader",
                                 withReuseIdentifier: "CategoryCollectionHeader")
@@ -76,7 +77,7 @@ extension AccountsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let section = presenter.getSection(at: indexPath.section)
         
-        if section.total {
+        if section.totalText != nil {
             return CGSize(width: cellWidth, height: 113)
         }
         
@@ -90,7 +91,7 @@ extension AccountsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         let section = presenter.getSection(at: section)
         
-        if !section.total && !section.separator {
+        if section.totalText == nil && !section.separator {
             return 15
         }
         
@@ -101,7 +102,7 @@ extension AccountsViewController: UICollectionViewDelegateFlowLayout {
         let section = presenter.getSection(at: section)
         
         if section.separator {
-            return UIEdgeInsets(top: 25, left: 0, bottom: 0, right: 0)
+            return UIEdgeInsets(top: 25, left: 0, bottom: 25, right: 0)
         }
         
         return .zero
@@ -118,11 +119,7 @@ extension AccountsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let section = presenter.getSection(at: section)
         
-        if section.total {
-            return 1
-        }
-        
-        if section.separator {
+        if section.totalText != nil || section.separator || section.emptyText != nil {
             return 1
         }
         
@@ -132,7 +129,7 @@ extension AccountsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let section = presenter.getSection(at: indexPath.section)
         
-        if section.total {
+        if section.totalText != nil {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AccountCollectionTotalCell", for: indexPath) as! AccountCollectionTotalCell
             cell.subtitleLabel.text = section.totalText
             return cell
@@ -140,6 +137,12 @@ extension AccountsViewController: UICollectionViewDataSource {
         
         if section.separator {
             return collectionView.dequeueReusableCell(withReuseIdentifier: "SeparatorCollectionCell", for: indexPath)
+        }
+        
+        if section.emptyText != nil {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EmptyCollectionCell", for: indexPath) as! EmptyCollectionCell
+            cell.titleLabel.text = section.emptyText
+            return cell
         }
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AccountCollectionCell", for: indexPath) as! AccountCollectionCell
@@ -167,15 +170,11 @@ extension AccountsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         let section = presenter.getSection(at: section)
         
-        if section.total {
-            return .zero
+        if section.headerTitle != nil {
+            return CGSize(width: cellWidth, height: 70)
         }
         
-        if section.separator {
-            return .zero
-        }
-        
-        return CGSize(width: cellWidth, height: 70)
+        return .zero
     }
 
 }
