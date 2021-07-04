@@ -14,7 +14,7 @@ final class CategoryCollectionHeader: UICollectionReusableView {
         titleLabel.font = UIFont.piggy.fontSemibold14
         titleLabel.textColor = UIColor.piggy.gray
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        titleLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         addSubview(titleLabel)
         
         subtitleLabel.numberOfLines = 1
@@ -22,12 +22,13 @@ final class CategoryCollectionHeader: UICollectionReusableView {
         subtitleLabel.textAlignment = .right
         subtitleLabel.textColor = UIColor.piggy.gray
         subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        subtitleLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        subtitleLabel.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         addSubview(subtitleLabel)
         
         NSLayoutConstraint.activate([
             titleLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 25),
             titleLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 30),
+            titleLabel.trailingAnchor.constraint(lessThanOrEqualTo: subtitleLabel.safeAreaLayoutGuide.leadingAnchor, constant: -8),
             
             subtitleLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -25),
             subtitleLabel.centerYAnchor.constraint(equalTo: titleLabel.safeAreaLayoutGuide.centerYAnchor)

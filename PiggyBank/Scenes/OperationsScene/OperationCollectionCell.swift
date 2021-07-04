@@ -21,7 +21,7 @@ final class OperationCollectionCell: UICollectionViewCell {
         titleLabel.numberOfLines = 1
         titleLabel.font = UIFont.piggy.font14
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        titleLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         titleLabel.textColor = UIColor.piggy.black
         contentView.addSubview(titleLabel)
         
@@ -29,7 +29,7 @@ final class OperationCollectionCell: UICollectionViewCell {
         subtitleLabel.font = UIFont.piggy.fontSemibold14
         subtitleLabel.textAlignment = .right
         subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        subtitleLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        subtitleLabel.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         contentView.addSubview(subtitleLabel)
         
         NSLayoutConstraint.activate([
@@ -40,6 +40,7 @@ final class OperationCollectionCell: UICollectionViewCell {
             
             titleLabel.leadingAnchor.constraint(equalTo: imageView.safeAreaLayoutGuide.trailingAnchor, constant: 8),
             titleLabel.centerYAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.centerYAnchor),
+            titleLabel.trailingAnchor.constraint(lessThanOrEqualTo: subtitleLabel.safeAreaLayoutGuide.leadingAnchor, constant: -8),
             
             subtitleLabel.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor),
             subtitleLabel.centerYAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.centerYAnchor)
