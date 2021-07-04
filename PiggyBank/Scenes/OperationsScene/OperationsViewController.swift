@@ -2,148 +2,182 @@ import UIKit
 
 final class OperationsViewController: UIViewController {
     
-    private lazy var tableView = UITableView()
-    private lazy var typeControl = UISegmentedControl()
-    private lazy var menuView = BottomBar()
+    private lazy var collectionLayout: UICollectionViewFlowLayout = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        return layout
+    }()
     
-    private var operations: [OperationViewModel] = []
+    private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionLayout)
+    
+    private var cellWidth: CGFloat = 0
     
     var presenter: OperationsPresenter!
+    
+    var sections: [OperationsPresenter.SectionItem] = [] {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "Operations"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(onAdd(_:)))
+        title = "Operations"
+        
+        let rightBarItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(onAdd(_:)))
+        navigationItem.rightBarButtonItem = rightBarItem
 
         view.backgroundColor = .white
         
-        typeControl.translatesAutoresizingMaskIntoConstraints = false
-        typeControl.insertSegment(withTitle: "All", at: 0, animated: false)
-        typeControl.insertSegment(withTitle: "Budget", at: 1, animated: false)
-        typeControl.insertSegment(withTitle: "Transfer", at: 2, animated: false)
-        typeControl.insertSegment(withTitle: "Plan", at: 3, animated: false)
-        typeControl.selectedSegmentIndex = 0
-        view.addSubview(typeControl)
-        
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.separatorInset = .zero
-        tableView.separatorStyle = .none
-        view.addSubview(tableView)
-        
-        menuView.translatesAutoresizingMaskIntoConstraints = false
-        menuView.backgroundColor = .clear
-        menuView.layer.shadowRadius = 1
-        menuView.layer.shadowColor = UIColor.black.cgColor
-        menuView.layer.shadowOpacity = 0.1
-        view.addSubview(menuView)
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.register(OperationCollectionCell.self, forCellWithReuseIdentifier: "OperationCollectionCell")
+        collectionView.register(EmptyCollectionCell.self, forCellWithReuseIdentifier: "EmptyCollectionCell")
+        collectionView.register(CategoryCollectionHeader.self,
+                                forSupplementaryViewOfKind: "UICollectionElementKindSectionHeader",
+                                withReuseIdentifier: "CategoryCollectionHeader")
+        collectionView.backgroundColor = UIColor.piggy.white
+        collectionView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
+        view.addSubview(collectionView)
         
         NSLayoutConstraint.activate([
-            typeControl.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.8),
-            typeControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            typeControl.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            
-            menuView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            menuView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            menuView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            menuView.heightAnchor.constraint(equalToConstant: 65),
-            
-            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: menuView.safeAreaLayoutGuide.topAnchor),
-            tableView.topAnchor.constraint(equalTo: typeControl.safeAreaLayoutGuide.bottomAnchor, constant: 20)
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
         
-        presenter.onViewDidLoad()
+        presenter.getOperations()
     }
     
-    func viewDidLoad(response: [OperationViewModel]) {
-        operations = response
-        tableView.reloadData()
-    }
-    
-    func show(alert: String) {
-        let alertController = UIAlertController(title: alert, message: "", preferredStyle: .alert)
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
         
-        let action = UIAlertAction(title: "OK", style: .default)
-        alertController.addAction(action)
-        
-        present(alertController, animated: true, completion: nil)
+        cellWidth = view.bounds.size.width - 50
     }
 
 }
 
-extension OperationsViewController: UITableViewDelegate {
+extension OperationsViewController: UICollectionViewDelegate {
     
-    func tableView(
-        _ tableView: UITableView,
-        trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath
-    ) -> UISwipeActionsConfiguration? {
-        let operation = operations[indexPath.row]
-        var actions: [UIContextualAction] = []
-        
-        let deleteAction = UIContextualAction(style: .normal, title: "") { [weak self] _, _, complete in
-            self?.presenter.onDeleteOperation(id: operation.id)
-            complete(true)
-        }
-        deleteAction.image = #imageLiteral(resourceName: "delete")
-        actions.append(deleteAction)
-        
-        actions.forEach {
-            $0.backgroundColor = .white
-        }
-        
-        let swipeConfiguration = UISwipeActionsConfiguration(actions: actions)
-        swipeConfiguration.performsFirstActionWithFullSwipe = false
-        
-        return swipeConfiguration
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        let category = presenter.getCategory(at: indexPath)
+//        let vc = DependencyProvider.shared.get(screen: .category(category))
+//        navigationController?.pushViewController(vc, animated: true)
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        let section = presenter.getSection(at: indexPath.section)
+        return section.emptyText == nil
     }
     
 }
 
-extension OperationsViewController: UITableViewDataSource {
+extension OperationsViewController: UICollectionViewDelegateFlowLayout {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        operations.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: UITableViewCell
-        if let res = tableView.dequeueReusableCell(withIdentifier: "Cell") {
-            cell = res
-        } else {
-            cell = UITableViewCell(style: .value1, reuseIdentifier: "Cell")
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let section = presenter.getSection(at: indexPath.section)
+        
+        if section.emptyText != nil {
+            return CGSize(width: cellWidth, height: 86)
         }
         
-        let operation = operations[indexPath.row]
-        
-        switch operation.type {
-        case .budget:
-            cell.textLabel?.text = "Budget"
-            cell.imageView?.image = #imageLiteral(resourceName: "budget")
-        case .plan:
-            cell.textLabel?.text = "Plan"
-            cell.imageView?.image = #imageLiteral(resourceName: "plan")
-        case .transfer:
-            cell.textLabel?.text = "Transfer"
-            cell.imageView?.image = #imageLiteral(resourceName: "transfer")
-        }
-        
-        return cell
+        return CGSize(width: cellWidth, height: OperationCollectionCell.height)
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        let section = presenter.getSection(at: section)
+        return section.emptyText != nil ? 0 : 25
+    }
+    
+}
+
+extension OperationsViewController: UICollectionViewDataSource {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        sections.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        let section = presenter.getSection(at: section)
+        
+        if section.emptyText != nil {
+            return 1
+        }
+        
+        return section.operations.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let section = presenter.getSection(at: indexPath.section)
+        
+        if section.emptyText != nil {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EmptyCollectionCell", for: indexPath) as! EmptyCollectionCell
+            cell.titleLabel.text = section.emptyText
+            return cell
+        }
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OperationCollectionCell", for: indexPath) as! OperationCollectionCell
+        let operation = presenter.getOperation(at: indexPath)
+        
+        if let category = operation.category {
+            cell.imageView.backgroundColor = UIColor(hexString: category.hexColor)
+            cell.imageView.layer.borderColor = UIColor(hexString: category.hexColor).cgColor
+            
+            var amount = operation.amount
+            var titleItems = [category.title, operation.fromAccount.title]
+            if category.type == .income {
+                cell.subtitleLabel.textColor = UIColor.piggy.green
+            } else {
+                titleItems = titleItems.reversed()
+                cell.subtitleLabel.textColor = UIColor.piggy.black
+                
+                amount *= -1
+            }
+            
+            cell.titleLabel.text = titleItems.joined(separator: " > ")
+            cell.subtitleLabel.text = "-\(operation.amount)\(operation.fromAccount.currency?.getCurrencySymbol() ?? "")"
+
+            return cell
+        }
+        
+        if let toAccount = operation.toAccount {
+            cell.imageView.backgroundColor = UIColor.piggy.white
+            cell.imageView.layer.borderColor = UIColor.piggy.gray.cgColor
+            cell.imageView.image = #imageLiteral(resourceName: "ico_bar_operations_24")
+            return cell
+        }
+        
+        fatalError("Invalid operation")
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if kind == "UICollectionElementKindSectionHeader" {
+            let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "CategoryCollectionHeader", for: indexPath) as! CategoryCollectionHeader
+            let section = sections[indexPath.section]
+            
+            view.titleLabel.text = section.headerTitle
+            return view
+        }
+        
+        fatalError("Unregistered kind")
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        let section = presenter.getSection(at: section)
+        return section.headerTitle != nil ? CGSize(width: cellWidth, height: 70) : .zero
+    }
+
 }
 
 private extension OperationsViewController {
-
+    
     @objc
     func onAdd(_ sender: UIBarButtonItem) {
-        navigationController?.pushViewController(DependencyProvider.shared.get(screen: .operation), animated: true)
+        let vc = DependencyProvider.shared.get(screen: .operation(nil))
+        navigationController?.pushViewController(vc, animated: true)
     }
+    
 }

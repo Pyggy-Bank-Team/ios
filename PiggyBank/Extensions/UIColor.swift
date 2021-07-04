@@ -37,6 +37,7 @@ extension UIColor {
         static let black = UIColor(hexString: "#14142B")
         static let white = UIColor(hexString: "#ffffff")
         static let gray = UIColor(hexString: "#a0a3bd")
+        static let green = UIColor(hexString: "#219653")
     }
 
     static var gradientBackground: [CGColor] {

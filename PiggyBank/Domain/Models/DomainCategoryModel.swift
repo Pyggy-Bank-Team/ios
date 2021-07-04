@@ -25,6 +25,15 @@ final class DomainCategoryModel {
         self.isDeleted = isDeleted
     }
     
+    init(title: String, hexColor: String, type: Int) {
+        self.id = nil
+        self.title = title
+        self.hexColor = hexColor
+        self.type = CategoryType(rawValue: type) ?? .income
+        self.isArchived = false
+        self.isDeleted = false
+    }
+    
     // swiftlint:disable discouraged_optional_boolean
     func update(title: String? = nil, hexColor: String? = nil, isArchived: Bool? = nil) -> DomainCategoryModel {
         let newTitle = title ?? self.title

@@ -153,6 +153,7 @@
 		91C0CD752690D585000FBC49 /* DeleteAndUpdateAccountsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C0CD742690D585000FBC49 /* DeleteAndUpdateAccountsUseCase.swift */; };
 		91C0CD79269109AC000FBC49 /* AccountCollectionTotalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C0CD78269109AC000FBC49 /* AccountCollectionTotalCell.swift */; };
 		91C0CD7C2691CACB000FBC49 /* EmptyCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C0CD7B2691CACB000FBC49 /* EmptyCollectionCell.swift */; };
+		91C0CD7F2691DE5E000FBC49 /* OperationCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C0CD7E2691DE5E000FBC49 /* OperationCollectionCell.swift */; };
 		91C26FA02515C01B00C999BE /* CategoryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C26F9F2515C01B00C999BE /* CategoryPresenter.swift */; };
 		91C26FA22515C0E300C999BE /* CategorySceneAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C26FA12515C0E300C999BE /* CategorySceneAssembly.swift */; };
 		91C26FA42515CF7700C999BE /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C26FA32515CF7700C999BE /* Colors.swift */; };
@@ -305,6 +306,7 @@
 		91C0CD742690D585000FBC49 /* DeleteAndUpdateAccountsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAndUpdateAccountsUseCase.swift; sourceTree = "<group>"; };
 		91C0CD78269109AC000FBC49 /* AccountCollectionTotalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCollectionTotalCell.swift; sourceTree = "<group>"; };
 		91C0CD7B2691CACB000FBC49 /* EmptyCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCollectionCell.swift; sourceTree = "<group>"; };
+		91C0CD7E2691DE5E000FBC49 /* OperationCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationCollectionCell.swift; sourceTree = "<group>"; };
 		91C26F9F2515C01B00C999BE /* CategoryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPresenter.swift; sourceTree = "<group>"; };
 		91C26FA12515C0E300C999BE /* CategorySceneAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySceneAssembly.swift; sourceTree = "<group>"; };
 		91C26FA32515CF7700C999BE /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -547,6 +549,7 @@
 			children = (
 				91957A8225318C700027249A /* OperationsViewController.swift */,
 				91957A8625318D580027249A /* OperationsPresenter.swift */,
+				91C0CD7E2691DE5E000FBC49 /* OperationCollectionCell.swift */,
 			);
 			path = OperationsScene;
 			sourceTree = "<group>";
@@ -858,6 +861,7 @@
 				91A85DF424CB385400B7A630 /* Account.swift in Sources */,
 				711F5857263011A900381BEF /* AccountRemoteDataSource.swift in Sources */,
 				71337D32263EE91200EC7F3D /* LoginPresenter.swift in Sources */,
+				91C0CD7F2691DE5E000FBC49 /* OperationCollectionCell.swift in Sources */,
 				91C0CD722690D467000FBC49 /* ChangeAndUpdateAccountsUseCase.swift in Sources */,
 				711350342622075E00572CB9 /* DomainCategoryReportModel.swift in Sources */,
 				9104C189250DF76D003BF041 /* AuthPresenter.swift in Sources */,

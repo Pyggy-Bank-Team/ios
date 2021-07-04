@@ -2,60 +2,81 @@ import Foundation
 
 final class OperationsPresenter {
     
+    class SectionItem {
+        
+        let emptyText: String?
+        
+        let headerTitle: String?
+        var operations: [DomainOperationModel] = []
+        
+        init(title: String?) {
+            self.headerTitle = title
+            emptyText = nil
+        }
+        
+        init(emptyText: String) {
+            self.emptyText = emptyText
+            headerTitle = nil
+        }
+
+    }
+    
     private weak var view: OperationsViewController?
     
-    private let getOperationsUseCase: GetOperationsUseCase?
-    private let deleteOperationUseCase: DeleteOperationUseCase?
+    private let getOperationsUseCase: GetOperationsUseCase
 
-    private var operations: [DomainOperationModel] = []
+    private var sections: [SectionItem] = []
     
-    init(
-        view: OperationsViewController?,
-        getOperationsUseCase: GetOperationsUseCase?,
-        deleteOperationUseCase: DeleteOperationUseCase?
-    ) {
+    init(view: OperationsViewController?, getOperationsUseCase: GetOperationsUseCase) {
         self.view = view
         self.getOperationsUseCase = getOperationsUseCase
-        self.deleteOperationUseCase = deleteOperationUseCase
     }
     
-    func onViewDidLoad() {
-        getOperationsUseCase?.execute { [weak self] response in
-            guard let self = self else {
-                return
-            }
-            
-            DispatchQueue.main.async {
-                if case let .success(items) = response {
-                    self.operations = items
-                    
-                    let operationsViewModels = items.compactMap { GrandConverter.convertToViewModel(operationModel: $0) }
-                    self.view?.viewDidLoad(response: .init(operationsViewModels))
-                }
-            }
-        }
+    func getSection(at index: Int) -> SectionItem {
+        sections[index]
+    }
+    
+    func getOperation(at indexPath: IndexPath) -> DomainOperationModel {
+        sections[indexPath.section].operations[indexPath.row]
     }
 
-    func onDeleteOperation(id: UInt) {
-        let operation = getOperation(at: id)
-        
-        deleteOperationUseCase?.execute(operation: operation) { response in
-            DispatchQueue.main.async {
-                if case .success = response {
-                    self.view?.show(alert: "Operation has been successfully deleted")
-                } else {
-                    self.view?.show(alert: "Error")
-                }
-            }
+    func getOperations() {
+        getOperationsUseCase.execute { [weak self] response in
+            self?.handleResponse(response)
         }
     }
 
 }
 
-extension OperationsPresenter {
+private extension OperationsPresenter {
     
-    func getOperation(at id: UInt) -> DomainOperationModel {
-        operations.first { $0.id == id }!
+    func handleResponse(_ response: Result<[DomainOperationModel]>) {
+        if case let .success(operations) = response {
+            defer {
+                DispatchQueue.main.async {
+                    self.view?.sections = self.sections
+                }
+            }
+            
+            sections.removeAll()
+            
+            if operations.isEmpty {
+                let empty = SectionItem(emptyText: "No operations")
+                sections.append(empty)
+                return
+            }
+            
+            let regularOperations = SectionItem(title: nil)
+            
+            operations.forEach { operation in
+                regularOperations.operations.append(operation)
+            }
+            
+            sections.removeAll()
+            if !regularOperations.operations.isEmpty {
+                sections.append(regularOperations)
+            }
+        }
     }
     
 }

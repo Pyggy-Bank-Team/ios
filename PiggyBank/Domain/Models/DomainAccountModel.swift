@@ -27,6 +27,16 @@ final class DomainAccountModel {
         self.isDeleted = isDeleted
     }
     
+    init(title: String, currency: String) {
+        self.id = nil
+        self.type = .cash
+        self.title = title
+        self.currency = currency
+        self.balance = 0
+        self.isArchived = false
+        self.isDeleted = false
+    }
+    
     // swiftlint:disable discouraged_optional_boolean
     func update(type: AccountType? = nil, title: String? = nil, isArchived: Bool? = nil) -> DomainAccountModel {
         let newType = type ?? self.type

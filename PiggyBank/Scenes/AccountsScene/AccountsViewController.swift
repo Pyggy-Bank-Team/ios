@@ -70,6 +70,11 @@ extension AccountsViewController: UICollectionViewDelegate {
         navigationController?.pushViewController(vc, animated: true)
     }
     
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        let section = presenter.getSection(at: indexPath.section)
+        return section.totalText == nil && !section.separator && section.emptyText == nil
+    }
+    
 }
 
 extension AccountsViewController: UICollectionViewDelegateFlowLayout {

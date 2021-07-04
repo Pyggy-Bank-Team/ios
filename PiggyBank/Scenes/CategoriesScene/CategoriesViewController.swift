@@ -68,6 +68,11 @@ extension CategoriesViewController: UICollectionViewDelegate {
         navigationController?.pushViewController(vc, animated: true)
     }
     
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        let section = presenter.getSection(at: indexPath.section)
+        return section.emptyText == nil
+    }
+    
 }
 
 extension CategoriesViewController: UICollectionViewDelegateFlowLayout {

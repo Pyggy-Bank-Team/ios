@@ -109,10 +109,6 @@ private extension CategoriesPresenter {
             if !archivedCategories.categories.isEmpty {
                 sections.append(archivedCategories)
             }
-            
-            DispatchQueue.main.async {
-                self.view?.sections = self.sections
-            }
         }
     }
     
