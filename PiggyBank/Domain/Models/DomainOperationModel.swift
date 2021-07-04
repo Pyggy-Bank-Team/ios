@@ -31,7 +31,6 @@ final class DomainOperationModel {
         isDeleted: Bool
     ) {
         self.id = id
-        self.amount = amount
         self.comment = comment
         self.type = OperationType(rawValue: type)!
         self.date = date.dateFromString() ?? Date()
@@ -39,6 +38,12 @@ final class DomainOperationModel {
         self.fromAccount = fromAccount
         self.toAccount = toAccount
         self.isDeleted = isDeleted
+        
+        var mutableAmount = amount
+        if let category = category, category.type == .outcome {
+            mutableAmount *= -1
+        }
+        self.amount = mutableAmount
     }
     
 }

@@ -153,7 +153,7 @@ extension AccountsViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AccountCollectionCell", for: indexPath) as! AccountCollectionCell
         let account = presenter.getAccount(at: indexPath)
         cell.titleLabel.text = account.title
-        cell.subtitleLabel.text = account.balance.description
+        cell.subtitleLabel.text = account.balance.description + (account.currency?.getCurrencySymbol() ?? "")
         cell.onConfigure = { [weak self] in
             self?.showActionsList(indexPath: indexPath)
         }

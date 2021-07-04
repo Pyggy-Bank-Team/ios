@@ -105,7 +105,7 @@ public enum GrandConverter {
         
         let fromAccount = DomainAccountModel(title: response.account.title, currency: response.account.currency)
         var toAccount: DomainAccountModel?
-        if let responseAccount = response.toAcount {
+        if let responseAccount = response.toAccount {
             toAccount = DomainAccountModel(title: responseAccount.title, currency: responseAccount.currency)
         }
         

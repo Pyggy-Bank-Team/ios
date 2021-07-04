@@ -17,7 +17,7 @@ enum Operation {
         let id: UInt
         let isDeleted: Bool
         let account: AccountInfo
-        let toAcount: AccountInfo?
+        let toAccount: AccountInfo?
         let category: CategoryInfo?
         let amount: Double
         let type: UInt

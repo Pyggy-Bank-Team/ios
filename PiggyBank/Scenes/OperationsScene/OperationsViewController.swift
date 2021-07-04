@@ -39,7 +39,7 @@ final class OperationsViewController: UIViewController {
                                 forSupplementaryViewOfKind: "UICollectionElementKindSectionHeader",
                                 withReuseIdentifier: "CategoryCollectionHeader")
         collectionView.backgroundColor = UIColor.piggy.white
-        collectionView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
         view.addSubview(collectionView)
         
         NSLayoutConstraint.activate([
@@ -121,36 +121,47 @@ extension OperationsViewController: UICollectionViewDataSource {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OperationCollectionCell", for: indexPath) as! OperationCollectionCell
         let operation = presenter.getOperation(at: indexPath)
+        let formattedAmount = operation.amount.formatSign
+        let currencyCode = operation.fromAccount.currency?.getCurrencySymbol() ?? ""
+        
+        var imageViewBackgroundColor = UIColor.clear
+        var imageViewBorderColor = UIColor.clear.cgColor
+        var imageViewTintColor = UIColor.clear
+        var image: UIImage?
+        var titleText: String?
+        var subtitleTextColor = UIColor.piggy.black
         
         if let category = operation.category {
-            cell.imageView.backgroundColor = UIColor(hexString: category.hexColor)
-            cell.imageView.layer.borderColor = UIColor(hexString: category.hexColor).cgColor
-            
-            var amount = operation.amount
-            var titleItems = [category.title, operation.fromAccount.title]
-            if category.type == .income {
-                cell.subtitleLabel.textColor = UIColor.piggy.green
-            } else {
-                titleItems = titleItems.reversed()
-                cell.subtitleLabel.textColor = UIColor.piggy.black
-                
-                amount *= -1
-            }
-            
-            cell.titleLabel.text = titleItems.joined(separator: " > ")
-            cell.subtitleLabel.text = "-\(operation.amount)\(operation.fromAccount.currency?.getCurrencySymbol() ?? "")"
+            imageViewBackgroundColor = UIColor(hexString: category.hexColor)
+            imageViewBorderColor = UIColor(hexString: category.hexColor).cgColor
 
-            return cell
+            if operation.amount > 0 {
+                titleText = "\(category.title) > \(operation.fromAccount.title)"
+                subtitleTextColor = UIColor.piggy.green
+            } else {
+                titleText = "\(operation.fromAccount.title) > \(category.title)"
+                subtitleTextColor = UIColor.piggy.black
+            }
         }
         
         if let toAccount = operation.toAccount {
-            cell.imageView.backgroundColor = UIColor.piggy.white
-            cell.imageView.layer.borderColor = UIColor.piggy.gray.cgColor
-            cell.imageView.image = #imageLiteral(resourceName: "ico_bar_operations_24")
-            return cell
+            imageViewBackgroundColor = UIColor.piggy.white
+            imageViewBorderColor = UIColor.piggy.gray.cgColor
+            imageViewTintColor = UIColor.piggy.gray
+            image = #imageLiteral(resourceName: "ico_bar_operations_24")
+
+            titleText = "\(operation.fromAccount.title) > \(toAccount.title)"
+            subtitleTextColor = UIColor.piggy.green
         }
         
-        fatalError("Invalid operation")
+        cell.imageView.backgroundColor = imageViewBackgroundColor
+        cell.imageView.layer.borderColor = imageViewBorderColor
+        cell.imageView.image = image
+        cell.imageView.tintColor = imageViewTintColor
+        cell.titleLabel.text = titleText
+        cell.subtitleLabel.text = "\(formattedAmount)\(currencyCode)"
+        cell.subtitleLabel.textColor = subtitleTextColor
+        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -159,6 +170,7 @@ extension OperationsViewController: UICollectionViewDataSource {
             let section = sections[indexPath.section]
             
             view.titleLabel.text = section.headerTitle
+            view.subtitleLabel.text = section.headerSubitle
             return view
         }
         

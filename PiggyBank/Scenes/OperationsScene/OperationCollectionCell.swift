@@ -15,17 +15,21 @@ final class OperationCollectionCell: UICollectionViewCell {
         imageView.layer.borderWidth = 2
         imageView.layer.borderColor = UIColor.piggy.gray.cgColor
         imageView.layer.cornerRadius = OperationCollectionCell.height / 2
+        imageView.contentMode = .center
         contentView.addSubview(imageView)
         
         titleLabel.numberOfLines = 1
         titleLabel.font = UIFont.piggy.font14
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        titleLabel.textColor = UIColor.piggy.black
         contentView.addSubview(titleLabel)
         
         subtitleLabel.numberOfLines = 1
         subtitleLabel.font = UIFont.piggy.fontSemibold14
         subtitleLabel.textAlignment = .right
         subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        subtitleLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
         contentView.addSubview(subtitleLabel)
         
         NSLayoutConstraint.activate([
@@ -34,7 +38,6 @@ final class OperationCollectionCell: UICollectionViewCell {
             imageView.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor),
             imageView.centerYAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.centerYAnchor),
             
-            titleLabel.trailingAnchor.constraint(equalTo: subtitleLabel.safeAreaLayoutGuide.leadingAnchor, constant: -8),
             titleLabel.leadingAnchor.constraint(equalTo: imageView.safeAreaLayoutGuide.trailingAnchor, constant: 8),
             titleLabel.centerYAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.centerYAnchor),
             
@@ -53,8 +56,12 @@ final class OperationCollectionCell: UICollectionViewCell {
         imageView.backgroundColor = .clear
         imageView.layer.borderColor = UIColor.clear.cgColor
         imageView.image = nil
+        imageView.tintColor = .clear
+        
         titleLabel.text = nil
+        
         subtitleLabel.text = nil
+        subtitleLabel.textColor = UIColor.piggy.black
     }
 
 }

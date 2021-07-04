@@ -154,6 +154,7 @@
 		91C0CD79269109AC000FBC49 /* AccountCollectionTotalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C0CD78269109AC000FBC49 /* AccountCollectionTotalCell.swift */; };
 		91C0CD7C2691CACB000FBC49 /* EmptyCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C0CD7B2691CACB000FBC49 /* EmptyCollectionCell.swift */; };
 		91C0CD7F2691DE5E000FBC49 /* OperationCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C0CD7E2691DE5E000FBC49 /* OperationCollectionCell.swift */; };
+		91C0CD8226925FBD000FBC49 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C0CD8126925FBD000FBC49 /* Double.swift */; };
 		91C26FA02515C01B00C999BE /* CategoryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C26F9F2515C01B00C999BE /* CategoryPresenter.swift */; };
 		91C26FA22515C0E300C999BE /* CategorySceneAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C26FA12515C0E300C999BE /* CategorySceneAssembly.swift */; };
 		91C26FA42515CF7700C999BE /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C26FA32515CF7700C999BE /* Colors.swift */; };
@@ -307,6 +308,7 @@
 		91C0CD78269109AC000FBC49 /* AccountCollectionTotalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCollectionTotalCell.swift; sourceTree = "<group>"; };
 		91C0CD7B2691CACB000FBC49 /* EmptyCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCollectionCell.swift; sourceTree = "<group>"; };
 		91C0CD7E2691DE5E000FBC49 /* OperationCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationCollectionCell.swift; sourceTree = "<group>"; };
+		91C0CD8126925FBD000FBC49 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		91C26F9F2515C01B00C999BE /* CategoryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPresenter.swift; sourceTree = "<group>"; };
 		91C26FA12515C0E300C999BE /* CategorySceneAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySceneAssembly.swift; sourceTree = "<group>"; };
 		91C26FA32515CF7700C999BE /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -531,6 +533,7 @@
 				9175DB91262A891200480957 /* String.swift */,
 				7167A50026490A02000E39A4 /* UIViewController+NavBar.swift */,
 				91C0CD61268FBCDF000FBC49 /* UIFont.swift */,
+				91C0CD8126925FBD000FBC49 /* Double.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -827,6 +830,7 @@
 				9104C190250E1AFE003BF041 /* BaseCurrencyPresenter.swift in Sources */,
 				9166BC9A256A2F1E00A23196 /* OperationSceneAssembly.swift in Sources */,
 				91C0CD7C2691CACB000FBC49 /* EmptyCollectionCell.swift in Sources */,
+				91C0CD8226925FBD000FBC49 /* Double.swift in Sources */,
 				9104C1B7250F3497003BF041 /* StartViewController.swift in Sources */,
 				91957A802531791F0027249A /* GetOperationsUseCase.swift in Sources */,
 				9104C17D250DD814003BF041 /* AccountViewModel.swift in Sources */,
