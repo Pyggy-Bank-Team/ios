@@ -1,92 +1,61 @@
 import UIKit
 
-class CategoriesViewController: UIViewController {
+final class CategoriesViewController: UIViewController {
     
-    private var collectionView: UICollectionView!
-    private lazy var typeControl = UISegmentedControl()
+    private lazy var collectionLayout: UICollectionViewFlowLayout = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        return layout
+    }()
+    
+    private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionLayout)
+    
+    private var cellWidth: CGFloat = 0
     
     var presenter: CategoriesPresenter!
     
-    private var allCategories: [CategoryViewModel] = []
-    private var incomeCategories: [CategoryViewModel] = []
-    private var outcomeCategories: [CategoryViewModel] = []
+    var sections: [CategoriesPresenter.SectionItem] = [] {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = "Categories"
+        
+        let rightBarItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(onAdd(_:)))
+        navigationItem.rightBarButtonItem = rightBarItem
 
         view.backgroundColor = .white
         
-        typeControl.translatesAutoresizingMaskIntoConstraints = false
-        typeControl.addTarget(self, action: #selector(onChangeType(_:)), for: .valueChanged)
-        view.addSubview(typeControl)
-        
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.register(CategoryCollectionCell.self, forCellWithReuseIdentifier: "Cell")
-        collectionView.backgroundColor = .clear
-        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
+        collectionView.register(CategoryCollectionCell.self, forCellWithReuseIdentifier: "CategoryCollectionCell")
+        collectionView.register(EmptyCollectionCell.self, forCellWithReuseIdentifier: "EmptyCollectionCell")
+        collectionView.register(CategoryCollectionHeader.self,
+                                forSupplementaryViewOfKind: "UICollectionElementKindSectionHeader",
+                                withReuseIdentifier: "CategoryCollectionHeader")
+        collectionView.backgroundColor = UIColor.piggy.white
+        collectionView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
         view.addSubview(collectionView)
         
         NSLayoutConstraint.activate([
-            typeControl.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.8),
-            typeControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            typeControl.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            collectionView.topAnchor.constraint(equalTo: typeControl.bottomAnchor, constant: 20)
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
         
-        navigationItem.title = "Categories"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(onAdd(_:)))
-        
-        presenter.onViewDidLoad()
+        presenter.getCategories()
     }
     
-    func viewDidLoad(categories: [CategoryViewModel]) {
-        allCategories = categories
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
         
-        for category in categories {
-            if category.type == .income {
-                incomeCategories.append(category)
-            } else {
-                outcomeCategories.append(category)
-            }
-        }
-        
-        typeControl.insertSegment(withTitle: "All", at: 0, animated: false)
-        
-        var indexToInsert = 1
-        if !incomeCategories.isEmpty {
-            typeControl.insertSegment(withTitle: "Income", at: indexToInsert, animated: false)
-            indexToInsert += 1
-        }
-        
-        if !outcomeCategories.isEmpty {
-            typeControl.insertSegment(withTitle: "Outcome", at: indexToInsert, animated: false)
-        }
-        
-        typeControl.selectedSegmentIndex = 0
-        
-        collectionView.reloadData()
-    }
-    
-    func showResult(str: String) {
-        let alertController = UIAlertController(title: str, message: "", preferredStyle: .alert)
-        
-        let action = UIAlertAction(title: "OK", style: .default)
-        alertController.addAction(action)
-        
-        present(alertController, animated: true, completion: nil)
-    }
-    
-    func push(viewController: UIViewController) {
-        navigationController?.pushViewController(viewController, animated: true)
+        cellWidth = view.bounds.size.width - 50
     }
 
 }
@@ -94,90 +63,119 @@ class CategoriesViewController: UIViewController {
 extension CategoriesViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let category = element(at: indexPath)
-        presenter.onSelect(id: category.id)
+        let category = presenter.getCategory(at: indexPath)
+        let vc = DependencyProvider.shared.get(screen: .category(category))
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        let section = presenter.getSection(at: indexPath.section)
+        return section.emptyText == nil
     }
     
 }
 
 extension CategoriesViewController: UICollectionViewDelegateFlowLayout {
     
-    func collectionView(
-        _ collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        sizeForItemAt indexPath: IndexPath
-    ) -> CGSize {
-        CGSize(width: collectionView.bounds.width * 0.8, height: 60)
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let section = presenter.getSection(at: indexPath.section)
+        
+        if section.emptyText != nil {
+            return CGSize(width: cellWidth, height: 86)
+        }
+        
+        return CGSize(width: cellWidth, height: CategoryCollectionCell.height)
     }
     
-    func collectionView(
-        _ collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        minimumLineSpacingForSectionAt section: Int
-    ) -> CGFloat {
-        20
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        let section = presenter.getSection(at: section)
+        return section.emptyText != nil ? 0 : 25
     }
     
 }
 
 extension CategoriesViewController: UICollectionViewDataSource {
     
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        sections.count
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard typeControl.selectedSegmentIndex >= 0 else {
-            return 0
+        let section = presenter.getSection(at: section)
+        
+        if section.emptyText != nil {
+            return 1
         }
         
-        let selected = typeControl.selectedSegmentIndex
-        
-        if selected == 0 {
-            return allCategories.count
-        } else if selected == 1 && !incomeCategories.isEmpty {
-            return incomeCategories.count
-        } else {
-            return outcomeCategories.count
-        }
+        return section.categories.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CategoryCollectionCell
-        let category = element(at: indexPath)
+        let section = presenter.getSection(at: indexPath.section)
         
-        var text = category.title
-        
-        if category.isArchived {
-            text += " • Archived"
+        if section.emptyText != nil {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EmptyCollectionCell", for: indexPath) as! EmptyCollectionCell
+            cell.titleLabel.text = section.emptyText
+            return cell
         }
         
-        cell.titleLabel.text = text
-        cell.backgroundColor = UIColor(hexString: category.hexColor, alpha: 0.3)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCollectionCell", for: indexPath) as! CategoryCollectionCell
+        let category = presenter.getCategory(at: indexPath)
+        
+        cell.titleLabel.text = category.title
+        cell.colorView.backgroundColor = UIColor(hexString: category.hexColor)
+        cell.onConfigure = { [weak self] in
+            self?.showActionsList(indexPath: indexPath)
+        }
         
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if kind == "UICollectionElementKindSectionHeader" {
+            let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "CategoryCollectionHeader", for: indexPath) as! CategoryCollectionHeader
+            let section = sections[indexPath.section]
+            
+            view.titleLabel.text = section.headerTitle
+            return view
+        }
+        
+        fatalError("Unregistered kind")
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        let section = presenter.getSection(at: section)
+        return section.headerTitle != nil ? CGSize(width: cellWidth, height: 70) : .zero
+    }
+
 }
 
 private extension CategoriesViewController {
     
     @objc
     func onAdd(_ sender: UIBarButtonItem) {
-        presenter.onAdd()
+        let vc = DependencyProvider.shared.get(screen: .category(nil))
+        navigationController?.pushViewController(vc, animated: true)
     }
     
-    @objc
-    func onChangeType(_ sender: UISegmentedControl) {
-        collectionView.reloadData()
-    }
-    
-    func element(at indexPath: IndexPath) -> CategoryViewModel {
-        let selected = typeControl.selectedSegmentIndex
+    func showActionsList(indexPath: IndexPath) {
+        let actionsViewController = UIAlertController(title: "Actions", message: nil, preferredStyle: .actionSheet)
+        let category = presenter.getCategory(at: indexPath)
         
-        if selected == 0 {
-            return allCategories[indexPath.row]
-        } else if selected == 1 && !incomeCategories.isEmpty {
-            return incomeCategories[indexPath.row]
-        } else {
-            return outcomeCategories[indexPath.row]
+        let archiveAction = UIAlertAction(title: category.isArchived ? "Unarchive" : "Archive", style: .default) { [weak self] _ in
+            self?.presenter.archive(at: indexPath)
         }
+        
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { [weak self] _ in
+            self?.presenter.delete(at: indexPath)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        actionsViewController.addAction(archiveAction)
+        actionsViewController.addAction(deleteAction)
+        actionsViewController.addAction(cancelAction)
+        present(actionsViewController, animated: true, completion: nil)
     }
     
 }

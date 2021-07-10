@@ -12,8 +12,8 @@ struct OperationsRemoteDataSource: OperationsDataSource {
             guard case let .success(responseModel) = response else {
                 return completion(.error(APIError()))
             }
-            let categories = responseModel.result.map { GrandConverter.convertToDomain(response: $0) }
-            completion(.success(categories))
+            let operations = responseModel.result.map { GrandConverter.convertToDomain(response: $0) }
+            completion(.success(operations))
         }
     }
 

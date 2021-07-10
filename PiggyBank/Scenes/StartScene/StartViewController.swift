@@ -7,7 +7,16 @@ final class StartViewController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.piggy.white
+        
+        navigationBar.prefersLargeTitles = true
+        navigationBar.largeTitleTextAttributes = [
+            .foregroundColor: UIColor.piggy.black
+        ]
+        navigationBar.titleTextAttributes = [
+            .foregroundColor: UIColor.piggy.black
+        ]
+        navigationBar.tintColor = UIColor.piggy.black
 
         presenter.viewDidLoad()
     }

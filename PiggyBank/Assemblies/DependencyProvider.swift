@@ -21,7 +21,7 @@ enum ScreenType {
     case account(DomainAccountModel?)
     case currency(String, String)
     case category(DomainCategoryModel?)
-    case operation
+    case operation(DomainOperationModel?)
 }
 
 final class DependencyProvider {

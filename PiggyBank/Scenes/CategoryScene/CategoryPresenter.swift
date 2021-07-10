@@ -21,8 +21,8 @@ final class CategoryPresenter {
     }
 
     func loadData() {
-        let categoryViewModel = GrandConverter.convertToViewModel(domainCategory: categoryDomainModel)
-        view?.loadCategory(category: categoryViewModel)
+//        let categoryViewModel = GrandConverter.convertToViewModel(domainCategory: categoryDomainModel)
+//        view?.loadCategory(category: categoryViewModel)
     }
     
     func onSave() {

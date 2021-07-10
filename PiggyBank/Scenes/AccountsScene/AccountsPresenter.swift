@@ -2,95 +2,146 @@ import Foundation
 
 final class AccountsPresenter {
     
+    class SectionItem {
+        
+        let totalText: String?
+        
+        let separator: Bool
+        
+        let emptyText: String?
+        
+        let headerTitle: String?
+        var accounts: [DomainAccountModel] = []
+        
+        init(totalText: String) {
+            self.totalText = totalText
+            
+            separator = false
+            headerTitle = nil
+            emptyText = nil
+        }
+        
+        init(headerTitle: String?) {
+            self.headerTitle = headerTitle
+            
+            totalText = nil
+            separator = false
+            emptyText = nil
+        }
+        
+        init(separator: Bool) {
+            self.separator = separator
+            
+            totalText = nil
+            headerTitle = nil
+            emptyText = nil
+        }
+        
+        init(emptyText: String) {
+            self.emptyText = emptyText
+            
+            totalText = nil
+            headerTitle = nil
+            separator = false
+        }
+
+    }
+    
     private weak var view: AccountsViewController?
     
-    private let getAccountsUseCase: GetAccountsUseCase?
-    private let deleteAccountUseCase: DeleteAccountUseCase?
-    private let createUpdateAccountUseCase: CreateUpdateAccountUseCase?
+    private let getAccountsUseCase: GetAccountsUseCase
+    private let changeAndUpdateAccountsUseCase: ChangeAndUpdateAccountsUseCase
+    private let deleteAndUpdateAccountsUseCase: DeleteAndUpdateAccountsUseCase
     
-    private var accounts: [DomainAccountModel] = []
+    private var sections: [SectionItem] = []
     
     init(
         view: AccountsViewController?,
-        getAccountsUseCase: GetAccountsUseCase?,
-        deleteAccountUseCase: DeleteAccountUseCase?,
-        createUpdateAccountUseCase: CreateUpdateAccountUseCase?
+        getAccountsUseCase: GetAccountsUseCase,
+        changeAndUpdateAccountsUseCase: ChangeAndUpdateAccountsUseCase,
+        deleteAndUpdateAccountsUseCase: DeleteAndUpdateAccountsUseCase
     ) {
         self.view = view
         self.getAccountsUseCase = getAccountsUseCase
-        self.deleteAccountUseCase = deleteAccountUseCase
-        self.createUpdateAccountUseCase = createUpdateAccountUseCase
+        self.changeAndUpdateAccountsUseCase = changeAndUpdateAccountsUseCase
+        self.deleteAndUpdateAccountsUseCase = deleteAndUpdateAccountsUseCase
+    }
+    
+    func getAccount(at indexPath: IndexPath) -> DomainAccountModel {
+        sections[indexPath.section].accounts[indexPath.row]
+    }
+    
+    func getSection(at index: Int) -> SectionItem {
+        sections[index]
+    }
+    
+    func getAccounts() {
+        getAccountsUseCase.execute { [weak self] response in
+            self?.handleResponse(response)
+        }
     }
 
-    func onViewDidLoad(request: AccountsDTOs.ViewDidLoad.Request) {
-        getAccountsUseCase?.execute { [weak self] response in
-            guard let self = self else {
-                return
-            }
-            
-            DispatchQueue.main.async {
-                if case let .success(items) = response {
-                    self.accounts = items
-                    
-                    let accountsViewModels = items.compactMap { GrandConverter.convertToViewModel(domainAccount: $0) }
-                    self.view?.viewDidLoad(response: .init(accountsViewModels))
-                }
-            }
+    func archive(at indexPath: IndexPath) {
+        let account = getAccount(at: indexPath)
+        let newAccount = account.update(isArchived: !account.isArchived)
+        
+        changeAndUpdateAccountsUseCase.execute(category: newAccount) { [weak self] response in
+            self?.handleResponse(response)
         }
     }
     
-    func onArchiveAccount(id: Int) {
-        let account = getAccount(at: id)
-        
-        let createUpdateModel = DomainAccountModel(
-            id: account.id,
-            type: account.type.rawValue,
-            title: account.title,
-            currency: account.currency,
-            balance: account.balance,
-            isArchived: !account.isArchived,
-            isDeleted: account.isDeleted
-        )
-        
-        createUpdateAccountUseCase?.execute(request: createUpdateModel) { response in
-            DispatchQueue.main.async {
-                if case .success = response {
-                    self.view?.onAdd(response: .init(title: "Account has been successfully \(account.isArchived ? "unarchived" : "archived")"))
-                } else {
-                    self.view?.onAdd(response: .init(title: "Error"))
-                }
-            }
+    func delete(at indexPath: IndexPath) {
+        let account = getAccount(at: indexPath)
+        deleteAndUpdateAccountsUseCase.execute(account: account) { [weak self] response in
+            self?.handleResponse(response)
         }
-    }
-    
-    func onDeleteAccount(id: Int) {
-        let account = getAccount(at: id)
-        
-        deleteAccountUseCase?.execute(accountID: account.id!) { response in
-            DispatchQueue.main.async {
-                if case .success = response {
-                    self.view?.onAdd(response: .init(title: "Account has been successfully deleted"))
-                } else {
-                    self.view?.onAdd(response: .init(title: "Error"))
-                }
-            }
-        }
-    }
-    
-    func onAdd() {
-        view?.onAdd(viewController: DependencyProvider.shared.get(screen: .account(nil)))
-    }
-
-    func onSelect(id: Int) {
-        view?.onSelect(viewController: DependencyProvider.shared.get(screen: .account(getAccount(at: id))))
     }
 
 }
 
-extension AccountsPresenter {
+private extension AccountsPresenter {
     
-    func getAccount(at id: Int) -> DomainAccountModel {
-        accounts.first { $0.id == id }!
+    func handleResponse(_ response: Result<[DomainAccountModel]>) {
+        if case let .success(accounts) = response {
+            defer {
+                DispatchQueue.main.async {
+                    self.view?.sections = self.sections
+                }
+            }
+            
+            sections.removeAll()
+            
+            if accounts.isEmpty {
+                let empty = SectionItem(emptyText: "No accounts")
+                sections.append(empty)
+                return
+            }
+            
+            let separator = SectionItem(separator: true)
+            let regularAccounts = SectionItem(headerTitle: nil)
+            let archivedAccounts = SectionItem(headerTitle: "Archive")
+
+            var totalSum: Double = 0
+            accounts.forEach { account in
+                if account.isArchived {
+                    archivedAccounts.accounts.append(account)
+                } else {
+                    regularAccounts.accounts.append(account)
+                }
+
+                totalSum += account.balance
+            }
+            let total = SectionItem(totalText: totalSum.description + (accounts.first?.currency?.getCurrencySymbol() ?? ""))
+
+            sections.append(total)
+            sections.append(separator)
+            if !regularAccounts.accounts.isEmpty {
+                sections.append(regularAccounts)
+            }
+            if !archivedAccounts.accounts.isEmpty {
+                sections.append(archivedAccounts)
+            }
+        }
     }
     
 }
