@@ -46,4 +46,8 @@ final class DomainOperationModel {
         self.amount = mutableAmount
     }
     
+    var absAmount: Double {
+        abs(amount)
+    }
+
 }

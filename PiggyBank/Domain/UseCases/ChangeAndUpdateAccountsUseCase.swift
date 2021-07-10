@@ -4,8 +4,6 @@ final class ChangeAndUpdateAccountsUseCase {
     
     private let createUpdateAccountUseCase: CreateUpdateAccountUseCase
     private let getAccountsUseCase: GetAccountsUseCase
-    
-    private let semaphore = DispatchSemaphore(value: 0)
 
     init(createUpdateAccountUseCase: CreateUpdateAccountUseCase, getAccountsUseCase: GetAccountsUseCase) {
         self.createUpdateAccountUseCase = createUpdateAccountUseCase
