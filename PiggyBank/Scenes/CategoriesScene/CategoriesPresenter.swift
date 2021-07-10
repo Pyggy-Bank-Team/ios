@@ -102,7 +102,6 @@ private extension CategoriesPresenter {
                 }
             }
             
-            sections.removeAll()
             if !regularCategories.categories.isEmpty {
                 sections.append(regularCategories)
             }

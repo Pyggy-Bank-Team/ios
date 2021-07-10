@@ -4,8 +4,6 @@ final class ChangeAndUpdateCategoriesUseCase {
     
     private let createUpdateCategoryUseCase: CreateUpdateCategoryUseCase
     private let getCategoriesUseCase: GetCategoriesUseCase
-    
-    private let semaphore = DispatchSemaphore(value: 0)
 
     init(createUpdateCategoryUseCase: CreateUpdateCategoryUseCase, getCategoriesUseCase: GetCategoriesUseCase) {
         self.createUpdateCategoryUseCase = createUpdateCategoryUseCase
@@ -13,13 +11,10 @@ final class ChangeAndUpdateCategoriesUseCase {
     }
     
     func execute(category: DomainCategoryModel, completion: @escaping (Result<[DomainCategoryModel]>) -> Void) {
-        DispatchQueue.global().async {
-            self.createUpdateCategoryUseCase.execute(request: category) { [weak self] _ in
-                self?.semaphore.signal()
+        DispatchQueue.global().async { [weak self] in
+            self?.createUpdateCategoryUseCase.execute(request: category) { [weak self] _ in
+                self?.getCategoriesUseCase.execute(completion: completion)
             }
-            
-            self.semaphore.wait()
-            self.getCategoriesUseCase.execute(completion: completion)
         }
     }
     

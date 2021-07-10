@@ -13,13 +13,10 @@ final class ChangeAndUpdateAccountsUseCase {
     }
     
     func execute(category: DomainAccountModel, completion: @escaping (Result<[DomainAccountModel]>) -> Void) {
-        DispatchQueue.global().async {
-            self.createUpdateAccountUseCase.execute(request: category) { [weak self] _ in
-                self?.semaphore.signal()
+        DispatchQueue.global().async { [weak self] in
+            self?.createUpdateAccountUseCase.execute(request: category) { [weak self] _ in
+                self?.getAccountsUseCase.execute(completion: completion)
             }
-            
-            self.semaphore.wait()
-            self.getAccountsUseCase.execute(completion: completion)
         }
     }
     

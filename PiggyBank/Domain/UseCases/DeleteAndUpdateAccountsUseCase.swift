@@ -4,8 +4,6 @@ final class DeleteAndUpdateAccountsUseCase {
     
     private let deleteAccountUseCase: DeleteAccountUseCase
     private let getAccountsUseCase: GetAccountsUseCase
-    
-    private let semaphore = DispatchSemaphore(value: 0)
 
     init(deleteAccountUseCase: DeleteAccountUseCase, getAccountsUseCase: GetAccountsUseCase) {
         self.deleteAccountUseCase = deleteAccountUseCase
@@ -13,13 +11,10 @@ final class DeleteAndUpdateAccountsUseCase {
     }
     
     func execute(account: DomainAccountModel, completion: @escaping (Result<[DomainAccountModel]>) -> Void) {
-        DispatchQueue.global().async {
-            self.deleteAccountUseCase.execute(accountID: account.id!) { [weak self] _ in
-                self?.semaphore.signal()
+        DispatchQueue.global().async { [weak self] in
+            self?.deleteAccountUseCase.execute(accountID: account.id!) { [weak self] _ in
+                self?.getAccountsUseCase.execute(completion: completion)
             }
-            
-            self.semaphore.wait()
-            self.getAccountsUseCase.execute(completion: completion)
         }
     }
     

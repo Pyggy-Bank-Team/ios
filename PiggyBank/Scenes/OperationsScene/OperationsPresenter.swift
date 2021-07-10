@@ -72,16 +72,16 @@ private extension OperationsPresenter {
                 return
             }
             
-            var map: [Date: [DomainOperationModel]] = [:]
+            var dateToOperations: [Date: [DomainOperationModel]] = [:]
             for operation in operations {
                 let startDate = Calendar.current.startOfDay(for: operation.date)
                 
-                var currentOperations = map[startDate] ?? []
+                var currentOperations = dateToOperations[startDate] ?? []
                 currentOperations.append(operation)
-                map[startDate] = currentOperations
+                dateToOperations[startDate] = currentOperations
             }
             
-            for (key, value) in map {
+            for (key, value) in dateToOperations {
                 var title = ""
                 
                 if Calendar.current.isDateInToday(key) {

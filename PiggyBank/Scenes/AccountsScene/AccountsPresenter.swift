@@ -133,7 +133,6 @@ private extension AccountsPresenter {
             }
             let total = SectionItem(totalText: totalSum.description + (accounts.first?.currency?.getCurrencySymbol() ?? ""))
 
-            sections.removeAll()
             sections.append(total)
             sections.append(separator)
             if !regularAccounts.accounts.isEmpty {
