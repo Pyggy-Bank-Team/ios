@@ -1,7 +1,7 @@
 import UIKit
 
 final class BaseCurrencyViewController: UIViewController {
-    
+
     private lazy var tableView = UITableView(frame: .zero, style: .grouped)
     
     private var currencies: [CurrencyViewModel] = []
@@ -11,9 +11,9 @@ final class BaseCurrencyViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "Choose base currency"
+        navigationItem.title = "Choose Currency"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(onDone(_:)))
-        
+
         view.backgroundColor = .white
 
         tableView.delegate = self
@@ -21,7 +21,7 @@ final class BaseCurrencyViewController: UIViewController {
         tableView.separatorStyle = .none
         tableView.allowsSelection = true
         tableView.allowsMultipleSelection = false
-        tableView.register(CurrencyTableCell.self, forCellReuseIdentifier: "Cell")
+        tableView.register(CurrencyTableCell.self, forCellReuseIdentifier: "CurrencyTableCell")
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(tableView)
@@ -35,12 +35,13 @@ final class BaseCurrencyViewController: UIViewController {
         
         presenter.loadCurrencies()
     }
-    
-    func loadCurrencies(currencies: [CurrencyViewModel]) {
+
+    func loadCurrencies(currencies: [CurrencyViewModel], initialIndex: Int) {
         self.currencies = currencies
         tableView.reloadData()
+        tableView.cellForRow(at: IndexPath(row: initialIndex, section: 0))?.accessoryType = .checkmark
     }
-    
+
     func onDone(viewController: UIViewController) {
         navigationController?.pushViewController(viewController, animated: true)
     }
@@ -53,7 +54,6 @@ extension BaseCurrencyViewController: UITableViewDelegate {
         for index in currencies.indices where index != indexPath.row {
             tableView.cellForRow(at: IndexPath(row: index, section: 0))?.accessoryType = .none
         }
-        
         tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
     }
     
@@ -66,21 +66,19 @@ extension BaseCurrencyViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CurrencyTableCell", for: indexPath)
         let currency = currencies[indexPath.row]
-        
-        cell.textLabel?.text = "\(currency.code) - \(currency.symbol)"
-        
+        cell.textLabel?.text = "\(Locale.current.localizedString(forCurrencyCode: currency.code) ?? "") (\(currency.symbol))"
         return cell
     }
-    
+
 }
 
 private extension BaseCurrencyViewController {
     
     @objc
     func onDone(_ sender: UIBarButtonItem) {
-        presenter.onDone(indexPath: tableView.indexPathForSelectedRow ?? IndexPath(row: 0, section: 0))
+        presenter.onDone(index: tableView.indexPathForSelectedRow?.row ?? IndexPath(row: 0, section: 0).row)
     }
-    
+
 }

@@ -10,6 +10,7 @@ enum ScreenType {
     case start
     case home
     case login
+    case register
 
     case accounts
     case categories
@@ -19,7 +20,7 @@ enum ScreenType {
     case auth(AuthSceneMode)
     case profile
     case account(DomainAccountModel?)
-    case currency(String, String)
+    case currency
     case category(DomainCategoryModel?)
     case operation
 }
@@ -37,6 +38,7 @@ final class DependencyProvider {
             StartSceneAssembly(),
             HomeSceneAssembly(),
             LoginSceneAssembly(),
+            RegisterSceneAssembly(),
             AccountsAssembly(),
             CategoriesAssembly(),
             OperationsSceneAssembly(),
@@ -60,6 +62,8 @@ final class DependencyProvider {
             retViewController = resolver.resolve(HomeViewController.self)
         case .login:
             retViewController = resolver.resolve(LoginViewController.self)
+        case .register:
+            retViewController = resolver.resolve(RegisterViewController.self)
         case .accounts:
             retViewController = resolver.resolve(AccountsViewController.self)
         case .categories:
@@ -76,8 +80,8 @@ final class DependencyProvider {
         case .account(let model):
             assembler.apply(assembly: AccountSceneAssembly(accountDomainModel: model))
             retViewController = resolver.resolve(AccountViewController.self)
-        case let .currency(nickname, password):
-            assembler.apply(assembly: BaseCurrencySceneAssembly(initialNickname: nickname, initialPassword: password))
+        case .currency:
+            assembler.apply(assembly: BaseCurrencySceneAssembly())
             retViewController = resolver.resolve(BaseCurrencyViewController.self)
         case .category(let model):
             assembler.apply(assembly: CategorySceneAssembly(categoryDomainModel: model))

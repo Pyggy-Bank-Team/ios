@@ -12,7 +12,9 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
     private lazy var usernameTextField: PiggyTextField = {
         let usernameTextField = PiggyTextField(type: .text)
         usernameTextField.translatesAutoresizingMaskIntoConstraints = false
-        usernameTextField.placeholder = "Username"
+        let placeholderText = NSAttributedString(string: "Username",
+                                                 attributes: [.foregroundColor: UIColor(hexString: "#A0A3BD")])
+        usernameTextField.attributedPlaceholder = placeholderText
         usernameTextField.addTarget(self, action: #selector(onTextFieldChanged), for: .editingChanged)
         return usernameTextField
     }()
@@ -20,7 +22,9 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
     private lazy var passwordTextField: PiggyTextField = {
         let passwordTextField = PiggyTextField(type: .password)
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
-        passwordTextField.placeholder = "Password"
+        let placeholderText = NSAttributedString(string: "Password",
+                                                 attributes: [.foregroundColor: UIColor(hexString: "#A0A3BD")])
+        passwordTextField.attributedPlaceholder = placeholderText
         passwordTextField.isSecureTextEntry = true
         passwordTextField.addTarget(self, action: #selector(onTextFieldChanged), for: .editingChanged)
         return passwordTextField
@@ -48,8 +52,6 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
 
         navigationController?.setNavigationBarHidden(false, animated: false)
         configureNavigationBar(backgoundColor: .white, tintColor: .black, title: "Login", preferredLargeTitle: false)
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "arrow-left"), style: .plain, target: self, action: #selector(popToPrevious))
-        navigationController?.interactivePopGestureRecognizer?.delegate = self
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.keyboardWillShow),
@@ -60,6 +62,12 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
                                                name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
 
+        view.backgroundColor = .white
+
+        confugreLayout()
+    }
+
+    private func confugreLayout() {
         view.addSubview(usernameTextField)
         view.addSubview(passwordTextField)
         view.addSubview(loginButton)
@@ -128,8 +136,12 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
 
 extension LoginViewController {
 
-    func onLoginError() {
+    func onLoginError(error: String) {
         activityIndicator.stopAnimating()
-        // FIXME: need to show some error alert
+
+        let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        alert.addAction(okAction)
+        present(alert, animated: true)
     }
 }

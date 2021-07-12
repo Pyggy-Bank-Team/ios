@@ -1,7 +1,7 @@
 import Foundation
 
-final class DomainCurrencyModel {
-    
+final class DomainCurrencyModel: Codable {
+
     let code: String
     let symbol: String
     

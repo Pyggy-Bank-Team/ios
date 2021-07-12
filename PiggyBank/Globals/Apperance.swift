@@ -13,7 +13,7 @@ enum Apperance {
 
         SecondaryButton.appearance().setTitleColor(UIColor(hexString: "#4E4B66"), for: .normal)
 
-        UINavigationBar.appearance().backIndicatorImage = #imageLiteral(resourceName: "arrow-left")
-        UINavigationBar.appearance().backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "arrow-left")
+//        UINavigationBar.appearance().backIndicatorImage = #imageLiteral(resourceName: "arrow-left")
+//        UINavigationBar.appearance().backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "arrow-left")
     }
 }
