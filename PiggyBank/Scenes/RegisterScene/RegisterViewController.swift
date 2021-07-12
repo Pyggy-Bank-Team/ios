@@ -46,8 +46,8 @@ class RegisterViewController: UIViewController, UIGestureRecognizerDelegate {
         let digitSymbolWarning = UILabel()
         digitSymbolWarning.translatesAutoresizingMaskIntoConstraints = false
         digitSymbolWarning.text = "Must have at least \(passwordMinimunChars) characters"
-        digitSymbolWarning.font = .systemFont(ofSize: 17.0, weight: .regular)
-        digitSymbolWarning.textColor = .systemRed
+        digitSymbolWarning.font = .systemFont(ofSize: 14.0, weight: .regular)
+        digitSymbolWarning.textColor = UIColor.piggy.red
         return digitSymbolWarning
     }()
 
@@ -55,8 +55,8 @@ class RegisterViewController: UIViewController, UIGestureRecognizerDelegate {
         let digitSymbolWarning = UILabel()
         digitSymbolWarning.translatesAutoresizingMaskIntoConstraints = false
         digitSymbolWarning.text = "Must have digit character"
-        digitSymbolWarning.font = .systemFont(ofSize: 17.0, weight: .regular)
-        digitSymbolWarning.textColor = .systemRed
+        digitSymbolWarning.font = .systemFont(ofSize: 14.0, weight: .regular)
+        digitSymbolWarning.textColor = UIColor.piggy.red
         return digitSymbolWarning
     }()
 
@@ -64,8 +64,8 @@ class RegisterViewController: UIViewController, UIGestureRecognizerDelegate {
         let upperCaseSymbolWarning = UILabel()
         upperCaseSymbolWarning.translatesAutoresizingMaskIntoConstraints = false
         upperCaseSymbolWarning.text = "Must have uppercased letter"
-        upperCaseSymbolWarning.font = .systemFont(ofSize: 17.0, weight: .regular)
-        upperCaseSymbolWarning.textColor = .systemRed
+        upperCaseSymbolWarning.font = .systemFont(ofSize: 14.0, weight: .regular)
+        upperCaseSymbolWarning.textColor = UIColor.piggy.red
         return upperCaseSymbolWarning
     }()
 
@@ -73,8 +73,8 @@ class RegisterViewController: UIViewController, UIGestureRecognizerDelegate {
         let upperCaseSymbolWarning = UILabel()
         upperCaseSymbolWarning.translatesAutoresizingMaskIntoConstraints = false
         upperCaseSymbolWarning.text = "Must have lowercased letter"
-        upperCaseSymbolWarning.font = .systemFont(ofSize: 17.0, weight: .regular)
-        upperCaseSymbolWarning.textColor = .systemRed
+        upperCaseSymbolWarning.font = .systemFont(ofSize: 14.0, weight: .regular)
+        upperCaseSymbolWarning.textColor = UIColor.piggy.red
         return upperCaseSymbolWarning
     }()
 
@@ -82,8 +82,8 @@ class RegisterViewController: UIViewController, UIGestureRecognizerDelegate {
         let specialSymbolWarning = UILabel()
         specialSymbolWarning.translatesAutoresizingMaskIntoConstraints = false
         specialSymbolWarning.text = "Must have non-alphanumeric character"
-        specialSymbolWarning.font = .systemFont(ofSize: 17.0, weight: .regular)
-        specialSymbolWarning.textColor = .systemRed
+        specialSymbolWarning.font = .systemFont(ofSize: 14.0, weight: .regular)
+        specialSymbolWarning.textColor = UIColor.piggy.red
         return specialSymbolWarning
     }()
 
@@ -265,29 +265,29 @@ private extension RegisterViewController {
 
     func isValidPassword(password: String?) -> Bool {
         guard let password = password else {
-            digitSymbolWarning.textColor = .systemRed
-            upperCaseSymbolWarning.textColor = .systemRed
-            lowerCaseSymbolWarning.textColor = .systemRed
-            specialSymbolWarning.textColor = .systemRed
-            lengthWarning.textColor = .systemRed
+            digitSymbolWarning.textColor = UIColor.piggy.red
+            upperCaseSymbolWarning.textColor = UIColor.piggy.red
+            lowerCaseSymbolWarning.textColor = UIColor.piggy.red
+            specialSymbolWarning.textColor = UIColor.piggy.red
+            lengthWarning.textColor = UIColor.piggy.red
             return false
         }
 
         let hasDecimalDigits = password.rangeOfCharacter(from: .decimalDigits) != nil
-        digitSymbolWarning.textColor = hasDecimalDigits ? .systemGreen : .systemRed
+        digitSymbolWarning.textColor = hasDecimalDigits ? UIColor.piggy.green : UIColor.piggy.red
 
         let hasUppercaseLetters = password.rangeOfCharacter(from: .uppercaseLetters) != nil
-        upperCaseSymbolWarning.textColor = hasUppercaseLetters ? .systemGreen : .systemRed
+        upperCaseSymbolWarning.textColor = hasUppercaseLetters ? UIColor.piggy.green : UIColor.piggy.red
 
         let hasLowercaseLetters = password.rangeOfCharacter(from: .lowercaseLetters) != nil
-        lowerCaseSymbolWarning.textColor = hasLowercaseLetters ? .systemGreen : .systemRed
+        lowerCaseSymbolWarning.textColor = hasLowercaseLetters ? UIColor.piggy.green : UIColor.piggy.red
 
         let hasSpecialSymbols = password.rangeOfCharacter(from: .punctuationCharacters) != nil
             || password.rangeOfCharacter(from: .symbols) != nil
-        specialSymbolWarning.textColor = hasSpecialSymbols ? .systemGreen : .systemRed
+        specialSymbolWarning.textColor = hasSpecialSymbols ? UIColor.piggy.green : UIColor.piggy.red
 
         let hasValidLength = password.count >= passwordMinimunChars
-        lengthWarning.textColor = hasValidLength ? .systemGreen : .systemRed
+        lengthWarning.textColor = hasValidLength ? UIColor.piggy.green : UIColor.piggy.red
 
         return hasDecimalDigits && hasUppercaseLetters && hasLowercaseLetters && hasSpecialSymbols && hasValidLength
     }
