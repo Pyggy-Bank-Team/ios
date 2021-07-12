@@ -2,90 +2,184 @@ import UIKit
 
 final class AccountsViewController: UIViewController {
     
-    private lazy var tableView = UITableView()
-    private lazy var typeControl = UISegmentedControl()
+    private lazy var collectionLayout: UICollectionViewFlowLayout = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        return layout
+    }()
     
-    private var allAccounts: [AccountViewModel] = []
-    private var cashAccounts: [AccountViewModel] = []
-    private var cardAccounts: [AccountViewModel] = []
+    private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionLayout)
+    
+    private var cellWidth: CGFloat = 0
     
     var presenter: AccountsPresenter!
     
+    var sections: [AccountsPresenter.SectionItem] = [] {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = "Accounts"
+        
+        let rightBarItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(onAdd(_:)))
+        navigationItem.rightBarButtonItem = rightBarItem
 
         view.backgroundColor = .white
         
-        typeControl.translatesAutoresizingMaskIntoConstraints = false
-        typeControl.addTarget(self, action: #selector(onChangeType(_:)), for: .valueChanged)
-        view.addSubview(typeControl)
-        
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.separatorInset = .zero
-        view.addSubview(tableView)
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.register(AccountCollectionTotalCell.self, forCellWithReuseIdentifier: "AccountCollectionTotalCell")
+        collectionView.register(AccountCollectionCell.self, forCellWithReuseIdentifier: "AccountCollectionCell")
+        collectionView.register(SeparatorCollectionCell.self, forCellWithReuseIdentifier: "SeparatorCollectionCell")
+        collectionView.register(EmptyCollectionCell.self, forCellWithReuseIdentifier: "EmptyCollectionCell")
+        collectionView.register(CategoryCollectionHeader.self,
+                                forSupplementaryViewOfKind: "UICollectionElementKindSectionHeader",
+                                withReuseIdentifier: "CategoryCollectionHeader")
+        collectionView.backgroundColor = UIColor.piggy.white
+        collectionView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
+        view.addSubview(collectionView)
         
         NSLayoutConstraint.activate([
-            typeControl.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.8),
-            typeControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            typeControl.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            
-            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            tableView.topAnchor.constraint(equalTo: typeControl.safeAreaLayoutGuide.bottomAnchor, constant: 20)
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
         
-        navigationItem.title = "Accounts"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(onAdd(_:)))
-        
-        presenter.onViewDidLoad(request: .init())
+        presenter.getAccounts()
     }
     
-    func viewDidLoad(response: [AccountViewModel]) {
-        allAccounts = response
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
         
-        for account in allAccounts {
-            if account.type == .cash {
-                cashAccounts.append(account)
-            } else {
-                cardAccounts.append(account)
-            }
+        cellWidth = view.bounds.size.width - 50
+    }
+
+}
+
+extension AccountsViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let account = presenter.getAccount(at: indexPath)
+        let vc = DependencyProvider.shared.get(screen: .account(account))
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        let section = presenter.getSection(at: indexPath.section)
+        return section.totalText == nil && !section.separator && section.emptyText == nil
+    }
+    
+}
+
+extension AccountsViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let section = presenter.getSection(at: indexPath.section)
+        
+        if section.totalText != nil {
+            return CGSize(width: cellWidth, height: 113)
         }
         
-        typeControl.insertSegment(withTitle: "All", at: 0, animated: false)
-        
-        var indexToInsert = 1
-        if !cashAccounts.isEmpty {
-            typeControl.insertSegment(withTitle: "Cash", at: indexToInsert, animated: false)
-            indexToInsert += 1
+        if section.separator {
+            return CGSize(width: cellWidth, height: 1)
         }
         
-        if !cardAccounts.isEmpty {
-            typeControl.insertSegment(withTitle: "Card", at: indexToInsert, animated: false)
+        return CGSize(width: cellWidth, height: 86)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        let section = presenter.getSection(at: section)
+        
+        if section.totalText == nil && !section.separator {
+            return 15
         }
         
-        typeControl.selectedSegmentIndex = 0
-        
-        tableView.reloadData()
+        return 0
     }
     
-    func onAdd(response: AccountsDTOs.OnAdd.Response) {
-        let alertController = UIAlertController(title: response.title, message: "", preferredStyle: .alert)
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        let section = presenter.getSection(at: section)
         
-        let action = UIAlertAction(title: "OK", style: .default)
-        alertController.addAction(action)
+        if section.separator {
+            return UIEdgeInsets(top: 25, left: 0, bottom: 25, right: 0)
+        }
         
-        present(alertController, animated: true, completion: nil)
+        return .zero
     }
     
-    func onAdd(viewController: UIViewController) {
-        navigationController?.pushViewController(viewController, animated: true)
+}
+
+extension AccountsViewController: UICollectionViewDataSource {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        sections.count
     }
     
-    func onSelect(viewController: UIViewController) {
-        navigationController?.pushViewController(viewController, animated: true)
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        let section = presenter.getSection(at: section)
+        
+        if section.totalText != nil || section.separator || section.emptyText != nil {
+            return 1
+        }
+        
+        return section.accounts.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let section = presenter.getSection(at: indexPath.section)
+        
+        if section.totalText != nil {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AccountCollectionTotalCell", for: indexPath) as! AccountCollectionTotalCell
+            cell.subtitleLabel.text = section.totalText
+            return cell
+        }
+        
+        if section.separator {
+            return collectionView.dequeueReusableCell(withReuseIdentifier: "SeparatorCollectionCell", for: indexPath)
+        }
+        
+        if section.emptyText != nil {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EmptyCollectionCell", for: indexPath) as! EmptyCollectionCell
+            cell.titleLabel.text = section.emptyText
+            return cell
+        }
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AccountCollectionCell", for: indexPath) as! AccountCollectionCell
+        let account = presenter.getAccount(at: indexPath)
+        cell.titleLabel.text = account.title
+        cell.subtitleLabel.text = account.balance.description + (account.currency?.getCurrencySymbol() ?? "")
+        cell.onConfigure = { [weak self] in
+            self?.showActionsList(indexPath: indexPath)
+        }
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if kind == "UICollectionElementKindSectionHeader" {
+            let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "CategoryCollectionHeader", for: indexPath) as! CategoryCollectionHeader
+            let section = presenter.getSection(at: indexPath.section)
+            
+            view.titleLabel.text = section.headerTitle
+            return view
+        }
+        
+        fatalError("Unregistered kind")
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        let section = presenter.getSection(at: section)
+        
+        if section.headerTitle != nil {
+            return CGSize(width: cellWidth, height: 70)
+        }
+        
+        return .zero
     }
 
 }
@@ -94,113 +188,28 @@ private extension AccountsViewController {
     
     @objc
     func onAdd(_ sender: UIBarButtonItem) {
-        presenter.onAdd()
+        let vc = DependencyProvider.shared.get(screen: .account(nil))
+        navigationController?.pushViewController(vc, animated: true)
     }
     
-    @objc
-    func onChangeType(_ sender: UISegmentedControl) {
-        tableView.reloadData()
-    }
-    
-    func element(at indexPath: IndexPath) -> AccountViewModel {
-        let selected = typeControl.selectedSegmentIndex
+    func showActionsList(indexPath: IndexPath) {
+        let actionsViewController = UIAlertController(title: "Actions", message: nil, preferredStyle: .actionSheet)
+        let account = presenter.getAccount(at: indexPath)
         
-        if selected == 0 {
-            return allAccounts[indexPath.row]
-        } else if selected == 1 && !cashAccounts.isEmpty {
-            return cashAccounts[indexPath.row]
-        } else {
-            return cardAccounts[indexPath.row]
-        }
-    }
-    
-}
-
-extension AccountsViewController: UITableViewDelegate {
-    
-    func tableView(
-        _ tableView: UITableView,
-        trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath
-    ) -> UISwipeActionsConfiguration? {
-        let account = element(at: indexPath)
-        var actions: [UIContextualAction] = []
-        
-        let deleteAction = UIContextualAction(style: .normal, title: "") { [weak self] _, _, complete in
-            self?.presenter.onDeleteAccount(id: account.id)
-            complete(true)
-        }
-        deleteAction.image = #imageLiteral(resourceName: "delete")
-        actions.append(deleteAction)
-        
-        let archiveAction = UIContextualAction(style: .normal, title: "") { [weak self] _, _, complete in
-            self?.presenter.onArchiveAccount(id: account.id)
-            complete(true)
-        }
-        archiveAction.image = account.isArchived ? #imageLiteral(resourceName: "unarchive") : #imageLiteral(resourceName: "archive")
-        actions.append(archiveAction)
-        
-        actions.forEach {
-            $0.backgroundColor = .white
+        let archiveAction = UIAlertAction(title: account.isArchived ? "Unarchive" : "Archive", style: .default) { [weak self] _ in
+            self?.presenter.archive(at: indexPath)
         }
         
-        let swipeConfiguration = UISwipeActionsConfiguration(actions: actions)
-        swipeConfiguration.performsFirstActionWithFullSwipe = false
-        
-        return swipeConfiguration
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let account = element(at: indexPath)
-        presenter.onSelect(id: account.id)
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
-}
-
-extension AccountsViewController: UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard typeControl.selectedSegmentIndex >= 0 else {
-            return 0
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { [weak self] _ in
+            self?.presenter.delete(at: indexPath)
         }
         
-        let selected = typeControl.selectedSegmentIndex
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
-        if selected == 0 {
-            return allAccounts.count
-        } else if selected == 1 && !cashAccounts.isEmpty {
-            return cashAccounts.count
-        } else {
-            return cardAccounts.count
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let account = element(at: indexPath)
-        
-        let cell: UITableViewCell
-        if let res = tableView.dequeueReusableCell(withIdentifier: "Cell") {
-            cell = res
-        } else {
-            cell = UITableViewCell(style: .value1, reuseIdentifier: "Cell")
-        }
-        
-        var detailText = "\(account.balance)"
-        
-        if let currency = account.currency {
-            detailText.append(" \(currency)")
-        }
-        
-        cell.textLabel?.text = account.title
-        cell.detailTextLabel?.text = detailText
-        
-        if account.isArchived {
-            cell.imageView?.image = #imageLiteral(resourceName: "archive")
-        } else {
-            cell.imageView?.image = nil
-        }
-        
-        return cell
+        actionsViewController.addAction(archiveAction)
+        actionsViewController.addAction(deleteAction)
+        actionsViewController.addAction(cancelAction)
+        present(actionsViewController, animated: true, completion: nil)
     }
     
 }

@@ -31,6 +31,7 @@ class ProfileViewController: UIViewController {
         ])
         
         navigationItem.title = "Menu"
+        navigationItem.backButtonTitle = ""
         navigationItem.hidesBackButton = true
     }
     

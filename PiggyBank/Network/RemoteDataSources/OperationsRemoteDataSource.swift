@@ -12,8 +12,8 @@ struct OperationsRemoteDataSource: OperationsDataSource {
             guard let responseModel = response.value else {
                 return completion(.error(response.error ?? InternalError(string: "Cannot get responseModel for GetOperations")))
             }
-            let categories = responseModel.result.map { GrandConverter.convertToDomain(response: $0) }
-            completion(.success(categories))
+            let operations = responseModel.result.map { GrandConverter.convertToDomain(response: $0) }
+            completion(.success(operations))
         }
     }
 

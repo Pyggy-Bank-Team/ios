@@ -16,8 +16,8 @@ public final class ReportViewModel {
 
     var sign: String {
         switch type {
-        case .undefined:
-            return ""
+//        case .undefined:
+//            return ""
         case .income:
             return "+"
         case .outcome:
@@ -25,7 +25,7 @@ public final class ReportViewModel {
         }
     }
 
-    var type: CategoryViewModel.CategoryType
+    var type: DomainCategoryModel.CategoryType
     var startDate: Date
     var endDate: Date
     var total: Int64
@@ -35,7 +35,7 @@ public final class ReportViewModel {
     }
 
     init(
-        type: CategoryViewModel.CategoryType,
+        type: DomainCategoryModel.CategoryType,
         startDate: Date,
         endDate: Date,
         total: Int64,

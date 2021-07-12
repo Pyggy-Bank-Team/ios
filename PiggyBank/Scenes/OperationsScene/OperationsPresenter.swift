@@ -2,60 +2,107 @@ import Foundation
 
 final class OperationsPresenter {
     
+    class SectionItem {
+        
+        let emptyText: String?
+        
+        let headerTitle: String?
+        let headerSubitle: String?
+        let date: Date?
+        var operations: [DomainOperationModel] = []
+        
+        init(title: String, headerSubitle: String, date: Date) {
+            headerTitle = title
+            self.headerSubitle = headerSubitle
+            self.date = date
+            emptyText = nil
+        }
+        
+        init(emptyText: String) {
+            self.emptyText = emptyText
+            headerTitle = nil
+            date = nil
+            headerSubitle = nil
+        }
+
+    }
+    
     private weak var view: OperationsViewController?
     
-    private let getOperationsUseCase: GetOperationsUseCase?
-    private let deleteOperationUseCase: DeleteOperationUseCase?
+    private let getOperationsUseCase: GetOperationsUseCase
 
-    private var operations: [DomainOperationModel] = []
+    private var sections: [SectionItem] = []
     
-    init(
-        view: OperationsViewController?,
-        getOperationsUseCase: GetOperationsUseCase?,
-        deleteOperationUseCase: DeleteOperationUseCase?
-    ) {
+    init(view: OperationsViewController?, getOperationsUseCase: GetOperationsUseCase) {
         self.view = view
         self.getOperationsUseCase = getOperationsUseCase
-        self.deleteOperationUseCase = deleteOperationUseCase
     }
     
-    func onViewDidLoad() {
-        getOperationsUseCase?.execute { [weak self] response in
-            guard let self = self else {
-                return
-            }
-            
-            DispatchQueue.main.async {
-                if case let .success(items) = response {
-                    self.operations = items
-                    
-                    let operationsViewModels = items.compactMap { GrandConverter.convertToViewModel(operationModel: $0) }
-                    self.view?.viewDidLoad(response: .init(operationsViewModels))
-                }
-            }
-        }
+    func getSection(at index: Int) -> SectionItem {
+        sections[index]
+    }
+    
+    func getOperation(at indexPath: IndexPath) -> DomainOperationModel {
+        sections[indexPath.section].operations[indexPath.row]
     }
 
-    func onDeleteOperation(id: UInt) {
-        let operation = getOperation(at: id)
-        
-        deleteOperationUseCase?.execute(operation: operation) { response in
-            DispatchQueue.main.async {
-                if case .success = response {
-                    self.view?.show(alert: "Operation has been successfully deleted")
-                } else {
-                    self.view?.show(alert: "Error")
-                }
-            }
+    func getOperations() {
+        getOperationsUseCase.execute { [weak self] response in
+            self?.handleResponse(response)
         }
     }
 
 }
 
-extension OperationsPresenter {
+private extension OperationsPresenter {
     
-    func getOperation(at id: UInt) -> DomainOperationModel {
-        operations.first { $0.id == id }!
+    func handleResponse(_ response: Result<[DomainOperationModel]>) {
+        if case let .success(operations) = response {
+            defer {
+                DispatchQueue.main.async {
+                    self.view?.sections = self.sections
+                }
+            }
+            
+            sections.removeAll()
+            
+            if operations.isEmpty {
+                let empty = SectionItem(emptyText: "No operations")
+                sections.append(empty)
+                return
+            }
+            
+            var dateToOperations: [Date: [DomainOperationModel]] = [:]
+            for operation in operations {
+                let startDate = Calendar.current.startOfDay(for: operation.date)
+                
+                var currentOperations = dateToOperations[startDate] ?? []
+                currentOperations.append(operation)
+                dateToOperations[startDate] = currentOperations
+            }
+            
+            for (key, value) in dateToOperations {
+                var title = ""
+                
+                if Calendar.current.isDateInToday(key) {
+                    title = "Today"
+                } else if Calendar.current.isDateInYesterday(key) {
+                    title = "Yesterday"
+                } else {
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "MMM d, yyyy"
+                    title = dateFormatter.string(from: key)
+                }
+                
+                let sum = value.reduce(0) { $0 + $1.amount }
+                let currencyCode = value.first?.fromAccount.currency?.getCurrencySymbol() ?? ""
+                let section = SectionItem(title: title, headerSubitle: sum.formatSign + currencyCode, date: key)
+                section.operations = value
+                sections.append(section)
+            }
+            
+            sections.sort { $0.date! > $1.date! }
+        }
     }
     
 }

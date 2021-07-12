@@ -14,10 +14,6 @@ final class DeleteOperationUseCase {
             deleteOperationRepository?.deleteBudgetOperation(operationID: operation.id, completion: completion)
         case .transfer:
             deleteOperationRepository?.deleteTransferOperation(operationID: operation.id, completion: completion)
-        case .plan:
-            deleteOperationRepository?.deletePlanOperation(operationID: operation.id, completion: completion)
-        default:
-            break
         }
     }
 }

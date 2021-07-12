@@ -72,7 +72,6 @@
 		9104C13924FBCEF3003BF041 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C13824FBCEF3003BF041 /* Category.swift */; };
 		9104C13B24FBCFD3003BF041 /* GetCategoriesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C13A24FBCFD3003BF041 /* GetCategoriesUseCase.swift */; };
 		9104C13D24FBD2BF003BF041 /* CategoriesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C13C24FBD2BF003BF041 /* CategoriesPresenter.swift */; };
-		9104C14124FBD86D003BF041 /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C14024FBD86D003BF041 /* CategoryViewModel.swift */; };
 		9104C16D250409CF003BF041 /* DomainCategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C16C250409CF003BF041 /* DomainCategoryModel.swift */; };
 		9104C171250415C4003BF041 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C170250415C4003BF041 /* CategoryViewController.swift */; };
 		9104C17325051C3B003BF041 /* DeleteCategoryUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104C17225051C3B003BF041 /* DeleteCategoryUseCase.swift */; };
@@ -139,7 +138,6 @@
 		91A85DE524B4C5D900B7A630 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DE424B4C5D900B7A630 /* Result.swift */; };
 		91A85DE924B64B7D00B7A630 /* SignInUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DE824B64B7D00B7A630 /* SignInUseCase.swift */; };
 		91A85DEE24CB308000B7A630 /* AccountsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DED24CB308000B7A630 /* AccountsViewController.swift */; };
-		91A85DF024CB30BC00B7A630 /* AccountsDTOs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DEF24CB30BC00B7A630 /* AccountsDTOs.swift */; };
 		91A85DF224CB326700B7A630 /* AccountsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DF124CB326700B7A630 /* AccountsPresenter.swift */; };
 		91A85DF424CB385400B7A630 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DF324CB385400B7A630 /* Account.swift */; };
 		91A85DF624CB39DE00B7A630 /* GetAccountsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85DF524CB39DE00B7A630 /* GetAccountsUseCase.swift */; };
@@ -149,6 +147,18 @@
 		91A85E0224D04F0700B7A630 /* MainBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85E0124D04F0700B7A630 /* MainBarViewController.swift */; };
 		91A85E0524D0519800B7A630 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A85E0424D0519800B7A630 /* CategoriesViewController.swift */; };
 		91C028352515B616005F30F0 /* CreateUpdateCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C028342515B616005F30F0 /* CreateUpdateCategory.swift */; };
+		91C0CD5F268FBADC000FBC49 /* AccountCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C0CD5E268FBADC000FBC49 /* AccountCollectionCell.swift */; };
+		91C0CD62268FBCDF000FBC49 /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C0CD61268FBCDF000FBC49 /* UIFont.swift */; };
+		91C0CD65268FCF20000FBC49 /* SeparatorCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C0CD64268FCF20000FBC49 /* SeparatorCollectionCell.swift */; };
+		91C0CD68269077EC000FBC49 /* CategoryCollectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C0CD67269077EC000FBC49 /* CategoryCollectionHeader.swift */; };
+		91C0CD6B26909756000FBC49 /* DeleteAndUpdateCategoriesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C0CD6A26909756000FBC49 /* DeleteAndUpdateCategoriesUseCase.swift */; };
+		91C0CD6F2690A6F8000FBC49 /* ChangeAndUpdateCategoriesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C0CD6E2690A6F8000FBC49 /* ChangeAndUpdateCategoriesUseCase.swift */; };
+		91C0CD722690D467000FBC49 /* ChangeAndUpdateAccountsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C0CD712690D467000FBC49 /* ChangeAndUpdateAccountsUseCase.swift */; };
+		91C0CD752690D585000FBC49 /* DeleteAndUpdateAccountsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C0CD742690D585000FBC49 /* DeleteAndUpdateAccountsUseCase.swift */; };
+		91C0CD79269109AC000FBC49 /* AccountCollectionTotalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C0CD78269109AC000FBC49 /* AccountCollectionTotalCell.swift */; };
+		91C0CD7C2691CACB000FBC49 /* EmptyCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C0CD7B2691CACB000FBC49 /* EmptyCollectionCell.swift */; };
+		91C0CD7F2691DE5E000FBC49 /* OperationCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C0CD7E2691DE5E000FBC49 /* OperationCollectionCell.swift */; };
+		91C0CD8226925FBD000FBC49 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C0CD8126925FBD000FBC49 /* Double.swift */; };
 		91C26FA02515C01B00C999BE /* CategoryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C26F9F2515C01B00C999BE /* CategoryPresenter.swift */; };
 		91C26FA22515C0E300C999BE /* CategorySceneAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C26FA12515C0E300C999BE /* CategorySceneAssembly.swift */; };
 		91C26FA42515CF7700C999BE /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C26FA32515CF7700C999BE /* Colors.swift */; };
@@ -218,7 +228,6 @@
 		9104C13824FBCEF3003BF041 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		9104C13A24FBCFD3003BF041 /* GetCategoriesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCategoriesUseCase.swift; sourceTree = "<group>"; };
 		9104C13C24FBD2BF003BF041 /* CategoriesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesPresenter.swift; sourceTree = "<group>"; };
-		9104C14024FBD86D003BF041 /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
 		9104C16C250409CF003BF041 /* DomainCategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainCategoryModel.swift; sourceTree = "<group>"; };
 		9104C170250415C4003BF041 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		9104C17225051C3B003BF041 /* DeleteCategoryUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteCategoryUseCase.swift; sourceTree = "<group>"; };
@@ -287,7 +296,6 @@
 		91A85DE424B4C5D900B7A630 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		91A85DE824B64B7D00B7A630 /* SignInUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInUseCase.swift; sourceTree = "<group>"; };
 		91A85DED24CB308000B7A630 /* AccountsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsViewController.swift; sourceTree = "<group>"; };
-		91A85DEF24CB30BC00B7A630 /* AccountsDTOs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsDTOs.swift; sourceTree = "<group>"; };
 		91A85DF124CB326700B7A630 /* AccountsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsPresenter.swift; sourceTree = "<group>"; };
 		91A85DF324CB385400B7A630 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		91A85DF524CB39DE00B7A630 /* GetAccountsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAccountsUseCase.swift; sourceTree = "<group>"; };
@@ -297,6 +305,18 @@
 		91A85E0124D04F0700B7A630 /* MainBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBarViewController.swift; sourceTree = "<group>"; };
 		91A85E0424D0519800B7A630 /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		91C028342515B616005F30F0 /* CreateUpdateCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUpdateCategory.swift; sourceTree = "<group>"; };
+		91C0CD5E268FBADC000FBC49 /* AccountCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCollectionCell.swift; sourceTree = "<group>"; };
+		91C0CD61268FBCDF000FBC49 /* UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
+		91C0CD64268FCF20000FBC49 /* SeparatorCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorCollectionCell.swift; sourceTree = "<group>"; };
+		91C0CD67269077EC000FBC49 /* CategoryCollectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionHeader.swift; sourceTree = "<group>"; };
+		91C0CD6A26909756000FBC49 /* DeleteAndUpdateCategoriesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAndUpdateCategoriesUseCase.swift; sourceTree = "<group>"; };
+		91C0CD6E2690A6F8000FBC49 /* ChangeAndUpdateCategoriesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeAndUpdateCategoriesUseCase.swift; sourceTree = "<group>"; };
+		91C0CD712690D467000FBC49 /* ChangeAndUpdateAccountsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeAndUpdateAccountsUseCase.swift; sourceTree = "<group>"; };
+		91C0CD742690D585000FBC49 /* DeleteAndUpdateAccountsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAndUpdateAccountsUseCase.swift; sourceTree = "<group>"; };
+		91C0CD78269109AC000FBC49 /* AccountCollectionTotalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCollectionTotalCell.swift; sourceTree = "<group>"; };
+		91C0CD7B2691CACB000FBC49 /* EmptyCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCollectionCell.swift; sourceTree = "<group>"; };
+		91C0CD7E2691DE5E000FBC49 /* OperationCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationCollectionCell.swift; sourceTree = "<group>"; };
+		91C0CD8126925FBD000FBC49 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		91C26F9F2515C01B00C999BE /* CategoryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPresenter.swift; sourceTree = "<group>"; };
 		91C26FA12515C0E300C999BE /* CategorySceneAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySceneAssembly.swift; sourceTree = "<group>"; };
 		91C26FA32515CF7700C999BE /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -501,7 +521,6 @@
 			children = (
 				9104C17C250DD814003BF041 /* AccountViewModel.swift */,
 				9104C18D250E177D003BF041 /* CurrencyViewModel.swift */,
-				9104C14024FBD86D003BF041 /* CategoryViewModel.swift */,
 				91957A8425318D000027249A /* OperationViewModel.swift */,
 				7113503B2625CB5000572CB9 /* ReportViewModel.swift */,
 			);
@@ -535,6 +554,8 @@
 				7113503E2626141E00572CB9 /* Date.swift */,
 				9175DB91262A891200480957 /* String.swift */,
 				7167A50026490A02000E39A4 /* UIViewController+NavBar.swift */,
+				91C0CD61268FBCDF000FBC49 /* UIFont.swift */,
+				91C0CD8126925FBD000FBC49 /* Double.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -553,6 +574,7 @@
 			children = (
 				91957A8225318C700027249A /* OperationsViewController.swift */,
 				91957A8625318D580027249A /* OperationsPresenter.swift */,
+				91C0CD7E2691DE5E000FBC49 /* OperationCollectionCell.swift */,
 			);
 			path = OperationsScene;
 			sourceTree = "<group>";
@@ -673,6 +695,10 @@
 				9166BC922532E27600A23196 /* DeleteOperationUseCase.swift */,
 				3C15C548257385D7005E209B /* CreateUpdateTransferOperationUseCase.swift */,
 				7113502A2621CBEA00572CB9 /* GetReportsByCategoryUseCase.swift */,
+				91C0CD6A26909756000FBC49 /* DeleteAndUpdateCategoriesUseCase.swift */,
+				91C0CD6E2690A6F8000FBC49 /* ChangeAndUpdateCategoriesUseCase.swift */,
+				91C0CD712690D467000FBC49 /* ChangeAndUpdateAccountsUseCase.swift */,
+				91C0CD742690D585000FBC49 /* DeleteAndUpdateAccountsUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -692,8 +718,10 @@
 			isa = PBXGroup;
 			children = (
 				91A85DED24CB308000B7A630 /* AccountsViewController.swift */,
-				91A85DEF24CB30BC00B7A630 /* AccountsDTOs.swift */,
 				91A85DF124CB326700B7A630 /* AccountsPresenter.swift */,
+				91C0CD5E268FBADC000FBC49 /* AccountCollectionCell.swift */,
+				91C0CD64268FCF20000FBC49 /* SeparatorCollectionCell.swift */,
+				91C0CD78269109AC000FBC49 /* AccountCollectionTotalCell.swift */,
 			);
 			path = AccountsScene;
 			sourceTree = "<group>";
@@ -703,6 +731,9 @@
 			children = (
 				91A85E0424D0519800B7A630 /* CategoriesViewController.swift */,
 				9104C13C24FBD2BF003BF041 /* CategoriesPresenter.swift */,
+				9104C21C25147475003BF041 /* CategoryCollectionCell.swift */,
+				91C0CD67269077EC000FBC49 /* CategoryCollectionHeader.swift */,
+				91C0CD7B2691CACB000FBC49 /* EmptyCollectionCell.swift */,
 			);
 			path = CategoriesScene;
 			sourceTree = "<group>";
@@ -819,6 +850,8 @@
 			files = (
 				9104C190250E1AFE003BF041 /* BaseCurrencyPresenter.swift in Sources */,
 				9166BC9A256A2F1E00A23196 /* OperationSceneAssembly.swift in Sources */,
+				91C0CD7C2691CACB000FBC49 /* EmptyCollectionCell.swift in Sources */,
+				91C0CD8226925FBD000FBC49 /* Double.swift in Sources */,
 				9104C1B7250F3497003BF041 /* StartViewController.swift in Sources */,
 				91957A802531791F0027249A /* GetOperationsUseCase.swift in Sources */,
 				9104C17D250DD814003BF041 /* AccountViewModel.swift in Sources */,
@@ -841,6 +874,7 @@
 				711F588426301CD700381BEF /* OperationsRemoteDataSource.swift in Sources */,
 				9104C1B0250F2A3C003BF041 /* ProfileSceneAssembly.swift in Sources */,
 				711E1712267BC08E00769102 /* RegisterPresenter.swift in Sources */,
+				91C0CD6B26909756000FBC49 /* DeleteAndUpdateCategoriesUseCase.swift in Sources */,
 				9104C16D250409CF003BF041 /* DomainCategoryModel.swift in Sources */,
 				91957A7A2531717D0027249A /* Operation.swift in Sources */,
 				711350252621C39F00572CB9 /* ReportsPresenter.swift in Sources */,
@@ -849,11 +883,12 @@
 				9104C22025147874003BF041 /* UIColor.swift in Sources */,
 				91A85DFE24CEFC1500B7A630 /* DeleteAccountUseCase.swift in Sources */,
 				9104C13B24FBCFD3003BF041 /* GetCategoriesUseCase.swift in Sources */,
-				91A85DF024CB30BC00B7A630 /* AccountsDTOs.swift in Sources */,
 				9104C21D25147475003BF041 /* CategoryCollectionCell.swift in Sources */,
 				91A85DF424CB385400B7A630 /* Account.swift in Sources */,
 				711F5857263011A900381BEF /* AccountRemoteDataSource.swift in Sources */,
 				71337D32263EE91200EC7F3D /* LoginPresenter.swift in Sources */,
+				91C0CD7F2691DE5E000FBC49 /* OperationCollectionCell.swift in Sources */,
+				91C0CD722690D467000FBC49 /* ChangeAndUpdateAccountsUseCase.swift in Sources */,
 				711350342622075E00572CB9 /* DomainCategoryReportModel.swift in Sources */,
 				9104C189250DF76D003BF041 /* AuthPresenter.swift in Sources */,
 				91A39C68262B49AF00A44080 /* MenuButton.swift in Sources */,
@@ -874,6 +909,7 @@
 				9166BC932532E27600A23196 /* DeleteOperationUseCase.swift in Sources */,
 				9104C1C525107F82003BF041 /* AccountTextFieldTableCell.swift in Sources */,
 				3CC950D0256A75450074C7B6 /* UISegmentedControl.swift in Sources */,
+				91C0CD62268FBCDF000FBC49 /* UIFont.swift in Sources */,
 				711350212621C38F00572CB9 /* ReportsViewController.swift in Sources */,
 				9104C21925130B43003BF041 /* CreateUpdateAccount.swift in Sources */,
 				3C247C402572A21A00658BC4 /* FlexView.swift in Sources */,
@@ -897,8 +933,11 @@
 				9104C171250415C4003BF041 /* CategoryViewController.swift in Sources */,
 				711F5854263010EB00381BEF /* AccountDataRepository.swift in Sources */,
 				9104C1C725108459003BF041 /* AccountSegmentedTableCell.swift in Sources */,
+				91C0CD79269109AC000FBC49 /* AccountCollectionTotalCell.swift in Sources */,
 				9104C13D24FBD2BF003BF041 /* CategoriesPresenter.swift in Sources */,
+				91C0CD68269077EC000FBC49 /* CategoryCollectionHeader.swift in Sources */,
 				91957A7C253171A00027249A /* Paginated.swift in Sources */,
+				91C0CD65268FCF20000FBC49 /* SeparatorCollectionCell.swift in Sources */,
 				9104C17A250DD6DD003BF041 /* AccountViewController.swift in Sources */,
 				7113502B2621CBEA00572CB9 /* GetReportsByCategoryUseCase.swift in Sources */,
 				7167A50126490A02000E39A4 /* UIViewController+NavBar.swift in Sources */,
@@ -908,12 +947,14 @@
 				9104C1A4250F1FEC003BF041 /* DomainAuthModel.swift in Sources */,
 				711F58A32633252E00381BEF /* DependencyProvider.swift in Sources */,
 				910DEEB42574A50F0053A2E0 /* BottomBar.swift in Sources */,
+				91C0CD5F268FBADC000FBC49 /* AccountCollectionCell.swift in Sources */,
 				711F588126301C8D00381BEF /* OperationsDataRepository.swift in Sources */,
 				9104C1A0250F1D9E003BF041 /* UserCredentials.swift in Sources */,
 				71337D2A263EAA1D00EC7F3D /* HomePresenter.swift in Sources */,
 				3C15C54625734722005E209B /* SignIn.swift in Sources */,
 				9104C1A2250F1F3C003BF041 /* DomainUserCredentialsModel.swift in Sources */,
 				9104C17F250DDBB6003BF041 /* AccountPresenter.swift in Sources */,
+				91C0CD6F2690A6F8000FBC49 /* ChangeAndUpdateCategoriesUseCase.swift in Sources */,
 				711F58782630190800381BEF /* UserCredentialsDataRepository.swift in Sources */,
 				3C15C54D2573E795005E209B /* CreateUpdateTransferOperation.swift in Sources */,
 				71420C692638775E00DAB9C7 /* CategoriesRepository.swift in Sources */,
@@ -923,9 +964,9 @@
 				9104C194250E1C96003BF041 /* Currency.swift in Sources */,
 				711F584226300B7500381BEF /* SignInDataRepository.swift in Sources */,
 				91A85DA924ABDDA400B7A630 /* AppDelegate.swift in Sources */,
-				9104C14124FBD86D003BF041 /* CategoryViewModel.swift in Sources */,
 				9175DB92262A891200480957 /* String.swift in Sources */,
 				9104C1AE250F29F8003BF041 /* ProfilePresenter.swift in Sources */,
+				91C0CD752690D585000FBC49 /* DeleteAndUpdateAccountsUseCase.swift in Sources */,
 				711350282621C3B900572CB9 /* ReportsSceneAssembly.swift in Sources */,
 				9104C1B2250F2B92003BF041 /* DeleteUserCredentialsUseCase.swift in Sources */,
 				9104C19A250E239D003BF041 /* CurrencyTableCell.swift in Sources */,

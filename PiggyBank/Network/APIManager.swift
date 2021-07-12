@@ -102,7 +102,7 @@ public final class APIManager {
         case .GetCurrencies:
             urlRequst = prepareRequest(apiUrl: "/api/Currencies")
         case .GetOperations:
-            urlRequst = prepareRequest(apiUrl: "/api/Operations", query: [URLQueryItem(name: "all", value: "true")])
+            urlRequst = prepareRequest(apiUrl: "/api/Operations", query: [URLQueryItem(name: "all", value: "false")])
         case .DeleteBudgetOperation(let id):
             urlRequst = prepareRequest(apiUrl: "/api/Operations/Budget/\(id)", httpMethod: .delete)
         case .DeleteTransferOperation(let id):

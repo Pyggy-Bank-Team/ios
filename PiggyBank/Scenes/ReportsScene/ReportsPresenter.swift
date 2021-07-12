@@ -31,13 +31,13 @@ public final class ReportsPresenter {
         executeUseCase()
     }
 
-    func onCategoryTypeChange(type: CategoryViewModel.CategoryType) {
+    func onCategoryTypeChange(type: DomainCategoryModel.CategoryType) {
         reportViewModel.type = type
         executeUseCase()
     }
 
     private func executeUseCase() {
-        let category = DomainCategoryModel.CategoryType(rawValue: reportViewModel.type.rawValue) ?? .undefined
+        let category = DomainCategoryModel.CategoryType(rawValue: reportViewModel.type.rawValue) ?? .income
         getReportsByCategoryUseCase?.execute(category: category, from: reportViewModel.startDate, to: reportViewModel.endDate) { [weak self] response in
             guard let self = self else {
                 return

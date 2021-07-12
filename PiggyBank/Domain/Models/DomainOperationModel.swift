@@ -3,53 +3,51 @@ import Foundation
 final class DomainOperationModel {
     
     enum OperationType: UInt {
-        case undefined = 0
+
         case budget = 1
         case transfer = 2
-        case plan = 3
+
     }
 
     let id: UInt
-    let categoryHexColor: String?
     let amount: Double
-    let accountTitle: String?
     let comment: String?
     let type: OperationType
-    let createdOn: Date
-    let planDate: Date?
-    let fromTitle: String?
-    let toTitle: String?
+    let date: Date
     let isDeleted: Bool
+    let category: DomainCategoryModel?
+    let fromAccount: DomainAccountModel
+    let toAccount: DomainAccountModel?
     
     init(
         id: UInt,
-        categoryHexColor: String?,
         amount: Double,
-        accountTitle: String?,
         comment: String?,
         type: UInt,
-        createdOn: String,
-        planDate: String?,
-        fromTitle: String?,
-        toTitle: String?,
+        date: String,
+        category: DomainCategoryModel?,
+        fromAccount: DomainAccountModel,
+        toAccount: DomainAccountModel?,
         isDeleted: Bool
     ) {
-        var planDateResult: Date?
-        if let plan = planDate, let date = plan.dateFromString() {
-            planDateResult = date
-        }
-
         self.id = id
-        self.categoryHexColor = categoryHexColor
-        self.amount = amount
-        self.accountTitle = accountTitle
         self.comment = comment
         self.type = OperationType(rawValue: type)!
-        self.createdOn = createdOn.dateFromString() ?? Date()
-        self.planDate = planDateResult
-        self.fromTitle = fromTitle
-        self.toTitle = toTitle
+        self.date = date.dateFromString() ?? Date()
+        self.category = category
+        self.fromAccount = fromAccount
+        self.toAccount = toAccount
         self.isDeleted = isDeleted
+        
+        var mutableAmount = amount
+        if let category = category, category.type == .outcome {
+            mutableAmount *= -1
+        }
+        self.amount = mutableAmount
     }
     
+    var absAmount: Double {
+        abs(amount)
+    }
+
 }

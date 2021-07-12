@@ -18,20 +18,6 @@ public enum GrandConverter {
         )
     }
     
-    static func convertToViewModel(domainCategory: DomainCategoryModel?) -> CategoryViewModel? {
-        guard let category = domainCategory else {
-            return nil
-        }
-        
-        return CategoryViewModel(
-            id: category.id!,
-            title: category.title,
-            hexColor: category.hexColor,
-            type: category.type == .income ? .income : .outcome,
-            isArchived: category.isArchived
-        )
-    }
-    
     static func convertToViewModel(domainCurrency: DomainCurrencyModel) -> CurrencyViewModel {
         CurrencyViewModel(code: domainCurrency.code, symbol: domainCurrency.symbol)
     }
@@ -115,17 +101,26 @@ public enum GrandConverter {
     }
     
     static func convertToDomain(response: Operation.Response) -> DomainOperationModel {
-        DomainOperationModel(id: response.id,
-                             categoryHexColor: response.category?.hexColor,
-                             amount: response.amount,
-                             accountTitle: response.account.title,
-                             comment: response.comment,
-                             type: response.type,
-                             createdOn: response.date,
-                             planDate: nil,
-                             fromTitle: response.account.title,
-                             toTitle: response.toAcount?.title,
-                             isDeleted: response.isDeleted)
+        var category: DomainCategoryModel?
+        if let responseCategory = response.category {
+            category = DomainCategoryModel(title: responseCategory.title, hexColor: responseCategory.hexColor, type: responseCategory.type)
+        }
+        
+        let fromAccount = DomainAccountModel(title: response.account.title, currency: response.account.currency)
+        var toAccount: DomainAccountModel?
+        if let responseAccount = response.toAccount {
+            toAccount = DomainAccountModel(title: responseAccount.title, currency: responseAccount.currency)
+        }
+        
+        return DomainOperationModel(id: response.id,
+                                    amount: response.amount,
+                                    comment: response.comment,
+                                    type: response.type,
+                                    date: response.date,
+                                    category: category,
+                                    fromAccount: fromAccount,
+                                    toAccount: toAccount,
+                                    isDeleted: response.isDeleted)
     }
 
     static func convertToDomain(response: Reports.Response) -> DomainCategoryReportModel {
@@ -134,23 +129,6 @@ public enum GrandConverter {
                                   categoryHexColor: response.categoryHexColor,
                                   amount: Int64(response.amount),
                                   currency: response.currency)
-    }
-
-    static func convertToViewModel(operationModel: DomainOperationModel) -> OperationViewModel {
-        let type: OperationViewModel.OperationType
-        
-        switch operationModel.type {
-        case .transfer:
-            type = .transfer
-        case .budget:
-            type = .budget
-        case .plan:
-            type = .plan
-        default:
-            fatalError("Unsupported OperationType")
-        }
-        
-        return OperationViewModel(id: operationModel.id, type: type)
     }
 
     static func convertToViewModel(domainModel: DomainCategoryReportModel) -> ReportViewModel.ReportCategory {
