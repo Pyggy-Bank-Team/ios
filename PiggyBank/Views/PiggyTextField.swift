@@ -18,7 +18,7 @@ final class PiggyTextField: UITextField, UITextFieldDelegate {
         let underlineView = UIView()
         underlineView.translatesAutoresizingMaskIntoConstraints = false
         underlineView.heightAnchor.constraint(equalToConstant: 1.0).isActive = true
-        underlineView.backgroundColor = UIColor(hexString: "#BDBDBD")
+        underlineView.backgroundColor = UIColor(hexString: "#A0A3BD")
         return underlineView
     }()
 
@@ -34,7 +34,18 @@ final class PiggyTextField: UITextField, UITextFieldDelegate {
     init(type: FieldType = .text) {
         self.fieldType = type
         super.init(frame: .zero)
+
         delegate = self
+        autocorrectionType = .no
+        autocapitalizationType = .none
+        spellCheckingType = .no
+        if #available(iOS 12.0, *) {
+            textContentType = .oneTimeCode
+        } else {
+            // iOS 11: Disables the autofill accessory view.
+            textContentType = .init(rawValue: "")
+        }
+
         configureView()
     }
 

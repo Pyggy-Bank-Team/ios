@@ -16,6 +16,6 @@ class HomePresenter {
     }
 
     func onRegisterPressed() {
-        // FIXME: will be implemented
+        view?.navigationController?.pushViewController(DependencyProvider.shared.get(screen: .register), animated: true)
     }
 }

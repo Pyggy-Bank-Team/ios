@@ -27,7 +27,10 @@ public enum GrandConverter {
     }
     
     static func convertToRequestModel(domain: DomainSignUpModel) -> SignUp.Request {
-        SignUp.Request(nickname: domain.nickname, password: domain.password, currency: domain.currency)
+        SignUp.Request(nickname: domain.nickname,
+                       password: domain.password,
+                       currency: domain.currency,
+                       email: domain.email)
     }
 
     static func convertToRequestModel(domain: DomainSignInModel) -> SignIn.Request {

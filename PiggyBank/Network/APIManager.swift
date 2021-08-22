@@ -1,6 +1,27 @@
 import Foundation
 
-struct APIError: Error { }
+// swiftlint:disable explicit_enum_raw_value
+// swiftlint:disable raw_value_for_camel_cased_codable_enum
+enum ErrorType: String, Decodable {
+    case InvalidRequest
+    case UserNotCreated
+    case InternalServerError
+    case PasswordInvalid
+    case DuplicateUserName
+    case InvalidUserName
+    case UserNotFound
+    case InvalidPassword
+    case UnknownError
+}
+
+struct APIError: Error, Decodable {
+    let type: ErrorType
+    let errors: [String]
+}
+
+struct InternalError: Error {
+    let string: String?
+}
 
 enum RequestType {
     // Authorization APIs
@@ -107,7 +128,9 @@ public final class APIManager {
         guard var components = URLComponents(string: baseURL + apiUrl) else {
             return nil
         }
-        components.queryItems = query
+        if !query.isEmpty {
+            components.queryItems = query
+        }
         guard let url = components.url else {
             return nil
         }
@@ -129,18 +152,26 @@ public final class APIManager {
         completion: @escaping (Result<ResultType>) -> Void
     ) {
         guard let urlRequst = getUrlRequst(from: request) else {
-            return completion(.error(APIError()))
+            return completion(.error(InternalError(string: "Cannot generate url request")))
         }
 
         URLSession
             .shared
             .dataTask(with: urlRequst) { data, response, error in
-                guard let data = data,
-                      let httpResponse = response as? HTTPURLResponse,
+                guard let data = data else {
+                    return completion(.error(InternalError(string: "There is no data from responce")))
+                }
+
+                guard let httpResponse = response as? HTTPURLResponse,
                       httpResponse.statusCode == 200,
                       let responseModel = try? JSONDecoder().decode(ResultType.self, from: data)
                 else {
-                    return completion(.error(APIError()))
+                    print("Response: \(String(data: data, encoding: .utf8) ?? "no data")")
+                    if let error = try? JSONDecoder().decode(APIError.self, from: data) {
+                        return completion(.error(error))
+                    } else {
+                        return completion(.error(InternalError(string: "cannot decode to APIError")))
+                    }
                 }
                 completion(.success(responseModel))
             }
@@ -152,16 +183,21 @@ public final class APIManager {
         completion: @escaping (Result<Void>) -> Void
     ) {
         guard let urlRequst = getUrlRequst(from: request) else {
-            return completion(.error(APIError()))
+            return completion(.error(InternalError(string: "Cannot generate url request")))
         }
 
         URLSession
             .shared
-            .dataTask(with: urlRequst) { _, response, error in
+            .dataTask(with: urlRequst) { data, response, error in
                 guard let httpResponse = response as? HTTPURLResponse,
                       httpResponse.statusCode == 200
                 else {
-                    return completion(.error(APIError()))
+                    if let data = data, let error = try? JSONDecoder().decode(APIError.self, from: data) {
+                        print("Response: \(String(data: data, encoding: .utf8) ?? "no data")")
+                        return completion(.error(error))
+                    } else {
+                        return completion(.error(InternalError(string: "cannot decode to APIError")))
+                    }
                 }
                 completion(.success(()))
             }

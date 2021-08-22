@@ -15,8 +15,8 @@ struct ReportsRemoteDataSource: ReportsDataSource {
     ) {
         let requestModel = GrandConverter.convertToRequestModel(category: category, fromDate: from, toDate: to)
         APIManager.shared.perform(request: .GetReportsByCategory(requestModel)) { (response: Result<[Reports.Response]>) in
-            guard case let .success(responseModel) = response else {
-                return completion(.error(APIError()))
+            guard let responseModel = response.value else {
+                return completion(.error(response.error ?? InternalError(string: "Cannot get responseModel for GetReportsByCategory")))
             }
             let reports = responseModel.map { GrandConverter.convertToDomain(response: $0) }
             completion(.success(reports))

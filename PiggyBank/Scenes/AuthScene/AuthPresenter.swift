@@ -29,7 +29,7 @@ final class AuthPresenter {
                 }
             }
         } else {
-            view?.onPrimaryAction(viewController: DependencyProvider.shared.get(screen: .currency(username, password)))
+            view?.onPrimaryAction(viewController: DependencyProvider.shared.get(screen: .currency))
         }
     }
 

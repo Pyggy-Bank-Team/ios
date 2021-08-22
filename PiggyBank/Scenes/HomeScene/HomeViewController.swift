@@ -80,6 +80,15 @@ final class HomeViewController: UIViewController {
             self.navigationItem.backButtonDisplayMode = .minimal
         }
 
+        confugreLayout()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        animate()
+    }
+
+    private func confugreLayout() {
         view.addSubview(smallPinkCircleView)
         view.addSubview(bigPinkCircleView)
         view.addSubview(piggyImageView)
@@ -129,11 +138,6 @@ final class HomeViewController: UIViewController {
             registerButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25.0),
             registerButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25.0)
         ])
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        animate()
     }
 
     @objc

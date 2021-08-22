@@ -9,8 +9,8 @@ struct CategoriesRemoteDataSource: CategoriesDataSource {
 
     func getCategories(completion: @escaping (Result<[DomainCategoryModel]>) -> Void) {
         APIManager.shared.perform(request: .GetCategories) { (response: Result<[Category.Response]>) in
-            guard case let .success(responseModel) = response else {
-                return completion(.error(APIError()))
+            guard let responseModel = response.value else {
+                return completion(.error(response.error ?? InternalError(string: "Cannot get responseModel for GetCategories")))
             }
             let categories = responseModel.map { GrandConverter.convertToDomain(response: $0) }
             completion(.success(categories))

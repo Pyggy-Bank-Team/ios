@@ -19,13 +19,13 @@ final class SignInUseCase {
     func execute(domainSignInModel: DomainSignInModel, completion: @escaping (Result<Void>) -> Void) {
         signInRepository?.signIn(request: domainSignInModel) { [weak self] result in
             guard let self = self else {
-                return completion(.error(APIError()))
+                return completion(.error(InternalError(string: "Cannot get `self`")))
             }
             
-            guard case let .success(model) = result else {
-                return completion(.error(APIError()))
+            guard let model = result.value else {
+                return completion(.error(result.error ?? InternalError(string: "Cannot get responseModel for signIn")))
             }
-            
+
             let credentialsModel = DomainUserCredentialsModel(
                 accessToken: model.accessToken
             )

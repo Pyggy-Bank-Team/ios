@@ -27,8 +27,8 @@ struct AccountRemoteDataSource: AccountDataSource {
 
     func getAccounts(completion: @escaping (Result<[DomainAccountModel]>) -> Void) {
         APIManager.shared.perform(request: .GetAccounts) { (response: Result<[Account.Response]>) in
-            guard case let .success(responseModel) = response else {
-                return completion(.error(APIError()))
+            guard let responseModel = response.value else {
+                return completion(.error(response.error ?? InternalError(string: "Cannot get responseModel for GetAccounts")))
             }
             let accounts = responseModel.map { GrandConverter.convertToDomain(response: $0) }
             completion(.success(accounts))
